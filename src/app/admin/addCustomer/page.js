@@ -18,11 +18,15 @@ async function handleAddCustomer(newCustomerData) {
 export default function AddCustomer() {
   let [customerName, setCustomerName] = useState("");
   let [customerId, setCustomerId] = useState("");
-  let [customerType, setCustomerType] = useState("");
   let [logoUrl, setLogoUrl] = useState("");
   let [descreption, setDescription] = useState("");
+  let [addressL1, setAddressL1] = useState("");
+  let [addressL2, setAddressL2] = useState("");
+  let [city, setCity] = useState("");
+  let [state, setState] = useState("");
+  let [country, setCountry] = useState("");
   let [productString, setProductString] = useState("");
-  let [products, setProducts] = useState([]);
+  // let [products, setProducts] = useState([]);
   return (
     <div className="main">
       <NavBar />
@@ -47,15 +51,7 @@ export default function AddCustomer() {
               setCustomerName(e.target.value);
             }}
           />
-          <TextField
-            className="addCustomer-form-div-input"
-            id="standard-basic"
-            label="Business Type"
-            variant="standard"
-            onChange={(e) => {
-              setCustomerType(e.target.value);
-            }}
-          />
+
           <TextField
             className="addCustomer-form-div-input"
             id="standard-basic"
@@ -77,6 +73,51 @@ export default function AddCustomer() {
           <TextField
             className="addCustomer-form-div-input"
             id="standard-basic"
+            label="Address Line 1"
+            variant="standard"
+            onChange={(e) => {
+              setAddressL1(e.target.value);
+            }}
+          />
+          <TextField
+            className="addCustomer-form-div-input"
+            id="standard-basic"
+            label="Address Line 2"
+            variant="standard"
+            onChange={(e) => {
+              setAddressL2(e.target.value);
+            }}
+          />
+          <TextField
+            className="addCustomer-form-div-input"
+            id="standard-basic"
+            label="City"
+            variant="standard"
+            onChange={(e) => {
+              setCity(e.target.value);
+            }}
+          />
+          <TextField
+            className="addCustomer-form-div-input"
+            id="standard-basic"
+            label="State"
+            variant="standard"
+            onChange={(e) => {
+              setState(e.target.value);
+            }}
+          />
+          <TextField
+            className="addCustomer-form-div-input"
+            id="standard-basic"
+            label="Country"
+            variant="standard"
+            onChange={(e) => {
+              setCountry(e.target.value);
+            }}
+          />
+          <TextField
+            className="addCustomer-form-div-input"
+            id="standard-basic"
             label="Products"
             variant="standard"
             onChange={(e) => {
@@ -90,13 +131,22 @@ export default function AddCustomer() {
             startIcon={<AddIcon />}
             onClick={() => {
               let productArray = productString.split(",");
+              let products = [];
+              for (let i = 0; i < productArray.length; i++) {
+                let prod = { productId: productArray[i], templateId: "" };
+                products.push(prod);
+              }
               let newCustomerData = {
-                customerId: customerId,
-                customerName: customerName,
-                businessType: customerType,
+                id: customerId,
+                name: customerName,
                 logoUrl: logoUrl,
                 descreption: descreption,
-                products: productArray,
+                addressL1: addressL1,
+                addressL2: addressL2,
+                city: city,
+                state: state,
+                country: country,
+                products: products,
               };
               // console.log(newCustomerData);
               handleAddCustomer(newCustomerData);

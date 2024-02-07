@@ -72,7 +72,9 @@ export default function AdminCustomerDetials({ params }) {
       .then((res) => setCustomerDetail(res.data));
     const productData = await axios
       .get(`http://localhost:9000/getProducts/${customerId}`)
-      .then((res) => setProductDetails(res.data));
+      .then((res) => {
+        setProductDetails(res.data);
+      });
   };
   useEffect(() => {
     getDetails();
