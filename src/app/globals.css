@@ -1,0 +1,168 @@
+body {
+  background-image: linear-gradient(to right, lightblue, rgb(59, 59, 247));
+  max-height: 100vh;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+/* Login Screen */
+.login-page-div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 98vh;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.login-page-avatar-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.login-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: black;
+}
+
+/* NavBar */
+.nav-itmes-div {
+  display: flex;
+  gap: 20px;
+  align-items: center !important;
+}
+
+/* ADMIN PAGE */
+/* Customer List Page */
+.customerList-card-cardAction {
+  display: flex;
+  justify-content: space-between;
+}
+
+.customerList-button-section {
+  display: flex;
+  margin: 10px;
+  gap: 10px;
+}
+
+.customerList-section-card-cardAction {
+  display: flex;
+  justify-content: space-between;
+}
+
+.addCustomer-form-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.addCustomer-form-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.addCustomer-form-div-input {
+  width: 400px;
+}
+
+.addCustomer-button-section {
+  margin: 10px;
+}
+
+/* USER PAGE */
+/* Customer List Page */
+.customerList-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px;
+}
+
+.customerList-link {
+  color: black;
+  text-decoration: none;
+}
+
+/* Customer Details Page */
+.productDetials-div {
+  display: flex;
+  margin-top: 10px;
+}
+
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  max-width: 20%;
+  gap: 10px;
+  margin: 10px;
+  align-items: center;
+}
+
+.left-panel-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.left-panel-scroll {
+  max-width: 100%;
+  height: 70vh;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.left-panel-scroll-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.right-panel {
+  width: 100%;
+}
+
+.right-panel-title {
+  margin-bottom: 10px;
+}
+
+.right-panel-pinned-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.right-panel-pinned-section-content {
+  width: 300px;
+}
+
+.right-panel-scroll {
+  max-width: 100%;
+  height: 61vh;
+  overflow: hidden;
+  overflow-y: scroll;
+  margin-top: 20px;
+}
+
+.right-panel-scroll-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.right-panel-scroll-content-input-div {
+  display: flex;
+  width: 500px;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
