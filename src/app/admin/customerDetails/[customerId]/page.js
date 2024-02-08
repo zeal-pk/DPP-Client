@@ -145,19 +145,23 @@ export default function AdminCustomerDetials({ params }) {
           {/* ------------------------------Right Plane pinned section - START */}
           <section className="right-panel-pinned-section">
             <div className="right-panel-pinned-section-content">
-              <h5>Product description</h5>
-              {selectedProduct.description}
+              <h5>Customer Description</h5>
+              {customerDetail.descreption}
             </div>
             <div className="right-panel-pinned-section-content">
-              <h5>Key Features</h5>
-              {selectedProduct.features}
+              <h5>Address</h5>
+              {customerDetail.addressL1}, {customerDetail.addressL2}
+              <br></br>
+              {customerDetail.city}, {customerDetail.state}
+              <br></br>
+              {customerDetail.country}.
             </div>
-            <div className="right-panel-pinned-section-content">
+            {/* <div className="right-panel-pinned-section-content">
               <h5>Price:</h5>
               <h2>$ {selectedProduct.price}</h2>
               <h5>Category</h5>
               {selectedProduct.category}
-            </div>
+            </div> */}
           </section>
           {/* ------------------------------Right Plane pinned section - END */}
           {/* ------------------------------Right Plane scroll section - START */}

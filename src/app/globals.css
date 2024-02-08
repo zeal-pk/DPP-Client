@@ -1,6 +1,5 @@
 body {
   background-image: linear-gradient(to right, lightblue, rgb(59, 59, 247));
-  max-height: 100vh;
 }
 
 a {
@@ -115,9 +114,10 @@ a {
 
 .left-panel-scroll {
   max-width: 100%;
-  height: 70vh;
+  height: 65.5vh;
   overflow: hidden;
   overflow-y: scroll;
+  scrollbar-width: none;
 }
 
 .left-panel-scroll-content {
@@ -138,18 +138,21 @@ a {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: left;
+  gap: 20px;
+  margin-bottom: 10px;
 }
 
 .right-panel-pinned-section-content {
-  width: 300px;
+  width: 400px;
 }
 
 .right-panel-scroll {
   max-width: 100%;
-  height: 61vh;
+  height: 50vh;
   overflow: hidden;
   overflow-y: scroll;
+  scrollbar-width: none;
   margin-top: 20px;
 }
 

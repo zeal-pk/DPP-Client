@@ -33,7 +33,14 @@ export default function Home() {
             className="customerList-link"
             href={`/user/customerDetails/${customerDetail.id}`}
           >
-            <Card sx={{ maxWidth: 350 }}>
+            <Card
+              sx={{
+                minWidth: 200,
+                maxWidth: 350,
+                minHeight: 200,
+                maxHeight: 200,
+              }}
+            >
               <CardContent>
                 <Typography
                   sx={{ fontSize: 14 }}

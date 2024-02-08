@@ -145,19 +145,23 @@ export default function CustomerDetials({ params }) {
           {/* ------------------------------Right Plane pinned section - START */}
           <section className="right-panel-pinned-section">
             <div className="right-panel-pinned-section-content">
-              <h5>Product description</h5>
-              {selectedProduct.description}
+              <h5>Customer Description</h5>
+              {customerDetail.descreption}
             </div>
             <div className="right-panel-pinned-section-content">
-              <h5>Key Features</h5>
-              {selectedProduct.features}
+              <h5>Address</h5>
+              {customerDetail.addressL1}, {customerDetail.addressL2}
+              <br></br>
+              {customerDetail.city}, {customerDetail.state}
+              <br></br>
+              {customerDetail.country}.
             </div>
-            <div className="right-panel-pinned-section-content">
+            {/* <div className="right-panel-pinned-section-content">
               <h5>Price:</h5>
               <h2>$ {selectedProduct.price}</h2>
               <h5>Category</h5>
               {selectedProduct.category}
-            </div>
+            </div> */}
           </section>
           {/* ------------------------------Right Plane pinned section - END */}
           {/* ------------------------------Right Plane scroll section - START */}
@@ -174,7 +178,7 @@ export default function CustomerDetials({ params }) {
                   aria-controls="nav-tab1"
                   aria-selected="true"
                 >
-                  Tab 1
+                  General Product Details
                 </button>
                 <button
                   class="nav-link"
@@ -210,6 +214,15 @@ export default function CustomerDetials({ params }) {
                 aria-labelledby="nav-tab1-tab"
                 tabindex="0"
               >
+                ...
+              </div>
+              <div
+                class="tab-pane fade"
+                id="nav-tab2"
+                role="tabpanel"
+                aria-labelledby="nav-tab2-tab"
+                tabindex="0"
+              >
                 <div className="right-panel-scroll">
                   <div className="right-panel-scroll-content">
                     {inputData.map((input) => (
@@ -223,15 +236,6 @@ export default function CustomerDetials({ params }) {
                     ))}
                   </div>
                 </div>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="nav-tab2"
-                role="tabpanel"
-                aria-labelledby="nav-tab2-tab"
-                tabindex="0"
-              >
-                ...
               </div>
               <div
                 class="tab-pane fade"
