@@ -167,9 +167,9 @@ export default function CustomerDetials({ params }) {
           {/* ------------------------------Right Plane scroll section - START */}
           <section className="right-panel-scrollable-section">
             <nav>
-              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <div className="nav nav-tabs" id="nav-tab" role="tablist">
                 <button
-                  class="nav-link active"
+                  className="nav-link active"
                   id="nav-tab1-tab"
                   data-bs-toggle="tab"
                   data-bs-target="#nav-tab1"
@@ -181,7 +181,7 @@ export default function CustomerDetials({ params }) {
                   General Product Details
                 </button>
                 <button
-                  class="nav-link"
+                  className="nav-link"
                   id="nav-tab2-tab"
                   data-bs-toggle="tab"
                   data-bs-target="#nav-tab2"
@@ -193,7 +193,7 @@ export default function CustomerDetials({ params }) {
                   Tab 2
                 </button>
                 <button
-                  class="nav-link"
+                  className="nav-link"
                   id="nav-tab3-tab"
                   data-bs-toggle="tab"
                   data-bs-target="#nav-tab3"
@@ -206,9 +206,9 @@ export default function CustomerDetials({ params }) {
                 </button>
               </div>
             </nav>
-            <div class="tab-content" id="nav-tabContent">
+            <div className="tab-content" id="nav-tabContent">
               <div
-                class="tab-pane fade show active"
+                className="tab-pane fade show active"
                 id="nav-tab1"
                 role="tabpanel"
                 aria-labelledby="nav-tab1-tab"
@@ -217,7 +217,7 @@ export default function CustomerDetials({ params }) {
                 ...
               </div>
               <div
-                class="tab-pane fade"
+                className="tab-pane fade"
                 id="nav-tab2"
                 role="tabpanel"
                 aria-labelledby="nav-tab2-tab"
@@ -225,8 +225,11 @@ export default function CustomerDetials({ params }) {
               >
                 <div className="right-panel-scroll">
                   <div className="right-panel-scroll-content">
-                    {inputData.map((input) => (
-                      <section className="right-panel-scroll-content-input-div">
+                    {inputData.map((input, index) => (
+                      <section
+                        className="right-panel-scroll-content-input-div"
+                        key={index}
+                      >
                         <p>{input}</p>
                         <Input
                           placeholder="Type in here…"
@@ -238,7 +241,7 @@ export default function CustomerDetials({ params }) {
                 </div>
               </div>
               <div
-                class="tab-pane fade"
+                className="tab-pane fade"
                 id="nav-tab3"
                 role="tabpanel"
                 aria-labelledby="nav-tab3-tab"
