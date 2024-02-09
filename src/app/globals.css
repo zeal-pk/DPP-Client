@@ -169,3 +169,25 @@ a {
   justify-content: space-between;
   gap: 10px;
 }
+
+.materialComposition-card {
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  background-color: white;
+  justify-content: flex-start;
+  margin: 10px 15px 10px 0;
+}
+
+.materialComposition-chart {
+  height: auto;
+}
+
+.materialComposition-chart-card-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.materialComposition-chart-card-text2 {
+  display: flex;
+}

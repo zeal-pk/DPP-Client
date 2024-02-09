@@ -10,75 +10,69 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea } from "@mui/material";
-import PropTypes from "prop-types";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
 import Input from "@mui/joy/Input";
-
-// MUI Tabs Functions - START
-function CustomTabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-CustomTabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-  };
-}
-// MUI Tabs Functions - END
+import MaterialCompositionChart from "@/components/user/materialCompositionChart";
+import MaterialOrigin from "@/components/user/materialOrigin";
+import Reusability from "@/components/user/reusability";
 
 export default function CustomerDetials({ params }) {
   let customerId = params.customerId;
   let [customerDetail, setCustomerDetail] = useState([]);
   let [productDetails, setProductDetails] = useState([]);
   let [selectedProduct, setSelectedProduct] = useState({});
-
-  // MUI Tabs Variables -START
-  const [value, setValue] = useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-  // MUI Tabs Variables -END
+  let [selectedProductProperties, setSelectedProductProperties] = useState([]);
+  let [selectedProductRawMaterials, setSelectedProductRawMaterials] = useState(
+    []
+  );
+  let [selectedProductRawMaterialsName, setSelectedProductRawMaterialsName] =
+    useState([]);
+  let [
+    selectedProductRawMaterialsComposition,
+    setSelectedProductRawMaterialsComposition,
+  ] = useState([]);
+  let [
+    selectedProductRawMaterialsManufacturerStatement,
+    setSelectedProductRawMaterialsManufacturerStatement,
+  ] = useState([]);
+  let [
+    selectedProductRawMaterialsRecyclable,
+    setSelectedProductRawMaterialsRecyclable,
+  ] = useState([]);
 
   // Function to get the selected customer detials and product details
   const getDetails = async () => {
-    const customerData = await axios
+    await axios
       .get(`http://localhost:9000/getCustomer/${customerId}`)
       .then((res) => {
         setCustomerDetail(res.data);
       });
-    const productData = await axios
+    await axios
       .get(`http://localhost:9000/getProducts/${customerId}`)
-      .then((res) => setProductDetails(res.data));
+      .then((res) => {
+        setProductDetails(res.data);
+        setSelectedProduct(res.data[0]);
+      });
   };
   useEffect(() => {
     getDetails();
   }, []);
+
+  useEffect(() => {
+    let name = [];
+    let comp = [];
+    let state = [];
+    let recyclable = [];
+    for (let i = 0; i < selectedProductRawMaterials.length; i++) {
+      name.push(selectedProductRawMaterials[i].material);
+      comp.push(selectedProductRawMaterials[i].composition);
+      state.push(selectedProductRawMaterials[i].manufacturerStatement);
+      recyclable.push(selectedProductRawMaterials[i].recyclable);
+    }
+    setSelectedProductRawMaterialsName(name);
+    setSelectedProductRawMaterialsComposition(comp);
+    setSelectedProductRawMaterialsManufacturerStatement(state);
+    setSelectedProductRawMaterialsRecyclable(recyclable);
+  }, [selectedProductRawMaterials]);
 
   return (
     <div className="main">
@@ -107,6 +101,8 @@ export default function CustomerDetials({ params }) {
                   key={product.id}
                   onClick={() => {
                     setSelectedProduct(product);
+                    setSelectedProductProperties(product.properties);
+                    setSelectedProductRawMaterials(product.rawMaterial);
                   }}
                 >
                   <Card sx={{ minWidth: 200, maxWidth: 200, maxHeight: 170 }}>
@@ -214,7 +210,7 @@ export default function CustomerDetials({ params }) {
                 aria-labelledby="nav-tab1-tab"
                 tabindex="0"
               >
-                ...
+                {/* {console.log(selectedProductProperties.length)} */}
               </div>
               <div
                 className="tab-pane fade"
@@ -247,7 +243,21 @@ export default function CustomerDetials({ params }) {
                 aria-labelledby="nav-tab3-tab"
                 tabindex="0"
               >
-                ...
+                <MaterialCompositionChart
+                  rawMaterial={selectedProductRawMaterialsName}
+                  composition={selectedProductRawMaterialsComposition}
+                  manufacturerStatement={
+                    selectedProductRawMaterialsManufacturerStatement
+                  }
+                />
+                <MaterialOrigin
+                  manufacturerStatement={
+                    selectedProductRawMaterialsManufacturerStatement
+                  }
+                />
+                <Reusability
+                  recyclable={selectedProductRawMaterialsRecyclable}
+                />
               </div>
             </div>
           </section>
