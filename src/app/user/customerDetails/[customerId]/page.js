@@ -13,7 +13,8 @@ import { Button, CardActionArea } from "@mui/material";
 import Input from "@mui/joy/Input";
 import MaterialCompositionChart from "@/components/user/materialCompositionChart";
 import MaterialOrigin from "@/components/user/materialOrigin";
-import Reusability from "@/components/user/reusability";
+import Recyclability from "@/components/user/recyclability";
+import GeneralProductDetails from "@/components/user/generalProductDetails";
 
 export default function CustomerDetials({ params }) {
   let customerId = params.customerId;
@@ -198,7 +199,7 @@ export default function CustomerDetials({ params }) {
                   aria-controls="nav-tab3"
                   aria-selected="false"
                 >
-                  Tab 3
+                  Raw Material Detials
                 </button>
               </div>
             </nav>
@@ -210,7 +211,13 @@ export default function CustomerDetials({ params }) {
                 aria-labelledby="nav-tab1-tab"
                 tabindex="0"
               >
-                {/* {console.log(selectedProductProperties.length)} */}
+                <div className="right-panel-scroll">
+                  <div className="right-panel-scroll-content">
+                    <GeneralProductDetails
+                      productProperties={selectedProductProperties}
+                    />
+                  </div>
+                </div>
               </div>
               <div
                 className="tab-pane fade"
@@ -243,21 +250,26 @@ export default function CustomerDetials({ params }) {
                 aria-labelledby="nav-tab3-tab"
                 tabindex="0"
               >
-                <MaterialCompositionChart
-                  rawMaterial={selectedProductRawMaterialsName}
-                  composition={selectedProductRawMaterialsComposition}
-                  manufacturerStatement={
-                    selectedProductRawMaterialsManufacturerStatement
-                  }
-                />
-                <MaterialOrigin
-                  manufacturerStatement={
-                    selectedProductRawMaterialsManufacturerStatement
-                  }
-                />
-                <Reusability
-                  recyclable={selectedProductRawMaterialsRecyclable}
-                />
+                <div className="right-panel-scroll">
+                  <div className="right-panel-scroll-content">
+                    <MaterialCompositionChart
+                      rawMaterial={selectedProductRawMaterialsName}
+                      composition={selectedProductRawMaterialsComposition}
+                      manufacturerStatement={
+                        selectedProductRawMaterialsManufacturerStatement
+                      }
+                    />
+                    <MaterialOrigin
+                      manufacturerStatement={
+                        selectedProductRawMaterialsManufacturerStatement
+                      }
+                    />
+                    <Recyclability
+                      composition={selectedProductRawMaterialsComposition}
+                      recyclable={selectedProductRawMaterialsRecyclable}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </section>

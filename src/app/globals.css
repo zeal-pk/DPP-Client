@@ -162,6 +162,17 @@ a {
   gap: 10px;
 }
 
+.productDetails-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.productDetails {
+  display: flex;
+  align-items: center;
+}
+
 .right-panel-scroll-content-input-div {
   display: flex;
   width: 500px;
@@ -177,6 +188,7 @@ a {
   background-color: white;
   justify-content: flex-start;
   margin: 10px 15px 10px 0;
+  padding: 10px;
 }
 
 .materialComposition-chart {
@@ -190,4 +202,10 @@ a {
 
 .materialComposition-chart-card-text2 {
   display: flex;
+  width: 100%;
+}
+
+.recyclability-bar-div {
+  width: 300px;
+  margin: 10px;
 }
