@@ -101,7 +101,12 @@ export default function Home() {
                 Learn More
               </Button>
               <Stack direction="row" spacing={0}>
-                <IconButton aria-label="delete">
+                <IconButton
+                  aria-label="delete"
+                  onClick={() =>
+                    router.push(`/admin/updateCustomer/${customerDetail.id}`)
+                  }
+                >
                   <EditIcon />
                 </IconButton>
                 <IconButton
