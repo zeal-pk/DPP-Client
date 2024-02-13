@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import zealitLogo from "../assets/ZealLogo.png";
 import axios from "axios";
+import { Formik, Form, Field } from "formik";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -33,14 +34,24 @@ export default function Login() {
   async function handleLogin(loginData) {
     let email = loginData.email;
     let password = loginData.password;
-    const res = await axios.get(
-      `http://localhost:9000/login/${email}/${password}`
-    );
 
-    if (res.data.passwordStatus == true) {
-      router.push(`/${res.data.role}`);
+    if (!email) {
+      alert("Please Provide a valid Email Address");
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
+      alert("Please Provide a valid Email Address");
+    } else if (!password) {
+      alert("Please Provide Password");
     } else {
-      alert("Email or Password is Incorrect!");
+      const res = await axios.get(
+        `http://localhost:9000/login/${email}/${password}`
+      );
+      console.log(res);
+
+      if (res.data.passwordStatus == true) {
+        router.push(`/${res.data.role}`);
+      } else {
+        alert("Email or Password is Incorrect!");
+      }
     }
   }
 
