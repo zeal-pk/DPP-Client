@@ -4,21 +4,21 @@ import NavBar from "@/components/navBar";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import AddIcon from "@mui/icons-material/Add";
+import EditIcon from "@mui/icons-material/Edit";
 
 export default function UpdateCustomer({ params }) {
   let custId = params.customerId;
   let [customerDetails, setCustomerDetails] = useState("-");
-  let [customerName, setCustomerName] = useState("");
-  let [customerId, setCustomerId] = useState("");
-  let [logoUrl, setLogoUrl] = useState("");
-  let [descreption, setDescription] = useState("");
-  let [addressL1, setAddressL1] = useState("");
-  let [addressL2, setAddressL2] = useState("");
-  let [city, setCity] = useState("");
-  let [state, setState] = useState("");
-  let [country, setCountry] = useState("");
-  let [products, setProducts] = useState("");
+  let [customerName, setCustomerName] = useState("-");
+  let [customerId, setCustomerId] = useState("-");
+  let [logoUrl, setLogoUrl] = useState("-");
+  let [descreption, setDescription] = useState("-");
+  let [addressL1, setAddressL1] = useState("-");
+  let [addressL2, setAddressL2] = useState("-");
+  let [city, setCity] = useState("-");
+  let [state, setState] = useState("-");
+  let [country, setCountry] = useState("-");
+  let [products, setProducts] = useState("-");
 
   async function handleGetCustomerData() {
     let prods = [];
@@ -44,7 +44,7 @@ export default function UpdateCustomer({ params }) {
     setLogoUrl(response.logoUrl);
     setDescription(response.descreption);
     setAddressL1(response.addressL1);
-    setAddressL2(response.addressL1);
+    setAddressL2(response.addressL2);
     setCity(response.city);
     setState(response.state);
     setCountry(response.country);
@@ -57,7 +57,10 @@ export default function UpdateCustomer({ params }) {
 
   async function handleUpdateCustomer(newCustomerData) {
     const response = await axios
-      .post("http://localhost:9000/postCustomer", newCustomerData)
+      .post(
+        `http://localhost:9000/updateCustomer/${customerId}`,
+        newCustomerData
+      )
       .then((response) => {
         console.log(response.data);
       });
@@ -72,7 +75,7 @@ export default function UpdateCustomer({ params }) {
     <div className="main">
       <NavBar />
       <div className="addCustomer-form-div">
-        <h4>Customer: </h4>
+        <h4>Update Customer Details</h4>
         <section className="addCustomer-form-section">
           <TextField
             className="addCustomer-form-div-input"
@@ -179,13 +182,13 @@ export default function UpdateCustomer({ params }) {
         <section className="addCustomer-button-section">
           <Button
             variant="contained"
-            startIcon={<AddIcon />}
+            startIcon={<EditIcon />}
             onClick={() => {
-              let productArray = productString.split(",");
-              let products = [];
+              let productArray = products.split(",");
+              let prods = [];
               for (let i = 0; i < productArray.length; i++) {
                 let prod = { productId: productArray[i], templateId: "" };
-                products.push(prod);
+                prods.push(prod);
               }
               let newCustomerData = {
                 id: customerId,
@@ -197,13 +200,13 @@ export default function UpdateCustomer({ params }) {
                 city: city,
                 state: state,
                 country: country,
-                products: products,
+                products: prods,
               };
               // console.log(newCustomerData);
-              handleAddCustomer(newCustomerData);
+              handleUpdateCustomer(newCustomerData);
             }}
           >
-            Add Customer
+            Update Customer
           </Button>
         </section>
       </div>
