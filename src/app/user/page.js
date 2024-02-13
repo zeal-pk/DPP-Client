@@ -15,7 +15,6 @@ export default function Home() {
 
   const Fun = async () => {
     const response = await axios.get("http://localhost:9000/");
-    console.log(response.data);
     setCustomerDetails(response.data);
   };
   useEffect(() => {
@@ -27,41 +26,45 @@ export default function Home() {
       <NavBar />
       <h3 className="pageTitle">Customer List</h3>
       {/* --------------------------------- Customer List Section - START */}
-      <section className="customerList-section">
-        {customerDetails.map((customerDetail) => (
-          <Link
-            className="customerList-link"
-            href={`/user/customerDetails/${customerDetail.id}`}
-          >
-            <Card
-              sx={{
-                minWidth: 200,
-                maxWidth: 350,
-                minHeight: 200,
-                maxHeight: 200,
-              }}
-            >
-              <CardContent>
-                <Typography
-                  sx={{ fontSize: 14 }}
-                  color="text.secondary"
-                  gutterBottom
+      <section className="customerList-scroll">
+        <section className="customerList-scroll-content">
+          <section className="customerList-section">
+            {customerDetails.map((customerDetail) => (
+              <Link
+                className="customerList-link"
+                href={`/user/customerDetails/${customerDetail.id}`}
+              >
+                <Card
+                  sx={{
+                    minWidth: 200,
+                    maxWidth: 350,
+                    minHeight: 200,
+                    maxHeight: 200,
+                  }}
                 >
-                  ID: {customerDetail.id}
-                </Typography>
-                <Typography variant="h5" component="div">
-                  {customerDetail.name}
-                </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                  {customerDetail.businessType}
-                </Typography>
-                <Typography variant="body2">
-                  {customerDetail.descreption}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Link>
-        ))}
+                  <CardContent>
+                    <Typography
+                      sx={{ fontSize: 14 }}
+                      color="text.secondary"
+                      gutterBottom
+                    >
+                      ID: {customerDetail.id}
+                    </Typography>
+                    <Typography variant="h5" component="div">
+                      {customerDetail.name}
+                    </Typography>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                      {customerDetail.businessType}
+                    </Typography>
+                    <Typography variant="body2">
+                      {customerDetail.descreption}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </section>
+        </section>
       </section>
       {/* --------------------------------- Customer List Section - END */}
     </div>

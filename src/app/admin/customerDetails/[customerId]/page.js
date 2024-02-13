@@ -16,54 +16,11 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import Input from "@mui/joy/Input";
 
-// MUI Tabs Functions - START
-function CustomTabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-CustomTabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-  };
-}
-// MUI Tabs Functions - END
-
 export default function AdminCustomerDetials({ params }) {
   let customerId = params.customerId;
   let [customerDetail, setCustomerDetail] = useState([]);
   let [productDetails, setProductDetails] = useState([]);
   let [selectedProduct, setSelectedProduct] = useState({});
-
-  // MUI Tabs Variables -START
-  const [value, setValue] = useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-  // MUI Tabs Variables -END
 
   // Function to get the selected customer detials and product details
   const getDetails = async () => {

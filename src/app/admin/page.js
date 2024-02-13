@@ -67,59 +67,66 @@ export default function Home() {
       </Alert>
 
       {/* --------------------------------- Customer List Section - START */}
-      <section className="customerList-section">
-        {customerDetails.map((customerDetail) => (
-          <Card sx={{ maxWidth: 350 }} key={customerDetail.id}>
-            <Link
-              className="customerList-link"
-              href={`/admin/customerDetails/${customerDetail.id}`}
-            >
-              <CardContent>
-                <Typography
-                  sx={{ fontSize: 14 }}
-                  color="text.secondary"
-                  gutterBottom
+      <section className="customerList-scroll">
+        <section className="customerList-scroll-content">
+          <section className="customerList-section">
+            {customerDetails.map((customerDetail) => (
+              <Card sx={{ maxWidth: 350 }} key={customerDetail.id}>
+                <Link
+                  className="customerList-link"
+                  href={`/admin/customerDetails/${customerDetail.id}`}
                 >
-                  ID: {customerDetail.id}
-                </Typography>
-                <Typography variant="h5" component="div">
-                  {customerDetail.name}
-                </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                  {customerDetail.businessType}
-                </Typography>
-                <Typography variant="body2">
-                  {customerDetail.descreption}
-                </Typography>
-              </CardContent>
-            </Link>
-            <CardActions className="customerList-card-cardAction">
-              <Button
-                size="small"
-                // onClick={getCustomerData(customerDetail.customerId)}
-              >
-                Learn More
-              </Button>
-              <Stack direction="row" spacing={0}>
-                <IconButton
-                  aria-label="delete"
-                  onClick={() =>
-                    router.push(`/admin/updateCustomer/${customerDetail.id}`)
-                  }
-                >
-                  <EditIcon />
-                </IconButton>
-                <IconButton
-                  aria-label="delete"
-                  onClick={() => deleteCustomer(customerDetail.id)}
-                >
-                  <DeleteIcon />
-                </IconButton>
-              </Stack>
-            </CardActions>
-          </Card>
-        ))}
+                  <CardContent>
+                    <Typography
+                      sx={{ fontSize: 14 }}
+                      color="text.secondary"
+                      gutterBottom
+                    >
+                      ID: {customerDetail.id}
+                    </Typography>
+                    <Typography variant="h5" component="div">
+                      {customerDetail.name}
+                    </Typography>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                      {customerDetail.businessType}
+                    </Typography>
+                    <Typography variant="body2">
+                      {customerDetail.descreption}
+                    </Typography>
+                  </CardContent>
+                </Link>
+                <CardActions className="customerList-card-cardAction">
+                  <Button
+                    size="small"
+                    // onClick={getCustomerData(customerDetail.customerId)}
+                  >
+                    Learn More
+                  </Button>
+                  <Stack direction="row" spacing={0}>
+                    <IconButton
+                      aria-label="delete"
+                      onClick={() =>
+                        router.push(
+                          `/admin/updateCustomer/${customerDetail.id}`
+                        )
+                      }
+                    >
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton
+                      aria-label="delete"
+                      onClick={() => deleteCustomer(customerDetail.id)}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </Stack>
+                </CardActions>
+              </Card>
+            ))}
+          </section>
+        </section>
       </section>
+
       {/* --------------------------------- Customer List Section - END */}
 
       {/* --------------------------------- Add Customer Button Section - START */}
