@@ -3,18 +3,20 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
 import NavBar from "@/components/navBar";
-import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
 export default function Home() {
-  // const router = useRouter();
   let [customerDetails, setCustomerDetails] = useState([]);
 
   const Fun = async () => {
-    const response = await axios.get("http://localhost:9000/");
+    let token = localStorage.getItem("access_token");
+    const response = await axios.get("http://localhost:9000/", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
     setCustomerDetails(response.data);
   };
   useEffect(() => {

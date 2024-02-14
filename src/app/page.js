@@ -36,22 +36,25 @@ export default function Login() {
     let password = loginData.password;
 
     if (!email) {
-      alert("Please Provide a valid Email Address");
+      alert("Please Provide an Email Address");
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
       alert("Please Provide a valid Email Address");
     } else if (!password) {
       alert("Please Provide Password");
     } else {
-      const res = await axios.get(
-        `http://localhost:9000/login/${email}/${password}`
-      );
-      console.log(res);
-
-      if (res.data.passwordStatus == true) {
-        router.push(`/${res.data.role}`);
-      } else {
-        alert("Email or Password is Incorrect!");
-      }
+      await axios
+        .get(`http://localhost:9000/login/${email}/${password}`)
+        .then((response) => {
+          localStorage.setItem("access_token", response.data.token);
+          if (
+            response.data.passwordStatus == true &&
+            response.data.token !== "undefined"
+          ) {
+            router.push(`/${response.data.role}`);
+          } else {
+            alert("Email or Password is Incorrect!");
+          }
+        });
     }
   }
 

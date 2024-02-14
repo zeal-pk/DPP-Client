@@ -24,7 +24,12 @@ export default function Home() {
   let [alertSeverity, setAlertSeverity] = useState("");
 
   const Fun = async () => {
-    const response = await axios.get("http://localhost:9000/");
+    let token = localStorage.getItem("access_token");
+    const response = await axios.get("http://localhost:9000/", {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
     setCustomerDetails(response.data);
   };
   useEffect(() => {
