@@ -31,15 +31,19 @@ export default function Login() {
   let [email, setEmail] = useState();
   let [password, setPassword] = useState();
 
-  async function handleLogin(loginData) {
-    let email = loginData.email;
-    let password = loginData.password;
-
-    if (!email) {
+  async function handleLogin(e) {
+    // let loginData = {
+    //   email: email,
+    //   password: password,
+    // };
+    e.preventDefault();
+    let mail = email;
+    let pass = password;
+    if (!mail) {
       alert("Please Provide an Email Address");
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
       alert("Please Provide a valid Email Address");
-    } else if (!password) {
+    } else if (!pass) {
       alert("Please Provide Password");
     } else {
       await axios
@@ -68,58 +72,64 @@ export default function Login() {
           </h2>
         </section>
 
-        <Stack spacing={2} direction="column" sx={{ width: 320 }}>
-          <TextField
-            id="outlined-basic"
-            label="Email Address"
-            variant="outlined"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <FormControl sx={{ m: 1 }} variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">
-              Password
-            </InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-password"
-              type={showPassword ? "text" : "password"}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              label="Password"
-              onChange={(e) => setPassword(e.target.value)}
+        <form onSubmit={handleLogin}>
+          <Stack spacing={2} direction="column" sx={{ width: 320 }}>
+            <TextField
+              id="outlined-basic"
+              label="Email Address"
+              variant="outlined"
+              onChange={(e) => setEmail(e.target.value)}
             />
-          </FormControl>
-        </Stack>
+            <FormControl sx={{ m: 1 }} variant="outlined">
+              <InputLabel htmlFor="outlined-adornment-password">
+                Password
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-password"
+                type={showPassword ? "text" : "password"}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </FormControl>
 
-        <Stack spacing={1}>
-          <Button
-            variant="contained"
-            onClick={() => {
-              let loginData = {
-                email: email,
-                password: password,
-              };
-              handleLogin(loginData);
-            }}
-          >
-            Login
-          </Button>
-        </Stack>
-        <p>
-          Don't have an account? Please{" "}
-          <Button variant="text" onClick={() => router.push("/signup")}>
-            Signup
-          </Button>
-        </p>
+            <Button
+              type="submit"
+              variant="contained"
+              // onClick={() => {
+              //   let loginData = {
+              //     email: email,
+              //     password: password,
+              //   };
+              //   handleLogin(loginData);
+              // }}
+              // onKeyDown={(e) => {
+              //   if (e.which === 13) {
+              // handleLogin(loginData);
+              //   }
+              // }}
+            >
+              Login
+            </Button>
+          </Stack>
+          <p>
+            Don't have an account? Please{" "}
+            <Button variant="text" onClick={() => router.push("/signup")}>
+              Signup
+            </Button>
+          </p>
+        </form>
       </div>
     </div>
   );

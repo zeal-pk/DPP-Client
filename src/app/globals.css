@@ -204,11 +204,17 @@ a {
 .materialComposition-card {
   display: flex;
   flex-direction: row;
-  height: auto;
+  height: 100px;
   background-color: white;
   justify-content: flex-start;
   margin: 10px 15px 10px 0;
   padding: 10px;
+}
+
+.materialComposition-card-chart {
+  display: flex;
+  flex-direction: row;
+  height: 250px;
 }
 
 .materialComposition-chart {
@@ -227,5 +233,5 @@ a {
 
 .recyclability-bar-div {
   width: 300px;
-  margin: 10px;
+  /* margin: 10px; */
 }

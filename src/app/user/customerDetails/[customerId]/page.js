@@ -15,6 +15,7 @@ import MaterialCompositionChart from "@/components/user/materialCompositionChart
 import MaterialOrigin from "@/components/user/materialOrigin";
 import Recyclability from "@/components/user/recyclability";
 import GeneralProductDetails from "@/components/user/generalProductDetails";
+import ProductDetails from "@/components/user/productDetailsPanel";
 
 export default function CustomerDetials({ params }) {
   let customerId = params.customerId;
@@ -140,148 +141,17 @@ export default function CustomerDetials({ params }) {
 
         {/* ------------------------------Right Plane section - START */}
         <section className="right-panel">
-          {/* ------------------------------Right Plane title section - START */}
-          <section className="right-panel-title">
-            <h2>
-              {customerDetail.name + " " + "-" + " " + selectedProduct.name}
-            </h2>
-          </section>
-          {/* ------------------------------Right Plane title section - END */}
-
-          {/* ------------------------------Right Plane pinned section - START */}
-          <section className="right-panel-pinned-section">
-            <div className="right-panel-pinned-section-content">
-              <h5>Customer Description</h5>
-              {customerDetail.descreption}
-            </div>
-            <div className="right-panel-pinned-section-content">
-              <h5>Address</h5>
-              {customerDetail.addressL1}, {customerDetail.addressL2}
-              <br></br>
-              {customerDetail.city}, {customerDetail.state}
-              <br></br>
-              {customerDetail.country}.
-            </div>
-            {/* <div className="right-panel-pinned-section-content">
-              <h5>Price:</h5>
-              <h2>$ {selectedProduct.price}</h2>
-              <h5>Category</h5>
-              {selectedProduct.category}
-            </div> */}
-          </section>
-          {/* ------------------------------Right Plane pinned section - END */}
-          {/* ------------------------------Right Plane scroll section - START */}
-          <section className="right-panel-scrollable-section">
-            <nav>
-              <div className="nav nav-tabs" id="nav-tab" role="tablist">
-                <button
-                  className="nav-link active"
-                  id="nav-tab1-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#nav-tab1"
-                  type="button"
-                  role="tab"
-                  aria-controls="nav-tab1"
-                  aria-selected="true"
-                >
-                  General Product Details
-                </button>
-                <button
-                  className="nav-link"
-                  id="nav-tab2-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#nav-tab2"
-                  type="button"
-                  role="tab"
-                  aria-controls="nav-tab2"
-                  aria-selected="false"
-                >
-                  Tab 2
-                </button>
-                <button
-                  className="nav-link"
-                  id="nav-tab3-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#nav-tab3"
-                  type="button"
-                  role="tab"
-                  aria-controls="nav-tab3"
-                  aria-selected="false"
-                >
-                  Raw Material Detials
-                </button>
-              </div>
-            </nav>
-            <div className="tab-content" id="nav-tabContent">
-              <div
-                className="tab-pane fade show active"
-                id="nav-tab1"
-                role="tabpanel"
-                aria-labelledby="nav-tab1-tab"
-                tabindex="0"
-              >
-                <div className="right-panel-scroll">
-                  <div className="right-panel-scroll-content">
-                    <GeneralProductDetails
-                      productProperties={selectedProductProperties}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div
-                className="tab-pane fade"
-                id="nav-tab2"
-                role="tabpanel"
-                aria-labelledby="nav-tab2-tab"
-                tabindex="0"
-              >
-                <div className="right-panel-scroll">
-                  <div className="right-panel-scroll-content">
-                    {inputData.map((input, index) => (
-                      <section
-                        className="right-panel-scroll-content-input-div"
-                        key={index}
-                      >
-                        <p>{input}</p>
-                        <Input
-                          placeholder="Type in here…"
-                          sx={{ width: 300 }}
-                        />
-                      </section>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <div
-                className="tab-pane fade"
-                id="nav-tab3"
-                role="tabpanel"
-                aria-labelledby="nav-tab3-tab"
-                tabindex="0"
-              >
-                <div className="right-panel-scroll">
-                  <div className="right-panel-scroll-content">
-                    <MaterialCompositionChart
-                      rawMaterial={selectedProductRawMaterialsName}
-                      composition={selectedProductRawMaterialsComposition}
-                      manufacturerStatement={
-                        selectedProductRawMaterialsManufacturerStatement
-                      }
-                    />
-                    <MaterialOrigin
-                      manufacturerStatement={
-                        selectedProductRawMaterialsManufacturerStatement
-                      }
-                    />
-                    <Recyclability
-                      composition={selectedProductRawMaterialsComposition}
-                      recyclable={selectedProductRawMaterialsRecyclable}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          <ProductDetails
+            custDetails={customerDetail}
+            prodDetails={selectedProduct}
+            prodProperties={selectedProductProperties}
+            rawMaterials={selectedProductRawMaterialsName}
+            rawMaterialComposition={selectedProductRawMaterialsComposition}
+            manufacturerStatement={
+              selectedProductRawMaterialsManufacturerStatement
+            }
+            recyclability={selectedProductRawMaterialsRecyclable}
+          />
           {/* ------------------------------Right Plane scroll section - END */}
         </section>
         {/* ------------------------------Right Plane section - END */}

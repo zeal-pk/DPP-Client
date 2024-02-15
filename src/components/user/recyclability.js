@@ -29,7 +29,6 @@ export default function Recyclability(data) {
   return (
     <div className="materialComposition-card">
       <div className="materialComposition-chart-card-text">
-        <h4>Recyclability</h4>
         <p>
           The product is {recyclable} recyclable and {nonRecyclable}{" "}
           non-recyclable

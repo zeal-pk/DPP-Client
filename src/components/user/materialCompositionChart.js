@@ -6,7 +6,7 @@ import { Pie } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function MaterialCompositionChart(rawMaterial) {
+export default function MaterialCompositionChart(data) {
   let [matName, setMatName] = useState([]);
   let [matComp, setMatComp] = useState([]);
   let [compSentense, setCompSentense] = useState([
@@ -43,15 +43,14 @@ export default function MaterialCompositionChart(rawMaterial) {
   };
 
   useEffect(() => {
-    setMatName(rawMaterial.rawMaterial);
-    setMatComp(rawMaterial.composition);
-  }, [rawMaterial]);
+    setMatName(data.rawMaterials);
+    setMatComp(data.composition);
+  }, [data]);
 
   return (
     <React.Fragment>
-      <div className="materialComposition-card">
+      <div className="materialComposition-card-chart">
         <div className="materialComposition-chart-card-text">
-          <h4>Material Composition</h4>
           <div className="materialComposition-chart-card-text2">
             <CardContent className="materialComposition-chart-card-content">
               {matName.map((name) => {

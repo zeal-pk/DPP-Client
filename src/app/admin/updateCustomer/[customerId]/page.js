@@ -21,9 +21,14 @@ export default function UpdateCustomer({ params }) {
   let [products, setProducts] = useState([]);
 
   async function handleGetCustomerData() {
+    let token = localStorage.getItem("access_token");
     let prods = [];
     const response = await axios
-      .get(`http://localhost:9000/getCustomer/${custId}`)
+      .get(`http://localhost:9000/getCustomer/${custId}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((response) => {
         setCustomerDetails(response.data.name);
         return response.data;
