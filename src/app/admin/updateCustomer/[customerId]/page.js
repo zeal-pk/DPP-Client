@@ -18,7 +18,7 @@ export default function UpdateCustomer({ params }) {
   let [city, setCity] = useState("-");
   let [state, setState] = useState("-");
   let [country, setCountry] = useState("-");
-  let [products, setProducts] = useState("-");
+  let [products, setProducts] = useState([]);
 
   async function handleGetCustomerData() {
     let prods = [];
@@ -26,18 +26,7 @@ export default function UpdateCustomer({ params }) {
       .get(`http://localhost:9000/getCustomer/${custId}`)
       .then((response) => {
         setCustomerDetails(response.data.name);
-        // console.log(response.data);
         return response.data;
-        // setCustomerName(customerDetails.name);
-        // setCustomerId(customerDetails.id);
-        // setLogoUrl(customerDetails.logoUrl);
-        // setDescription(customerDetails.descreption);
-        // setAddressL1(customerDetails.addressL1);
-        // setAddressL2(customerDetails.addressL1);
-        // setCity(customerDetails.city);
-        // setState(customerDetails.state);
-        // setCountry(customerDetails.country);
-        // setProducts(customerDetails.products);
       });
     setCustomerName(response.name);
     setCustomerId(response.id);
@@ -53,6 +42,7 @@ export default function UpdateCustomer({ params }) {
       prods.push(response.products[i].productId);
     }
     setProducts(prods);
+    // console.log(products);
   }
 
   async function handleUpdateCustomer(newCustomerData) {
@@ -175,7 +165,14 @@ export default function UpdateCustomer({ params }) {
             variant="standard"
             value={products}
             onChange={(e) => {
-              setProducts(e.target.value);
+              let value = e.target.value;
+              let prod = value.split(",");
+              // for (let i = 0; i < response.products.length; i++) {
+              //   prods.push(response.products[i].productId);
+              // }
+              setProducts(prod);
+              // setProducts(e.target.value);
+              console.log(value);
             }}
           />
         </section>
@@ -184,7 +181,7 @@ export default function UpdateCustomer({ params }) {
             variant="contained"
             startIcon={<EditIcon />}
             onClick={() => {
-              let productArray = products.split(",");
+              let productArray = products;
               let prods = [];
               for (let i = 0; i < productArray.length; i++) {
                 let prod = { productId: productArray[i], templateId: "" };
@@ -202,7 +199,6 @@ export default function UpdateCustomer({ params }) {
                 country: country,
                 products: prods,
               };
-              // console.log(newCustomerData);
               handleUpdateCustomer(newCustomerData);
             }}
           >
