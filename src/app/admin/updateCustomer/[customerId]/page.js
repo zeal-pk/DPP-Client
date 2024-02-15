@@ -46,15 +46,20 @@ export default function UpdateCustomer({ params }) {
   }
 
   async function handleUpdateCustomer(newCustomerData) {
+    let token = localStorage.getItem("access_token");
     const response = await axios
       .post(
         `http://localhost:9000/updateCustomer/${customerId}`,
-        newCustomerData
+        newCustomerData,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
       )
       .then((response) => {
         console.log(response.data);
       });
-    console.log(response);
   }
 
   useEffect(() => {
@@ -167,12 +172,7 @@ export default function UpdateCustomer({ params }) {
             onChange={(e) => {
               let value = e.target.value;
               let prod = value.split(",");
-              // for (let i = 0; i < response.products.length; i++) {
-              //   prods.push(response.products[i].productId);
-              // }
               setProducts(prod);
-              // setProducts(e.target.value);
-              console.log(value);
             }}
           />
         </section>

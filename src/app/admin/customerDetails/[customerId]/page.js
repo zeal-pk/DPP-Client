@@ -20,11 +20,20 @@ export default function AdminCustomerDetials({ params }) {
 
   // Function to get the selected customer detials and product details
   const getDetails = async () => {
+    let token = localStorage.getItem("access_token");
     const customerData = await axios
-      .get(`http://localhost:9000/getCustomer/${customerId}`)
+      .get(`http://localhost:9000/getCustomer/${customerId}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => setCustomerDetail(res.data));
     const productData = await axios
-      .get(`http://localhost:9000/getProducts/${customerId}`)
+      .get(`http://localhost:9000/getProducts/${customerId}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         setProductDetails(res.data);
       });

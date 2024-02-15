@@ -42,13 +42,22 @@ export default function CustomerDetials({ params }) {
 
   // Function to get the selected customer detials and product details
   const getDetails = async () => {
+    let token = localStorage.getItem("access_token");
     await axios
-      .get(`http://localhost:9000/getCustomer/${customerId}`)
+      .get(`http://localhost:9000/getCustomer/${customerId}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         setCustomerDetail(res.data);
       });
     await axios
-      .get(`http://localhost:9000/getProducts/${customerId}`)
+      .get(`http://localhost:9000/getProducts/${customerId}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         setProductDetails(res.data);
         setSelectedProduct(res.data[0]);

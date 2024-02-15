@@ -7,8 +7,13 @@ import AddIcon from "@mui/icons-material/Add";
 import Button from "@mui/material/Button";
 
 async function handleAddProduct(newProductData) {
+  let token = localStorage.getItem("access_token");
   const response = await axios
-    .post("http://localhost:9000/postProduct", newProductData)
+    .post("http://localhost:9000/postProduct", newProductData, {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    })
     .then((response) => {
       console.log(response.data);
     });
