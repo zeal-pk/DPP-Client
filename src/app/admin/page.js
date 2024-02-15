@@ -37,8 +37,13 @@ export default function Home() {
   }, []);
 
   const deleteCustomer = async (customerId) => {
+    let token = localStorage.getItem("access_token");
     axios
-      .delete(`http://localhost:9000/deleteCustomer/${customerId}`)
+      .delete(`http://localhost:9000/deleteCustomer/${customerId}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         if (res.status == 200) {
           setAlertSeverity("success");
