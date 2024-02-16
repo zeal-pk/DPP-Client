@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import zealitLogo from "../assets/ZealLogo.png";
@@ -50,6 +50,8 @@ export default function Login() {
         .get(`http://localhost:9000/login/${email}/${password}`)
         .then((response) => {
           localStorage.setItem("access_token", response.data.token);
+          localStorage.setItem("current_user", response.data.email);
+          localStorage.setItem("current_user_role", response.data.role);
           if (
             response.data.passwordStatus == true &&
             response.data.token !== "undefined"
@@ -61,6 +63,15 @@ export default function Login() {
         });
     }
   }
+
+  useEffect(() => {
+    if (
+      localStorage.getItem("access_token") &&
+      localStorage.getItem("current_user_role")
+    ) {
+      router.push(`/${localStorage.getItem("current_user_role")}`);
+    }
+  });
 
   return (
     <div className="main">

@@ -1,9 +1,12 @@
 import * as React from "react";
+import { useRouter } from "next/navigation";
 import zealLogo from "../Assets/ZealLogo.png";
 import Image from "next/image";
 import "bootstrap/dist/css/bootstrap.css";
+import Button from "@mui/material/Button";
 
 export default function NavBar() {
+  const router = useRouter();
   return (
     <div>
       <nav className="navbar bg-body-tertiary">
@@ -17,11 +20,15 @@ export default function NavBar() {
             />
           </a>
           <div className="nav-itmes-div">
-            <p>Nav Item 1</p>
-            <p>Nav Item 2</p>
-            <p>Nav Item 3</p>
-            <p>Nav Item 4</p>
-            <p>Nav Item 5</p>
+            <Button
+              variant="contained"
+              onClick={() => {
+                localStorage.clear();
+                router.push("/");
+              }}
+            >
+              Logout
+            </Button>
           </div>
         </div>
       </nav>
