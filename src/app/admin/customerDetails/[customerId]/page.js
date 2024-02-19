@@ -10,12 +10,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea } from "@mui/material";
-import Input from "@mui/joy/Input";
-import MaterialCompositionChart from "@/components/user/materialCompositionChart";
-import MaterialOrigin from "@/components/user/materialOrigin";
-import Recyclability from "@/components/user/recyclability";
-import GeneralProductDetails from "@/components/user/generalProductDetails";
-import ProductDetails from "@/components/user/productDetailsPanel";
+import AdminProductDetails from "@/components/admin/adminProductDetailsPanel";
 
 export default function CustomerDetials({ params }) {
   let customerId = params.customerId;
@@ -141,7 +136,7 @@ export default function CustomerDetials({ params }) {
 
         {/* ------------------------------Right Plane section - START */}
         <section className="right-panel">
-          <ProductDetails
+          <AdminProductDetails
             custDetails={customerDetail}
             prodDetails={selectedProduct}
             prodProperties={selectedProductProperties}
@@ -152,7 +147,6 @@ export default function CustomerDetials({ params }) {
             }
             recyclability={selectedProductRawMaterialsRecyclable}
           />
-          {/* ------------------------------Right Plane scroll section - END */}
         </section>
         {/* ------------------------------Right Plane section - END */}
       </div>

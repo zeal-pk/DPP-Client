@@ -32,10 +32,6 @@ export default function Login() {
   let [password, setPassword] = useState();
 
   async function handleLogin(e) {
-    // let loginData = {
-    //   email: email,
-    //   password: password,
-    // };
     e.preventDefault();
     let mail = email;
     let pass = password;
@@ -136,7 +132,15 @@ export default function Login() {
           </Stack>
           <p>
             Don't have an account? Please{" "}
-            <Button variant="text" onClick={() => router.push("/signup")}>
+            <Button
+              variant="text"
+              onClick={() => {
+                router.push("/signup");
+                // alert(
+                //   "Currently a new user can be created only by the product team."
+                // );
+              }}
+            >
               Signup
             </Button>
           </p>

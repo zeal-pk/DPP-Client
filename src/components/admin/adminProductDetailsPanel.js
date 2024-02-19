@@ -1,8 +1,10 @@
 import React, { useState, useRef } from "react";
-import GeneralProductDetails from "./generalProductDetails";
-import MaterialCompositionChart from "./materialCompositionChart";
-import MaterialOrigin from "./materialOrigin";
-import Recyclability from "./recyclability";
+import GeneralProductDetails from "../user/generalProductDetails";
+import MaterialCompositionChart from "../user/materialCompositionChart";
+import MaterialOrigin from "../user/materialOrigin";
+import Recyclability from "../user/recyclability";
+import Button from "@mui/material/Button";
+import CardContent from "@mui/material/CardContent";
 import {
   ThemeProvider,
   ObjectPage,
@@ -13,10 +15,38 @@ import {
   ObjectPageSection,
   ObjectPageSubSection,
   Text,
-  Button,
 } from "@ui5/webcomponents-react";
 
-export default function ProductDetails(data) {
+let additionalData = {
+  grp1: {
+    Name: "Lokesh Kanna",
+    role: "FullStack Developer",
+  },
+  grp2: {
+    Name: "Premanand",
+    role: "SAP Developer",
+    position: "Contract",
+  },
+  grp3: {
+    Name: "Narendhran",
+    role: "SAP Consultant",
+    company: "Slash Labs",
+  },
+};
+
+export default function AdminProductDetails(data) {
+  const additionslT = (data) => {
+    return Object.keys(data).map((key) => {
+      return Object.keys(data[key]).map((child) => {
+        return (
+          <CardContent className="materialComposition-chart-card-content">
+            {child}: {data[key][child]}
+          </CardContent>
+        );
+      });
+    });
+  };
+
   let customerDetials = data.custDetails;
   let productDetails = data.prodDetails;
   let productProperties = data.prodProperties;
@@ -44,8 +74,9 @@ export default function ProductDetails(data) {
               </FlexBox>
               <FlexBox direction="Column" style={{ padding: "10px" }}>
                 <Text>Address:</Text>
-                <Label>{addressL1},</Label>
-                <Label>{addressL2},</Label>
+                <Label>
+                  {addressL1}, {addressL2}
+                </Label>
                 <Label>
                   {city}, {country}
                 </Label>
@@ -77,6 +108,7 @@ export default function ProductDetails(data) {
           id="general-product-details"
           titleText="General Product Details"
         >
+          <Button variant="outlined">Add Tab</Button>
           <ObjectPageSubSection
             aria-label="Dimensions"
             id="general-product-details-Dimensions"
@@ -119,6 +151,19 @@ export default function ProductDetails(data) {
               composition={rawMaterialComposition}
               recyclable={recyclability}
             />
+          </ObjectPageSubSection>
+        </ObjectPageSection>
+        <ObjectPageSection
+          aria-label="Material Composition"
+          id="additional-data"
+          titleText="Additional Data"
+        >
+          <ObjectPageSubSection
+            aria-label="Recycability"
+            id="additional-data-info"
+            titleText="Additional Data"
+          >
+            {additionslT(additionalData)}
           </ObjectPageSubSection>
         </ObjectPageSection>
       </ObjectPage>

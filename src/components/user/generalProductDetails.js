@@ -1,6 +1,24 @@
 import React from "react";
 import Input from "@mui/joy/Input";
 
+let test = [];
+
+let additionalData = [
+  {
+    name: "Lokesh",
+    title: "FullStack Developer",
+  },
+  {
+    name: "Premanand",
+    title: "SAP Developer",
+    role: "Consultant",
+  },
+  {
+    name: "Narendhran",
+    company: "Slash Labs",
+  },
+];
+
 export default function GeneralProductDetails(data) {
   return (
     <React.Fragment>
