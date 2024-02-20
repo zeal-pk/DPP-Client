@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import zealLogo from "../Assets/ZealLogo.png";
+import zealLogo from "../assets/ZealLogo.png";
 import Image from "next/image";
 import "bootstrap/dist/css/bootstrap.css";
 import Button from "@mui/material/Button";
