@@ -10,11 +10,6 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea } from "@mui/material";
-import Input from "@mui/joy/Input";
-import MaterialCompositionChart from "@/components/user/materialCompositionChart";
-import MaterialOrigin from "@/components/user/materialOrigin";
-import Recyclability from "@/components/user/recyclability";
-import GeneralProductDetails from "@/components/user/generalProductDetails";
 import ProductDetails from "@/components/user/productDetailsPanel";
 
 export default function CustomerDetials({ params }) {

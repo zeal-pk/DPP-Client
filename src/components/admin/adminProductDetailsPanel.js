@@ -39,7 +39,10 @@ export default function AdminProductDetails(data) {
     return Object.keys(data).map((key) => {
       return Object.keys(data[key]).map((child) => {
         return (
-          <CardContent className="materialComposition-chart-card-content">
+          <CardContent
+            className="materialComposition-chart-card-content"
+            key={key}
+          >
             {child}: {data[key][child]}
           </CardContent>
         );

@@ -35,6 +35,7 @@ export default function Home() {
               <Link
                 className="customerList-link"
                 href={`/user/customerDetails/${customerDetail.id}`}
+                key={customerDetail.id}
               >
                 <Card
                   sx={{

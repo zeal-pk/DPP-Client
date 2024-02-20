@@ -32,6 +32,10 @@ export default function Login() {
   let [password, setPassword] = useState();
 
   async function handleLogin(e) {
+    // let loginData = {
+    //   email: email,
+    //   password: password,
+    // };
     e.preventDefault();
     let mail = email;
     let pass = password;
@@ -131,7 +135,7 @@ export default function Login() {
             </Button>
           </Stack>
           <p>
-            Don't have an account? Please{" "}
+            `Don&apos;t have an account? Please`
             <Button
               variant="text"
               onClick={() => {

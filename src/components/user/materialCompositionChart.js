@@ -54,12 +54,12 @@ export default function MaterialCompositionChart(data) {
           <div className="materialComposition-chart-card-text2">
             <CardContent className="materialComposition-chart-card-content">
               {matName.map((name) => {
-                return <p>{name}</p>;
+                return <p key={name}>{name}</p>;
               })}
             </CardContent>
             <CardContent className="materialComposition-chart-card-content">
               {matComp.map((comp) => {
-                return <p>{comp + "%"}</p>;
+                return <p key={comp}>{comp + "%"}</p>;
               })}
             </CardContent>
           </div>
