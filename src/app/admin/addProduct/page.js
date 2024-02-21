@@ -5,6 +5,8 @@ import NavBar from "@/components/navBar";
 import TextField from "@mui/material/TextField";
 import AddIcon from "@mui/icons-material/Add";
 // import Button from "@mui/material/Button";
+import { batteryDataStructrue } from "@/database/batteryDataStructure";
+
 import {
   ThemeProvider,
   ObjectPage,
@@ -53,149 +55,20 @@ export default function AddProduct() {
   let [subCategory, setSubCategory] = useState([]);
 
   return (
-    // <div className="main">
-    //
-    //   <div className="addCustomer-form-div">
-    //     <h4>Please provide the customer deatils below</h4>
-    //     <section className="addCustomer-form-section">
-    //       <TextField
-    //         className="addCustomer-form-div-input"
-    //         id="standard-basic"
-    //         label="Product ID"
-    //         variant="standard"
-    //         onChange={(e) => {
-    //           setId(e.target.value);
-    //         }}
-    //       />
-    //       <TextField
-    //         className="addCustomer-form-div-input"
-    //         id="standard-basic"
-    //         label="Product Name"
-    //         variant="standard"
-    //         onChange={(e) => {
-    //           setName(e.target.value);
-    //         }}
-    //       />
-    //       <TextField
-    //         className="addCustomer-form-div-input"
-    //         id="standard-basic"
-    //         label="Description"
-    //         variant="standard"
-    //         onChange={(e) => {
-    //           setDescription(e.target.value);
-    //         }}
-    //       />
-    //       <TextField
-    //         className="addCustomer-form-div-input"
-    //         id="standard-basic"
-    //         label="Price"
-    //         variant="standard"
-    //         onChange={(e) => {
-    //           setPrice(e.target.value);
-    //         }}
-    //       />
-    //       <TextField
-    //         className="addCustomer-form-div-input"
-    //         id="standard-basic"
-    //         label="Features"
-    //         variant="standard"
-    //         onChange={(e) => {
-    //           setFeatures(e.target.value);
-    //         }}
-    //       />
-    //       <TextField
-    //         className="addCustomer-form-div-input"
-    //         id="standard-basic"
-    //         label="Keywords"
-    //         variant="standard"
-    //         onChange={(e) => {
-    //           setKeywords(e.target.value);
-    //         }}
-    //       />
-    //       <TextField
-    //         className="addCustomer-form-div-input"
-    //         id="standard-basic"
-    //         label="url"
-    //         variant="standard"
-    //         onChange={(e) => {
-    //           setUrl(e.target.value);
-    //         }}
-    //       />
-    //       <TextField
-    //         className="addCustomer-form-div-input"
-    //         id="standard-basic"
-    //         label="category"
-    //         variant="standard"
-    //         onChange={(e) => {
-    //           setCategory(e.target.value);
-    //         }}
-    //       />
-    //       <TextField
-    //         className="addCustomer-form-div-input"
-    //         id="standard-basic"
-    //         label="subCategory"
-    //         variant="standard"
-    //         onChange={(e) => {
-    //           setSubCategory(e.target.value);
-    //         }}
-    //       />
-    //     </section>
-    //     <section className="addCustomer-button-section">
-    //       <Button
-    //         variant="contained"
-    //         startIcon={<AddIcon />}
-    //         onClick={() => {
-    //           let newProductData = {
-    //             id: id,
-    //             name: name,
-    //             features: features,
-    //             description: description,
-    //             price: price,
-    //             keywords: keywords,
-    //             url: url,
-    //             category: category,
-    //             subCategory: subCategory,
-    //           };
-    //           // console.log(newCustomerData);
-    //           handleAddProduct(newProductData);
-    //         }}
-    //       >
-    //         Add Product
-    //       </Button>
-    //     </section>
-    //   </div>
-    // </div>
     <div className="main">
       <NavBar />
 
       <ThemeProvider>
         <ObjectPage>
           <ObjectPageSection
-            aria-label="Personal"
-            id="personal"
-            titleText="Personal"
+            aria-label="Product Details"
+            id="productDetails"
+            titleText="Product Details"
           >
             <ObjectPageSubSection
-              actions={
-                <>
-                  <Button design="Emphasized" style={{ minWidth: "120px" }}>
-                    Custom Action
-                  </Button>
-                  <Button
-                    design="Transparent"
-                    icon="action-settings"
-                    tooltip="settings"
-                  />
-                  <Button
-                    design="Transparent"
-                    icon="download"
-                    tooltip="download"
-                  />
-                </>
-              }
-              aria-label="Connect"
-              id="personal-connect"
-              titleText="Connect"
+              aria-label="Product Information"
+              id="productDetails-productInformation"
+              titleText="Product Information"
             >
               <Form
                 columnsL={4}
@@ -204,41 +77,323 @@ export default function AddProduct() {
                   alignItems: "baseline",
                 }}
               >
-                <FormGroup titleText="Phone Numbers">
-                  <FormItem label="Home">
-                    <Text>+1 234-567-8901</Text>
+                {console.log(batteryDataStructrue)}
+
+                <FormItem label="Product Name">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Serial Number">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Battery Type">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Battery Model">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+              </Form>
+            </ObjectPageSubSection>
+
+            <ObjectPageSubSection
+              aria-label="Manufacturer Information"
+              id="productDetails-manufacturer-information"
+              titleText="Manufacturer Information"
+            >
+              <Form
+                columnsL={4}
+                columnsXL={4}
+                style={{
+                  alignItems: "baseline",
+                }}
+              >
+                <FormItem label="Manufacturer Name">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Manufacturing Site">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Manufactured Dates">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Importer Name">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Entry Date">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+              </Form>
+            </ObjectPageSubSection>
+
+            <ObjectPageSubSection
+              aria-label="Product Conformity"
+              id="productDetails-product-conformity"
+              titleText="Product Conformity"
+            >
+              <Form
+                columnsL={4}
+                columnsXL={4}
+                style={{
+                  alignItems: "baseline",
+                }}
+              >
+                <FormItem label="EU Declaration Of Conformity">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Standard 1">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Standard 2">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Standard 3">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Standard 4">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+              </Form>
+            </ObjectPageSubSection>
+
+            <ObjectPageSubSection
+              aria-label="Product Characteristics"
+              id="productDetails-product-characteristics"
+              titleText="Product Characteristics"
+            >
+              <Form
+                columnsL={4}
+                columnsXL={4}
+                style={{
+                  alignItems: "baseline",
+                }}
+              >
+                <FormItem label="Raw Material Category">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Feed Stock Type">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Fossil Plastic">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Bio Plastic">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Reused Plastic">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+              </Form>
+            </ObjectPageSubSection>
+
+            <ObjectPageSubSection
+              aria-label="Product Performance"
+              id="productDetails-product-performance"
+              titleText="Product Performance"
+            >
+              <Form
+                columnsL={4}
+                columnsXL={4}
+                style={{
+                  alignItems: "baseline",
+                }}
+              >
+                <FormItem label="Eco Label">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Repairability">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Energy Performance">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Sustainability Score">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Plant Score">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+              </Form>
+            </ObjectPageSubSection>
+          </ObjectPageSection>
+
+          <ObjectPageSection
+            aria-label="Tracability"
+            id="tracability"
+            titleText="Tracability"
+          >
+            <ObjectPageSubSection
+              aria-label="Chain of Custody"
+              id="tracability-chainOfCustody"
+              titleText="Chain of Custody"
+            ></ObjectPageSubSection>
+          </ObjectPageSection>
+
+          <ObjectPageSection
+            aria-label="Specifications"
+            id="specifications"
+            titleText="Specifications"
+          >
+            <ObjectPageSubSection
+              aria-label="Product Specifications"
+              id="specifications-productSpecifications"
+              titleText="Product Specifications"
+            >
+              <Form
+                columnsL={4}
+                columnsXL={4}
+                style={{
+                  alignItems: "baseline",
+                }}
+              >
+                <FormItem label="Weight">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Rated Capacity">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Minimum Average Duration">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Expected Lifetime">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Capacity Fade">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Internal Resistance Increase">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Energy Efficiency">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Energy Fade">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Charge Throughput">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Internal resistance">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+              </Form>
+            </ObjectPageSubSection>
+
+            <ObjectPageSubSection
+              aria-label="Performance Specification"
+              id="specifications-performance-specification"
+              titleText="Performance Specification"
+            >
+              <Form
+                columnsL={4}
+                columnsXL={4}
+                style={{
+                  alignItems: "baseline",
+                }}
+              >
+                <FormItem label="Power">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Internal resistance">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Energy Roundtrip Efficiency">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Charge Rate">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Discharge Rate">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Power-Energy Ratio">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Depth of Discharge">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Power Capability">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+              </Form>
+            </ObjectPageSubSection>
+          </ObjectPageSection>
+
+          <ObjectPageSection
+            aria-label="composition"
+            id="composition"
+            titleText="Composition"
+          >
+            <ObjectPageSubSection
+              aria-label="Recyclability"
+              id="composition-recyclability"
+              titleText="Recyclability"
+            >
+              <Form
+                columnsL={4}
+                columnsXL={4}
+                style={{
+                  alignItems: "baseline",
+                }}
+              >
+                <FormItem label="Recycled Content">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Renewable Content">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+              </Form>
+            </ObjectPageSubSection>
+
+            <ObjectPageSubSection
+              aria-label="Chemistry"
+              id="composition-chemistry"
+              titleText="Chemistry"
+            >
+              <Form
+                columnsL={4}
+                columnsXL={4}
+                style={{
+                  alignItems: "baseline",
+                }}
+              >
+                <FormGroup titleText="Outer Case">
+                  <FormItem label="Composition 1">
+                    <TextField id="outlined-basic" variant="outlined" />
                   </FormItem>
-                  <FormItem label="">
-                    <Text>+1 234-567-5555</Text>
+                  <FormItem label="Composition 2">
+                    <TextField id="outlined-basic" variant="outlined" />
                   </FormItem>
                 </FormGroup>
-                <FormGroup titleText="Social Accounts">
-                  <FormItem label="LinkedIn">
-                    <Text>/DeniseSmith</Text>
+                <FormGroup titleText="Cathode">
+                  <FormItem label="Composition 1">
+                    <TextField id="outlined-basic" variant="outlined" />
                   </FormItem>
-                  <FormItem label="Twitter">
-                    <Text>@DeniseSmith</Text>
-                  </FormItem>
-                </FormGroup>
-                <FormGroup titleText="Addresses">
-                  <FormItem label="Home Address">
-                    <Text>2096 Mission Street</Text>
-                  </FormItem>
-                  <FormItem label="Mailing Address">
-                    <Text>PO Box 32114</Text>
+                  <FormItem label="Composition 2">
+                    <TextField id="outlined-basic" variant="outlined" />
                   </FormItem>
                 </FormGroup>
-                <FormGroup titleText="Mailing Address">
-                  <FormItem label="Work">
-                    <Text>DeniseSmith@sap.com</Text>
+                <FormGroup titleText="Anode">
+                  <FormItem label="Composition 1">
+                    <TextField id="outlined-basic" variant="outlined" />
+                  </FormItem>
+                  <FormItem label="Composition 2">
+                    <TextField id="outlined-basic" variant="outlined" />
+                  </FormItem>
+                </FormGroup>
+                <FormGroup titleText="Electrolyte">
+                  <FormItem label="Composition 1">
+                    <TextField id="outlined-basic" variant="outlined" />
+                  </FormItem>
+                  <FormItem label="Composition 2">
+                    <TextField id="outlined-basic" variant="outlined" />
                   </FormItem>
                 </FormGroup>
               </Form>
             </ObjectPageSubSection>
+
             <ObjectPageSubSection
-              aria-label="Payment Information"
-              id="personal-payment-information"
-              titleText="Payment Information"
+              aria-label="Hazardous Substance"
+              id="composition-hazardous-substance"
+              titleText="Hazardous Substance"
             >
               <Form
                 columnsL={4}
@@ -247,28 +402,128 @@ export default function AddProduct() {
                   alignItems: "baseline",
                 }}
               >
-                <FormGroup titleText="Salary">
-                  <FormItem label="Bank Transfer">
-                    <Text>Money Bank, Inc.</Text>
+                <FormGroup titleText="Substance 1">
+                  <FormItem label="Substance">
+                    <TextField id="outlined-basic" variant="outlined" />
+                  </FormItem>
+                  <FormItem label="Percentage">
+                    <TextField id="outlined-basic" variant="outlined" />
                   </FormItem>
                 </FormGroup>
-                <FormGroup titleText="Payment method for Expenses">
-                  <FormItem label="Extra Travel Expenses">
-                    <Text>Cash 100 USD</Text>
+                <FormGroup titleText="Substance 2">
+                  <FormItem label="Substance">
+                    <TextField id="outlined-basic" variant="outlined" />
+                  </FormItem>
+                  <FormItem label="Percentage">
+                    <TextField id="outlined-basic" variant="outlined" />
+                  </FormItem>
+                </FormGroup>
+              </Form>
+            </ObjectPageSubSection>
+
+            <ObjectPageSubSection
+              aria-label="Critical Raw Materials"
+              id="composition-criticalRawMaterials"
+              titleText="Critical Raw Materials"
+            >
+              <Form
+                columnsL={4}
+                columnsXL={4}
+                style={{
+                  alignItems: "baseline",
+                }}
+              >
+                <FormGroup titleText="Material 1">
+                  <FormItem label="Material">
+                    <TextField id="outlined-basic" variant="outlined" />
+                  </FormItem>
+                  <FormItem label="Percentage">
+                    <TextField id="outlined-basic" variant="outlined" />
+                  </FormItem>
+                </FormGroup>
+                <FormGroup titleText="Material 2">
+                  <FormItem label="Material">
+                    <TextField id="outlined-basic" variant="outlined" />
+                  </FormItem>
+                  <FormItem label="Percentage">
+                    <TextField id="outlined-basic" variant="outlined" />
+                  </FormItem>
+                </FormGroup>
+                <FormGroup titleText="Material 3">
+                  <FormItem label="Material">
+                    <TextField id="outlined-basic" variant="outlined" />
+                  </FormItem>
+                  <FormItem label="Percentage">
+                    <TextField id="outlined-basic" variant="outlined" />
+                  </FormItem>
+                </FormGroup>
+                <FormGroup titleText="Material 4">
+                  <FormItem label="Material">
+                    <TextField id="outlined-basic" variant="outlined" />
+                  </FormItem>
+                  <FormItem label="Percentage">
+                    <TextField id="outlined-basic" variant="outlined" />
                   </FormItem>
                 </FormGroup>
               </Form>
             </ObjectPageSubSection>
           </ObjectPageSection>
+
           <ObjectPageSection
-            aria-label="Employment"
-            id="employment"
-            titleText="Employment"
+            aria-label="Design and Service"
+            id="designAndService"
+            titleText="Design and Service"
           >
             <ObjectPageSubSection
-              aria-label="Job Information"
-              id="employment-job-information"
-              titleText="Job Information"
+              aria-label="Disposal Scheme"
+              id="designAndService-disposalScheme"
+              titleText="Disposal Scheme"
+            ></ObjectPageSubSection>
+
+            <ObjectPageSubSection
+              aria-label="Return Scheme"
+              id="designAndService-returnScheme"
+              titleText="Disposal Scheme"
+            ></ObjectPageSubSection>
+            <ObjectPageSubSection
+              aria-label="Collection Scheme"
+              id="designAndService-collectionScheme"
+              titleText="Collection Scheme"
+            ></ObjectPageSubSection>
+            <ObjectPageSubSection
+              aria-label="Part Details"
+              id="designAndService-partDetails"
+              titleText="Part Details"
+            ></ObjectPageSubSection>
+          </ObjectPageSection>
+
+          <ObjectPageSection
+            aria-label="Usage History"
+            id="usageHistory"
+            titleText="Usage History"
+          >
+            <ObjectPageSubSection
+              aria-label="History"
+              id="usageHistory-history"
+              titleText="History"
+            ></ObjectPageSubSection>
+
+            <ObjectPageSubSection
+              aria-label="Repair And Reuse"
+              id="designAndService-repairReuse"
+              titleText="Repair And Reuse"
+            ></ObjectPageSubSection>
+          </ObjectPageSection>
+
+          <ObjectPageSection
+            aria-label="Sustainability"
+            id="sustainability"
+            titleText="Sustainability"
+          >
+            <ObjectPageSubSection
+              aria-label="Footprint"
+              id="sustainability-footprint"
+              titleText="FootPrint"
             >
               <Form
                 columnsL={4}
@@ -277,36 +532,42 @@ export default function AddProduct() {
                   alignItems: "baseline",
                 }}
               >
-                <FormItem label="Job Classification">
-                  <FlexBox direction="Column">
-                    <Text>Senior UI Developer</Text>
-                    <Label>(UIDEV-SR)</Label>
-                  </FlexBox>
+                <FormItem label="Carbon Footprint">
+                  <TextField id="outlined-basic" variant="outlined" />
                 </FormItem>
-                <FormItem label="Job Title">
-                  <Text>Developer</Text>
+              </Form>
+            </ObjectPageSubSection>
+
+            <ObjectPageSubSection
+              aria-label="Circularity Index"
+              id="sustainability-circularityIndex"
+              titleText="Circularity Index"
+            >
+              <Form
+                columnsL={4}
+                columnsXL={4}
+                style={{
+                  alignItems: "baseline",
+                }}
+              >
+                <FormItem label="Repairability Index">
+                  <TextField id="outlined-basic" variant="outlined" />
                 </FormItem>
-                <FormItem label="Employee Class">
-                  <Text>Employee</Text>
+                <FormItem label="Reuse Index">
+                  <TextField id="outlined-basic" variant="outlined" />
                 </FormItem>
-                <FormItem label="Manager">
-                  <FlexBox direction="Column">
-                    <Text>Dan Smith</Text>
-                    <Label>Development Manager</Label>
-                  </FlexBox>
+                <FormItem label="Recycle Index">
+                  <TextField id="outlined-basic" variant="outlined" />
                 </FormItem>
-                <FormItem label="Pay Grade">
-                  <Text>Salary Grade 18 (GR-14)</Text>
-                </FormItem>
-                <FormItem label="FTE">
-                  <Text>1</Text>
+                <FormItem label="Environment and Socail Impact Index">
+                  <TextField id="outlined-basic" variant="outlined" />
                 </FormItem>
               </Form>
             </ObjectPageSubSection>
             <ObjectPageSubSection
-              aria-label="Employee Details"
-              id="employment-employee-details"
-              titleText="Employee Details"
+              aria-label="PEF / LCA"
+              id="sustainability-pefLca"
+              titleText="PEF / LCA"
             >
               <Form
                 columnsL={4}
@@ -315,30 +576,22 @@ export default function AddProduct() {
                   alignItems: "baseline",
                 }}
               >
-                <FormItem label="Start Date">
-                  <Text>Jan 01, 2018</Text>
-                </FormItem>
-                <FormItem label="End Date">
-                  <Text>Dec 31, 9999</Text>
-                </FormItem>
-                <FormItem label="Payroll Start Date">
-                  <Text>Jan 01, 2018</Text>
-                </FormItem>
-                <FormItem label="Benefits Start Date">
-                  <Text>Jul 01, 2018</Text>
-                </FormItem>
-                <FormItem label="Company Car Eligibility">
-                  <Text>Jan 01, 2021</Text>
-                </FormItem>
-                <FormItem label="Equity Start Date">
-                  <Text>Jul 01, 2018</Text>
+                <FormItem label="PEF/LCA Details">
+                  <TextField id="outlined-basic" variant="outlined" />
                 </FormItem>
               </Form>
             </ObjectPageSubSection>
+          </ObjectPageSection>
+
+          <ObjectPageSection
+            aria-label="Certification"
+            id="certification"
+            titleText="Certification"
+          >
             <ObjectPageSubSection
-              aria-label="Job Relationship"
-              id="employment-job-relationship"
-              titleText="Job Relationship"
+              aria-label="Certification"
+              id="certification-certification"
+              titleText="Certification"
             >
               <Form
                 columnsL={4}
@@ -347,14 +600,34 @@ export default function AddProduct() {
                   alignItems: "baseline",
                 }}
               >
-                <FormItem label="Manager">
-                  <Text>John Doe</Text>
+                <FormItem label="EU Declaration Of Conformity ID">
+                  <TextField id="outlined-basic" variant="outlined" />
                 </FormItem>
-                <FormItem label="Scrum Master">
-                  <Text>Michael Adams</Text>
+                <FormItem label="Test Result">
+                  <TextField id="outlined-basic" variant="outlined" />
                 </FormItem>
-                <FormItem label="Product Owner">
-                  <Text>John Miller</Text>
+              </Form>
+            </ObjectPageSubSection>
+          </ObjectPageSection>
+
+          <ObjectPageSection aria-label="Labels" id="labels" titleText="Labels">
+            <ObjectPageSubSection
+              aria-label="Labels"
+              id="labels-labels"
+              titleText="Labels"
+            >
+              <Form
+                columnsL={4}
+                columnsXL={4}
+                style={{
+                  alignItems: "baseline",
+                }}
+              >
+                <FormItem label="Separate Collection Symbol">
+                  <TextField id="outlined-basic" variant="outlined" />
+                </FormItem>
+                <FormItem label="Cadmium And Lead Symbols">
+                  <TextField id="outlined-basic" variant="outlined" />
                 </FormItem>
               </Form>
             </ObjectPageSubSection>

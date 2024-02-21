@@ -12,7 +12,7 @@ let batteryDataStructrue = [
       manufacturerData: {
         manufacturer: "",
         manufacturingSite: "",
-        manufacturingDate: "",
+        manufacturedDate: "",
         importer: "",
         entryDate: "",
       },
@@ -24,7 +24,7 @@ let batteryDataStructrue = [
       productCharacteristics: {
         rawMaterialCategory: "",
         feedstockType: "",
-        fossilePlastic: "", // In %
+        fossilPlastic: "", // In %
         bioPlastic: "", // In %
         reusedPlastic: "", // In %
       },
@@ -47,15 +47,20 @@ let batteryDataStructrue = [
         ratedCapacity: "",
         minimunAvergaeDuration: "",
         expectedLifetime: "",
-        //! What is this?  "Capacity fade, intern. resistance increase, energy efficiency and its fade"
-        //! And this? "Charge throughput, temperature history, error memory, internal resistance"
+        capacityFade: "",
+        internalResistanceIncrease: "",
+        energyEfficiency: "",
+        energyFade: "",
+        chargeThroughput: "",
+        internalResistance: "",
       },
       performanceSpecifications: {
         power: "",
         internalResistance: "",
         energyRoundtripEfficiency: "",
-        dischargeAndChargeRates: "", //! Should this be in the same field?
-        ratioBetweenPowerAndEnergy: "",
+        chargeRate: "",
+        dischargeRate: "",
+        powerEnergyRatio: "",
         depthOfDischarge: "",
         powerCapability: "",
       },
@@ -142,3 +147,5 @@ let batteryDataStructrue = [
     },
   },
 ];
+
+export { batteryDataStructrue };
