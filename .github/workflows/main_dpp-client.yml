@@ -58,5 +58,5 @@ jobs:
         with:
           app-name: 'dpp-client'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A110A8084C884B2F8613892C0D9650B0 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_857E559906CB4B749730468F61D99492 }}
           package: .
