@@ -150,139 +150,140 @@ let batteryDataStructrue = [
 
 let cleanData = [
   {
-    information: {
-      productData: {
-        name: "",
-        serialNumber: "",
-        batteryType: "",
-        batteryModel: "",
+    template_ID: "",
+    Information: {
+      "Product Data": {
+        Name: "",
+        "Serial Number": "",
+        "Battery Type": "",
+        "Battery Model": "",
       },
-      manufacturerData: {
-        manufacturer: "",
-        manufacturingSite: "",
-        manufacturedDate: "",
-        importer: "",
-        entryDate: "",
+      "Manufacturer Data": {
+        Manufacturer: "",
+        "Manufacturing Site": "",
+        "Manufactured Date": "",
+        Importer: "",
+        "Entry Date": "",
       },
-      productConformity: {
-        euDeclarationOfConformity: "Compliance",
-        standatd1: "",
-        standatd2: "",
+      "Product Conformity": {
+        "EU Declaration Of Conformity": "Compliance",
+        "Standard 1": "",
+        "Standard 2": "",
       },
-      productCharacteristics: {
-        rawMaterialCategory: "",
-        feedstockType: "",
-        fossilPlastic: "",
-        bioPlastic: "",
-        reusedPlastic: "",
+      "Product Characteristics": {
+        "Raw Material Category": "",
+        "Feedstock Type": "",
+        "Fossil Plastic": "",
+        "Bio Plastic": "",
+        "Reused Plastic": "",
       },
-      productPerformanceScores: {
-        ecoLabel: "",
-        repairabilityScore: "",
-        energyPerformance: "",
-        sustainabilityScore: "",
-        plantScore: "",
+      "Product Performance Scores": {
+        "Eco Label": "",
+        "Repairability Score": "",
+        "Energy Performance": "",
+        "Sustainability Score": "",
+        "Plant Score": "",
       },
     },
-    tracability: {
-      chainOfCustody: {},
+    Tracability: {
+      "Chain Of Custody": {},
     },
-    specifications: {
-      productSpecification: {
-        weight: "",
-        ratedCapacity: "",
-        minimunAvergaeDuration: "",
-        expectedLifetime: "",
-        capacityFade: "",
-        internalResistanceIncrease: "",
-        energyEfficiency: "",
-        energyFade: "",
-        chargeThroughput: "",
-        internalResistance: "",
+    Specifications: {
+      "Product Specification": {
+        wWeight: "",
+        "Rated Capacity": "",
+        "Minimum Average Duration": "",
+        "Expected Lifetime": "",
+        "Capacity Fade": "",
+        "Internal Resistance Increase": "",
+        "Energy Efficiency": "",
+        "Energy Fade": "",
+        "Charge Throughput": "",
+        "Internal Resistance": "",
       },
-      performanceSpecifications: {
-        power: "",
-        internalResistance: "",
-        energyRoundtripEfficiency: "",
-        chargeRate: "",
-        dischargeRate: "",
-        powerEnergyRatio: "",
-        depthOfDischarge: "",
-        powerCapability: "",
+      "Performance Specifications": {
+        Power: "",
+        "Internal Resistance": "",
+        "Energy Roundtrip Efficiency": "",
+        "Charge Rate": "",
+        "Discharge Rate": "",
+        "Power Energy Ratio": "",
+        "Depth Of Discharge": "",
+        "Power Capability": "",
       },
     },
     composition: {
-      recyclability: {
-        recycledContent: "",
-        renewableContent: "",
+      Recyclability: {
+        "Recycled Content": "",
+        "Renewable Content": "",
       },
-      chemistry: {
-        outerCase: {
-          composition1: "",
-          composition2: "",
+      Chemistry: {
+        "Outer Case": {
+          "Composition 1": "",
+          "composition 2": "",
         },
-        cathode: {
-          composition1: "",
-          composition2: "",
+        Cathode: {
+          "Composition 1": "",
+          "composition 2": "",
         },
-        anode: {
-          composition1: "",
-          composition2: "",
+        Anode: {
+          "Composition 1": "",
+          "Composition 2": "",
         },
-        electrolyte: {
-          composition1: "",
-          composition2: "",
+        Electrolyte: {
+          "Composition 1": "",
+          "Composition 2": "",
         },
       },
-      hazardousSubstance: {
-        substance_1: {
-          substance: "",
-          percentage: "",
+      "Hazardous Substance": {
+        "Substance 1": {
+          Substance: "",
+          Percentage: "",
         },
         substance_2: {
-          substance: "",
-          percentage: "",
+          Substance: "",
+          Percentage: "",
         },
       },
-      criticalRawMaterials: {
-        material_1: {
-          material: "",
-          percentage: "",
+      "Critical Raw Materials": {
+        "Material 1": {
+          Material: "",
+          Percentage: "",
         },
-        material_2: {
-          material: "",
-          percentage: "",
+        "Material 2": {
+          Material: "",
+          Percentage: "",
         },
       },
     },
-    designAndService: {
-      disposalScheme: {},
-      returnScheme: {},
-      collectionScheme: {},
-      partDetails: {},
+    "Design And Service": {
+      "Disposal Scheme": {},
+      "Return Scheme": {},
+      "Collection Scheme": {},
+      "Part Details": {},
     },
-    usageHistory: {},
-    repairReuse: {},
-    endOfLife: {},
-    sustainability: {
-      carbonFootprint: "",
-      circularityIndicator: {
-        repairabilityIndex: "",
-        reuseIndex: "",
-        recycleIndex: "",
-        environmentAndSocialmpactIndex: "",
+    "Usage History": {},
+    "Repair Reuse": {},
+    "End Of Life": {},
+    Sustainability: {
+      "Carbon Footprint": "",
+      "Circularity Indicator": {
+        "Repairability Index": "",
+        "Reuse Index": "",
+        "Recycle Index": "",
+        "Environment And Socia Impact Index": "",
       },
-      PefLcaDetails: {
-        documentLink: "",
+      "PEF / LCA Details": {
+        "Document Link": "",
       },
     },
-    certification: {
-      euDeclarationOfConformityID: "",
-      testResults: "",
+    Certification: {
+      "EU Declaration Of Conformity ID": "",
+      "Test Results": "",
     },
-    labels: {
-      separateCollectionSymbol: "",
-      cadmiumAndLeadSymbols: "",
+    Labels: {
+      "Separate Collection Symbol": "",
+      "Cadmium And Lead Symbols": "",
     },
   },
 ];

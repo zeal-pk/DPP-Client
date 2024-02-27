@@ -12,6 +12,7 @@ import Fade from "@mui/material/Fade";
 import Backdrop from "@mui/material/Backdrop";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import Stack from "@mui/material/Stack";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
   ThemeProvider,
@@ -104,28 +105,39 @@ export default function AddProducts({ params }) {
         return (
           <ObjectPageSection aria-label={key} id={key} titleText={key}>
             {Object.keys(json[key]).map((child) => {
-              let id = `${key}-${child}`;
+              let id1 = key.replace(/\s/g, "");
+              let id2 = child.replace(/\s/g, "");
+              let id = `${id1}-${id2}`;
               return (
                 <ObjectPageSubSection
                   aria-label="Product Conformity"
                   id={id}
                   titleText={child}
                 >
-                  {Object.keys(json[key][child]).map((subchild) => {
-                    return (
-                      <Form
-                        columnsL={4}
-                        columnsXL={4}
-                        style={{
-                          alignItems: "baseline",
-                        }}
-                      >
+                  <Form
+                    columnsL={3}
+                    columnsM={2}
+                    columnsXL={3}
+                    labelSpanL={6}
+                    labelSpanM={6}
+                    labelSpanXL={6}
+                    style={{
+                      alignItems: "baseline",
+                    }}
+                  >
+                    {Object.keys(json[key][child]).map((subchild) => {
+                      return (
                         <FormItem label={subchild}>
-                          <TextField id="outlined-basic" variant="outlined" />
+                          <TextField
+                            className="formInputField"
+                            variant="outlined"
+                            size="small"
+                            {...register(`${subchild}`)}
+                          />
                         </FormItem>
-                      </Form>
-                    );
-                  })}
+                      );
+                    })}
+                  </Form>
                 </ObjectPageSubSection>
               );
             })}

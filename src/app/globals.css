@@ -235,3 +235,14 @@ a {
   width: 300px;
   /* margin: 10px; */
 }
+
+/* CONFIGURATOR */
+.productDetialsForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.formInputField {
+  width: 200px;
+  height: 40px !important;
+}
