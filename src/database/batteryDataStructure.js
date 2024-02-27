@@ -148,4 +148,143 @@ let batteryDataStructrue = [
   },
 ];
 
+let cleanData = [
+  {
+    information: {
+      productData: {
+        name: "",
+        serialNumber: "",
+        batteryType: "",
+        batteryModel: "",
+      },
+      manufacturerData: {
+        manufacturer: "",
+        manufacturingSite: "",
+        manufacturedDate: "",
+        importer: "",
+        entryDate: "",
+      },
+      productConformity: {
+        euDeclarationOfConformity: "Compliance",
+        standatd1: "",
+        standatd2: "",
+      },
+      productCharacteristics: {
+        rawMaterialCategory: "",
+        feedstockType: "",
+        fossilPlastic: "",
+        bioPlastic: "",
+        reusedPlastic: "",
+      },
+      productPerformanceScores: {
+        ecoLabel: "",
+        repairabilityScore: "",
+        energyPerformance: "",
+        sustainabilityScore: "",
+        plantScore: "",
+      },
+    },
+    tracability: {
+      chainOfCustody: {},
+    },
+    specifications: {
+      productSpecification: {
+        weight: "",
+        ratedCapacity: "",
+        minimunAvergaeDuration: "",
+        expectedLifetime: "",
+        capacityFade: "",
+        internalResistanceIncrease: "",
+        energyEfficiency: "",
+        energyFade: "",
+        chargeThroughput: "",
+        internalResistance: "",
+      },
+      performanceSpecifications: {
+        power: "",
+        internalResistance: "",
+        energyRoundtripEfficiency: "",
+        chargeRate: "",
+        dischargeRate: "",
+        powerEnergyRatio: "",
+        depthOfDischarge: "",
+        powerCapability: "",
+      },
+    },
+    composition: {
+      recyclability: {
+        recycledContent: "",
+        renewableContent: "",
+      },
+      chemistry: {
+        outerCase: {
+          composition1: "",
+          composition2: "",
+        },
+        cathode: {
+          composition1: "",
+          composition2: "",
+        },
+        anode: {
+          composition1: "",
+          composition2: "",
+        },
+        electrolyte: {
+          composition1: "",
+          composition2: "",
+        },
+      },
+      hazardousSubstance: {
+        substance_1: {
+          substance: "",
+          percentage: "",
+        },
+        substance_2: {
+          substance: "",
+          percentage: "",
+        },
+      },
+      criticalRawMaterials: {
+        material_1: {
+          material: "",
+          percentage: "",
+        },
+        material_2: {
+          material: "",
+          percentage: "",
+        },
+      },
+    },
+    designAndService: {
+      disposalScheme: {},
+      returnScheme: {},
+      collectionScheme: {},
+      partDetails: {},
+    },
+    usageHistory: {},
+    repairReuse: {},
+    endOfLife: {},
+    sustainability: {
+      carbonFootprint: "",
+      circularityIndicator: {
+        repairabilityIndex: "",
+        reuseIndex: "",
+        recycleIndex: "",
+        environmentAndSocialmpactIndex: "",
+      },
+      PefLcaDetails: {
+        documentLink: "",
+      },
+    },
+    certification: {
+      euDeclarationOfConformityID: "",
+      testResults: "",
+    },
+    labels: {
+      separateCollectionSymbol: "",
+      cadmiumAndLeadSymbols: "",
+    },
+  },
+];
+
 export { batteryDataStructrue };
