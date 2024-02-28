@@ -150,10 +150,10 @@ let batteryDataStructrue = [
 
 let cleanData = [
   {
-    template_ID: "",
+    template_ID: "Battery",
     Information: {
       "Product Data": {
-        Name: "",
+        "Product Name": "",
         "Serial Number": "",
         "Battery Type": "",
         "Battery Model": "",
@@ -190,7 +190,7 @@ let cleanData = [
     },
     Specifications: {
       "Product Specification": {
-        wWeight: "",
+        Weight: "",
         "Rated Capacity": "",
         "Minimum Average Duration": "",
         "Expected Lifetime": "",
@@ -212,35 +212,45 @@ let cleanData = [
         "Power Capability": "",
       },
     },
-    composition: {
+    Composition: {
       Recyclability: {
         "Recycled Content": "",
         "Renewable Content": "",
       },
-      Chemistry: {
-        "Outer Case": {
-          "Composition 1": "",
-          "composition 2": "",
-        },
-        Cathode: {
-          "Composition 1": "",
-          "composition 2": "",
-        },
-        Anode: {
-          "Composition 1": "",
-          "Composition 2": "",
-        },
-        Electrolyte: {
-          "Composition 1": "",
-          "Composition 2": "",
-        },
+      "Outer Case Composition": {
+        "Composition 1": "",
+        "composition 2": "",
+        "composition 3": "",
+        "composition 4": "",
+        "composition 5": "",
+      },
+      "Cathode Composition": {
+        "Composition 1": "",
+        "composition 2": "",
+        "composition 3": "",
+        "composition 4": "",
+        "composition 5": "",
+      },
+      "Anode Composition": {
+        "Composition 1": "",
+        "composition 2": "",
+        "composition 3": "",
+        "composition 4": "",
+        "composition 5": "",
+      },
+      "Electrolyte Composition": {
+        "Composition 1": "",
+        "composition 2": "",
+        "composition 3": "",
+        "composition 4": "",
+        "composition 5": "",
       },
       "Hazardous Substance": {
         "Substance 1": {
           Substance: "",
           Percentage: "",
         },
-        substance_2: {
+        "Substance 2": {
           Substance: "",
           Percentage: "",
         },
@@ -289,3 +299,5 @@ let cleanData = [
 ];
 
 export { batteryDataStructrue };
+
+let test = {};
