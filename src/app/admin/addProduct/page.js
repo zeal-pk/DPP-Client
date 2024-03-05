@@ -1,5 +1,6 @@
+"use client";
 import React from "react";
 
-export default function () {
+export default function addProduct() {
   return <div>Hello World!</div>;
 }
