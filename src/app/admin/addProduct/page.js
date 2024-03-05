@@ -1133,7 +1133,7 @@ export default function AddProducts() {
               );
             })} */}
 
-          <div>
+          {/* <div>
             <Button variant="contained" onClick={handleOpenTab}>
               Add Tab
             </Button>
@@ -1188,7 +1188,7 @@ export default function AddProducts() {
                 </Box>
               </Fade>
             </Modal>
-          </div>
+          </div> */}
           {/* </ObjectPage> */}
           <Button type="submit" variant="contained">
             Submit
