@@ -1,7 +1,6 @@
 "use client";
 import * as React from "react";
-import { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
+import { useState } from "react";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { useForm, useFieldArray } from "react-hook-form";
 import axios from "axios";
@@ -30,13 +29,6 @@ export default function AddProducts() {
   let [tabDetails, setTabDetails] = useState([]);
   let [tabName, setTabName] = useState("");
   let [subTabName, setSubTabName] = useState("");
-
-  const DynamicComponentWithNoSSR = dynamic(
-    () => import("../components/List"),
-    {
-      ssr: false,
-    }
-  );
 
   // MUI Modal Code - START
   const [open, setOpen] = React.useState(false);
@@ -92,7 +84,6 @@ export default function AddProducts() {
   return (
     <div className="main">
       <NavBar />
-      <DynamicComponentWithNoSSR />
 
       <ThemeProvider>
         <form onSubmit={handleSubmit(onSubmit)} noValidation>
