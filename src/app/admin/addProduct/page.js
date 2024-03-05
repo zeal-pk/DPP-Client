@@ -76,9 +76,21 @@ export default function AddProducts() {
     control,
   });
 
+  // const onSubmit = (data) => {
+  //   console.log("Form Submitted", data);
+  // };
+
   const onSubmit = (data) => {
+
+       // Check if document is defined before accessing
+   if (typeof document !== 'undefined') {
+    // Code that interacts with the DOM using document can go here
+    // Example:
+    // document.getElementById('myElement').style.backgroundColor = 'red';
     console.log("Form Submitted", data);
-  };
+  }
+  
+  };
   // react-hook-form  - END
 
   return (
