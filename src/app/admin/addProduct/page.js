@@ -123,7 +123,7 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("productName", {
+                      {...register("productName", {
                         required: "User Name is Required",
                       })}
                     />
@@ -134,21 +134,21 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("productSerialNumber")}
+                      {...register("productSerialNumber")}
                     />
                   </FormItem>
                   <FormItem label="Battery Type">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("batteryType")}
+                      {...register("batteryType")}
                     />
                   </FormItem>
                   <FormItem label="Battery Model">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("batteryModel")}
+                      {...register("batteryModel")}
                     />
                   </FormItem>
                 </Form>
@@ -170,7 +170,7 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register(
+                      {...register(
                         "manufacturerName"
                         // {
                         //   required: "User Name is Required",
@@ -184,28 +184,28 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("manufacturedDate")}
+                      {...register("manufacturedDate")}
                     />
                   </FormItem>
                   <FormItem label="Manufactured Date">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("batteryType")}
+                      {...register("batteryType")}
                     />
                   </FormItem>
                   <FormItem label="Importer Name">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("importerName")}
+                      {...register("importerName")}
                     />
                   </FormItem>
                   <FormItem label="Entry Date">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("entryDate")}
+                      {...register("entryDate")}
                     />
                   </FormItem>
                 </Form>
@@ -227,7 +227,7 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register(
+                      {...register(
                         "EuDeclarationConformity"
                         // {
                         //   required: "User Name is Required",
@@ -241,14 +241,14 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("standard1")}
+                      {...register("standard1")}
                     />
                   </FormItem>
                   <FormItem label="Standard 2">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("standard2")}
+                      {...register("standard2")}
                     />
                   </FormItem>
                 </Form>
@@ -270,7 +270,7 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register(
+                      {...register(
                         "rawMaterialCategory"
                         // {
                         //   required: "User Name is Required",
@@ -284,28 +284,28 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("feedStockType")}
+                      {...register("feedStockType")}
                     />
                   </FormItem>
                   <FormItem label="Fossil Plastic">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("fossilPlastic")}
+                      {...register("fossilPlastic")}
                     />
                   </FormItem>
                   <FormItem label="Bio Plastic">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("bioPlastic")}
+                      {...register("bioPlastic")}
                     />
                   </FormItem>
                   <FormItem label="Reused Plastic">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("reusedPlastic")}
+                      {...register("reusedPlastic")}
                     />
                   </FormItem>
                 </Form>
@@ -327,7 +327,7 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register(
+                      {...register(
                         "ecoLabel"
                         // {
                         //   required: "User Name is Required",
@@ -341,28 +341,28 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("repairability")}
+                      {...register("repairability")}
                     />
                   </FormItem>
                   <FormItem label="Energy Performance">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("energyPerformance")}
+                      {...register("energyPerformance")}
                     />
                   </FormItem>
                   <FormItem label="Sustainability Score">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("sustainabilityScore")}
+                      {...register("sustainabilityScore")}
                     />
                   </FormItem>
                   <FormItem label="Plant Score">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("plantScore")}
+                      {...register("plantScore")}
                     />
                   </FormItem>
                 </Form>
@@ -392,7 +392,7 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("productName", {
+                      {...register("productName", {
                         required: "User Name is Required",
                       })}
                     />
@@ -403,21 +403,21 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("productSerialNumber")}
+                      {...register("productSerialNumber")}
                     />
                   </FormItem>
                   <FormItem label="Battery Type">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("batteryType")}
+                      {...register("batteryType")}
                     />
                   </FormItem>
                   <FormItem label="Battery Model">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("batteryModel")}
+                      {...register("batteryModel")}
                     />
                   </FormItem>
                 </Form>
@@ -448,7 +448,7 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register(
+                      {...register(
                         "weight"
                         // {
                         //   required: "User Name is Required",
@@ -462,63 +462,63 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("ratedCapacity")}
+                      {...register("ratedCapacity")}
                     />
                   </FormItem>
                   <FormItem label="Minimum Average Duration">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("minimumAverageDuration")}
+                      {...register("minimumAverageDuration")}
                     />
                   </FormItem>
                   <FormItem label="Expected Lifetime">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("expectedLifetime")}
+                      {...register("expectedLifetime")}
                     />
                   </FormItem>
                   <FormItem label="Capacity Fade">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("capacityFade")}
+                      {...register("capacityFade")}
                     />
                   </FormItem>
                   <FormItem label="Internal Resistance Increase">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("internalResistanceIncrease")}
+                      {...register("internalResistanceIncrease")}
                     />
                   </FormItem>
                   <FormItem label="Energy Efficiency">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("energyEfficiency")}
+                      {...register("energyEfficiency")}
                     />
                   </FormItem>
                   <FormItem label="Energy Fade">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("energyFade")}
+                      {...register("energyFade")}
                     />
                   </FormItem>
                   <FormItem label="Charge Throughput">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("chargeThroughput")}
+                      {...register("chargeThroughput")}
                     />
                   </FormItem>
                   <FormItem label="Internal Resistance">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("internalResistance")}
+                      {...register("internalResistance")}
                     />
                   </FormItem>
                 </Form>
@@ -540,7 +540,7 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register(
+                      {...register(
                         "power"
                         // {
                         //   required: "User Name is Required",
@@ -554,49 +554,49 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("energyRoundtripEfficiency")}
+                      {...register("energyRoundtripEfficiency")}
                     />
                   </FormItem>
                   <FormItem label="Charge Rate">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("chargeRate")}
+                      {...register("chargeRate")}
                     />
                   </FormItem>
                   <FormItem label="Discharge Rate">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("dischargeRate")}
+                      {...register("dischargeRate")}
                     />
                   </FormItem>
                   <FormItem label="Power-Energy Ratio">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("powerEnergyRatio")}
+                      {...register("powerEnergyRatio")}
                     />
                   </FormItem>
                   <FormItem label="Internal Resistance Increase">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("internalResistanceIncrease")}
+                      {...register("internalResistanceIncrease")}
                     />
                   </FormItem>
                   <FormItem label="Depth of Discharge">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("depthOfDischarge")}
+                      {...register("depthOfDischarge")}
                     />
                   </FormItem>
                   <FormItem label="Power Capability">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("powerCapability")}
+                      {...register("powerCapability")}
                     />
                   </FormItem>
                 </Form>
@@ -627,7 +627,7 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register(
+                      {...register(
                         "recycledContent"
                         // {
                         //   required: "User Name is Required",
@@ -641,7 +641,7 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("enewableContent")}
+                      {...register("enewableContent")}
                     />
                   </FormItem>
                 </Form>
@@ -664,7 +664,7 @@ export default function AddProducts() {
                       <TextField
                         id="outlined-basic"
                         variant="outlined"
-                        ref={register("caseComposition1")}
+                        {...register("caseComposition1")}
                       />
                     </FormItem>
 
@@ -672,7 +672,7 @@ export default function AddProducts() {
                       <TextField
                         id="outlined-basic"
                         variant="outlined"
-                        ref={register("caseComposition2")}
+                        {...register("caseComposition2")}
                       />
                     </FormItem>
                   </FormGroup>
@@ -682,14 +682,14 @@ export default function AddProducts() {
                       <TextField
                         id="outlined-basic"
                         variant="outlined"
-                        ref={register("cathodeComposition2")}
+                        {...register("cathodeComposition2")}
                       />
                     </FormItem>
                     <FormItem label="Composition2">
                       <TextField
                         id="outlined-basic"
                         variant="outlined"
-                        ref={register("cathodeComposition2")}
+                        {...register("cathodeComposition2")}
                       />
                     </FormItem>
                   </FormGroup>
@@ -699,7 +699,7 @@ export default function AddProducts() {
                       <TextField
                         id="outlined-basic"
                         variant="outlined"
-                        ref={register("anodeComposition2")}
+                        {...register("anodeComposition2")}
                       />
                     </FormItem>
 
@@ -707,7 +707,7 @@ export default function AddProducts() {
                       <TextField
                         id="outlined-basic"
                         variant="outlined"
-                        ref={register("anodeComposition2")}
+                        {...register("anodeComposition2")}
                       />
                     </FormItem>
                   </FormGroup>
@@ -717,7 +717,7 @@ export default function AddProducts() {
                       <TextField
                         id="outlined-basic"
                         variant="outlined"
-                        ref={register("electrolyteComposition2")}
+                        {...register("electrolyteComposition2")}
                       />
                     </FormItem>
 
@@ -725,7 +725,7 @@ export default function AddProducts() {
                       <TextField
                         id="outlined-basic"
                         variant="outlined"
-                        ref={register("electrolyteComposition2")}
+                        {...register("electrolyteComposition2")}
                       />
                     </FormItem>
                   </FormGroup>
@@ -749,7 +749,7 @@ export default function AddProducts() {
                       <TextField
                         id="outlined-basic"
                         variant="outlined"
-                        ref={register("sub1Substance")}
+                        {...register("sub1Substance")}
                       />
                     </FormItem>
 
@@ -757,7 +757,7 @@ export default function AddProducts() {
                       <TextField
                         id="outlined-basic"
                         variant="outlined"
-                        ref={register("sub1Percentage")}
+                        {...register("sub1Percentage")}
                       />
                     </FormItem>
                   </FormGroup>
@@ -767,7 +767,7 @@ export default function AddProducts() {
                       <TextField
                         id="outlined-basic"
                         variant="outlined"
-                        ref={register("sub2Substance")}
+                        {...register("sub2Substance")}
                       />
                     </FormItem>
 
@@ -775,7 +775,7 @@ export default function AddProducts() {
                       <TextField
                         id="outlined-basic"
                         variant="outlined"
-                        ref={register("sub2Percentage")}
+                        {...register("sub2Percentage")}
                       />
                     </FormItem>
                   </FormGroup>
@@ -799,7 +799,7 @@ export default function AddProducts() {
                       <TextField
                         id="outlined-basic"
                         variant="outlined"
-                        ref={register("mat1Material")}
+                        {...register("mat1Material")}
                       />
                     </FormItem>
 
@@ -807,7 +807,7 @@ export default function AddProducts() {
                       <TextField
                         id="outlined-basic"
                         variant="outlined"
-                        ref={register("mat1Percentage")}
+                        {...register("mat1Percentage")}
                       />
                     </FormItem>
                   </FormGroup>
@@ -817,7 +817,7 @@ export default function AddProducts() {
                       <TextField
                         id="outlined-basic"
                         variant="outlined"
-                        ref={register("mat2Material")}
+                        {...register("mat2Material")}
                       />
                     </FormItem>
 
@@ -825,7 +825,7 @@ export default function AddProducts() {
                       <TextField
                         id="outlined-basic"
                         variant="outlined"
-                        ref={register("mat2Percentage")}
+                        {...register("mat2Percentage")}
                       />
                     </FormItem>
                   </FormGroup>
@@ -906,7 +906,7 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("carbonFootprint")}
+                      {...register("carbonFootprint")}
                     />
                   </FormItem>
                 </Form>
@@ -928,28 +928,28 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("repairabilityIndex")}
+                      {...register("repairabilityIndex")}
                     />
                   </FormItem>
                   <FormItem label="Reuse Index">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("reuseIndex")}
+                      {...register("reuseIndex")}
                     />
                   </FormItem>
                   <FormItem label="recycleIndex">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("repairabilityIndex")}
+                      {...register("repairabilityIndex")}
                     />
                   </FormItem>
                   <FormItem label="Environment and Socail Impact Index">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("environmentandSocailImpactIndex")}
+                      {...register("environmentandSocailImpactIndex")}
                     />
                   </FormItem>
                 </Form>
@@ -971,7 +971,7 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("pef/lcaDetails")}
+                      {...register("pef/lcaDetails")}
                     />
                   </FormItem>
                 </Form>
@@ -1002,7 +1002,7 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("euDeclarationOfConformityID")}
+                      {...register("euDeclarationOfConformityID")}
                     />
                   </FormItem>
                 </Form>
@@ -1033,14 +1033,14 @@ export default function AddProducts() {
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("separateCollectionSymbol")}
+                      {...register("separateCollectionSymbol")}
                     />
                   </FormItem>
                   <FormItem label="Cadmium And Lead Symbols">
                     <TextField
                       id="outlined-basic"
                       variant="outlined"
-                      ref={register("cadmiumAndLeadSymbols")}
+                      {...register("cadmiumAndLeadSymbols")}
                     />
                   </FormItem>
                 </Form>
@@ -1067,7 +1067,7 @@ export default function AddProducts() {
                           <TextField
                             id={field.field}
                             variant="outlined"
-                            ref={register(`additionalValue.${index}.value`)}
+                            {...register(`additionalValue.${index}.value`)}
                           />
                           <Button onClick={() => remove(index)}>
                             <DeleteIcon />
