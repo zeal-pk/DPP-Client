@@ -43,4 +43,4 @@ dist
 
 /src/app/database
 
-/src/app/admin/addProduct
+/src/app/admin/addProduct/
