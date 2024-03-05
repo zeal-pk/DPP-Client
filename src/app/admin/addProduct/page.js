@@ -103,22 +103,22 @@ export default function AddProducts() {
     <div className="main">
       <NavBar />
 
-      <ThemeProvider>
-        <form onSubmit={handleSubmit(onSubmit)} noValidation>
-          {/* <ObjectPage> */}
-          {/* ------------------------------------ PRODUCT DETAILS - START ------------------------------------ */}
-          {/* <ObjectPageSection
+      {/* <ThemeProvider> */}
+      <form onSubmit={handleSubmit(onSubmit)} noValidation>
+        {/* <ObjectPage> */}
+        {/* ------------------------------------ PRODUCT DETAILS - START ------------------------------------ */}
+        {/* <ObjectPageSection
               aria-label="Product Details"
               id="productDetails"
               titleText="Product Details"
             > */}
-          {/* ------------------------------------ Product Information ------------------------------------ */}
-          {/* <ObjectPageSubSection
+        {/* ------------------------------------ Product Information ------------------------------------ */}
+        {/* <ObjectPageSubSection
                 aria-label="Product Information"
                 id="productDetails-productInformation"
                 titleText="Product Information"
               > */}
-          {/* <Form
+        {/* <Form
                   columnsL={4}
                   columnsXL={4}
                   style={{
@@ -158,10 +158,10 @@ export default function AddProducts() {
                     />
                   </FormItem>
                 </Form> */}
-          {/* </ObjectPageSubSection> */}
-          {/* </ObjectPageSection> */}
-          {/* ------------------------------------ Manufacturer Information ------------------------------------ */}
-          {/* <ObjectPageSubSection
+        {/* </ObjectPageSubSection> */}
+        {/* </ObjectPageSection> */}
+        {/* ------------------------------------ Manufacturer Information ------------------------------------ */}
+        {/* <ObjectPageSubSection
                 aria-label="Manufacturer Information"
                 id="productDetails-manufacturer-information"
                 titleText="Manufacturer Information"
@@ -184,8 +184,8 @@ export default function AddProducts() {
                         // }
                       )}
                     /> */}
-          {/* <p>{errors.productName?.message}</p> */}
-          {/* </FormItem>
+        {/* <p>{errors.productName?.message}</p> */}
+        {/* </FormItem>
 
                   <FormItem label="Manufacturing Site">
                     <input
@@ -217,8 +217,8 @@ export default function AddProducts() {
                   </FormItem>
                 </Form>
               </ObjectPageSubSection> */}
-          {/* ------------------------------------ Product Conformity ------------------------------------ */}
-          {/* <ObjectPageSubSection
+        {/* ------------------------------------ Product Conformity ------------------------------------ */}
+        {/* <ObjectPageSubSection
                 aria-label="Product Conformity"
                 id="productDetails-product-conformity"
                 titleText="Product Conformity"
@@ -241,8 +241,8 @@ export default function AddProducts() {
                         // }
                       )}
                     /> */}
-          {/* <p>{errors.productName?.message}</p> */}
-          {/* </FormItem>
+        {/* <p>{errors.productName?.message}</p> */}
+        {/* </FormItem>
 
                   <FormItem label="Standard 1">
                     <input
@@ -260,8 +260,8 @@ export default function AddProducts() {
                   </FormItem>
                 </Form>
               </ObjectPageSubSection> */}
-          {/* ------------------------------------ Product Characteristics ------------------------------------ */}
-          {/* <ObjectPageSubSection
+        {/* ------------------------------------ Product Characteristics ------------------------------------ */}
+        {/* <ObjectPageSubSection
                 aria-label="Product Characteristics"
                 id="productDetails-product-characteristics"
                 titleText="Product Characteristics"
@@ -284,8 +284,8 @@ export default function AddProducts() {
                         // }
                       )}
                     /> */}
-          {/* <p>{errors.productName?.message}</p> */}
-          {/* </FormItem>
+        {/* <p>{errors.productName?.message}</p> */}
+        {/* </FormItem>
 
                   <FormItem label="Feed Stock Type">
                     <input
@@ -317,8 +317,8 @@ export default function AddProducts() {
                   </FormItem>
                 </Form>
               </ObjectPageSubSection> */}
-          {/* ------------------------------------ Product Performance ------------------------------------ */}
-          {/* <ObjectPageSubSection
+        {/* ------------------------------------ Product Performance ------------------------------------ */}
+        {/* <ObjectPageSubSection
                 aria-label="Product Performance"
                 id="productDetails-product-performance"
                 titleText="Product Performance"
@@ -341,8 +341,8 @@ export default function AddProducts() {
                         // }
                       )}
                     /> */}
-          {/* <p>{errors.productName?.message}</p> */}
-          {/* </FormItem>
+        {/* <p>{errors.productName?.message}</p> */}
+        {/* </FormItem>
 
                   <FormItem label="Repairability">
                     <input
@@ -375,10 +375,10 @@ export default function AddProducts() {
                 </Form>
               </ObjectPageSubSection>
             </ObjectPageSection> */}
-          {/* ------------------------------------ PRODUCT DETAILS - END ------------------------------------ */}
-          {/* ------------------------------------------------------------------------------------------------------------ */}
-          {/* ------------------------------------ Tracability - START ------------------------------------ */}
-          {/* <ObjectPageSection
+        {/* ------------------------------------ PRODUCT DETAILS - END ------------------------------------ */}
+        {/* ------------------------------------------------------------------------------------------------------------ */}
+        {/* ------------------------------------ Tracability - START ------------------------------------ */}
+        {/* <ObjectPageSection
               aria-label="Tracability"
               id="tracability"
               titleText="Tracability"
@@ -430,16 +430,16 @@ export default function AddProducts() {
                 </Form>
               </ObjectPageSubSection>
             </ObjectPageSection> */}
-          {/* ------------------------------------ Tracability - END ------------------------------------ */}
-          {/* ------------------------------------------------------------------------------------------------------------ */}
-          {/* ------------------------------------ PRODUCT SPECIFICATION - Start ------------------------------------ */}
-          {/* <ObjectPageSection
+        {/* ------------------------------------ Tracability - END ------------------------------------ */}
+        {/* ------------------------------------------------------------------------------------------------------------ */}
+        {/* ------------------------------------ PRODUCT SPECIFICATION - Start ------------------------------------ */}
+        {/* <ObjectPageSection
               aria-label="Specifications"
               id="specifications"
               titleText="Specifications"
             > */}
-          {/* ------------------------------------ Procuct Specification ------------------------------------ */}
-          {/* <ObjectPageSubSection
+        {/* ------------------------------------ Procuct Specification ------------------------------------ */}
+        {/* <ObjectPageSubSection
                 aria-label="Product Specificationsy"
                 id="specifications-productSpecifications"
                 titleText="Product Specifications"
@@ -462,8 +462,8 @@ export default function AddProducts() {
                         // }
                       )}
                     /> */}
-          {/* <p>{errors.productName?.message}</p> */}
-          {/* </FormItem>
+        {/* <p>{errors.productName?.message}</p> */}
+        {/* </FormItem>
 
                   <FormItem label="Rated Capacity">
                     <input
@@ -530,8 +530,8 @@ export default function AddProducts() {
                   </FormItem>
                 </Form>
               </ObjectPageSubSection> */}
-          {/* ------------------------------------ Performance Specification ------------------------------------ */}
-          {/* <ObjectPageSubSection
+        {/* ------------------------------------ Performance Specification ------------------------------------ */}
+        {/* <ObjectPageSubSection
                 aria-label="Performance Specification"
                 id="specifications-performance-specification"
                 titleText="Performance Specification"
@@ -554,8 +554,8 @@ export default function AddProducts() {
                         // }
                       )}
                     /> */}
-          {/* <p>{errors.productName?.message}</p> */}
-          {/* </FormItem>
+        {/* <p>{errors.productName?.message}</p> */}
+        {/* </FormItem>
 
                   <FormItem label="Energy Roundtrip Efficiency">
                     <input
@@ -609,16 +609,16 @@ export default function AddProducts() {
                 </Form>
               </ObjectPageSubSection>
             </ObjectPageSection> */}
-          {/* ------------------------------------ PRODUCT SPECIFICATION - END ------------------------------------ */}
-          {/* ------------------------------------------------------------------------------------------------------------ */}
-          {/* ------------------------------------ COMPOSITION - Start ------------------------------------ */}
-          {/* <ObjectPageSection
+        {/* ------------------------------------ PRODUCT SPECIFICATION - END ------------------------------------ */}
+        {/* ------------------------------------------------------------------------------------------------------------ */}
+        {/* ------------------------------------ COMPOSITION - Start ------------------------------------ */}
+        {/* <ObjectPageSection
               aria-label="Composition"
               id="composition"
               titleText="Composition"
             > */}
-          {/* ------------------------------------ Procuct Specification ------------------------------------ */}
-          {/* <ObjectPageSubSection
+        {/* ------------------------------------ Procuct Specification ------------------------------------ */}
+        {/* <ObjectPageSubSection
                 aria-label="Recyclability"
                 id="composition-recyclability"
                 titleText="Recyclability"
@@ -630,7 +630,7 @@ export default function AddProducts() {
                     alignItems: "baseline",
                   }}
                 > */}
-          {/* <FormItem label="Recycled Content">
+        {/* <FormItem label="Recycled Content">
                     <input
                       id="outlined-basic"
                       variant="outlined"
@@ -641,8 +641,8 @@ export default function AddProducts() {
                         // }
                       )}
                     /> */}
-          {/* <p>{errors.productName?.message}</p> */}
-          {/* </FormItem>
+        {/* <p>{errors.productName?.message}</p> */}
+        {/* </FormItem>
 
                   <FormItem label="Renewable Content">
                     <input
@@ -653,8 +653,8 @@ export default function AddProducts() {
                   </FormItem>
                 </Form>
               </ObjectPageSubSection> */}
-          {/* ------------------------------------ Performance Specification ------------------------------------ */}
-          {/* <ObjectPageSubSection
+        {/* ------------------------------------ Performance Specification ------------------------------------ */}
+        {/* <ObjectPageSubSection
                 aria-label="Chemistry"
                 id="composition-chemistry"
                 titleText="Chemistry"
@@ -738,8 +738,8 @@ export default function AddProducts() {
                   </FormGroup>
                 </Form>
               </ObjectPageSubSection> */}
-          {/* ------------------------------------ Hazardous Substances ------------------------------------ */}
-          {/* <ObjectPageSubSection
+        {/* ------------------------------------ Hazardous Substances ------------------------------------ */}
+        {/* <ObjectPageSubSection
                 aria-label="Hazardous Substance"
                 id="composition-hazardous-substance"
                 titleText="Hazardous Substance"
@@ -788,8 +788,8 @@ export default function AddProducts() {
                   </FormGroup>
                 </Form>
               </ObjectPageSubSection> */}
-          {/* ------------------------------------ Critical Raw Material ------------------------------------ */}
-          {/* <ObjectPageSubSection
+        {/* ------------------------------------ Critical Raw Material ------------------------------------ */}
+        {/* <ObjectPageSubSection
                 aria-label="Critical Raw Materials"
                 id="composition-criticalRawMaterials"
                 titleText="Critical Raw Materials"
@@ -839,10 +839,10 @@ export default function AddProducts() {
                 </Form>
               </ObjectPageSubSection>
             </ObjectPageSection> */}
-          {/* ------------------------------------ COMPOSITION - END ------------------------------------ */}
-          {/* ------------------------------------------------------------------------------------------------------------ */}
-          {/* ------------------------------------ DESIGN AND SERVICE - START ------------------------------------ */}
-          {/* <ObjectPageSection
+        {/* ------------------------------------ COMPOSITION - END ------------------------------------ */}
+        {/* ------------------------------------------------------------------------------------------------------------ */}
+        {/* ------------------------------------ DESIGN AND SERVICE - START ------------------------------------ */}
+        {/* <ObjectPageSection
               aria-label="Design and Service"
               id="designAndService"
               titleText="Design and Service"
@@ -868,10 +868,10 @@ export default function AddProducts() {
                 titleText="Part Details"
               ></ObjectPageSubSection>
             </ObjectPageSection> */}
-          {/* ------------------------------------ DESIGN AND SERVICE - END ------------------------------------ */}
-          {/* ------------------------------------------------------------------------------------------------------------ */}
-          {/* ------------------------------------ USAGE HISTORY - START ------------------------------------ */}
-          {/* <ObjectPageSection
+        {/* ------------------------------------ DESIGN AND SERVICE - END ------------------------------------ */}
+        {/* ------------------------------------------------------------------------------------------------------------ */}
+        {/* ------------------------------------ USAGE HISTORY - START ------------------------------------ */}
+        {/* <ObjectPageSection
               aria-label="Usage History"
               id="usageHistory"
               titleText="Usage History"
@@ -888,16 +888,16 @@ export default function AddProducts() {
                 titleText="Repair And Reuse"
               ></ObjectPageSubSection>
             </ObjectPageSection> */}
-          {/* ------------------------------------ USAGE HISTORY - END ------------------------------------ */}
-          {/* ------------------------------------------------------------------------------------------------------------ */}
-          {/* ------------------------------------ SUSTAINABILITY - START ------------------------------------ */}
-          {/* <ObjectPageSection
+        {/* ------------------------------------ USAGE HISTORY - END ------------------------------------ */}
+        {/* ------------------------------------------------------------------------------------------------------------ */}
+        {/* ------------------------------------ SUSTAINABILITY - START ------------------------------------ */}
+        {/* <ObjectPageSection
               aria-label="Sustainability"
               id="sustainability"
               titleText="Sustainability"
             > */}
-          {/* ------------------------------------ Footprint ------------------------------------ */}
-          {/* <ObjectPageSubSection
+        {/* ------------------------------------ Footprint ------------------------------------ */}
+        {/* <ObjectPageSubSection
                 aria-label="Footprint"
                 id="sustainability-footprint"
                 titleText="Footprint"
@@ -918,8 +918,8 @@ export default function AddProducts() {
                   </FormItem>
                 </Form>
               </ObjectPageSubSection> */}
-          {/* ------------------------------------ Circularity Index ------------------------------------ */}
-          {/* <ObjectPageSubSection
+        {/* ------------------------------------ Circularity Index ------------------------------------ */}
+        {/* <ObjectPageSubSection
                 aria-label="Circularity Index"
                 id="sustainability-circularityIndex"
                 titleText="Circularity Index"
@@ -961,8 +961,8 @@ export default function AddProducts() {
                   </FormItem>
                 </Form>
               </ObjectPageSubSection> */}
-          {/* ------------------------------------ PEF / LCA ------------------------------------ */}
-          {/* <ObjectPageSubSection
+        {/* ------------------------------------ PEF / LCA ------------------------------------ */}
+        {/* <ObjectPageSubSection
                 aria-label="PEF / LCA"
                 id="sustainability-pefLca"
                 titleText="PEF / LCA"
@@ -984,16 +984,16 @@ export default function AddProducts() {
                 </Form>
               </ObjectPageSubSection>
             </ObjectPageSection> */}
-          {/* ------------------------------------ SUSTAINABILITY - END ------------------------------------ */}
-          {/* ------------------------------------------------------------------------------------------------------------ */}
-          {/* ------------------------------------ CERTIFICATIONS - START ------------------------------------ */}
-          {/* <ObjectPageSection
+        {/* ------------------------------------ SUSTAINABILITY - END ------------------------------------ */}
+        {/* ------------------------------------------------------------------------------------------------------------ */}
+        {/* ------------------------------------ CERTIFICATIONS - START ------------------------------------ */}
+        {/* <ObjectPageSection
               aria-label="Certifications"
               id="certifications"
               titleText="Certifications"
             > */}
-          {/* ------------------------------------ Footprint ------------------------------------ */}
-          {/* <ObjectPageSubSection
+        {/* ------------------------------------ Footprint ------------------------------------ */}
+        {/* <ObjectPageSubSection
                 aria-label="Certification"
                 id="certification-certification"
                 titleText="Certification"
@@ -1015,16 +1015,16 @@ export default function AddProducts() {
                 </Form>
               </ObjectPageSubSection>
             </ObjectPageSection> */}
-          {/* ------------------------------------ CERTIFICATION - END ------------------------------------ */}
-          {/* ------------------------------------------------------------------------------------------------------------ */}
-          {/* ------------------------------------ LABLES - START ------------------------------------ */}
-          {/* <ObjectPageSection
+        {/* ------------------------------------ CERTIFICATION - END ------------------------------------ */}
+        {/* ------------------------------------------------------------------------------------------------------------ */}
+        {/* ------------------------------------ LABLES - START ------------------------------------ */}
+        {/* <ObjectPageSection
               aria-label="Lables"
               id="lables"
               titleText="Lables"
             > */}
-          {/* ------------------------------------ Footprint ------------------------------------ */}
-          {/* <ObjectPageSubSection
+        {/* ------------------------------------ Footprint ------------------------------------ */}
+        {/* <ObjectPageSubSection
                 aria-label="Labels"
                 id="lables-labels"
                 titleText="Labels"
@@ -1053,7 +1053,7 @@ export default function AddProducts() {
                 </Form>
               </ObjectPageSubSection>
             </ObjectPageSection> */}
-          {/* {tabDetails.map((tabDetail) => {
+        {/* {tabDetails.map((tabDetail) => {
               // let subID = `${tabDetail.tabName}-${tabDetail.subTabName}`;
               return (
                 <ObjectPageSection
@@ -1133,7 +1133,7 @@ export default function AddProducts() {
               );
             })} */}
 
-          {/* <div>
+        {/* <div>
             <Button variant="contained" onClick={handleOpenTab}>
               Add Tab
             </Button>
@@ -1189,12 +1189,12 @@ export default function AddProducts() {
               </Fade>
             </Modal>
           </div> */}
-          {/* </ObjectPage> */}
-          <Button type="submit" variant="contained">
-            Submit
-          </Button>
-        </form>
-      </ThemeProvider>
+        {/* </ObjectPage> */}
+        <Button type="submit" variant="contained">
+          Submit
+        </Button>
+      </form>
+      {/* </ThemeProvider> */}
     </div>
   );
 }
