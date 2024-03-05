@@ -5,7 +5,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { useForm, useFieldArray } from "react-hook-form";
 import axios from "axios";
 import NavBar from "@/components/navBar";
-import TextField from "@mui/material/TextField";
+// import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
@@ -128,7 +128,7 @@ export default function AddProducts() {
                   }}
                 >
                   <FormItem label="Product Name">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("productName", {
@@ -139,21 +139,21 @@ export default function AddProducts() {
                   </FormItem>
 
                   <FormItem label="Serial Number">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("productSerialNumber")}
                     />
                   </FormItem>
                   <FormItem label="Battery Type">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("batteryType")}
                     />
                   </FormItem>
                   <FormItem label="Battery Model">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("batteryModel")}
@@ -175,7 +175,7 @@ export default function AddProducts() {
                   }}
                 >
                   <FormItem label="Manufacturer Name">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register(
@@ -189,28 +189,28 @@ export default function AddProducts() {
                   </FormItem>
 
                   <FormItem label="Manufacturing Site">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("manufacturedDate")}
                     />
                   </FormItem>
                   <FormItem label="Manufactured Date">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("batteryType")}
                     />
                   </FormItem>
                   <FormItem label="Importer Name">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("importerName")}
                     />
                   </FormItem>
                   <FormItem label="Entry Date">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("entryDate")}
@@ -232,7 +232,7 @@ export default function AddProducts() {
                   }}
                 >
                   <FormItem label="EU Declaration Of Conformity">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register(
@@ -246,14 +246,14 @@ export default function AddProducts() {
                   </FormItem>
 
                   <FormItem label="Standard 1">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("standard1")}
                     />
                   </FormItem>
                   <FormItem label="Standard 2">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("standard2")}
@@ -275,7 +275,7 @@ export default function AddProducts() {
                   }}
                 >
                   <FormItem label="Raw Material Category">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register(
@@ -289,28 +289,28 @@ export default function AddProducts() {
                   </FormItem>
 
                   <FormItem label="Feed Stock Type">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("feedStockType")}
                     />
                   </FormItem>
                   <FormItem label="Fossil Plastic">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("fossilPlastic")}
                     />
                   </FormItem>
                   <FormItem label="Bio Plastic">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("bioPlastic")}
                     />
                   </FormItem>
                   <FormItem label="Reused Plastic">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("reusedPlastic")}
@@ -332,7 +332,7 @@ export default function AddProducts() {
                   }}
                 >
                   <FormItem label="Eco Label">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register(
@@ -346,28 +346,28 @@ export default function AddProducts() {
                   </FormItem>
 
                   <FormItem label="Repairability">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("repairability")}
                     />
                   </FormItem>
                   <FormItem label="Energy Performance">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("energyPerformance")}
                     />
                   </FormItem>
                   <FormItem label="Sustainability Score">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("sustainabilityScore")}
                     />
                   </FormItem>
                   <FormItem label="Plant Score">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("plantScore")}
@@ -397,7 +397,7 @@ export default function AddProducts() {
                   }}
                 >
                   <FormItem label="Product Name">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("productName", {
@@ -408,21 +408,21 @@ export default function AddProducts() {
                   </FormItem>
 
                   <FormItem label="Serial Number">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("productSerialNumber")}
                     />
                   </FormItem>
                   <FormItem label="Battery Type">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("batteryType")}
                     />
                   </FormItem>
                   <FormItem label="Battery Model">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("batteryModel")}
@@ -453,7 +453,7 @@ export default function AddProducts() {
                   }}
                 >
                   <FormItem label="Weight">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register(
@@ -467,63 +467,63 @@ export default function AddProducts() {
                   </FormItem>
 
                   <FormItem label="Rated Capacity">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("ratedCapacity")}
                     />
                   </FormItem>
                   <FormItem label="Minimum Average Duration">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("minimumAverageDuration")}
                     />
                   </FormItem>
                   <FormItem label="Expected Lifetime">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("expectedLifetime")}
                     />
                   </FormItem>
                   <FormItem label="Capacity Fade">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("capacityFade")}
                     />
                   </FormItem>
                   <FormItem label="Internal Resistance Increase">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("internalResistanceIncrease")}
                     />
                   </FormItem>
                   <FormItem label="Energy Efficiency">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("energyEfficiency")}
                     />
                   </FormItem>
                   <FormItem label="Energy Fade">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("energyFade")}
                     />
                   </FormItem>
                   <FormItem label="Charge Throughput">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("chargeThroughput")}
                     />
                   </FormItem>
                   <FormItem label="Internal Resistance">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("internalResistance")}
@@ -545,7 +545,7 @@ export default function AddProducts() {
                   }}
                 >
                   <FormItem label="Power">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register(
@@ -559,49 +559,49 @@ export default function AddProducts() {
                   </FormItem>
 
                   <FormItem label="Energy Roundtrip Efficiency">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("energyRoundtripEfficiency")}
                     />
                   </FormItem>
                   <FormItem label="Charge Rate">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("chargeRate")}
                     />
                   </FormItem>
                   <FormItem label="Discharge Rate">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("dischargeRate")}
                     />
                   </FormItem>
                   <FormItem label="Power-Energy Ratio">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("powerEnergyRatio")}
                     />
                   </FormItem>
                   <FormItem label="Internal Resistance Increase">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("internalResistanceIncrease")}
                     />
                   </FormItem>
                   <FormItem label="Depth of Discharge">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("depthOfDischarge")}
                     />
                   </FormItem>
                   <FormItem label="Power Capability">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("powerCapability")}
@@ -632,7 +632,7 @@ export default function AddProducts() {
                   }}
                 >
                   <FormItem label="Recycled Content">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register(
@@ -646,7 +646,7 @@ export default function AddProducts() {
                   </FormItem>
 
                   <FormItem label="Renewable Content">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("enewableContent")}
@@ -669,7 +669,7 @@ export default function AddProducts() {
                 >
                   <FormGroup titleText="Outer Case">
                     <FormItem label="Composition 1">
-                      <TextField
+                      <input
                         id="outlined-basic"
                         variant="outlined"
                         {...register("caseComposition1")}
@@ -677,7 +677,7 @@ export default function AddProducts() {
                     </FormItem>
 
                     <FormItem label="Composition2">
-                      <TextField
+                      <input
                         id="outlined-basic"
                         variant="outlined"
                         {...register("caseComposition2")}
@@ -687,14 +687,14 @@ export default function AddProducts() {
 
                   <FormGroup titleText="Cathode">
                     <FormItem label="Composition1">
-                      <TextField
+                      <input
                         id="outlined-basic"
                         variant="outlined"
                         {...register("cathodeComposition2")}
                       />
                     </FormItem>
                     <FormItem label="Composition2">
-                      <TextField
+                      <input
                         id="outlined-basic"
                         variant="outlined"
                         {...register("cathodeComposition2")}
@@ -704,7 +704,7 @@ export default function AddProducts() {
 
                   <FormGroup titleText="Anode">
                     <FormItem label="Composition1">
-                      <TextField
+                      <input
                         id="outlined-basic"
                         variant="outlined"
                         {...register("anodeComposition2")}
@@ -712,7 +712,7 @@ export default function AddProducts() {
                     </FormItem>
 
                     <FormItem label="Composition2">
-                      <TextField
+                      <input
                         id="outlined-basic"
                         variant="outlined"
                         {...register("anodeComposition2")}
@@ -722,7 +722,7 @@ export default function AddProducts() {
 
                   <FormGroup titleText="Electrolyte">
                     <FormItem label="Composition1">
-                      <TextField
+                      <input
                         id="outlined-basic"
                         variant="outlined"
                         {...register("electrolyteComposition2")}
@@ -730,7 +730,7 @@ export default function AddProducts() {
                     </FormItem>
 
                     <FormItem label="Composition2">
-                      <TextField
+                      <input
                         id="outlined-basic"
                         variant="outlined"
                         {...register("electrolyteComposition2")}
@@ -754,7 +754,7 @@ export default function AddProducts() {
                 >
                   <FormGroup titleText="Substance 1">
                     <FormItem label="Substance">
-                      <TextField
+                      <input
                         id="outlined-basic"
                         variant="outlined"
                         {...register("sub1Substance")}
@@ -762,7 +762,7 @@ export default function AddProducts() {
                     </FormItem>
 
                     <FormItem label="Percentage">
-                      <TextField
+                      <input
                         id="outlined-basic"
                         variant="outlined"
                         {...register("sub1Percentage")}
@@ -772,7 +772,7 @@ export default function AddProducts() {
 
                   <FormGroup titleText="Substance 2">
                     <FormItem label="Substance">
-                      <TextField
+                      <input
                         id="outlined-basic"
                         variant="outlined"
                         {...register("sub2Substance")}
@@ -780,7 +780,7 @@ export default function AddProducts() {
                     </FormItem>
 
                     <FormItem label="Percentage">
-                      <TextField
+                      <input
                         id="outlined-basic"
                         variant="outlined"
                         {...register("sub2Percentage")}
@@ -804,7 +804,7 @@ export default function AddProducts() {
                 >
                   <FormGroup titleText="Material 1">
                     <FormItem label="Material">
-                      <TextField
+                      <input
                         id="outlined-basic"
                         variant="outlined"
                         {...register("mat1Material")}
@@ -812,7 +812,7 @@ export default function AddProducts() {
                     </FormItem>
 
                     <FormItem label="Percentage">
-                      <TextField
+                      <input
                         id="outlined-basic"
                         variant="outlined"
                         {...register("mat1Percentage")}
@@ -822,7 +822,7 @@ export default function AddProducts() {
 
                   <FormGroup titleText="Material 2">
                     <FormItem label="Material">
-                      <TextField
+                      <input
                         id="outlined-basic"
                         variant="outlined"
                         {...register("mat2Material")}
@@ -830,7 +830,7 @@ export default function AddProducts() {
                     </FormItem>
 
                     <FormItem label="Percentage">
-                      <TextField
+                      <input
                         id="outlined-basic"
                         variant="outlined"
                         {...register("mat2Percentage")}
@@ -911,7 +911,7 @@ export default function AddProducts() {
                   }}
                 >
                   <FormItem label="Carbon Footprint">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("carbonFootprint")}
@@ -933,28 +933,28 @@ export default function AddProducts() {
                   }}
                 >
                   <FormItem label="Repairability Index">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("repairabilityIndex")}
                     />
                   </FormItem>
                   <FormItem label="Reuse Index">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("reuseIndex")}
                     />
                   </FormItem>
                   <FormItem label="recycleIndex">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("repairabilityIndex")}
                     />
                   </FormItem>
                   <FormItem label="Environment and Socail Impact Index">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("environmentandSocailImpactIndex")}
@@ -976,7 +976,7 @@ export default function AddProducts() {
                   }}
                 >
                   <FormItem label="PEF/LCA Details">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("pef/lcaDetails")}
@@ -1007,7 +1007,7 @@ export default function AddProducts() {
                   }}
                 >
                   <FormItem label="EU Declaration Of Conformity ID">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("euDeclarationOfConformityID")}
@@ -1038,14 +1038,14 @@ export default function AddProducts() {
                   }}
                 >
                   <FormItem label="Separate Collection Symbol">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("separateCollectionSymbol")}
                     />
                   </FormItem>
                   <FormItem label="Cadmium And Lead Symbols">
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       {...register("cadmiumAndLeadSymbols")}
@@ -1072,7 +1072,7 @@ export default function AddProducts() {
                       return (
                         <Box key={index}>
                           <label for={field.field}>{field.field}: </label>
-                          <TextField
+                          <input
                             id={field.field}
                             variant="outlined"
                             {...register(`additionalValue.${index}.value`)}
@@ -1110,7 +1110,7 @@ export default function AddProducts() {
                             >
                               Please Enter Field Name
                             </Typography>
-                            <TextField
+                            <input
                               id="outlined-basic"
                               variant="outlined"
                               label="Field Lable"
@@ -1154,7 +1154,7 @@ export default function AddProducts() {
                 <Fade in={openTab}>
                   <Box sx={style}>
                     <p>Tab Name</p>
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       label="Tab Name"
@@ -1163,7 +1163,7 @@ export default function AddProducts() {
                       }}
                     />
                     <p>Sub Tab Name</p>
-                    <TextField
+                    <input
                       id="outlined-basic"
                       variant="outlined"
                       label="Sub Tab Name"
