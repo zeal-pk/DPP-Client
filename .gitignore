@@ -38,3 +38,7 @@ next-env.d.ts
 trash
 
 dist
+
+/src/app/configurator
+
+/src/app/database

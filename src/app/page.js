@@ -135,7 +135,7 @@ export default function Login() {
             </Button>
           </Stack>
           <p>
-            `Don&apos;t have an account? Please`
+            Don&apos;t have an account? Please
             <Button
               variant="text"
               onClick={() => {

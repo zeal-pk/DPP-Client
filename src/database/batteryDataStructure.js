@@ -288,7 +288,9 @@ let cleanData = [
       },
     },
     Certification: {
-      "EU Declaration Of Conformity ID": "",
+      "EU Declaration Of Conformity ID": {
+        ID: ",",
+      },
       "Test Results": "",
     },
     Labels: {

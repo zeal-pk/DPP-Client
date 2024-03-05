@@ -1041,6 +1041,7 @@ export default function AddProducts() {
                   aria-label={tabDetail.tabName}
                   id={tabDetail.tabName}
                   titleText={tabDetail.tabName}
+                  key={tabDetail.tabName}
                 >
                   <ObjectPageSubSection
                     aria-label={tabDetail.subTabName}
@@ -1049,7 +1050,7 @@ export default function AddProducts() {
                   >
                     {fields.map((field, index) => {
                       return (
-                        <Box>
+                        <Box key={index}>
                           <label for={field.field}>{field.field}: </label>
                           <TextField
                             id={field.field}
