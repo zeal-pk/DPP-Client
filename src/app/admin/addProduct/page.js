@@ -40,7 +40,7 @@ export default function AddProducts() {
   useEffect(() => {
     setIsClient(true);
   }, []);
-  
+
   const style = {
     position: "absolute",
     top: "50%",
@@ -71,11 +71,12 @@ export default function AddProducts() {
   //   },
   // }
 
-  const { register, 
-           control, 
-           handleSubmit, 
-           formState: { errors },
-        } = useForm();
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   // const { errors } = formState;
 
   const { fields, append, remove } = useFieldArray({
@@ -88,16 +89,14 @@ export default function AddProducts() {
   // };
 
   const onSubmit = (data) => {
-
-       // Check if document is defined before accessing
-   if (typeof document !== 'undefined') {
-    // Code that interacts with the DOM using document can go here
-    // Example:
-    // document.getElementById('myElement').style.backgroundColor = 'red';
-    console.log("Form Submitted", data);
-  }
-  
-  };
+    // Check if document is defined before accessing
+    if (typeof document !== "undefined") {
+      // Code that interacts with the DOM using document can go here
+      // Example:
+      // document.getElementById('myElement').style.backgroundColor = 'red';
+      console.log("Form Submitted", data);
+    }
+  };
   // react-hook-form  - END
 
   return (
@@ -119,7 +118,7 @@ export default function AddProducts() {
                 id="productDetails-productInformation"
                 titleText="Product Information"
               >
-                <Form
+                {/* <Form
                   columnsL={4}
                   columnsXL={4}
                   style={{
@@ -158,10 +157,11 @@ export default function AddProducts() {
                       {...register("batteryModel")}
                     />
                   </FormItem>
-                </Form>
+                </Form> */}
               </ObjectPageSubSection>
-              {/* ------------------------------------ Manufacturer Information ------------------------------------ */}
-              <ObjectPageSubSection
+            </ObjectPageSection>
+            {/* ------------------------------------ Manufacturer Information ------------------------------------ */}
+            {/* <ObjectPageSubSection
                 aria-label="Manufacturer Information"
                 id="productDetails-manufacturer-information"
                 titleText="Manufacturer Information"
@@ -183,9 +183,9 @@ export default function AddProducts() {
                         //   required: "User Name is Required",
                         // }
                       )}
-                    />
-                    {/* <p>{errors.productName?.message}</p> */}
-                  </FormItem>
+                    /> */}
+            {/* <p>{errors.productName?.message}</p> */}
+            {/* </FormItem>
 
                   <FormItem label="Manufacturing Site">
                     <input
@@ -216,9 +216,9 @@ export default function AddProducts() {
                     />
                   </FormItem>
                 </Form>
-              </ObjectPageSubSection>
-              {/* ------------------------------------ Product Conformity ------------------------------------ */}
-              <ObjectPageSubSection
+              </ObjectPageSubSection> */}
+            {/* ------------------------------------ Product Conformity ------------------------------------ */}
+            {/* <ObjectPageSubSection
                 aria-label="Product Conformity"
                 id="productDetails-product-conformity"
                 titleText="Product Conformity"
@@ -240,9 +240,9 @@ export default function AddProducts() {
                         //   required: "User Name is Required",
                         // }
                       )}
-                    />
-                    {/* <p>{errors.productName?.message}</p> */}
-                  </FormItem>
+                    /> */}
+            {/* <p>{errors.productName?.message}</p> */}
+            {/* </FormItem>
 
                   <FormItem label="Standard 1">
                     <input
@@ -259,9 +259,9 @@ export default function AddProducts() {
                     />
                   </FormItem>
                 </Form>
-              </ObjectPageSubSection>
-              {/* ------------------------------------ Product Characteristics ------------------------------------ */}
-              <ObjectPageSubSection
+              </ObjectPageSubSection> */}
+            {/* ------------------------------------ Product Characteristics ------------------------------------ */}
+            {/* <ObjectPageSubSection
                 aria-label="Product Characteristics"
                 id="productDetails-product-characteristics"
                 titleText="Product Characteristics"
@@ -283,9 +283,9 @@ export default function AddProducts() {
                         //   required: "User Name is Required",
                         // }
                       )}
-                    />
-                    {/* <p>{errors.productName?.message}</p> */}
-                  </FormItem>
+                    /> */}
+            {/* <p>{errors.productName?.message}</p> */}
+            {/* </FormItem>
 
                   <FormItem label="Feed Stock Type">
                     <input
@@ -316,9 +316,9 @@ export default function AddProducts() {
                     />
                   </FormItem>
                 </Form>
-              </ObjectPageSubSection>
-              {/* ------------------------------------ Product Performance ------------------------------------ */}
-              <ObjectPageSubSection
+              </ObjectPageSubSection> */}
+            {/* ------------------------------------ Product Performance ------------------------------------ */}
+            {/* <ObjectPageSubSection
                 aria-label="Product Performance"
                 id="productDetails-product-performance"
                 titleText="Product Performance"
@@ -340,9 +340,9 @@ export default function AddProducts() {
                         //   required: "User Name is Required",
                         // }
                       )}
-                    />
-                    {/* <p>{errors.productName?.message}</p> */}
-                  </FormItem>
+                    /> */}
+            {/* <p>{errors.productName?.message}</p> */}
+            {/* </FormItem>
 
                   <FormItem label="Repairability">
                     <input
@@ -374,11 +374,11 @@ export default function AddProducts() {
                   </FormItem>
                 </Form>
               </ObjectPageSubSection>
-            </ObjectPageSection>
+            </ObjectPageSection> */}
             {/* ------------------------------------ PRODUCT DETAILS - END ------------------------------------ */}
             {/* ------------------------------------------------------------------------------------------------------------ */}
             {/* ------------------------------------ Tracability - START ------------------------------------ */}
-            <ObjectPageSection
+            {/* <ObjectPageSection
               aria-label="Tracability"
               id="tracability"
               titleText="Tracability"
@@ -429,17 +429,17 @@ export default function AddProducts() {
                   </FormItem>
                 </Form>
               </ObjectPageSubSection>
-            </ObjectPageSection>
+            </ObjectPageSection> */}
             {/* ------------------------------------ Tracability - END ------------------------------------ */}
             {/* ------------------------------------------------------------------------------------------------------------ */}
             {/* ------------------------------------ PRODUCT SPECIFICATION - Start ------------------------------------ */}
-            <ObjectPageSection
+            {/* <ObjectPageSection
               aria-label="Specifications"
               id="specifications"
               titleText="Specifications"
-            >
-              {/* ------------------------------------ Procuct Specification ------------------------------------ */}
-              <ObjectPageSubSection
+            > */}
+            {/* ------------------------------------ Procuct Specification ------------------------------------ */}
+            {/* <ObjectPageSubSection
                 aria-label="Product Specificationsy"
                 id="specifications-productSpecifications"
                 titleText="Product Specifications"
@@ -461,9 +461,9 @@ export default function AddProducts() {
                         //   required: "User Name is Required",
                         // }
                       )}
-                    />
-                    {/* <p>{errors.productName?.message}</p> */}
-                  </FormItem>
+                    /> */}
+            {/* <p>{errors.productName?.message}</p> */}
+            {/* </FormItem>
 
                   <FormItem label="Rated Capacity">
                     <input
@@ -529,9 +529,9 @@ export default function AddProducts() {
                     />
                   </FormItem>
                 </Form>
-              </ObjectPageSubSection>
-              {/* ------------------------------------ Performance Specification ------------------------------------ */}
-              <ObjectPageSubSection
+              </ObjectPageSubSection> */}
+            {/* ------------------------------------ Performance Specification ------------------------------------ */}
+            {/* <ObjectPageSubSection
                 aria-label="Performance Specification"
                 id="specifications-performance-specification"
                 titleText="Performance Specification"
@@ -553,9 +553,9 @@ export default function AddProducts() {
                         //   required: "User Name is Required",
                         // }
                       )}
-                    />
-                    {/* <p>{errors.productName?.message}</p> */}
-                  </FormItem>
+                    /> */}
+            {/* <p>{errors.productName?.message}</p> */}
+            {/* </FormItem>
 
                   <FormItem label="Energy Roundtrip Efficiency">
                     <input
@@ -608,17 +608,17 @@ export default function AddProducts() {
                   </FormItem>
                 </Form>
               </ObjectPageSubSection>
-            </ObjectPageSection>
+            </ObjectPageSection> */}
             {/* ------------------------------------ PRODUCT SPECIFICATION - END ------------------------------------ */}
             {/* ------------------------------------------------------------------------------------------------------------ */}
             {/* ------------------------------------ COMPOSITION - Start ------------------------------------ */}
-            <ObjectPageSection
+            {/* <ObjectPageSection
               aria-label="Composition"
               id="composition"
               titleText="Composition"
-            >
-              {/* ------------------------------------ Procuct Specification ------------------------------------ */}
-              <ObjectPageSubSection
+            > */}
+            {/* ------------------------------------ Procuct Specification ------------------------------------ */}
+            {/* <ObjectPageSubSection
                 aria-label="Recyclability"
                 id="composition-recyclability"
                 titleText="Recyclability"
@@ -629,8 +629,8 @@ export default function AddProducts() {
                   style={{
                     alignItems: "baseline",
                   }}
-                >
-                  <FormItem label="Recycled Content">
+                > */}
+            {/* <FormItem label="Recycled Content">
                     <input
                       id="outlined-basic"
                       variant="outlined"
@@ -640,9 +640,9 @@ export default function AddProducts() {
                         //   required: "User Name is Required",
                         // }
                       )}
-                    />
-                    {/* <p>{errors.productName?.message}</p> */}
-                  </FormItem>
+                    /> */}
+            {/* <p>{errors.productName?.message}</p> */}
+            {/* </FormItem>
 
                   <FormItem label="Renewable Content">
                     <input
@@ -652,9 +652,9 @@ export default function AddProducts() {
                     />
                   </FormItem>
                 </Form>
-              </ObjectPageSubSection>
-              {/* ------------------------------------ Performance Specification ------------------------------------ */}
-              <ObjectPageSubSection
+              </ObjectPageSubSection> */}
+            {/* ------------------------------------ Performance Specification ------------------------------------ */}
+            {/* <ObjectPageSubSection
                 aria-label="Chemistry"
                 id="composition-chemistry"
                 titleText="Chemistry"
@@ -737,9 +737,9 @@ export default function AddProducts() {
                     </FormItem>
                   </FormGroup>
                 </Form>
-              </ObjectPageSubSection>
-              {/* ------------------------------------ Hazardous Substances ------------------------------------ */}
-              <ObjectPageSubSection
+              </ObjectPageSubSection> */}
+            {/* ------------------------------------ Hazardous Substances ------------------------------------ */}
+            {/* <ObjectPageSubSection
                 aria-label="Hazardous Substance"
                 id="composition-hazardous-substance"
                 titleText="Hazardous Substance"
@@ -787,9 +787,9 @@ export default function AddProducts() {
                     </FormItem>
                   </FormGroup>
                 </Form>
-              </ObjectPageSubSection>
-              {/* ------------------------------------ Critical Raw Material ------------------------------------ */}
-              <ObjectPageSubSection
+              </ObjectPageSubSection> */}
+            {/* ------------------------------------ Critical Raw Material ------------------------------------ */}
+            {/* <ObjectPageSubSection
                 aria-label="Critical Raw Materials"
                 id="composition-criticalRawMaterials"
                 titleText="Critical Raw Materials"
@@ -838,11 +838,11 @@ export default function AddProducts() {
                   </FormGroup>
                 </Form>
               </ObjectPageSubSection>
-            </ObjectPageSection>
+            </ObjectPageSection> */}
             {/* ------------------------------------ COMPOSITION - END ------------------------------------ */}
             {/* ------------------------------------------------------------------------------------------------------------ */}
             {/* ------------------------------------ DESIGN AND SERVICE - START ------------------------------------ */}
-            <ObjectPageSection
+            {/* <ObjectPageSection
               aria-label="Design and Service"
               id="designAndService"
               titleText="Design and Service"
@@ -867,11 +867,11 @@ export default function AddProducts() {
                 id="designAndService-partDetails"
                 titleText="Part Details"
               ></ObjectPageSubSection>
-            </ObjectPageSection>
+            </ObjectPageSection> */}
             {/* ------------------------------------ DESIGN AND SERVICE - END ------------------------------------ */}
             {/* ------------------------------------------------------------------------------------------------------------ */}
             {/* ------------------------------------ USAGE HISTORY - START ------------------------------------ */}
-            <ObjectPageSection
+            {/* <ObjectPageSection
               aria-label="Usage History"
               id="usageHistory"
               titleText="Usage History"
@@ -887,17 +887,17 @@ export default function AddProducts() {
                 id="designAndService-repairReuse"
                 titleText="Repair And Reuse"
               ></ObjectPageSubSection>
-            </ObjectPageSection>
+            </ObjectPageSection> */}
             {/* ------------------------------------ USAGE HISTORY - END ------------------------------------ */}
             {/* ------------------------------------------------------------------------------------------------------------ */}
             {/* ------------------------------------ SUSTAINABILITY - START ------------------------------------ */}
-            <ObjectPageSection
+            {/* <ObjectPageSection
               aria-label="Sustainability"
               id="sustainability"
               titleText="Sustainability"
-            >
-              {/* ------------------------------------ Footprint ------------------------------------ */}
-              <ObjectPageSubSection
+            > */}
+            {/* ------------------------------------ Footprint ------------------------------------ */}
+            {/* <ObjectPageSubSection
                 aria-label="Footprint"
                 id="sustainability-footprint"
                 titleText="Footprint"
@@ -917,9 +917,9 @@ export default function AddProducts() {
                     />
                   </FormItem>
                 </Form>
-              </ObjectPageSubSection>
-              {/* ------------------------------------ Circularity Index ------------------------------------ */}
-              <ObjectPageSubSection
+              </ObjectPageSubSection> */}
+            {/* ------------------------------------ Circularity Index ------------------------------------ */}
+            {/* <ObjectPageSubSection
                 aria-label="Circularity Index"
                 id="sustainability-circularityIndex"
                 titleText="Circularity Index"
@@ -960,9 +960,9 @@ export default function AddProducts() {
                     />
                   </FormItem>
                 </Form>
-              </ObjectPageSubSection>
-              {/* ------------------------------------ PEF / LCA ------------------------------------ */}
-              <ObjectPageSubSection
+              </ObjectPageSubSection> */}
+            {/* ------------------------------------ PEF / LCA ------------------------------------ */}
+            {/* <ObjectPageSubSection
                 aria-label="PEF / LCA"
                 id="sustainability-pefLca"
                 titleText="PEF / LCA"
@@ -983,17 +983,17 @@ export default function AddProducts() {
                   </FormItem>
                 </Form>
               </ObjectPageSubSection>
-            </ObjectPageSection>
+            </ObjectPageSection> */}
             {/* ------------------------------------ SUSTAINABILITY - END ------------------------------------ */}
             {/* ------------------------------------------------------------------------------------------------------------ */}
             {/* ------------------------------------ CERTIFICATIONS - START ------------------------------------ */}
-            <ObjectPageSection
+            {/* <ObjectPageSection
               aria-label="Certifications"
               id="certifications"
               titleText="Certifications"
-            >
-              {/* ------------------------------------ Footprint ------------------------------------ */}
-              <ObjectPageSubSection
+            > */}
+            {/* ------------------------------------ Footprint ------------------------------------ */}
+            {/* <ObjectPageSubSection
                 aria-label="Certification"
                 id="certification-certification"
                 titleText="Certification"
@@ -1014,17 +1014,17 @@ export default function AddProducts() {
                   </FormItem>
                 </Form>
               </ObjectPageSubSection>
-            </ObjectPageSection>
+            </ObjectPageSection> */}
             {/* ------------------------------------ CERTIFICATION - END ------------------------------------ */}
             {/* ------------------------------------------------------------------------------------------------------------ */}
             {/* ------------------------------------ LABLES - START ------------------------------------ */}
-            <ObjectPageSection
+            {/* <ObjectPageSection
               aria-label="Lables"
               id="lables"
               titleText="Lables"
-            >
-              {/* ------------------------------------ Footprint ------------------------------------ */}
-              <ObjectPageSubSection
+            > */}
+            {/* ------------------------------------ Footprint ------------------------------------ */}
+            {/* <ObjectPageSubSection
                 aria-label="Labels"
                 id="lables-labels"
                 titleText="Labels"
@@ -1052,8 +1052,8 @@ export default function AddProducts() {
                   </FormItem>
                 </Form>
               </ObjectPageSubSection>
-            </ObjectPageSection>
-            {tabDetails.map((tabDetail) => {
+            </ObjectPageSection> */}
+            {/* {tabDetails.map((tabDetail) => {
               // let subID = `${tabDetail.tabName}-${tabDetail.subTabName}`;
               return (
                 <ObjectPageSection
@@ -1131,7 +1131,7 @@ export default function AddProducts() {
                   </ObjectPageSubSection>
                 </ObjectPageSection>
               );
-            })}
+            })} */}
 
             <div>
               <Button variant="contained" onClick={handleOpenTab}>
