@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { useForm, useFieldArray } from "react-hook-form";
 import axios from "axios";
@@ -37,7 +37,11 @@ export default function AddProducts() {
   const [openTab, setOpenTab] = React.useState(false);
   const handleOpenTab = () => setOpenTab(true);
   const handleCloseTab = () => setOpenTab(false);
-
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  
   const style = {
     position: "absolute",
     top: "50%",
