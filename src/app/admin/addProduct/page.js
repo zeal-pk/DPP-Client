@@ -56,7 +56,7 @@ export default function AddProducts() {
   // MUI Modal Code - END
 
   // react-hook-form code  - START
-  const form = useForm();
+  // const form = useForm();
   //   {
   //   defaultValues: {
   //     productName: "",
@@ -72,8 +72,12 @@ export default function AddProducts() {
   //   },
   // }
 
-  const { register, control, handleSubmit, formState } = form;
-  const { errors } = formState;
+  const { register, 
+           control, 
+           handleSubmit, 
+           formState: { errors },
+        } = useForm();
+  // const { errors } = formState;
 
   const { fields, append, remove } = useFieldArray({
     name: "addtionalField",
