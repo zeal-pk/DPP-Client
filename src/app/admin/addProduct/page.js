@@ -2,7 +2,7 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import { useForm, useFieldArray } from "react-hook-form";
+// import { useForm, useFieldArray } from "react-hook-form";
 import NavBar from "@/components/navBar";
 // import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -71,18 +71,18 @@ export default function AddProducts() {
   //   },
   // }
 
-  const {
-    register,
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  // const {
+  //   register,
+  //   control,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm();
   // const { errors } = formState;
 
-  const { fields, append, remove } = useFieldArray({
-    name: "addtionalField",
-    control,
-  });
+  // const { fields, append, remove } = useFieldArray({
+  //   name: "addtionalField",
+  //   control,
+  // });
 
   // const onSubmit = (data) => {
   //   console.log("Form Submitted", data);
@@ -90,12 +90,12 @@ export default function AddProducts() {
 
   const onSubmit = (data) => {
     // Check if document is defined before accessing
-    if (typeof document !== "undefined") {
-      // Code that interacts with the DOM using document can go here
-      // Example:
-      // document.getElementById('myElement').style.backgroundColor = 'red';
-      console.log("Form Submitted", data);
-    }
+    // if (typeof document !== "undefined") {
+    //   // Code that interacts with the DOM using document can go here
+    //   // Example:
+    //   // document.getElementById('myElement').style.backgroundColor = 'red';
+    //   // console.log("Form Submitted", data);
+    // }
   };
   // react-hook-form  - END
 
