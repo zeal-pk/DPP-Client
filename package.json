@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
     "export": "next build && next export",
-    "start": "next start",
+    "start": "node server.js",
+    "startAzure": "./node_modules/next/dist/bin/next start",
     "lint": "next lint"
   },
   "dependencies": {
