@@ -47,7 +47,9 @@ export default function Login() {
       alert("Please Provide Password");
     } else {
       await axios
-        .get(`http://localhost:9000/login/${email}/${password}`)
+        .get(
+          `https://dpp-server-app.azurewebsites.net/login/${email}/${password}`
+        )
         .then((response) => {
           localStorage.setItem("access_token", response.data.token);
           localStorage.setItem("current_user", response.data.email);

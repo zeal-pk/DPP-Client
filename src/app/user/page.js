@@ -13,7 +13,7 @@ export default function Home() {
   const Fun = async () => {
     let token = localStorage.getItem("access_token");
     const response = await axios.get(
-      "http://dpp-server-app.azurewebsites.net/",
+      "https://dpp-server-app.azurewebsites.net/",
       {
         headers: {
           Authorization: "Bearer " + token,

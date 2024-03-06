@@ -10,7 +10,7 @@ import Container from "@mui/material/Container";
 
 async function handleSignup(userData) {
   let response = await axios
-    .post("http://dpp-server-app.azurewebsites.net/postUser", userData)
+    .post("https://dpp-server-app.azurewebsites.net/postUser", userData)
     .then((response) => {
       // console.log(response);
     });

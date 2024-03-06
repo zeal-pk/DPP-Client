@@ -41,7 +41,7 @@ export default function CustomerDetials({ params }) {
     let token = localStorage.getItem("access_token");
     await axios
       .get(
-        `http://dpp-server-app.azurewebsites.net/getCustomer/${customerId}`,
+        `https://dpp-server-app.azurewebsites.net/getCustomer/${customerId}`,
         {
           headers: {
             Authorization: "Bearer " + token,
@@ -53,7 +53,7 @@ export default function CustomerDetials({ params }) {
       });
     await axios
       .get(
-        `http://dpp-server-app.azurewebsites.net/getProducts/${customerId}`,
+        `https://dpp-server-app.azurewebsites.net/getProducts/${customerId}`,
         {
           headers: {
             Authorization: "Bearer " + token,

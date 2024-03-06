@@ -24,7 +24,7 @@ export default function UpdateCustomer({ params }) {
     let token = localStorage.getItem("access_token");
     let prods = [];
     const response = await axios
-      .get(`http://dpp-server-app.azurewebsites.net/getCustomer/${custId}`, {
+      .get(`https://dpp-server-app.azurewebsites.net/getCustomer/${custId}`, {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -54,7 +54,7 @@ export default function UpdateCustomer({ params }) {
     let token = localStorage.getItem("access_token");
     const response = await axios
       .post(
-        `http://dpp-server-app.azurewebsites.net/updateCustomer/${customerId}`,
+        `https://dpp-server-app.azurewebsites.net/updateCustomer/${customerId}`,
         newCustomerData,
         {
           headers: {

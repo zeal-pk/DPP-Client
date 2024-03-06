@@ -10,7 +10,7 @@ async function handleAddCustomer(newCustomerData) {
   let token = localStorage.getItem("access_token");
   const response = await axios
     .post(
-      "http://dpp-server-app.azurewebsites.net/postCustomer",
+      "https://dpp-server-app.azurewebsites.net/postCustomer",
       newCustomerData,
       {
         headers: {
