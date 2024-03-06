@@ -7,6 +7,7 @@
     "build": "next build",
     "export": "next build && next export",
     "start": "next start",
+    "startAzure": "./node_modules/next/dist/bin/next start",
     "lint": "next lint"
   },
   "dependencies": {
