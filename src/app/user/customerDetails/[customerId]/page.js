@@ -40,20 +40,26 @@ export default function CustomerDetials({ params }) {
   const getDetails = async () => {
     let token = localStorage.getItem("access_token");
     await axios
-      .get(`http://localhost:9000/getCustomer/${customerId}`, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      })
+      .get(
+        `http://dpp-server-app.azurewebsites.net/getCustomer/${customerId}`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      )
       .then((res) => {
         setCustomerDetail(res.data);
       });
     await axios
-      .get(`http://localhost:9000/getProducts/${customerId}`, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      })
+      .get(
+        `http://dpp-server-app.azurewebsites.net/getProducts/${customerId}`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      )
       .then((res) => {
         setProductDetails(res.data);
         setSelectedProduct(res.data[0]);

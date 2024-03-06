@@ -12,11 +12,14 @@ export default function Home() {
 
   const Fun = async () => {
     let token = localStorage.getItem("access_token");
-    const response = await axios.get("http://localhost:9000/", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    });
+    const response = await axios.get(
+      "http://dpp-server-app.azurewebsites.net/",
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
     setCustomerDetails(response.data);
   };
   useEffect(() => {

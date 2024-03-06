@@ -25,11 +25,14 @@ export default function Home() {
 
   const Fun = async () => {
     let token = localStorage.getItem("access_token");
-    const response = await axios.get("http://localhost:9000/", {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    });
+    const response = await axios.get(
+      "http://dpp-server-app.azurewebsites.net/",
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
     setCustomerDetails(response.data);
   };
   useEffect(() => {
@@ -39,11 +42,14 @@ export default function Home() {
   const deleteCustomer = async (customerId) => {
     let token = localStorage.getItem("access_token");
     axios
-      .delete(`http://localhost:9000/deleteCustomer/${customerId}`, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      })
+      .delete(
+        `http://dpp-server-app.azurewebsites.net/deleteCustomer/${customerId}`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      )
       .then((res) => {
         if (res.status == 200) {
           setAlertSeverity("success");
