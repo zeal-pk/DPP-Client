@@ -43,5 +43,3 @@ dist
 /src/app/database
 
 package-lock.json
-
-src/app/configurator
