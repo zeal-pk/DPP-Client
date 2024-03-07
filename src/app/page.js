@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import zealitLogo from "../assets/ZealLogo.png";
 import axios from "axios";
-import { Formik, Form, Field } from "formik";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -32,10 +31,6 @@ export default function Login() {
   let [password, setPassword] = useState();
 
   async function handleLogin(e) {
-    // let loginData = {
-    //   email: email,
-    //   password: password,
-    // };
     e.preventDefault();
     let mail = email;
     let pass = password;
@@ -46,23 +41,30 @@ export default function Login() {
     } else if (!pass) {
       alert("Please Provide Password");
     } else {
-      await axios
-        .get(
-          `https://dpp-server-app.azurewebsites.net/login/${email}/${password}`
-        )
-        .then((response) => {
-          localStorage.setItem("access_token", response.data.token);
-          localStorage.setItem("current_user", response.data.email);
-          localStorage.setItem("current_user_role", response.data.role);
-          if (
-            response.data.passwordStatus == true &&
-            response.data.token !== "undefined"
-          ) {
-            router.push(`/${response.data.role}`);
-          } else {
-            alert("Email or Password is Incorrect!");
-          }
-        });
+      try {
+        let data = {
+          email: mail,
+          password: pass,
+        };
+        let response = await axios
+          .post(`https://dpp-server-app.azurewebsites.net/login`, data)
+          .then((response) => {
+            localStorage.setItem("access_token", response.data.token);
+            localStorage.setItem("current_user", response.data.email);
+            localStorage.setItem("current_user_role", response.data.role);
+            if (
+              response.data.passwordStatus == true &&
+              response.data.token !== "undefined"
+            ) {
+              router.push(`/${response.data.role}`);
+            } else {
+              alert("Email or Password is Incorrect!");
+            }
+            console.log(response.data);
+          });
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 
@@ -117,22 +119,7 @@ export default function Login() {
               />
             </FormControl>
 
-            <Button
-              type="submit"
-              variant="contained"
-              // onClick={() => {
-              //   let loginData = {
-              //     email: email,
-              //     password: password,
-              //   };
-              //   handleLogin(loginData);
-              // }}
-              // onKeyDown={(e) => {
-              //   if (e.which === 13) {
-              // handleLogin(loginData);
-              //   }
-              // }}
-            >
+            <Button type="submit" variant="contained">
               Login
             </Button>
           </Stack>
@@ -141,10 +128,10 @@ export default function Login() {
             <Button
               variant="text"
               onClick={() => {
-                router.push("/signup");
-                // alert(
-                //   "Currently a new user can be created only by the product team."
-                // );
+                // router.push("/signup");
+                alert(
+                  "Currently a new user can be created only by the product team."
+                );
               }}
             >
               Signup
