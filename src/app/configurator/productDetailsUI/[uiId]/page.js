@@ -777,6 +777,7 @@ export default function BackupAddProducts({ params }) {
         return (
           <ObjectPageSection
             aria-label={key}
+            key={index}
             id={key.replace(/\s/g, "")}
             titleText={key}
           >
@@ -785,6 +786,7 @@ export default function BackupAddProducts({ params }) {
               let id = `${key.replace(/\s/g, "")}-${child.replace(/\s/g, "")}`;
               return (
                 <ObjectPageSubSection
+                  key={index}
                   aria-label="Product Conformity"
                   id={id}
                   titleText={child}
