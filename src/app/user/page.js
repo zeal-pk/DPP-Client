@@ -29,6 +29,7 @@ export default function Home() {
   return (
     <div className="main">
       <NavBar />
+
       <h3 className="pageTitle">Customer List</h3>
       {/* --------------------------------- Customer List Section - START */}
       <section className="customerList-scroll">
