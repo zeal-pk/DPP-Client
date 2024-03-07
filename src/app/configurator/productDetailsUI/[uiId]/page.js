@@ -427,26 +427,26 @@ export default function BackupAddProducts({ params }) {
 
   function RenderInputFields(field) {
     return (
-      <>
+      <div key={field}>
         <p>{field}</p>
         <TextField />
-      </>
+      </div>
     );
   }
   function RenderChartFields(field) {
     return (
-      <>
+      <div key={field.xAxis}>
         <p>Chart Type: {field.chartType}</p>
         <p>X-Axis: {field.xAxis}</p>
         <p>Y-Axis: {field.yAxis}</p>
-      </>
+      </div>
     );
   }
   function RenderOtherFields(field) {
     return (
-      <>
+      <div key={field}>
         <p>Sub Tab Type: {field}</p>
-      </>
+      </div>
     );
   }
 
@@ -1104,7 +1104,7 @@ export default function BackupAddProducts({ params }) {
               let k = key.replace(/\s/g, "");
               if (key != "_id" && key != "template_ID") {
                 return (
-                  <>
+                  <div key={index}>
                     <TextField
                       id={index}
                       variant="outlined"
@@ -1148,7 +1148,7 @@ export default function BackupAddProducts({ params }) {
                           : setDisabled(false);
                       }}
                     />
-                  </>
+                  </div>
                 );
               }
             })}
@@ -1176,6 +1176,7 @@ export default function BackupAddProducts({ params }) {
               return (
                 <TextField
                   id={subTab}
+                  key={index}
                   variant="outlined"
                   placeholder={subTab}
                   disabled={disabled}
