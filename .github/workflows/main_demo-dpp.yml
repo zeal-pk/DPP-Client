@@ -21,10 +21,9 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: npm config, install, build, and test
+      - name: npm install, build, and test
         run: |
-          npm config set legacy-peer-deps true
-          npm install
+          npm --force install
           npm run build --if-present
           npm run test --if-present
 
