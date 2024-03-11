@@ -2,6 +2,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import NavBar from "@/components/navBar";
+import axios from "axios";
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import Backdrop from "@mui/material/Backdrop";
@@ -24,6 +25,7 @@ import {
   Bar,
   Button,
 } from "@ui5/webcomponents-react";
+import { Mode } from "@mui/icons-material";
 
 export default function AddProductsSection({ params }) {
   let [fullData, setFullData] = useState({});
@@ -421,8 +423,10 @@ export default function AddProductsSection({ params }) {
     },
   };
 
-  function Submit(data) {
-    console.log("Submited", data);
+  async function handlePostUIData(data) {
+    let token = localStorage.getItem("access_token");
+    let response = await axios.post("https://dpp-server-app.azurewebsites.net/postProductDetailsUI", data);
+    console.log(response);
   }
 
   function RenderInputFields(field) {
@@ -1071,7 +1075,7 @@ export default function AddProductsSection({ params }) {
                     Edit Lables
                   </Button>
 
-                  <Button design="Emphasized" onClick={Submit(dataStruct)}>
+                  <Button design="Emphasized" onClick={() => handlePostUIData(dataStruct)}>
                     Submit
                   </Button>
                 </>
