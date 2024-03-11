@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { useState } from "react";
 import zealitLogo from "../../assets/ZealLogo.png";
 import Image from "next/image";
