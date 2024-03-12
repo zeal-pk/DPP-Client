@@ -125,19 +125,26 @@ export default function AddCustomer() {
     }
   }
   async function VerifyToken() {
-    try {
-      await axios.get(
-        "https://dpp-server-app.azurewebsites.net/routVerification"
-      );
-    } catch (error) {
-      if (error.response.status == 403) {
-        router.push("/error");
+    let token = localStorage.getItem("access_token");
+    let role = localStorage.getItem("current_user_role");
+
+    if (token && role == "admin") {
+      try {
+        await axios.get(
+          "https://dpp-server-app.azurewebsites.net/routVerification"
+        );
+      } catch (error) {
+        if (error.response.status == 403) {
+          router.push("/error");
+        }
       }
+    } else {
+      router.push("/error");
     }
   }
 
   useEffect(() => {
-    // VerifyToken();
+    VerifyToken();
   }, []);
 
   return (

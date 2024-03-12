@@ -15,20 +15,25 @@ export default function Home() {
 
   const Fun = async () => {
     let token = localStorage.getItem("access_token");
-    try {
-      const response = await axios.get(
-        "https://dpp-server-app.azurewebsites.net/",
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
+    let role = localStorage.getItem("current_user_role");
+    if (token && role == "user") {
+      try {
+        const response = await axios.get(
+          "https://dpp-server-app.azurewebsites.net/",
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        setCustomerDetails(response.data);
+      } catch (error) {
+        if (error.response.status == 403) {
+          router.push("/error");
         }
-      );
-      setCustomerDetails(response.data);
-    } catch (error) {
-      if (error.response.status == 403) {
-        router.push("/error");
       }
+    } else {
+      router.push("/error");
     }
 
     // if (response.status !== 200) {

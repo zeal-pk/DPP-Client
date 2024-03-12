@@ -52,14 +52,6 @@ const charts = [
 
 export default function AddProductsSection({ params }) {
   let router = useRouter()
-  // useEffect(() => {
-  //   function handleOnBeforeUnload(event = BeforeUnloadEvent) {
-  //     event.preventDefault()
-  //     return event.returnValue= "";
-  //   }
-  
-  //   window.addEventListener('beforeunload', handleOnBeforeUnload)
-  // }, [])
 
   let [fullData, setFullData] = useState({});
   let [tabDetails, setTabDetails] = useState([]);
@@ -1088,7 +1080,13 @@ export default function AddProductsSection({ params }) {
     setSubTabArray((existing) => [...existing, child]);
   }
 
+  
+
   async function VerifyToken() {
+    let token = localStorage.getItem("access_token");
+    let role = localStorage.getItem("current_user_role");
+
+    if (token && role == "configurator") {
     try {
       await axios.get(
         "https://dpp-server-app.azurewebsites.net/routVerification"
@@ -1097,6 +1095,8 @@ export default function AddProductsSection({ params }) {
       if (error.response.status !== 403) {
         router.push("/error");
       }
+    }} else {
+      router.push("/error");
     }
   }
 

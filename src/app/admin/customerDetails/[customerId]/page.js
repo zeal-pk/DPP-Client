@@ -41,23 +41,29 @@ export default function CustomerDetials({ params }) {
   // Function to get the selected customer detials and product details
   const getDetails = async () => {
     let token = localStorage.getItem("access_token");
-    try {
-      await axios
-        .get(
-          `https://dpp-server-app.azurewebsites.net/getCustomer/${customerId}`,
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        )
-        .then((res) => {
-          setCustomerDetail(res.data);
-        });
-    } catch (error) {
-      if (error.response.status == 403) {
-        router.push("/error");
+    let role = localStorage.getItem("current_user_role");
+
+    if (token && role == "admin") {
+      try {
+        await axios
+          .get(
+            `https://dpp-server-app.azurewebsites.net/getCustomer/${customerId}`,
+            {
+              headers: {
+                Authorization: "Bearer " + token,
+              },
+            }
+          )
+          .then((res) => {
+            setCustomerDetail(res.data);
+          });
+      } catch (error) {
+        if (error.response.status == 403) {
+          router.push("/error");
+        }
       }
+    } else {
+      router.push("/error");
     }
 
     await axios
