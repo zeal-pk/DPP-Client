@@ -258,3 +258,22 @@ a {
   width: 500px;
   gap: 10px;
 }
+
+.addCustomerForm {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.addCustomerInputDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 400px;
+}
+
+.addCustomerInputLable {
+  margin: 0;
+}

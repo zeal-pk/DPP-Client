@@ -1,31 +1,20 @@
 "use client";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation.js";
 import axios from "axios";
 import NavBar from "@/components/navBar";
 import TextField from "@mui/material/TextField";
-import AddIcon from "@mui/icons-material/Add";
 import Button from "@mui/material/Button";
-
-async function handleAddCustomer(newCustomerData) {
-  let token = localStorage.getItem("access_token");
-  const response = await axios
-    .post(
-      "https://dpp-server-app.azurewebsites.net/postCustomer",
-      newCustomerData,
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
-    )
-    .then((response) => {
-      console.log(response.data);
-    });
-  console.log(response);
-}
+import { useFormik } from "formik";
+import BackButton from "../../../components/backButton.js";
+import Select from "react-select";
+import { Country, State, City } from "country-state-city";
 
 export default function AddCustomer() {
+  let router = useRouter();
+  let token = localStorage.getItem("access_token");
+
   let [customerName, setCustomerName] = useState("");
   let [customerId, setCustomerId] = useState("");
   let [logoUrl, setLogoUrl] = useState("");
@@ -37,135 +26,249 @@ export default function AddCustomer() {
   let [country, setCountry] = useState("");
   let [productString, setProductString] = useState("");
   // let [products, setProducts] = useState([]);
+
+  const addressFromik = useFormik({
+    initialValues: {
+      country: null,
+      state: null,
+      city: null,
+    },
+    onSubmit: async (values) => {
+      let newCustomerData = {
+        customerName: customerName,
+        customerId: customerId,
+        logoUrl: logoUrl,
+        descreption: descreption,
+        addressL1: addressL1,
+        addressL2: addressL2,
+        city: city,
+        state: state,
+        country: country,
+      };
+      try {
+        const response = await axios
+          .post(
+            "https://dpp-server-app.azurewebsites.net/postCustomer",
+            newCustomerData,
+            {
+              headers: {
+                Authorization: "Bearer " + token,
+              },
+            }
+          )
+          .then((response) => {
+            // alert("Customer Data Submitted");
+            // router.push("/admin");
+            if (response.status == 200) {
+              alert("Customer Data Submitted");
+              router.push("/admin");
+            } else {
+              alert("There was an error. Please Try again later");
+            }
+          });
+      } catch (error) {
+        if (error.response.status == 403) {
+          router.push("/error");
+        }
+      }
+    },
+  });
+
+  // Country-State-City Code - START
+  const countries = Country.getAllCountries();
+
+  const updatedCountries = countries.map((country) => ({
+    label: country.name,
+    value: country.isoCode,
+    ...country,
+  }));
+  const updatedStates = (countryId) =>
+    State.getStatesOfCountry(countryId).map((state) => ({
+      label: state.name,
+      value: state.isoCode,
+      ...state,
+    }));
+  const updatedCities = (countryId, stateId) =>
+    City.getCitiesOfState("IN", stateId).map((city) => ({
+      label: city.name,
+      value: city.id,
+      ...city,
+    }));
+
+  const { values, handleSubmit, setFieldValue, setValues } = addressFromik;
+
+  useEffect(() => {
+    // console.log(values);
+  }, [values]);
+  // Country-State-City Code - END
+
+  async function handleAddCustomer(newCustomerData) {
+    let token = localStorage.getItem("access_token");
+    try {
+      const response = await axios
+        .post(
+          "https://dpp-server-app.azurewebsites.net/postCustomer",
+          newCustomerData,
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data);
+        });
+    } catch (error) {
+      if (error.response.status == 403) {
+        router.push("/error");
+      }
+    }
+  }
+  async function VerifyToken() {
+    try {
+      await axios.get(
+        "https://dpp-server-app.azurewebsites.net/routVerification"
+      );
+    } catch (error) {
+      if (error.response.status == 403) {
+        router.push("/error");
+      }
+    }
+  }
+
+  useEffect(() => {
+    // VerifyToken();
+  }, []);
+
   return (
     <div className="main">
       <NavBar />
-      <div className="addCustomer-form-div">
-        <h4>Please provide the customer deatils below</h4>
-        <section className="addCustomer-form-section">
-          <TextField
-            className="addCustomer-form-div-input"
-            id="standard-basic"
-            label="Customer ID"
-            variant="standard"
-            onChange={(e) => {
-              setCustomerId(e.target.value);
-            }}
-          />
-          <TextField
-            className="addCustomer-form-div-input"
-            id="standard-basic"
-            label="Customer Name"
-            variant="standard"
-            onChange={(e) => {
-              setCustomerName(e.target.value);
-            }}
-          />
+      <BackButton />
+      <form className="addCustomerForm" onSubmit={handleSubmit}>
+        <div className="addCustomerInputDiv">
+          <h3>Please Enter Customer Details</h3>
+          <div>
+            <p className="addCustomerInputLable">Customer Name</p>
+            <TextField
+              fullWidth
+              id="fullWidth"
+              size="small"
+              placeholder="Customer Name"
+              onChange={(e) => setCustomerName(e.target.value)}
+            />
+          </div>
 
-          <TextField
-            className="addCustomer-form-div-input"
-            id="standard-basic"
-            label="Logo URL"
-            variant="standard"
-            onChange={(e) => {
-              setLogoUrl(e.target.value);
-            }}
-          />
-          <TextField
-            className="addCustomer-form-div-input"
-            id="standard-basic"
-            label="Descreption"
-            variant="standard"
-            onChange={(e) => {
-              setDescription(e.target.value);
-            }}
-          />
-          <TextField
-            className="addCustomer-form-div-input"
-            id="standard-basic"
-            label="Address Line 1"
-            variant="standard"
-            onChange={(e) => {
-              setAddressL1(e.target.value);
-            }}
-          />
-          <TextField
-            className="addCustomer-form-div-input"
-            id="standard-basic"
-            label="Address Line 2"
-            variant="standard"
-            onChange={(e) => {
-              setAddressL2(e.target.value);
-            }}
-          />
-          <TextField
-            className="addCustomer-form-div-input"
-            id="standard-basic"
-            label="City"
-            variant="standard"
-            onChange={(e) => {
-              setCity(e.target.value);
-            }}
-          />
-          <TextField
-            className="addCustomer-form-div-input"
-            id="standard-basic"
-            label="State"
-            variant="standard"
-            onChange={(e) => {
-              setState(e.target.value);
-            }}
-          />
-          <TextField
-            className="addCustomer-form-div-input"
-            id="standard-basic"
-            label="Country"
-            variant="standard"
-            onChange={(e) => {
-              setCountry(e.target.value);
-            }}
-          />
-          <TextField
-            className="addCustomer-form-div-input"
-            id="standard-basic"
-            label="Products"
-            variant="standard"
-            onChange={(e) => {
-              setProductString(e.target.value);
-            }}
-          />
-        </section>
-        <section className="addCustomer-button-section">
-          <Button
-            variant="contained"
-            startIcon={<AddIcon />}
-            onClick={() => {
-              let productArray = productString.split(",");
-              let products = [];
-              for (let i = 0; i < productArray.length; i++) {
-                let prod = { productId: productArray[i], templateId: "" };
-                products.push(prod);
-              }
-              let newCustomerData = {
-                id: customerId,
-                name: customerName,
-                logoUrl: logoUrl,
-                descreption: descreption,
-                addressL1: addressL1,
-                addressL2: addressL2,
-                city: city,
-                state: state,
-                country: country,
-                products: products,
-              };
-              // console.log(newCustomerData);
-              handleAddCustomer(newCustomerData);
-            }}
-          >
-            Add Customer
+          <div>
+            <p className="addCustomerInputLable">Customer ID</p>
+            <TextField
+              fullWidth
+              id="fullWidth"
+              size="small"
+              placeholder="Customer ID"
+              onChange={(e) => setCustomerId(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <p className="addCustomerInputLable">Logo URL</p>
+            <TextField
+              fullWidth
+              id="fullWidth"
+              size="small"
+              placeholder="Logo URL"
+              onChange={(e) => setLogoUrl(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <p className="addCustomerInputLable">Description</p>
+            <TextField
+              fullWidth
+              id="fullWidth"
+              size="small"
+              placeholder="Description"
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <p className="addCustomerInputLable">Address Line 1</p>
+            <TextField
+              fullWidth
+              id="fullWidth"
+              size="small"
+              placeholder="Address Line 1"
+              onChange={(e) => setAddressL1(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <p className="addCustomerInputLable">Address Line 2</p>
+            <TextField
+              fullWidth
+              id="fullWidth"
+              size="small"
+              placeholder="Address Line 2"
+              onChange={(e) => setAddressL2(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <p className="addCustomerInputLable">Country</p>
+            <Select
+              id="country"
+              name="country"
+              label="country"
+              placeholder="Country"
+              options={updatedCountries}
+              value={values.country}
+              onChange={(value) => {
+                setValues({ country: value, state: null, city: null }, false);
+                setCountry(value.name);
+              }}
+            />
+          </div>
+
+          <div>
+            <p className="addCustomerInputLable">State</p>
+            <Select
+              id="state"
+              name="state"
+              placeholder="State"
+              options={updatedStates(
+                values.country ? values.country.value : null
+              )}
+              value={values.state}
+              onChange={(value) => {
+                setValues({ state: value, city: null }, false);
+                setState(value.name);
+              }}
+            />
+          </div>
+
+          <div>
+            <p className="addCustomerInputLable">City</p>
+            <Select
+              id="city"
+              name="city"
+              placeholder="City"
+              options={updatedCities(
+                values.country ? values.country.value : null,
+                values.state ? values.state.value : null
+              )}
+              value={values.city}
+              onChange={(value) => {
+                setValues({ city: value }, false);
+                setFieldValue("city", value);
+                setCity(value.name);
+              }}
+            />
+          </div>
+          <Button type="submit" variant="contained">
+            Submit
           </Button>
-        </section>
-      </div>
+        </div>
+      </form>
     </div>
   );
 }

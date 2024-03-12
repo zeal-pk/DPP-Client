@@ -1,13 +1,16 @@
 "use client";
 import React from "react";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation.js";
 import NavBar from "@/components/navBar";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import EditIcon from "@mui/icons-material/Edit";
+import BackButton from "../../../components/backButton.js";
 
 export default function UpdateCustomer({ params }) {
+  let router = useRouter();
   let custId = params.customerId;
   let [customerDetails, setCustomerDetails] = useState("-");
   let [customerName, setCustomerName] = useState("-");
@@ -24,16 +27,23 @@ export default function UpdateCustomer({ params }) {
   async function handleGetCustomerData() {
     let token = localStorage.getItem("access_token");
     let prods = [];
-    const response = await axios
-      .get(`https://dpp-server-app.azurewebsites.net/getCustomer/${custId}`, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      })
-      .then((response) => {
-        setCustomerDetails(response.data.name);
-        return response.data;
-      });
+    try {
+      const response = await axios
+        .get(`https://dpp-server-app.azurewebsites.net/getCustomer/${custId}`, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
+        .then((response) => {
+          setCustomerDetails(response.data.name);
+          return response.data;
+        });
+    } catch (error) {
+      if (error.response.status == 403) {
+        router.push("/error");
+      }
+    }
+
     setCustomerName(response.name);
     setCustomerId(response.id);
     setLogoUrl(response.logoUrl);
@@ -75,6 +85,7 @@ export default function UpdateCustomer({ params }) {
   return (
     <div className="main">
       <NavBar />
+      <BackButton />
       <div className="addCustomer-form-div">
         <h4>Update Customer Details</h4>
         <section className="addCustomer-form-section">
@@ -206,6 +217,7 @@ export default function UpdateCustomer({ params }) {
                 products: prods,
               };
               handleUpdateCustomer(newCustomerData);
+              router.push("/admin");
             }}
           >
             Update Customer

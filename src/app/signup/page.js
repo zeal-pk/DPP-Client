@@ -8,6 +8,7 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
+import BackButton from "@/components/backButton";
 
 async function handleSignup(userData) {
   let response = await axios
@@ -36,6 +37,7 @@ export default function Signup() {
           height: "50vh",
         }}
       >
+        <BackButton />
         <h3>User Registration</h3>
         <Stack spacing={2} direction="column" sx={{ width: 320 }}>
           <TextField

@@ -4,7 +4,6 @@ import zealLogo from "../assets/ZealLogo.png";
 import Image from "next/image";
 import "bootstrap/dist/css/bootstrap.css";
 import Button from "@mui/material/Button";
-import BackButton from "../components/backButton.js";
 
 export default function NavBar() {
   const router = useRouter();
@@ -21,7 +20,6 @@ export default function NavBar() {
             />
           </a>
           <div className="nav-itmes-div">
-            <BackButton />
             <Button
               variant="contained"
               onClick={() => {

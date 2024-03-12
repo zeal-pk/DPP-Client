@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation.js";
 import NavBar from "@/components/navBar";
 import { inputData } from "../../../../database/data";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,8 +13,10 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea } from "@mui/material";
 import ProductDetails from "@/components/user/productDetailsPanel";
+import BackButton from "@/components/backButton";
 
 export default function CustomerDetials({ params }) {
+  let router = useRouter();
   let customerId = params.customerId;
   let [customerDetail, setCustomerDetail] = useState([]);
   let [productDetails, setProductDetails] = useState([]);
@@ -40,32 +43,46 @@ export default function CustomerDetials({ params }) {
   // Function to get the selected customer detials and product details
   const getDetails = async () => {
     let token = localStorage.getItem("access_token");
-    await axios
-      .get(
-        `https://dpp-server-app.azurewebsites.net/getCustomer/${customerId}`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      )
-      .then((res) => {
-        setCustomerDetail(res.data);
-      });
-    await axios
-      .get(
-        `https://dpp-server-app.azurewebsites.net/getProducts/${customerId}`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      )
-      .then((res) => {
-        setProductDetails(res.data);
-        setSelectedProduct(res.data[0]);
-      });
+    try {
+      await axios
+        .get(
+          `https://dpp-server-app.azurewebsites.net/getCustomer/${customerId}`,
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        )
+        .then((res) => {
+          setCustomerDetail(res.data);
+        });
+    } catch (error) {
+      if (error.response.status == 403) {
+        router.push("/error");
+      }
+    }
+
+    try {
+      await axios
+        .get(
+          `https://dpp-server-app.azurewebsites.net/getProducts/${customerId}`,
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        )
+        .then((res) => {
+          setProductDetails(res.data);
+          setSelectedProduct(res.data[0]);
+        });
+    } catch (error) {
+      if (error.response.status == 403) {
+        router.push("/error");
+      }
+    }
   };
+
   useEffect(() => {
     getDetails();
   }, []);
@@ -90,6 +107,7 @@ export default function CustomerDetials({ params }) {
   return (
     <div className="main">
       <NavBar />
+      <BackButton />
       <div className="productDetials-div">
         {/* ------------------------------Left Plane section - START */}
         <section className="left-panel">

@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation.js";
 import Link from "next/link";
 import axios from "axios";
 import NavBar from "@/components/navBar";
@@ -9,19 +10,32 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
 export default function Home() {
+  let router = useRouter();
   let [customerDetails, setCustomerDetails] = useState([]);
 
   const Fun = async () => {
     let token = localStorage.getItem("access_token");
-    const response = await axios.get(
-      "https://dpp-server-app.azurewebsites.net/",
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
+    try {
+      const response = await axios.get(
+        "https://dpp-server-app.azurewebsites.net/",
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      setCustomerDetails(response.data);
+    } catch (error) {
+      if (error.response.status == 403) {
+        router.push("/error");
       }
-    );
-    setCustomerDetails(response.data);
+    }
+
+    // if (response.status !== 200) {
+    //   router.push("/error.js");
+    // }
+
+    // console.log(response);
   };
   useEffect(() => {
     Fun();
@@ -30,7 +44,6 @@ export default function Home() {
   return (
     <div className="main">
       <NavBar />
-
       <h3 className="pageTitle">Customer List</h3>
       {/* --------------------------------- Customer List Section - START */}
       <section className="customerList-scroll">

@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import NavBar from "@/components/navBar";
 import axios from "axios";
 import Box from "@mui/material/Box";
@@ -15,6 +16,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { Typography } from "@mui/material";
+import MenuItem from '@mui/material/MenuItem';
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useForm, useFieldArray } from "react-hook-form";
 import {
@@ -26,8 +28,39 @@ import {
   Button,
 } from "@ui5/webcomponents-react";
 import { Mode } from "@mui/icons-material";
+import BackButton from "@/components/backButton";
+
+const charts = [
+  {
+    value: 'Pie Chart',
+    label: 'Pie Chart',
+  },
+  {
+    value: 'Line Chart',
+    label: 'Line Chart',
+  },
+  {
+    value: 'Bar Chart',
+    label: 'Bar Chart',
+  },
+  {
+    value: 'Scatter Chart',
+    label: 'Scatter Chart',
+  },
+];
+
 
 export default function AddProductsSection({ params }) {
+  let router = useRouter()
+  // useEffect(() => {
+  //   function handleOnBeforeUnload(event = BeforeUnloadEvent) {
+  //     event.preventDefault()
+  //     return event.returnValue= "";
+  //   }
+  
+  //   window.addEventListener('beforeunload', handleOnBeforeUnload)
+  // }, [])
+
   let [fullData, setFullData] = useState({});
   let [tabDetails, setTabDetails] = useState([]);
   let [tabName, setTabName] = useState();
@@ -1055,6 +1088,22 @@ export default function AddProductsSection({ params }) {
     setSubTabArray((existing) => [...existing, child]);
   }
 
+  async function VerifyToken() {
+    try {
+      await axios.get(
+        "https://dpp-server-app.azurewebsites.net/routVerification"
+      );
+    } catch (error) {
+      if (error.response.status !== 403) {
+        router.push("/error");
+      }
+    }
+  }
+
+  useEffect(() => {
+    VerifyToken();
+  }, []);
+
   {
     /* ----------------------- Main Page Render ----------------------- */
   }
@@ -1066,6 +1115,7 @@ export default function AddProductsSection({ params }) {
             <Bar
               endContent={
                 <>
+                <BackButton />
                   <Button
                     design="Emphasized"
                     onClick={() => {
@@ -1109,7 +1159,7 @@ export default function AddProductsSection({ params }) {
                 return (
                   <div key={index}>
                     <TextField
-                      id={index}
+                      id={key}
                       variant="outlined"
                       placeholder={key}
                       disabled={disabled}
@@ -1558,7 +1608,21 @@ export default function AddProductsSection({ params }) {
           <Box sx={style}>
             <div>
               <Typography>Chart Type</Typography>
-              <TextField onChange={(e) => setChartType(e.target.value)} />
+        <TextField
+          id="outlined-select-currency"
+          select
+          // defaultValue="Select"
+          helperText="Please select Chart Type"
+          onChange={(e) => setChartType(e.target.value)}
+        >
+          {charts.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        
+
               <Typography>Enter X-Axis</Typography>
               <TextField onChange={(e) => setXAxis(e.target.value)} />
               <Typography>Enter Y-Axis</Typography>

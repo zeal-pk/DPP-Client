@@ -26,15 +26,21 @@ export default function Home() {
 
   const Fun = async () => {
     let token = localStorage.getItem("access_token");
-    const response = await axios.get(
-      "https://dpp-server-app.azurewebsites.net/",
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
+    try {
+      const response = await axios.get(
+        "https://dpp-server-app.azurewebsites.net/",
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      setCustomerDetails(response.data);
+    } catch (error) {
+      if (error.response.status == 403) {
+        router.push("/error");
       }
-    );
-    setCustomerDetails(response.data);
+    }
   };
   useEffect(() => {
     Fun();

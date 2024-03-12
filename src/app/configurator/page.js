@@ -11,11 +11,25 @@ import NavBar from "@/components/navBar";
 
 export default function ConfigurationRoutes() {
   const router = useRouter();
+  async function VerifyToken() {
+    try {
+      await axios.get(
+        "https://dpp-server-app.azurewebsites.net/routVerification"
+      );
+    } catch (error) {
+      if (error.response.status == 403) {
+        router.push("/error");
+      }
+    }
+  }
+
+  useEffect(() => {
+    VerifyToken();
+  }, []);
 
   return (
     <div className="main">
       <NavBar />
-
       <div className="configurator-button-section">
         <Button
           onClick={() => router.push("/configurator/productDetailsUI/Battery")}

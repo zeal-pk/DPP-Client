@@ -2,6 +2,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import NavBar from "@/components/navBar";
+import BackButton from "../../../components/backButton.js";
 import { inputData } from "../../../../database/data";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -40,18 +41,25 @@ export default function CustomerDetials({ params }) {
   // Function to get the selected customer detials and product details
   const getDetails = async () => {
     let token = localStorage.getItem("access_token");
-    await axios
-      .get(
-        `https://dpp-server-app.azurewebsites.net/getCustomer/${customerId}`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      )
-      .then((res) => {
-        setCustomerDetail(res.data);
-      });
+    try {
+      await axios
+        .get(
+          `https://dpp-server-app.azurewebsites.net/getCustomer/${customerId}`,
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        )
+        .then((res) => {
+          setCustomerDetail(res.data);
+        });
+    } catch (error) {
+      if (error.response.status == 403) {
+        router.push("/error");
+      }
+    }
+
     await axios
       .get(
         `https://dpp-server-app.azurewebsites.net/getProducts/${customerId}`,
@@ -90,6 +98,7 @@ export default function CustomerDetials({ params }) {
   return (
     <div className="main">
       <NavBar />
+      <BackButton />
       <div className="productDetials-div">
         {/* ------------------------------Left Plane section - START */}
         <section className="left-panel">

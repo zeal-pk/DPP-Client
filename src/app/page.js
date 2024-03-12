@@ -68,14 +68,14 @@ export default function Login() {
     }
   }
 
-  useEffect(() => {
-    if (
-      localStorage.getItem("access_token") &&
-      localStorage.getItem("current_user_role")
-    ) {
-      router.push(`/${localStorage.getItem("current_user_role")}`);
-    }
-  });
+  // useEffect(() => {
+  //   if (
+  //     localStorage.getItem("access_token") &&
+  //     localStorage.getItem("current_user_role")
+  //   ) {
+  //     router.push(`/${localStorage.getItem("current_user_role")}`);
+  //   }
+  // });
 
   return (
     <div className="main">
