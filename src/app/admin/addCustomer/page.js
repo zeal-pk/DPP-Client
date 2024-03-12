@@ -28,7 +28,7 @@ export default function AddCustomer() {
 
   const addressFromik = useFormik({
     initialValues: {
-      country: null,
+      country: "India",
       state: null,
       city: null,
     },
