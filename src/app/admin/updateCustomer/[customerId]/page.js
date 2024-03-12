@@ -7,7 +7,7 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import EditIcon from "@mui/icons-material/Edit";
-import BackButton from "../../../components/backButton.js";
+import BackButton from "../../../../components/backButton.js";
 
 export default function UpdateCustomer({ params }) {
   let router = useRouter();
