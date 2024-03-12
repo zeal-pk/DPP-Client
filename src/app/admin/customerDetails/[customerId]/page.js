@@ -2,7 +2,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import NavBar from "@/components/navBar";
-import BackButton from "../../../components/backButton.js";
+import BackButton from "@components/backButton";
 import { inputData } from "../../../../database/data";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
