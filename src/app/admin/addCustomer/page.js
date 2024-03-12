@@ -40,9 +40,9 @@ export default function AddCustomer() {
         descreption: descreption,
         addressL1: addressL1,
         addressL2: addressL2,
-        city: city,
-        state: state,
-        country: country,
+        // city: city,
+        // state: state,
+        // country: country,
       };
       try {
         let token = localStorage.getItem("access_token");
@@ -75,31 +75,31 @@ export default function AddCustomer() {
   });
 
   // Country-State-City Code - START
-  const countries = Country.getAllCountries();
+  // const countries = Country.getAllCountries();
 
-  const updatedCountries = countries.map((country) => ({
-    label: country.name,
-    value: country.isoCode,
-    ...country,
-  }));
-  const updatedStates = (countryId) =>
-    State.getStatesOfCountry(countryId).map((state) => ({
-      label: state.name,
-      value: state.isoCode,
-      ...state,
-    }));
-  const updatedCities = (countryId, stateId) =>
-    City.getCitiesOfState("IN", stateId).map((city) => ({
-      label: city.name,
-      value: city.id,
-      ...city,
-    }));
+  // const updatedCountries = countries.map((country) => ({
+  //   label: country.name,
+  //   value: country.isoCode,
+  //   ...country,
+  // }));
+  // const updatedStates = (countryId) =>
+  //   State.getStatesOfCountry(countryId).map((state) => ({
+  //     label: state.name,
+  //     value: state.isoCode,
+  //     ...state,
+  //   }));
+  // const updatedCities = (countryId, stateId) =>
+  //   City.getCitiesOfState("IN", stateId).map((city) => ({
+  //     label: city.name,
+  //     value: city.id,
+  //     ...city,
+  //   }));
 
-  const { values, handleSubmit, setFieldValue, setValues } = addressFromik;
+  // const { values, handleSubmit, setFieldValue, setValues } = addressFromik;
 
-  useEffect(() => {
-    // console.log(values);
-  }, [values]);
+  // useEffect(() => {
+
+  // }, [values]);
   // Country-State-City Code - END
 
   async function handleAddCustomer(newCustomerData) {
@@ -213,7 +213,7 @@ export default function AddCustomer() {
             />
           </div>
 
-          <div>
+          {/* <div>
             <p className="addCustomerInputLable">Country</p>
             <Select
               id="country"
@@ -263,7 +263,7 @@ export default function AddCustomer() {
                 setCity(value.name);
               }}
             />
-          </div>
+          </div> */}
           <Button type="submit" variant="contained">
             Submit
           </Button>
