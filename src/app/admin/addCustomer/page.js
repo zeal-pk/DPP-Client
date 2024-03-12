@@ -95,7 +95,7 @@ export default function AddCustomer() {
   //     ...city,
   //   }));
 
-  // const { values, handleSubmit, setFieldValue, setValues } = addressFromik;
+  const { values, handleSubmit, setFieldValue, setValues } = addressFromik;
 
   // useEffect(() => {
 
