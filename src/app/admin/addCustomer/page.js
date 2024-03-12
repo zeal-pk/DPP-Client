@@ -13,7 +13,6 @@ import { Country, State, City } from "country-state-city";
 
 export default function AddCustomer() {
   let router = useRouter();
-  let token = localStorage.getItem("access_token");
 
   let [customerName, setCustomerName] = useState("");
   let [customerId, setCustomerId] = useState("");
@@ -46,6 +45,7 @@ export default function AddCustomer() {
         country: country,
       };
       try {
+        let token = localStorage.getItem("access_token");
         const response = await axios
           .post(
             "https://dpp-server-app.azurewebsites.net/postCustomer",
