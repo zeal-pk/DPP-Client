@@ -8,8 +8,12 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useFormik } from "formik";
 import BackButton from "../../../components/backButton.js";
-import Select from "react-select";
-import { Country, State, City } from "country-state-city";
+import {
+  CitySelect,
+  CountrySelect,
+  StateSelect,
+} from "react-country-state-city";
+import "react-country-state-city/dist/react-country-state-city.css";
 
 export default function AddCustomer() {
   let router = useRouter();
@@ -40,9 +44,9 @@ export default function AddCustomer() {
         descreption: descreption,
         addressL1: addressL1,
         addressL2: addressL2,
-        // city: city,
-        // state: state,
-        // country: country,
+        city: city,
+        state: state,
+        country: country,
       };
       try {
         let token = localStorage.getItem("access_token");
@@ -57,8 +61,6 @@ export default function AddCustomer() {
             }
           )
           .then((response) => {
-            // alert("Customer Data Submitted");
-            // router.push("/admin");
             if (response.status == 200) {
               alert("Customer Data Submitted");
               router.push("/admin");
@@ -75,35 +77,32 @@ export default function AddCustomer() {
   });
 
   // Country-State-City Code - START
-  const countries = Country.getAllCountries();
+  // const countries = Country.getAllCountries();
 
-  const updatedCountries = countries.map((country) => ({
-    label: country.name,
-    value: country.isoCode,
-    ...country,
-  }));
-  const updatedStates = (countryId) =>
-    State.getStatesOfCountry(countryId).map((state) => ({
-      label: state.name,
-      value: state.isoCode,
-      ...state,
-    }));
-  const updatedCities = (countryId, stateId) =>
-    City.getCitiesOfState("IN", stateId).map((city) => ({
-      label: city.name,
-      value: city.id,
-      ...city,
-    }));
+  // const updatedCountries = countries.map((country) => ({
+  //   label: country.name,
+  //   value: country.isoCode,
+  //   ...country,
+  // }));
+  // const updatedStates = (countryId) =>
+  //   State.getStatesOfCountry(countryId).map((state) => ({
+  //     label: state.name,
+  //     value: state.isoCode,
+  //     ...state,
+  //   }));
+  // const updatedCities = (countryId, stateId) =>
+  //   City.getCitiesOfState("IN", stateId).map((city) => ({
+  //     label: city.name,
+  //     value: city.id,
+  //     ...city,
+  //   }));
 
   const { values, handleSubmit, setFieldValue, setValues } = addressFromik;
 
-  // useEffect(() => {
-
-  // }, [values]);
+  // useEffect(() => {}, [values]);
   // Country-State-City Code - END
 
   async function handleAddCustomer(newCustomerData) {
-    let token = localStorage.getItem("access_token");
     try {
       const response = await axios
         .post(
@@ -151,6 +150,9 @@ export default function AddCustomer() {
   useEffect(() => {
     VerifyToken();
   }, []);
+
+  const [countryid, setCountryid] = useState(0);
+  const [stateid, setstateid] = useState(0);
 
   return (
     <div className="main">
@@ -225,57 +227,32 @@ export default function AddCustomer() {
             />
           </div>
 
-          {/* <div>
+          <div>
             <p className="addCustomerInputLable">Country</p>
-            <Select
-              id="country"
-              name="country"
-              label="country"
-              placeholder="Country"
-              options={updatedCountries}
-              value={values.country}
-              onChange={(value) => {
-                setValues({ country: value, state: null, city: null }, false);
-                setCountry(value.name);
+            <CountrySelect
+              onChange={(e) => {
+                setCountryid(e.id);
               }}
+              placeHolder="Select Country"
             />
-          </div>
-
-          <div>
             <p className="addCustomerInputLable">State</p>
-            <Select
-              id="state"
-              name="state"
-              placeholder="State"
-              options={updatedStates(
-                values.country ? values.country.value : null
-              )}
-              value={values.state}
-              onChange={(value) => {
-                setValues({ state: value, city: null }, false);
-                setState(value.name);
+            <StateSelect
+              countryid={countryid}
+              onChange={(e) => {
+                setstateid(e.id);
               }}
+              placeHolder="Select State"
+            />
+            <p className="addCustomerInputLable">City</p>
+            <CitySelect
+              countryid={countryid}
+              stateid={stateid}
+              onChange={(e) => {
+                console.log(e);
+              }}
+              placeHolder="Select City"
             />
           </div>
-
-          <div>
-            <p className="addCustomerInputLable">City</p>
-            <Select
-              id="city"
-              name="city"
-              placeholder="City"
-              options={updatedCities(
-                values.country ? values.country.value : null,
-                values.state ? values.state.value : null
-              )}
-              value={values.city}
-              onChange={(value) => {
-                setValues({ city: value }, false);
-                setFieldValue("city", value);
-                setCity(value.name);
-              }}
-            />
-          </div> */}
           <Button type="submit" variant="contained">
             Submit
           </Button>
