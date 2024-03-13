@@ -47,8 +47,7 @@ export default function Login() {
           password: pass,
         };
         let response = await axios
-          // .post(`https://dpp-server-app.azurewebsites.net/login`, data)
-          .post("http://localhost:9000/login", data)
+          .post(`https://dpp-server-app.azurewebsites.net/login`, data)
           .then((response) => {
             localStorage.setItem("access_token", response.data.token);
             localStorage.setItem("current_user", response.data.email);

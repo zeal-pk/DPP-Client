@@ -1,5 +1,6 @@
 "use client";
 import * as React from "react";
+import axios from "axios";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Box from "@mui/material/Box";
@@ -20,12 +21,19 @@ export default function ConfigurationRoutes() {
     if (token && role == "configurator") {
       try {
         await axios.get(
-          "https://dpp-server-app.azurewebsites.net/routVerification"
+          "https://dpp-server-app.azurewebsites.net/routVerification",
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
         );
       } catch (error) {
+        console.log(role);
         if (error.response.status == 403) {
           router.push("/error");
         }
+        // console.log(error);
       }
     } else {
       router.push("/error");

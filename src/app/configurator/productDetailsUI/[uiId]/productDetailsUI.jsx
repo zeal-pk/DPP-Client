@@ -450,8 +450,12 @@ export default function AddProductsSection({ params }) {
 
   async function handlePostUIData(data) {
     let token = localStorage.getItem("access_token");
-    let response = await axios.post("https://dpp-server-app.azurewebsites.net/postProductDetailsUI", data);
-    console.log(response);
+    try {
+      let response = await axios.post("https://dpp-server-app.azurewebsites.net/postProductDetailsUI", data);
+      router.push("/configurator")
+    } catch (error) {
+      alert(error, "Please try again later")
+    }
   }
 
   function RenderInputFields(field) {
@@ -1089,7 +1093,11 @@ export default function AddProductsSection({ params }) {
     if (token && role == "configurator") {
     try {
       await axios.get(
-        "https://dpp-server-app.azurewebsites.net/routVerification"
+        "https://dpp-server-app.azurewebsites.net/routVerification", {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
       );
     } catch (error) {
       if (error.response.status !== 403) {
