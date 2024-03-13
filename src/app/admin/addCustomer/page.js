@@ -75,25 +75,25 @@ export default function AddCustomer() {
   });
 
   // Country-State-City Code - START
-  // const countries = Country.getAllCountries();
+  const countries = Country.getAllCountries();
 
-  // const updatedCountries = countries.map((country) => ({
-  //   label: country.name,
-  //   value: country.isoCode,
-  //   ...country,
-  // }));
-  // const updatedStates = (countryId) =>
-  //   State.getStatesOfCountry(countryId).map((state) => ({
-  //     label: state.name,
-  //     value: state.isoCode,
-  //     ...state,
-  //   }));
-  // const updatedCities = (countryId, stateId) =>
-  //   City.getCitiesOfState("IN", stateId).map((city) => ({
-  //     label: city.name,
-  //     value: city.id,
-  //     ...city,
-  //   }));
+  const updatedCountries = countries.map((country) => ({
+    label: country.name,
+    value: country.isoCode,
+    ...country,
+  }));
+  const updatedStates = (countryId) =>
+    State.getStatesOfCountry(countryId).map((state) => ({
+      label: state.name,
+      value: state.isoCode,
+      ...state,
+    }));
+  const updatedCities = (countryId, stateId) =>
+    City.getCitiesOfState("IN", stateId).map((city) => ({
+      label: city.name,
+      value: city.id,
+      ...city,
+    }));
 
   const { values, handleSubmit, setFieldValue, setValues } = addressFromik;
 
@@ -131,7 +131,12 @@ export default function AddCustomer() {
     if (token && role == "admin") {
       try {
         await axios.get(
-          "https://dpp-server-app.azurewebsites.net/routVerification"
+          "https://dpp-server-app.azurewebsites.net/routVerification",
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
         );
       } catch (error) {
         if (error.response.status == 403) {
