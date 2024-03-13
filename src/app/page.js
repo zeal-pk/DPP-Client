@@ -92,6 +92,7 @@ export default function Login() {
             <TextField
               id="outlined-basic"
               label="Email Address"
+              value={email || ""}
               variant="outlined"
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -115,6 +116,7 @@ export default function Login() {
                   </InputAdornment>
                 }
                 label="Password"
+                value={password || ""}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </FormControl>

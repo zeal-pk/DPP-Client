@@ -20,7 +20,6 @@ import MenuItem from '@mui/material/MenuItem';
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useForm, useFieldArray } from "react-hook-form";
 import {
-  ThemeProvider,
   ObjectPage,
   ObjectPageSection,
   ObjectPageSubSection,
@@ -361,89 +360,89 @@ export default function AddProductsSection({ params }) {
     [tab2]: {
       [tab2SubTab1]: {
         subTabType: tab2SubTab1Type,
-        Fields: tab1SubTab1Fields,
+        Fields: tab2SubTab1Fields,
       },
       [tab2SubTab2]: {
         subTabType: tab2SubTab2Type,
-        Fields: tab1SubTab2Fields,
+        Fields: tab2SubTab2Fields,
       },
       [tab2SubTab3]: {
         subTabType: tab2SubTab3Type,
-        Fields: tab1SubTab3Fields,
+        Fields: tab2SubTab3Fields,
       },
       [tab2SubTab4]: {
         subTabType: tab2SubTab4Type,
-        Fields: tab1SubTab4Fields,
+        Fields: tab2SubTab4Fields,
       },
       [tab2SubTab5]: {
         subTabType: tab2SubTab5Type,
-        Fields: tab1SubTab5Fields,
+        Fields: tab2SubTab5Fields,
       },
     },
     [tab3]: {
       [tab3SubTab1]: {
         subTabType: tab3SubTab1Type,
-        Fields: tab1SubTab1Fields,
+        Fields: tab3SubTab1Fields,
       },
       [tab3SubTab2]: {
         subTabType: tab3SubTab2Type,
-        Fields: tab1SubTab2Fields,
+        Fields: tab3SubTab2Fields,
       },
       [tab3SubTab3]: {
         subTabType: tab3SubTab3Type,
-        Fields: tab1SubTab3Fields,
+        Fields: tab3SubTab3Fields,
       },
       [tab3SubTab4]: {
         subTabType: tab3SubTab4Type,
-        Fields: tab1SubTab4Fields,
+        Fields: tab3SubTab4Fields,
       },
       [tab3SubTab5]: {
         subTabType: tab3SubTab5Type,
-        Fields: tab1SubTab5Fields,
+        Fields: tab3SubTab5Fields,
       },
     },
     [tab4]: {
       [tab4SubTab1]: {
         subTabType: tab4SubTab1Type,
-        Fields: tab1SubTab1Fields,
+        Fields: tab4SubTab1Fields,
       },
       [tab4SubTab2]: {
         subTabType: tab4SubTab2Type,
-        Fields: tab1SubTab2Fields,
+        Fields: tab4SubTab2Fields,
       },
       [tab4SubTab3]: {
         subTabType: tab4SubTab3Type,
-        Fields: tab1SubTab3Fields,
+        Fields: tab4SubTab3Fields,
       },
       [tab4SubTab4]: {
         subTabType: tab4SubTab4Type,
-        Fields: tab1SubTab4Fields,
+        Fields: tab4SubTab4Fields,
       },
       [tab4SubTab5]: {
         subTabType: tab4SubTab5Type,
-        Fields: tab1SubTab5Fields,
+        Fields: tab4SubTab5Fields,
       },
     },
     [tab5]: {
       [tab5SubTab1]: {
         subTabType: tab5SubTab1Type,
-        Fields: tab1SubTab1Fields,
+        Fields: tab5SubTab1Fields,
       },
       [tab5SubTab2]: {
         subTabType: tab5SubTab2Type,
-        Fields: tab1SubTab2Fields,
+        Fields: tab5SubTab2Fields,
       },
       [tab5SubTab3]: {
         subTabType: tab5SubTab3Type,
-        Fields: tab1SubTab3Fields,
+        Fields: tab5SubTab3Fields,
       },
       [tab5SubTab4]: {
         subTabType: tab5SubTab4Type,
-        Fields: tab1SubTab4Fields,
+        Fields: tab5SubTab4Fields,
       },
       [tab5SubTab5]: {
         subTabType: tab5SubTab5Type,
-        Fields: tab1SubTab5Fields,
+        Fields: tab5SubTab5Fields,
       },
     },
   };
