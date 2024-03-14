@@ -43,8 +43,7 @@ export default function AddCustomer() {
         let token = localStorage.getItem("access_token");
         const response = await axios
           .post(
-            // "https://dpp-server-app.azurewebsites.net/postCustomer",
-            "http://localhost:9000/postCustomer",
+            "https://dpp-server-app.azurewebsites.net/postCustomer",
             newCustomerData,
             {
               headers: {
@@ -53,11 +52,12 @@ export default function AddCustomer() {
             }
           )
           .then((response) => {
-            if (response.data.message == "Customer Already Exist") {
-              alert("Customer Already Exist");
+            console.log(response);
+            if (response.data.message == "This Customer Data Already Exist") {
+              alert("This Customer Data Already Exist");
             } else if (response.status == 200) {
               alert("Customer Data Submitted");
-              router.push("/admin/customerList");
+              // router.push("/admin/customerList");
             } else {
               alert("There was an error. Please Try again later");
               // router.push("/admin/customerList");
@@ -91,6 +91,7 @@ export default function AddCustomer() {
         city: city,
         state: state,
         country: country,
+        products: products,
       };
       handleAddCustomer(newCustomerData);
     },
@@ -255,7 +256,9 @@ export default function AddCustomer() {
                   {...params}
                   size="small"
                   placeholder="Add Products"
-                  onChange={(e) => console.log(e)}
+                  onChange={(e) =>
+                    setProducts((existingProds) => [...existingProds, e])
+                  }
                 />
               )}
             />
