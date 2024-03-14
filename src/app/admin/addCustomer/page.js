@@ -6,6 +6,8 @@ import axios from "axios";
 import NavBar from "@/components/navBar";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Chip from "@mui/material/Chip";
+import Autocomplete from "@mui/material/Autocomplete";
 import { useFormik } from "formik";
 import BackButton from "../../../components/backButton.js";
 import {
@@ -18,8 +20,8 @@ import "react-country-state-city/dist/react-country-state-city.css";
 export default function AddCustomer() {
   let router = useRouter();
 
-  let [customerName, setCustomerName] = useState("");
-  let [customerId, setCustomerId] = useState("");
+  let [name, setCustomerName] = useState("");
+  let [id, setId] = useState();
   let [logoUrl, setLogoUrl] = useState("");
   let [descreption, setDescription] = useState("");
   let [addressL1, setAddressL1] = useState("");
@@ -27,27 +29,16 @@ export default function AddCustomer() {
   let [city, setCity] = useState("");
   let [state, setState] = useState("");
   let [country, setCountry] = useState("");
-  let [productString, setProductString] = useState("");
-  // let [products, setProducts] = useState([]);
+  let [countryCode, setCountryCode] = useState("");
+  let [stateCode, setStateCode] = useState("");
+  let [allProducts, setAllProducts] = useState("");
+  let [productString, setProductString] = useState();
+  let [products, setProducts] = useState();
 
-  const addressFromik = useFormik({
-    initialValues: {
-      country: "India",
-      state: null,
-      city: null,
-    },
-    onSubmit: async (values) => {
-      let newCustomerData = {
-        customerName: customerName,
-        customerId: customerId,
-        logoUrl: logoUrl,
-        descreption: descreption,
-        addressL1: addressL1,
-        addressL2: addressL2,
-        city: city,
-        state: state,
-        country: country,
-      };
+  async function handleAddCustomer(newCustomerData) {
+    if (!id) {
+      alert("Please Generate Customer ID");
+    } else {
       try {
         let token = localStorage.getItem("access_token");
         const response = await axios
@@ -66,6 +57,7 @@ export default function AddCustomer() {
               router.push("/admin");
             } else {
               alert("There was an error. Please Try again later");
+              router.push("/admin");
             }
           });
       } catch (error) {
@@ -73,72 +65,60 @@ export default function AddCustomer() {
           router.push("/error");
         }
       }
+    }
+  }
+
+  const addressFromik = useFormik({
+    initialValues: {
+      country: "India",
+      state: null,
+      city: null,
+    },
+    onSubmit: async (values) => {
+      let newCustomerData = {
+        name: name,
+        id: id,
+        logoUrl: logoUrl,
+        descreption: descreption,
+        addressL1: addressL1,
+        addressL2: addressL2,
+        city: city,
+        state: state,
+        country: country,
+      };
+      handleAddCustomer(newCustomerData);
     },
   });
 
-  // Country-State-City Code - START
-  // const countries = Country.getAllCountries();
-
-  // const updatedCountries = countries.map((country) => ({
-  //   label: country.name,
-  //   value: country.isoCode,
-  //   ...country,
-  // }));
-  // const updatedStates = (countryId) =>
-  //   State.getStatesOfCountry(countryId).map((state) => ({
-  //     label: state.name,
-  //     value: state.isoCode,
-  //     ...state,
-  //   }));
-  // const updatedCities = (countryId, stateId) =>
-  //   City.getCitiesOfState("IN", stateId).map((city) => ({
-  //     label: city.name,
-  //     value: city.id,
-  //     ...city,
-  //   }));
-
   const { values, handleSubmit, setFieldValue, setValues } = addressFromik;
 
-  // useEffect(() => {}, [values]);
-  // Country-State-City Code - END
-
-  async function handleAddCustomer(newCustomerData) {
-    try {
-      const response = await axios
-        .post(
-          "https://dpp-server-app.azurewebsites.net/postCustomer",
-          newCustomerData,
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        )
-        .then((response) => {
-          console.log(response.data);
-        });
-    } catch (error) {
-      if (error.response.status == 403) {
-        router.push("/error");
-      }
-    }
-  }
-  async function VerifyToken() {
+  async function getAllProducts() {
     let token = localStorage.getItem("access_token");
     let role = localStorage.getItem("current_user_role");
 
     if (token && role == "admin") {
       try {
-        await axios.get(
-          "https://dpp-server-app.azurewebsites.net/routVerification",
-          {
+        await axios
+          // .get("https://dpp-server-app.azurewebsites.net/getAllProducts", {
+          .get("http://localhost:9000/getAllProducts", {
             headers: {
               Authorization: "Bearer " + token,
             },
-          }
-        );
+          })
+          .then((response) => {
+            let data = response.data;
+
+            for (let i = 0; i < data.length; i++) {
+              let prod = data[i];
+              setAllProducts((existingProds) => [...existingProds, prod]);
+            }
+
+            console.log(allProducts);
+          });
       } catch (error) {
-        if (error.response.status == 403) {
+        if (error.message == "Network Error") {
+          alert(error);
+        } else if (error.response.status == 403) {
           router.push("/error");
         }
       }
@@ -147,8 +127,17 @@ export default function AddCustomer() {
     }
   }
 
+  function generateID() {
+    if (!name && !country) {
+      alert("Please enter Name and Country to generate ID");
+    } else {
+      let id = `${name}-${countryCode}-${stateCode}`;
+      setId(id);
+    }
+  }
+
   useEffect(() => {
-    VerifyToken();
+    getAllProducts();
   }, []);
 
   const [countryid, setCountryid] = useState(0);
@@ -169,17 +158,6 @@ export default function AddCustomer() {
               size="small"
               placeholder="Customer Name"
               onChange={(e) => setCustomerName(e.target.value)}
-            />
-          </div>
-
-          <div>
-            <p className="addCustomerInputLable">Customer ID</p>
-            <TextField
-              fullWidth
-              id="fullWidth"
-              size="small"
-              placeholder="Customer ID"
-              onChange={(e) => setCustomerId(e.target.value)}
             />
           </div>
 
@@ -232,6 +210,8 @@ export default function AddCustomer() {
             <CountrySelect
               onChange={(e) => {
                 setCountryid(e.id);
+                setCountry(e.name);
+                setCountryCode(e.iso3);
               }}
               placeHolder="Select Country"
             />
@@ -240,6 +220,8 @@ export default function AddCustomer() {
               countryid={countryid}
               onChange={(e) => {
                 setstateid(e.id);
+                setState(e.name);
+                setStateCode(e.state_code);
               }}
               placeHolder="Select State"
             />
@@ -248,11 +230,46 @@ export default function AddCustomer() {
               countryid={countryid}
               stateid={stateid}
               onChange={(e) => {
-                console.log(e);
+                setCity(e.name);
               }}
               placeHolder="Select City"
             />
           </div>
+
+          <div>
+            <p className="addCustomerInputLable">Products</p>
+            <Autocomplete
+              multiple
+              id="tags-outlined"
+              options={allProducts}
+              getOptionLabel={(option) => option.name}
+              filterSelectedOptions
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  size="small"
+                  placeholder="Add Products"
+                  onChange={(e) => console.log(e)}
+                />
+              )}
+            />
+          </div>
+
+          <div>
+            <p className="addCustomerInputLable">Customer ID</p>
+            <TextField
+              fullWidth
+              id="fullWidth"
+              size="small"
+              value={id}
+              disabled
+            />
+          </div>
+
+          <Button variant="contained" onClick={generateID}>
+            Generate ID
+          </Button>
+
           <Button type="submit" variant="contained">
             Submit
           </Button>
