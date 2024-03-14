@@ -57,10 +57,10 @@ export default function AddCustomer() {
               alert("This Customer Data Already Exist");
             } else if (response.status == 200) {
               alert("Customer Data Submitted");
-              // router.push("/admin/customerList");
+              router.push("/admin/customerList");
             } else {
               alert("There was an error. Please Try again later");
-              // router.push("/admin/customerList");
+              router.push("/admin/customerList");
             }
           });
       } catch (error) {
@@ -106,8 +106,7 @@ export default function AddCustomer() {
     if (token && role == "admin") {
       try {
         await axios
-          // .get("https://dpp-server-app.azurewebsites.net/getAllProducts", {
-          .get("http://localhost:9000/getAllProducts", {
+          .get("https://dpp-server-app.azurewebsites.net/getAllProducts", {
             headers: {
               Authorization: "Bearer " + token,
             },
