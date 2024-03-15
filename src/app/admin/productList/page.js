@@ -17,13 +17,86 @@ import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import Alert from "@mui/material/Alert";
-import CheckIcon from "@mui/icons-material/Check";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import TextField from "@mui/material/TextField";
+
+const style = {
+  display: "flex",
+  flexDirection: "column",
+  gap: "10px",
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 export default function Home() {
   const router = useRouter();
   let [productDetails, setProductDetails] = useState([]);
+  let [productName, setProductName] = useState();
   let [showAlert, setShowAlert] = useState("none");
   let [alertSeverity, setAlertSeverity] = useState("");
+  let [newProductID, setNewProductID] = useState();
+
+  // Modal Helper -START
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  // Modal Helper - END
+
+  async function postProduct(data) {
+    try {
+      let token = localStorage.getItem("access_token");
+      const response = await axios.post(
+        // "https://dpp-server-app.azurewebsites.net/genProdId",
+        "http://localhost:9000/postProduct",
+        data,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  async function generateProdID(prodName) {
+    let token = localStorage.getItem("access_token");
+    let role = localStorage.getItem("current_user_role");
+    try {
+      const response = await axios.get(
+        // "https://dpp-server-app.azurewebsites.net/genProdId",
+        "http://localhost:9000/genProdId",
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      console.log(response);
+      if (response.data.message == "ID Range did not match") {
+        alert("ID Range did not match");
+      } else {
+        console.log(response.data.message);
+        let prodId = response.data.message;
+        let prodData = {
+          id: prodId,
+          name: prodName,
+        };
+        postProduct(prodData);
+      }
+    } catch (error) {
+      alert(error);
+    }
+  }
 
   const Fun = async () => {
     let token = localStorage.getItem("access_token");
@@ -99,7 +172,7 @@ export default function Home() {
           : "Error! Please Try Again Later"}
       </Alert>
 
-      {/* --------------------------------- Customer List Section - START */}
+      {/* --------------------------------- Product List Section - START */}
       <section className="customerList-scroll">
         <section className="customerList-scroll-content">
           <section className="customerList-section">
@@ -158,22 +231,48 @@ export default function Home() {
         </section>
       </section>
 
-      {/* --------------------------------- Customer List Section - END */}
+      {/* --------------------------------- Product List Section - END */}
 
-      {/* --------------------------------- Add Customer Button Section - START */}
+      {/* --------------------------------- Add Product Button Section - START */}
       <section className="customerList-button-section">
         <Button
           variant="contained"
           startIcon={<AddIcon />}
-          onClick={() => {
-            router.push("/admin/addProduct");
-          }}
+          onClick={handleOpen}
         >
           Add Product
         </Button>
       </section>
 
-      {/* --------------------------------- Add Customer Button Section - END */}
+      {/* --------------------------------- Add Product Button Section - END */}
+
+      <div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Product Name
+            </Typography>
+            <TextField
+              size="small"
+              onChange={(e) => setProductName(e.target.value)}
+            />
+            <Button
+              variant="contained"
+              onClick={() => {
+                generateProdID(productName);
+                handleClose();
+              }}
+            >
+              Save
+            </Button>
+          </Box>
+        </Modal>
+      </div>
     </div>
   );
 }

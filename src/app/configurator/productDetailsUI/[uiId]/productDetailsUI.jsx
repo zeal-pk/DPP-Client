@@ -52,6 +52,7 @@ const charts = [
 export default function AddProductsSection({ params }) {
   let router = useRouter()
 
+
   let [fullData, setFullData] = useState({});
   let [tabDetails, setTabDetails] = useState([]);
   let [tabName, setTabName] = useState();
@@ -334,7 +335,7 @@ export default function AddProductsSection({ params }) {
   const form = useForm();
   const { register, control, handleSubmit, formState } = form;
   let dataStruct = {
-    template_ID: "Battery",
+    templateId: "",
     [tab1]: {
       [tab1SubTab1]: {
         subTabType: tab1SubTab1Type,
@@ -448,10 +449,14 @@ export default function AddProductsSection({ params }) {
   };
 
   async function handlePostUIData(data) {
+    let path = window.location.pathname;
+  let pathArr = path.split("/");
+  let id = pathArr[3];
     let token = localStorage.getItem("access_token");
     try {
-      let response = await axios.post("https://dpp-server-app.azurewebsites.net/postProductDetailsUI", data);
-      router.push("/configurator")
+      // let response = await axios.post(`https://dpp-server-app.azurewebsites.net/postProductDetailsUI/${id}`, data);
+      let response = await axios.post(`http://localhost:9000/postProductDetailsUI/${id}`, data);
+      // router.push("/configurator")
     } catch (error) {
       alert(error, "Please try again later")
     }

@@ -47,7 +47,8 @@ export default function Login() {
           password: pass,
         };
         let response = await axios
-          .post(`https://dpp-server-app.azurewebsites.net/login`, data)
+          // .post(`https://dpp-server-app.azurewebsites.net/login`, data)
+          .post(`http://localhost:9000/login`, data)
           .then((response) => {
             localStorage.setItem("access_token", response.data.token);
             localStorage.setItem("current_user", response.data.email);
@@ -89,17 +90,15 @@ export default function Login() {
 
         <form onSubmit={handleLogin}>
           <Stack spacing={2} direction="column" sx={{ width: 320 }}>
+            Email Address
             <TextField
               id="outlined-basic"
-              label="Email Address"
               value={email || ""}
               variant="outlined"
               onChange={(e) => setEmail(e.target.value)}
             />
             <FormControl sx={{ m: 1 }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">
-                Password
-              </InputLabel>
+              Password
               <OutlinedInput
                 id="outlined-adornment-password"
                 type={showPassword ? "text" : "password"}
@@ -115,12 +114,10 @@ export default function Login() {
                     </IconButton>
                   </InputAdornment>
                 }
-                label="Password"
                 value={password || ""}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </FormControl>
-
             <Button type="submit" variant="contained">
               Login
             </Button>
