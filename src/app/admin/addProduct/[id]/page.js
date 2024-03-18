@@ -1,7 +1,8 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 import NavBar from "@/components/navBar.js";
-import { useRouter } from "next/navigation.js";
+import { useRouter } from "next/navigation";
 import BackButton from "../../../../components/backButton.js";
 import axios from "axios";
 import {
@@ -49,8 +50,8 @@ export default function addProduct() {
       try {
         await axios
           .get(
-            // `https://dpp-server-app.azurewebsites.net/productUiTemplate/${productId}`,
-            `http://localhost:9000/productUiTemplate/${productId}`,
+            `https://dpp-server-app.azurewebsites.net/productUiTemplate/${productId}`,
+            // `http://localhost:9000/productUiTemplate/${productId}`,
             {
               headers: {
                 Authorization: "Bearer " + token,

@@ -71,8 +71,8 @@ export default function Home() {
     if (token && role == "configurator") {
       try {
         const response = await axios.get(
-          // "https://dpp-server-app.azurewebsites.net/getAllProducts",
-          "http://localhost:9000/getAllProducts",
+          "https://dpp-server-app.azurewebsites.net/getAllProducts",
+          // "http://localhost:9000/getAllProducts",
           {
             headers: {
               Authorization: "Bearer " + token,

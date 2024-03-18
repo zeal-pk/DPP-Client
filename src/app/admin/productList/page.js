@@ -54,8 +54,8 @@ export default function Home() {
     try {
       let token = localStorage.getItem("access_token");
       const response = await axios.post(
-        // "https://dpp-server-app.azurewebsites.net/genProdId",
-        "http://localhost:9000/postProduct",
+        "https://dpp-server-app.azurewebsites.net/genProdId",
+        // "http://localhost:9000/postProduct",
         data,
         {
           headers: {
@@ -73,8 +73,8 @@ export default function Home() {
     let role = localStorage.getItem("current_user_role");
     try {
       const response = await axios.get(
-        // "https://dpp-server-app.azurewebsites.net/genProdId",
-        "http://localhost:9000/genProdId",
+        "https://dpp-server-app.azurewebsites.net/genProdId",
+        // "http://localhost:9000/genProdId",
         {
           headers: {
             Authorization: "Bearer " + token,

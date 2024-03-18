@@ -454,9 +454,9 @@ export default function AddProductsSection({ params }) {
   let id = pathArr[3];
     let token = localStorage.getItem("access_token");
     try {
-      // let response = await axios.post(`https://dpp-server-app.azurewebsites.net/postProductDetailsUI/${id}`, data);
-      let response = await axios.post(`http://localhost:9000/postProductDetailsUI/${id}`, data);
-      // router.push("/configurator")
+      let response = await axios.post(`https://dpp-server-app.azurewebsites.net/postProductDetailsUI/${id}`, data);
+      // let response = await axios.post(`http://localhost:9000/postProductDetailsUI/${id}`, data);
+      router.push("/configurator")
     } catch (error) {
       alert(error, "Please try again later")
     }
