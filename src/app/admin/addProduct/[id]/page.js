@@ -32,7 +32,7 @@ const VisuallyHiddenInput = styled("input")({
   width: 1,
 });
 
-export default function addProduct() {
+export default function AddProduct() {
   let router = useRouter();
   let [UiTemplate, setUiTemplate] = useState({});
   let [image, setImage] = useState();
