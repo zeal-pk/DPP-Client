@@ -24,6 +24,25 @@ export default function Home() {
   let [showAlert, setShowAlert] = useState("none");
   let [alertSeverity, setAlertSeverity] = useState("");
 
+  async function generateCustomerId(data) {
+    try {
+      let token = localStorage.getItem("access_token");
+      const response = await axios.get(
+        // "https://dpp-server-app.azurewebsites.net/genCustId",
+        "http://localhost:9000/genCustId",
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      let custId = response.data.message;
+      router.push(`/admin/addCustomer/${custId}`);
+    } catch (error) {
+      alert(error);
+    }
+  }
+
   const Fun = async () => {
     let token = localStorage.getItem("access_token");
     let role = localStorage.getItem("current_user_role");
@@ -168,7 +187,7 @@ export default function Home() {
           variant="contained"
           startIcon={<AddIcon />}
           onClick={() => {
-            router.push("/admin/addCustomer");
+            generateCustomerId();
           }}
         >
           Add Customer

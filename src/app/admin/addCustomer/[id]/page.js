@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 import Chip from "@mui/material/Chip";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useFormik } from "formik";
-import BackButton from "../../../components/backButton.js";
+import BackButton from "../../../../components/backButton.js";
 import {
   CitySelect,
   CountrySelect,
@@ -31,9 +31,9 @@ export default function AddCustomer() {
   let [country, setCountry] = useState("");
   let [countryCode, setCountryCode] = useState("");
   let [stateCode, setStateCode] = useState("");
-  let [allProducts, setAllProducts] = useState("");
+  let [allProducts, setAllProducts] = useState([]);
   let [productString, setProductString] = useState();
-  let [products, setProducts] = useState();
+  let [products, setProducts] = useState([]);
 
   async function handleAddCustomer(newCustomerData) {
     if (!id) {
@@ -115,7 +115,7 @@ export default function AddCustomer() {
             let data = response.data;
 
             for (let i = 0; i < data.length; i++) {
-              let prod = data[i];
+              let prod = { id: data[i].id, name: data[i].name };
               setAllProducts((existingProds) => [...existingProds, prod]);
             }
 
@@ -133,16 +133,11 @@ export default function AddCustomer() {
     }
   }
 
-  function generateID() {
-    if (!name && !country) {
-      alert("Please enter Name and Country to generate ID");
-    } else {
-      let id = `${name}-${countryCode}-${stateCode}`;
-      setId(id);
-    }
-  }
-
   useEffect(() => {
+    let path = window.location.pathname;
+    let arr = path.split("/");
+    let id = arr[3];
+    setId(id);
     getAllProducts();
   }, []);
 
@@ -155,6 +150,16 @@ export default function AddCustomer() {
       <BackButton />
       <form className="addCustomerForm" onSubmit={handleSubmit}>
         <div className="addCustomerInputDiv">
+          <div>
+            <p className="addCustomerInputLable">Customer ID</p>
+            <TextField
+              fullWidth
+              id="fullWidth"
+              size="small"
+              value={id}
+              disabled
+            />
+          </div>
           <h3>Please Enter Customer Details</h3>
           <div>
             <p className="addCustomerInputLable">Customer Name</p>
@@ -255,28 +260,13 @@ export default function AddCustomer() {
                   {...params}
                   size="small"
                   placeholder="Add Products"
-                  onChange={(e) =>
-                    setProducts((existingProds) => [...existingProds, e])
-                  }
                 />
               )}
+              onChange={(event, newProd) => {
+                setProducts(newProd);
+              }}
             />
           </div>
-
-          <div>
-            <p className="addCustomerInputLable">Customer ID</p>
-            <TextField
-              fullWidth
-              id="fullWidth"
-              size="small"
-              value={id}
-              disabled
-            />
-          </div>
-
-          <Button variant="contained" onClick={generateID}>
-            Generate ID
-          </Button>
 
           <Button type="submit" variant="contained">
             Submit

@@ -16,7 +16,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { Typography } from "@mui/material";
-import MenuItem from '@mui/material/MenuItem';
+import MenuItem from "@mui/material/MenuItem";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useForm, useFieldArray } from "react-hook-form";
 import {
@@ -31,27 +31,25 @@ import BackButton from "@/components/backButton";
 
 const charts = [
   {
-    value: 'Pie Chart',
-    label: 'Pie Chart',
+    value: "Pie Chart",
+    label: "Pie Chart",
   },
   {
-    value: 'Line Chart',
-    label: 'Line Chart',
+    value: "Line Chart",
+    label: "Line Chart",
   },
   {
-    value: 'Bar Chart',
-    label: 'Bar Chart',
+    value: "Bar Chart",
+    label: "Bar Chart",
   },
   {
-    value: 'Scatter Chart',
-    label: 'Scatter Chart',
+    value: "Scatter Chart",
+    label: "Scatter Chart",
   },
 ];
 
-
 export default function AddProductsSection({ params }) {
-  let router = useRouter()
-
+  let router = useRouter();
 
   let [fullData, setFullData] = useState({});
   let [tabDetails, setTabDetails] = useState([]);
@@ -60,7 +58,6 @@ export default function AddProductsSection({ params }) {
   let [chartType, setChartType] = useState();
   let [xAxis, setXAxis] = useState();
   let [yAxis, setYAxis] = useState();
-  let [disabled, setDisabled] = useState(false);
   let [subTabArray, setSubTabArray] = useState([]);
   let [selectedTabIndex, setSelectedTabIndex] = useState();
   let [combinedIndex, setCombinedIndex] = useState();
@@ -448,17 +445,47 @@ export default function AddProductsSection({ params }) {
     },
   };
 
+    // Disable toggle code - START
+  const [disabledStates, setDisabledStates] = useState(
+    Object.keys(dataStruct).reduce((acc, key) => {
+      if (key !== "_id" && key !== "templateId") {
+        acc[key] = false; // Assuming all TextFields are enabled initially
+      }
+      return acc;
+    }, {})
+  );
+
+  const handleSwitchChange = (key) => () => {
+    setDisabledStates((prevStates) => ({
+      ...prevStates,
+      [key]: !prevStates[key], // Toggle the disabled state for the TextField
+    }));
+  };
+
+  useEffect(() => {
+    setDisabledStates(Object.keys(dataStruct).reduce((acc, key) => {
+      if (key !== "_id" && key !== "templateId") {
+        acc[key] = false; // Assuming all TextFields are enabled initially
+      }
+      return acc;
+    }, {}))
+  }, [tab1, tab2, tab3, tab4, tab5])
+  // Disable toggle code - End
+
   async function handlePostUIData(data) {
     let path = window.location.pathname;
-  let pathArr = path.split("/");
-  let id = pathArr[3];
+    let pathArr = path.split("/");
+    let id = pathArr[3];
     let token = localStorage.getItem("access_token");
     try {
-      let response = await axios.post(`https://dpp-server-app.azurewebsites.net/postProductDetailsUI/${id}`, data);
+      let response = await axios.post(
+        `https://dpp-server-app.azurewebsites.net/postProductDetailsUI/${id}`,
+        data
+      );
       // let response = await axios.post(`http://localhost:9000/postProductDetailsUI/${id}`, data);
-      router.push("/configurator")
+      router.push("/configurator");
     } catch (error) {
-      alert(error, "Please try again later")
+      alert(error, "Please try again later");
     }
   }
 
@@ -810,501 +837,510 @@ export default function AddProductsSection({ params }) {
   function ShowUIElements(dataStruct) {
     return Object.keys(dataStruct).map((key, index) => {
       let tabIndex = index;
-      if (key != "_id" && key != "template_ID") {
-        return (
-          <ObjectPageSection
-            aria-label={key}
-            key={index}
-            id={key.replace(/\s/g, "")}
-            titleText={key}
-          >
-            {Object.keys(dataStruct[key]).map((child, index) => {
-              let subTabindex = index;
-              let id = `${key.replace(/\s/g, "")}-${child.replace(/\s/g, "")}`;
-              return (
-                <ObjectPageSubSection
-                  key={index}
-                  aria-label="Product Conformity"
-                  id={id}
-                  titleText={child}
-                >
-                  <div>
-                    {MapFields(id)}
-                    <Button
-                      onClick={() => {
-                        handleOpenFieldSelection();
-                        let indices = `${tabIndex}-${subTabindex}`;
-                        let ci = indices.replace(/\s/g, "");
-                        setCombinedIndex(ci);
-                        setId(id);
-                        if (
-                          id ==
-                          `${tab1.replace(/\s/g, "")}-${tab1SubTab1.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab1SubTab1Fields([]);
-                          setTab1SubTab1Type([]);
-                        } else if (
-                          id ==
-                          `${tab1.replace(/\s/g, "")}-${tab1SubTab2.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab1SubTab2Fields([]);
-                          setTab1SubTab2Type([]);
-                        } else if (
-                          id ==
-                          `${tab1.replace(/\s/g, "")}-${tab1SubTab3.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab1SubTab3Fields([]);
-                          setTab1SubTab3Type([]);
-                        } else if (
-                          id ==
-                          `${tab1.replace(/\s/g, "")}-${tab1SubTab4.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab1SubTab4Fields([]);
-                          setTab1SubTab4Type([]);
-                        } else if (
-                          id ==
-                          `${tab1.replace(/\s/g, "")}-${tab1SubTab5.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab1SubTab5Fields([]);
-                          setTab1SubTab5Type([]);
-                        } else if (
-                          id ==
-                          `${tab2.replace(/\s/g, "")}-${tab2SubTab1.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab2SubTab1Fields([]);
-                          setTab2SubTab1Type([]);
-                        } else if (
-                          id ==
-                          `${tab2.replace(/\s/g, "")}-${tab2SubTab2.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab2SubTab2Fields([]);
-                          setTab2SubTab2Type([]);
-                        } else if (
-                          id ==
-                          `${tab2.replace(/\s/g, "")}-${tab2SubTab3.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab2SubTab3Fields([]);
-                          setTab2SubTab3Type([]);
-                        } else if (
-                          id ==
-                          `${tab2.replace(/\s/g, "")}-${tab2SubTab4.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab2SubTab4Fields([]);
-                          setTab2SubTab4Type([]);
-                        } else if (
-                          id ==
-                          `${tab2.replace(/\s/g, "")}-${tab2SubTab5.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab2SubTab5Fields([]);
-                          setTab2SubTab5Type([]);
-                        } else if (
-                          id ==
-                          `${tab3.replace(/\s/g, "")}-${tab3SubTab1.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab3SubTab1Fields([]);
-                          setTab3SubTab1Type([]);
-                        } else if (
-                          id ==
-                          `${tab3.replace(/\s/g, "")}-${tab3SubTab2.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab3SubTab2Fields([]);
-                          setTab3SubTab2Type([]);
-                        } else if (
-                          id ==
-                          `${tab3.replace(/\s/g, "")}-${tab3SubTab3.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab3SubTab3Fields([]);
-                          setTab3SubTab3Type([]);
-                        } else if (
-                          id ==
-                          `${tab3.replace(/\s/g, "")}-${tab3SubTab4.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab3SubTab4Fields([]);
-                          setTab3SubTab4Type([]);
-                        } else if (
-                          id ==
-                          `${tab3.replace(/\s/g, "")}-${tab3SubTab5.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab3SubTab5Fields([]);
-                          setTab3SubTab5Type([]);
-                        } else if (
-                          id ==
-                          `${tab4.replace(/\s/g, "")}-${tab4SubTab1.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab4SubTab1Fields([]);
-                          setTab4SubTab1Type([]);
-                        } else if (
-                          id ==
-                          `${tab4.replace(/\s/g, "")}-${tab4SubTab2.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab4SubTab2Fields([]);
-                          setTab4SubTab2Type([]);
-                        } else if (
-                          id ==
-                          `${tab4.replace(/\s/g, "")}-${tab4SubTab3.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab4SubTab3Fields([]);
-                          setTab4SubTab3Type([]);
-                        } else if (
-                          id ==
-                          `${tab4.replace(/\s/g, "")}-${tab4SubTab4.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab4SubTab4Fields([]);
-                          setTab4SubTab4Type();
-                        } else if (
-                          id ==
-                          `${tab4.replace(/\s/g, "")}-${tab4SubTab5.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab4SubTab5Fields([]);
-                          setTab4SubTab5Type([]);
-                        } else if (
-                          id ==
-                          `${tab5.replace(/\s/g, "")}-${tab5SubTab1.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab5SubTab1Fields([]);
-                          setTab5SubTab1Type([]);
-                        } else if (
-                          id ==
-                          `${tab5.replace(/\s/g, "")}-${tab5SubTab2.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab5SubTab2Fields([]);
-                          setTab5SubTab2Type([]);
-                        } else if (
-                          id ==
-                          `${tab5.replace(/\s/g, "")}-${tab5SubTab3.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab5SubTab3Fields([]);
-                          setTab5SubTab3Type([]);
-                        } else if (
-                          id ==
-                          `${tab5.replace(/\s/g, "")}-${tab5SubTab4.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab5SubTab4Fields([]);
-                          setTab5SubTab4Type([]);
-                        } else if (
-                          id ==
-                          `${tab5.replace(/\s/g, "")}-${tab5SubTab5.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab5SubTab5Fields([]);
-                          setTab5SubTab5Type([]);
-                        }
-                      }}
-                    >
-                      Select Sub Tab Type
-                    </Button>
-                    <Button
-                      onClick={() => {
-                        if (
-                          id ==
-                          `${tab1.replace(/\s/g, "")}-${tab1SubTab1.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab1SubTab1Fields([]);
-                          setTab1SubTab1Type([]);
-                        } else if (
-                          id ==
-                          `${tab1.replace(/\s/g, "")}-${tab1SubTab2.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab1SubTab2Fields([]);
-                          setTab1SubTab2Type([]);
-                        } else if (
-                          id ==
-                          `${tab1.replace(/\s/g, "")}-${tab1SubTab3.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab1SubTab3Fields([]);
-                          setTab1SubTab3Type([]);
-                        } else if (
-                          id ==
-                          `${tab1.replace(/\s/g, "")}-${tab1SubTab4.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab1SubTab4Fields([]);
-                          setTab1SubTab4Type([]);
-                        } else if (
-                          id ==
-                          `${tab1.replace(/\s/g, "")}-${tab1SubTab5.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab1SubTab5Fields([]);
-                          setTab1SubTab5Type([]);
-                        } else if (
-                          id ==
-                          `${tab2.replace(/\s/g, "")}-${tab2SubTab1.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab2SubTab1Fields([]);
-                          setTab2SubTab1Type([]);
-                        } else if (
-                          id ==
-                          `${tab2.replace(/\s/g, "")}-${tab2SubTab2.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab2SubTab2Fields([]);
-                          setTab2SubTab2Type([]);
-                        } else if (
-                          id ==
-                          `${tab2.replace(/\s/g, "")}-${tab2SubTab3.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab2SubTab3Fields([]);
-                          setTab2SubTab3Type([]);
-                        } else if (
-                          id ==
-                          `${tab2.replace(/\s/g, "")}-${tab2SubTab4.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab2SubTab4Fields([]);
-                          setTab2SubTab4Type([]);
-                        } else if (
-                          id ==
-                          `${tab2.replace(/\s/g, "")}-${tab2SubTab5.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab2SubTab5Fields([]);
-                          setTab2SubTab5Type([]);
-                        } else if (
-                          id ==
-                          `${tab3.replace(/\s/g, "")}-${tab3SubTab1.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab3SubTab1Fields([]);
-                          setTab3SubTab1Type([]);
-                        } else if (
-                          id ==
-                          `${tab3.replace(/\s/g, "")}-${tab3SubTab2.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab3SubTab2Fields([]);
-                          setTab3SubTab2Type([]);
-                        } else if (
-                          id ==
-                          `${tab3.replace(/\s/g, "")}-${tab3SubTab3.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab3SubTab3Fields([]);
-                          setTab3SubTab3Type([]);
-                        } else if (
-                          id ==
-                          `${tab3.replace(/\s/g, "")}-${tab3SubTab4.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab3SubTab4Fields([]);
-                          setTab3SubTab4Type([]);
-                        } else if (
-                          id ==
-                          `${tab3.replace(/\s/g, "")}-${tab3SubTab5.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab3SubTab5Fields([]);
-                          setTab3SubTab5Type([]);
-                        } else if (
-                          id ==
-                          `${tab4.replace(/\s/g, "")}-${tab4SubTab1.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab4SubTab1Fields([]);
-                          setTab4SubTab1Type([]);
-                        } else if (
-                          id ==
-                          `${tab4.replace(/\s/g, "")}-${tab4SubTab2.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab4SubTab2Fields([]);
-                          setTab4SubTab2Type([]);
-                        } else if (
-                          id ==
-                          `${tab4.replace(/\s/g, "")}-${tab4SubTab3.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab4SubTab3Fields([]);
-                          setTab4SubTab3Type([]);
-                        } else if (
-                          id ==
-                          `${tab4.replace(/\s/g, "")}-${tab4SubTab4.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab4SubTab4Fields([]);
-                          setTab4SubTab4Type();
-                        } else if (
-                          id ==
-                          `${tab4.replace(/\s/g, "")}-${tab4SubTab5.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab4SubTab5Fields([]);
-                          setTab4SubTab5Type([]);
-                        } else if (
-                          id ==
-                          `${tab5.replace(/\s/g, "")}-${tab5SubTab1.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab5SubTab1Fields([]);
-                          setTab5SubTab1Type([]);
-                        } else if (
-                          id ==
-                          `${tab5.replace(/\s/g, "")}-${tab5SubTab2.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab5SubTab2Fields([]);
-                          setTab5SubTab2Type([]);
-                        } else if (
-                          id ==
-                          `${tab5.replace(/\s/g, "")}-${tab5SubTab3.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab5SubTab3Fields([]);
-                          setTab5SubTab3Type([]);
-                        } else if (
-                          id ==
-                          `${tab5.replace(/\s/g, "")}-${tab5SubTab4.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab5SubTab4Fields([]);
-                          setTab5SubTab4Type([]);
-                        } else if (
-                          id ==
-                          `${tab5.replace(/\s/g, "")}-${tab5SubTab5.replace(
-                            /\s/g,
-                            ""
-                          )}`
-                        ) {
-                          setTab5SubTab5Fields([]);
-                          setTab5SubTab5Type([]);
-                        }
-                      }}
-                    >
-                      Reset Tab
-                    </Button>
-                  </div>
-                </ObjectPageSubSection>
-              );
-            })}
-          </ObjectPageSection>
-        );
+      if (key != "_id" && key != "templateId") {
+        console.log(disabledStates[key])
+        if (disabledStates[key] == false) {
+          return (
+            <ObjectPageSection
+              aria-label={key}
+              key={index}
+              style={{
+                display: disabledStates[key] == true ? "none" : "block",
+              }}
+              id={key.replace(/\s/g, "")}
+              titleText={key}
+            >
+              {Object.keys(dataStruct[key]).map((child, index) => {
+                let subTabindex = index;
+                let id = `${key.replace(/\s/g, "")}-${child.replace(
+                  /\s/g,
+                  ""
+                )}`;
+                return (
+                  <ObjectPageSubSection
+                    key={index}
+                    aria-label="Product Conformity"
+                    id={id}
+                    titleText={child}
+                  >
+                    <div>
+                      {MapFields(id)}
+                      <Button
+                        onClick={() => {
+                          handleOpenFieldSelection();
+                          let indices = `${tabIndex}-${subTabindex}`;
+                          let ci = indices.replace(/\s/g, "");
+                          setCombinedIndex(ci);
+                          setId(id);
+                          if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab1Fields([]);
+                            setTab1SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab2Fields([]);
+                            setTab1SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab3Fields([]);
+                            setTab1SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab4Fields([]);
+                            setTab1SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab5Fields([]);
+                            setTab1SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab1Fields([]);
+                            setTab2SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab2Fields([]);
+                            setTab2SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab3Fields([]);
+                            setTab2SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab4Fields([]);
+                            setTab2SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab5Fields([]);
+                            setTab2SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab1Fields([]);
+                            setTab3SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab2Fields([]);
+                            setTab3SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab3Fields([]);
+                            setTab3SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab4Fields([]);
+                            setTab3SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab5Fields([]);
+                            setTab3SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab1Fields([]);
+                            setTab4SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab2Fields([]);
+                            setTab4SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab3Fields([]);
+                            setTab4SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab4Fields([]);
+                            setTab4SubTab4Type();
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab5Fields([]);
+                            setTab4SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab1Fields([]);
+                            setTab5SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab2Fields([]);
+                            setTab5SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab3Fields([]);
+                            setTab5SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab4Fields([]);
+                            setTab5SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab5Fields([]);
+                            setTab5SubTab5Type([]);
+                          }
+                        }}
+                      >
+                        Select Sub Tab Type
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab1Fields([]);
+                            setTab1SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab2Fields([]);
+                            setTab1SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab3Fields([]);
+                            setTab1SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab4Fields([]);
+                            setTab1SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab5Fields([]);
+                            setTab1SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab1Fields([]);
+                            setTab2SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab2Fields([]);
+                            setTab2SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab3Fields([]);
+                            setTab2SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab4Fields([]);
+                            setTab2SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab5Fields([]);
+                            setTab2SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab1Fields([]);
+                            setTab3SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab2Fields([]);
+                            setTab3SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab3Fields([]);
+                            setTab3SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab4Fields([]);
+                            setTab3SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab5Fields([]);
+                            setTab3SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab1Fields([]);
+                            setTab4SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab2Fields([]);
+                            setTab4SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab3Fields([]);
+                            setTab4SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab4Fields([]);
+                            setTab4SubTab4Type();
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab5Fields([]);
+                            setTab4SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab1Fields([]);
+                            setTab5SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab2Fields([]);
+                            setTab5SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab3Fields([]);
+                            setTab5SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab4Fields([]);
+                            setTab5SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab5Fields([]);
+                            setTab5SubTab5Type([]);
+                          }
+                        }}
+                      >
+                        Reset Tab
+                      </Button>
+                    </div>
+                  </ObjectPageSubSection>
+                );
+              })}
+            </ObjectPageSection>
+          );
+        }
       }
     });
   }
@@ -1313,26 +1349,28 @@ export default function AddProductsSection({ params }) {
     setSubTabArray((existing) => [...existing, child]);
   }
 
-  
+
 
   async function VerifyToken() {
     let token = localStorage.getItem("access_token");
     let role = localStorage.getItem("current_user_role");
 
     if (token && role == "configurator") {
-    try {
-      await axios.get(
-        "https://dpp-server-app.azurewebsites.net/routVerification", {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
+      try {
+        await axios.get(
+          "https://dpp-server-app.azurewebsites.net/routVerification",
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+      } catch (error) {
+        if (error.response.status !== 403) {
+          router.push("/error");
         }
-      );
-    } catch (error) {
-      if (error.response.status !== 403) {
-        router.push("/error");
       }
-    }} else {
+    } else {
       router.push("/error");
     }
   }
@@ -1352,7 +1390,7 @@ export default function AddProductsSection({ params }) {
             <Bar
               endContent={
                 <>
-                <BackButton />
+                  <BackButton />
                   <Button
                     design="Emphasized"
                     onClick={() => {
@@ -1362,7 +1400,10 @@ export default function AddProductsSection({ params }) {
                     Edit Lables
                   </Button>
 
-                  <Button design="Emphasized" onClick={() => handlePostUIData(dataStruct)}>
+                  <Button
+                    design="Emphasized"
+                    onClick={() => handlePostUIData(dataStruct)}
+                  >
                     Submit
                   </Button>
                 </>
@@ -1392,14 +1433,14 @@ export default function AddProductsSection({ params }) {
           <Box sx={style}>
             {Object.keys(dataStruct).map((key, index) => {
               let k = key.replace(/\s/g, "");
-              if (key != "_id" && key != "template_ID") {
+              if (key != "_id" && key != "templateId") {
                 return (
                   <div key={index}>
                     <TextField
                       id={key}
                       variant="outlined"
                       placeholder={key}
-                      disabled={disabled}
+                      disabled={disabledStates[key]}
                       onChange={(e) => {
                         if (index == 1) {
                           setTab1(e.target.value);
@@ -1431,12 +1472,8 @@ export default function AddProductsSection({ params }) {
                     </Button>
 
                     <Switch
-                      defaultChecked
-                      onChange={() => {
-                        disabled == false
-                          ? setDisabled(true)
-                          : setDisabled(false);
-                      }}
+                      defaultChecked={!disabledStates[key]}
+                      onChange={handleSwitchChange(key)}
                     />
                   </div>
                 );
@@ -1469,7 +1506,7 @@ export default function AddProductsSection({ params }) {
                   key={index}
                   variant="outlined"
                   placeholder={subTab}
-                  disabled={disabled}
+                  // disabled={disabled}
                   onChange={(e) => {
                     if (selectedTabIndex == 1 && index == 0) {
                       setTab1SubTab1(e.target.value);
@@ -1595,8 +1632,6 @@ export default function AddProductsSection({ params }) {
               </FormControl>
             </div>
 
-
-
             <Button
               onClick={() => {
                 if (value == "inputFields") {
@@ -1669,7 +1704,6 @@ export default function AddProductsSection({ params }) {
               Select
             </Button>
             <Button onClick={handleCloseFieldSelection}>Close</Button>
-
           </Box>
         </Fade>
       </Modal>
@@ -1691,145 +1725,147 @@ export default function AddProductsSection({ params }) {
           <Box sx={style}>
             <>
               <Typography>Enter Field Name</Typography>
-              <TextField className="modalInputField" size="small" onChange={(e) => setFieldName(e.target.value)} />
+              <TextField
+                className="modalInputField"
+                size="small"
+                onChange={(e) => setFieldName(e.target.value)}
+              />
               <div className="modalButtonsDiv">
-              <Button
-                onClick={() => {
-                  if (combinedIndex == "1-0") {
-                    setTab1SubTab1Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "1-1") {
-                    setTab1SubTab2Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "1-2") {
-                    setTab1SubTab3Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "1-3") {
-                    setTab1SubTab4Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "1-4") {
-                    setTab1SubTab5Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "2-0") {
-                    setTab2SubTab1Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "2-1") {
-                    setTab2SubTab2Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "2-2") {
-                    setTab2SubTab3Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "2-3") {
-                    setTab2SubTab4Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "2-4") {
-                    setTab2SubTab5Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "3-0") {
-                    setTab3SubTab1Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "3-1") {
-                    setTab3SubTab2Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "3-2") {
-                    setTab3SubTab3Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "3-3") {
-                    setTab3SubTab4Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "3-4") {
-                    setTab3SubTab5Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "4-0") {
-                    setTab4SubTab1Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "4-1") {
-                    setTab4SubTab2Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "4-2") {
-                    setTab4SubTab3Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "4-3") {
-                    setTab4SubTab4Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "4-4") {
-                    setTab4SubTab5Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "5-0") {
-                    setTab5SubTab1Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "5-1") {
-                    setTab5SubTab2Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "5-2") {
-                    setTab5SubTab3Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "5-3") {
-                    setTab5SubTab4Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  } else if (combinedIndex == "5-4") {
-                    setTab5SubTab5Fields((existingFields) => [
-                      ...existingFields,
-                      fieldName,
-                    ]);
-                  }
-                }}
-              >
-                Add Field
-              </Button>
-              <Button onClick={handleCloseAddField}>Close</Button>
+                <Button
+                  onClick={() => {
+                    if (combinedIndex == "1-0") {
+                      setTab1SubTab1Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "1-1") {
+                      setTab1SubTab2Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "1-2") {
+                      setTab1SubTab3Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "1-3") {
+                      setTab1SubTab4Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "1-4") {
+                      setTab1SubTab5Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "2-0") {
+                      setTab2SubTab1Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "2-1") {
+                      setTab2SubTab2Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "2-2") {
+                      setTab2SubTab3Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "2-3") {
+                      setTab2SubTab4Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "2-4") {
+                      setTab2SubTab5Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "3-0") {
+                      setTab3SubTab1Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "3-1") {
+                      setTab3SubTab2Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "3-2") {
+                      setTab3SubTab3Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "3-3") {
+                      setTab3SubTab4Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "3-4") {
+                      setTab3SubTab5Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "4-0") {
+                      setTab4SubTab1Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "4-1") {
+                      setTab4SubTab2Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "4-2") {
+                      setTab4SubTab3Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "4-3") {
+                      setTab4SubTab4Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "4-4") {
+                      setTab4SubTab5Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "5-0") {
+                      setTab5SubTab1Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "5-1") {
+                      setTab5SubTab2Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "5-2") {
+                      setTab5SubTab3Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "5-3") {
+                      setTab5SubTab4Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    } else if (combinedIndex == "5-4") {
+                      setTab5SubTab5Fields((existingFields) => [
+                        ...existingFields,
+                        fieldName,
+                      ]);
+                    }
+                  }}
+                >
+                  Add Field
+                </Button>
+                <Button onClick={handleCloseAddField}>Close</Button>
               </div>
             </>
-
-            
           </Box>
         </Fade>
       </Modal>
@@ -1851,168 +1887,172 @@ export default function AddProductsSection({ params }) {
           <Box sx={style}>
             <div>
               <Typography>Chart Type</Typography>
-        <TextField
-          id="outlined-select-currency"
-          select
-          // defaultValue="Select"
-          helperText="Please select Chart Type"
-          onChange={(e) => setChartType(e.target.value)}
-        >
-          {charts.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        
+              <TextField
+                id="outlined-select-currency"
+                select
+                // defaultValue="Select"
+                helperText="Please select Chart Type"
+                onChange={(e) => setChartType(e.target.value)}
+              >
+                {charts.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
 
               <Typography>Enter X-Axis</Typography>
-              <TextField className="modalInputField" onChange={(e) => setXAxis(e.target.value)} />
+              <TextField
+                className="modalInputField"
+                onChange={(e) => setXAxis(e.target.value)}
+              />
               <Typography>Enter Y-Axis</Typography>
-              <TextField className="modalInputField" onChange={(e) => setYAxis(e.target.value)} />
+              <TextField
+                className="modalInputField"
+                onChange={(e) => setYAxis(e.target.value)}
+              />
 
               <div className="modalButtonsDiv">
-              <Button
-                onClick={() => {
-                  let chartLable = {
-                    chartType: chartType,
-                    xAxis: xAxis,
-                    yAxis: yAxis,
-                  };
-                  if (combinedIndex == "1-0") {
-                    setTab1SubTab1Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "1-1") {
-                    setTab1SubTab2Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "1-2") {
-                    setTab1SubTab3Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "1-3") {
-                    setTab1SubTab4Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "1-4") {
-                    setTab1SubTab5Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "2-0") {
-                    setTab2SubTab1Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "2-1") {
-                    setTab2SubTab2Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "2-2") {
-                    setTab2SubTab3Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "2-3") {
-                    setTab2SubTab4Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "2-4") {
-                    setTab2SubTab5Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "3-0") {
-                    setTab3SubTab1Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "3-1") {
-                    setTab3SubTab2Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "3-2") {
-                    setTab3SubTab3Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "3-3") {
-                    setTab3SubTab4Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "3-4") {
-                    setTab3SubTab5Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "4-0") {
-                    setTab4SubTab1Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "4-1") {
-                    setTab4SubTab2Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "4-2") {
-                    setTab4SubTab3Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "4-3") {
-                    setTab4SubTab4Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "4-4") {
-                    setTab4SubTab5Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "5-0") {
-                    setTab5SubTab1Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "5-1") {
-                    setTab5SubTab2Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "5-2") {
-                    setTab5SubTab3Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "5-3") {
-                    setTab5SubTab4Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  } else if (combinedIndex == "5-4") {
-                    setTab5SubTab5Fields((existingFields) => [
-                      ...existingFields,
-                      chartLable,
-                    ]);
-                  }
-                }}
-              >
-                Add Field
-              </Button>
-              <Button onClick={handleCloseAddChart}>Close</Button>
+                <Button
+                  onClick={() => {
+                    let chartLable = {
+                      chartType: chartType,
+                      xAxis: xAxis,
+                      yAxis: yAxis,
+                    };
+                    if (combinedIndex == "1-0") {
+                      setTab1SubTab1Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "1-1") {
+                      setTab1SubTab2Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "1-2") {
+                      setTab1SubTab3Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "1-3") {
+                      setTab1SubTab4Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "1-4") {
+                      setTab1SubTab5Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "2-0") {
+                      setTab2SubTab1Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "2-1") {
+                      setTab2SubTab2Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "2-2") {
+                      setTab2SubTab3Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "2-3") {
+                      setTab2SubTab4Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "2-4") {
+                      setTab2SubTab5Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "3-0") {
+                      setTab3SubTab1Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "3-1") {
+                      setTab3SubTab2Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "3-2") {
+                      setTab3SubTab3Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "3-3") {
+                      setTab3SubTab4Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "3-4") {
+                      setTab3SubTab5Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "4-0") {
+                      setTab4SubTab1Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "4-1") {
+                      setTab4SubTab2Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "4-2") {
+                      setTab4SubTab3Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "4-3") {
+                      setTab4SubTab4Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "4-4") {
+                      setTab4SubTab5Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "5-0") {
+                      setTab5SubTab1Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "5-1") {
+                      setTab5SubTab2Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "5-2") {
+                      setTab5SubTab3Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "5-3") {
+                      setTab5SubTab4Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    } else if (combinedIndex == "5-4") {
+                      setTab5SubTab5Fields((existingFields) => [
+                        ...existingFields,
+                        chartLable,
+                      ]);
+                    }
+                  }}
+                >
+                  Add Field
+                </Button>
+                <Button onClick={handleCloseAddChart}>Close</Button>
               </div>
             </div>
-
           </Box>
         </Fade>
       </Modal>
