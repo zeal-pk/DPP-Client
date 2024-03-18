@@ -43,18 +43,23 @@ export default function Home() {
   let [showAlert, setShowAlert] = useState("none");
   let [alertSeverity, setAlertSeverity] = useState("");
   let [newProductID, setNewProductID] = useState();
+  let [toDelete, setToDelete] = useState("");
 
   // Modal Helper -START
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [openDeleteModal, setOpenDeleteModat] = useState(false);
+  const handleOpenDeleteModal = () => setOpenDeleteModat(true);
+  const handleCloseDeleteModal = () => setOpenDeleteModat(false);
   // Modal Helper - END
 
   async function postProduct(data) {
     try {
       let token = localStorage.getItem("access_token");
       const response = await axios.post(
-        "https://dpp-server-app.azurewebsites.net/genProdId",
+        "https://dpp-server-app.azurewebsites.net/postProduct",
         // "http://localhost:9000/postProduct",
         data,
         {
@@ -126,34 +131,35 @@ export default function Home() {
     Fun();
   }, []);
 
-  // const deleteCustomer = async (customerId) => {
-  //   let token = localStorage.getItem("access_token");
-  //   axios
-  //     .delete(
-  //       `https://dpp-server-app.azurewebsites.net/deleteCustomer/${customerId}`,
-  //       {
-  //         headers: {
-  //           Authorization: "Bearer " + token,
-  //         },
-  //       }
-  //     )
-  //     .then((res) => {
-  //       if (res.status == 200) {
-  //         setAlertSeverity("success");
-  //         setShowAlert("block");
-  //         setTimeout(() => {
-  //           setShowAlert("none");
-  //           Fun();
-  //         }, "2000");
-  //       } else {
-  //         setAlertSeverity("error");
-  //         setShowAlert("block");
-  //         setTimeout(() => {
-  //           setShowAlert("none");
-  //         }, "2000");
-  //       }
-  //     });
-  // };
+  const deleteProduct = async (productId) => {
+    let token = localStorage.getItem("access_token");
+    axios
+      .delete(
+        // `https://dpp-server-app.azurewebsites.net/deleteProduct/${productId}`,
+        `http://localhost:9000/deleteProduct/${productId}`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      )
+      .then((res) => {
+        if (res.status == 200) {
+          setAlertSeverity("success");
+          setShowAlert("block");
+          setTimeout(() => {
+            setShowAlert("none");
+            Fun();
+          }, "2000");
+        } else {
+          setAlertSeverity("error");
+          setShowAlert("block");
+          setTimeout(() => {
+            setShowAlert("none");
+          }, "2000");
+        }
+      });
+  };
 
   return (
     <div className="main">
@@ -212,14 +218,18 @@ export default function Home() {
                     <IconButton
                       aria-label="delete"
                       onClick={() =>
-                        router.push(`/admin/updateCustomer/${productDetail.id}`)
+                        router.push(`/admin/editProduct/${productDetail.id}`)
                       }
                     >
                       <EditIcon />
                     </IconButton>
                     <IconButton
                       aria-label="delete"
-                      onClick={() => deleteCustomer(customerDetail.id)}
+                      onClick={() => {
+                        handleOpenDeleteModal();
+                        setToDelete(productDetail.id);
+                        console.log(productDetail.id);
+                      }}
                     >
                       <DeleteIcon />
                     </IconButton>
@@ -269,6 +279,33 @@ export default function Home() {
               }}
             >
               Save
+            </Button>
+          </Box>
+        </Modal>
+      </div>
+
+      {/* --------------------------------- Deletion Conformation - END */}
+
+      <div>
+        <Modal
+          open={openDeleteModal}
+          onClose={handleCloseDeleteModal}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Confirm Delete?
+            </Typography>
+            <Button
+              variant="contained"
+              onClick={() => {
+                deleteProduct(toDelete);
+                handleCloseDeleteModal();
+                // location.reload();
+              }}
+            >
+              Yes
             </Button>
           </Box>
         </Modal>

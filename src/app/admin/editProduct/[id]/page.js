@@ -32,7 +32,7 @@ const VisuallyHiddenInput = styled("input")({
   width: 1,
 });
 
-export default function AddProduct() {
+export default function EditProduct() {
   let router = useRouter();
   let [UiTemplate, setUiTemplate] = useState({});
   let [image, setImage] = useState();
@@ -50,8 +50,8 @@ export default function AddProduct() {
       try {
         await axios
           .get(
-            `https://dpp-server-app.azurewebsites.net/productUiTemplate/${productId}`,
-            // `http://localhost:9000/productUiTemplate/${productId}`,
+            // `https://dpp-server-app.azurewebsites.net/productUiTemplate/${productId}`,
+            `http://localhost:9000/productUiTemplate/${productId}`,
             {
               headers: {
                 Authorization: "Bearer " + token,
@@ -60,6 +60,7 @@ export default function AddProduct() {
           )
           .then((response) => {
             setUiTemplate(response.data);
+            console.log(response.data);
           });
       } catch (error) {
         // if (error.response.status !== 403) {
@@ -118,7 +119,15 @@ export default function AddProduct() {
 
   function ShowUIElements(UiTemplate) {
     return Object.keys(UiTemplate).map((key, index) => {
-      if (key != "_id" && key != "template_ID") {
+      if (
+        key != "_id" &&
+        key != "templateId" &&
+        key != "Tab 1" &&
+        key != "Tab 2" &&
+        key != "Tab 3" &&
+        key != "Tab 4" &&
+        key != "Tab 5"
+      ) {
         return (
           <ObjectPageSection
             aria-label={key}
@@ -131,28 +140,33 @@ export default function AddProduct() {
               let subTabType = UiTemplate[key][child].subTabType;
               let fields = UiTemplate[key][child].Fields;
               let id = `${key.replace(/\s/g, "")}-${child.replace(/\s/g, "")}`;
-              return (
-                <ObjectPageSubSection
-                  key={index}
-                  aria-label="Product Conformity"
-                  id={id}
-                  titleText={child}
-                >
-                  <div>
-                    <p>{subTabType}</p>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "flex-start",
-                        alignItems: "center",
-                        gap: "20px",
-                      }}
-                    >
-                      {fieldIteration(subTabType, fields)}
+
+              let x = child.split(" ");
+              let invalid = x[0] + x[1];
+              if (invalid != "SubTab") {
+                return (
+                  <ObjectPageSubSection
+                    key={index}
+                    aria-label="Product Conformity"
+                    id={id}
+                    titleText={child}
+                  >
+                    <div>
+                      <p>{subTabType}</p>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                          gap: "20px",
+                        }}
+                      >
+                        {fieldIteration(subTabType, fields)}
+                      </div>
                     </div>
-                  </div>
-                </ObjectPageSubSection>
-              );
+                  </ObjectPageSubSection>
+                );
+              }
             })}
           </ObjectPageSection>
         );
