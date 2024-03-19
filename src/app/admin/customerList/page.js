@@ -17,26 +17,47 @@ import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import Alert from "@mui/material/Alert";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+
+const style = {
+  display: "flex",
+  flexDirection: "column",
+  gap: "10px",
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 export default function Home() {
+  let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   const router = useRouter();
   let [customerDetails, setCustomerDetails] = useState([]);
   let [showAlert, setShowAlert] = useState("none");
   let [alertSeverity, setAlertSeverity] = useState("");
+  let [toDelete, setToDelete] = useState("");
 
-  async function generateCustomerId(data) {
+  const [openDeleteModal, setOpenDeleteModat] = useState(false);
+  const handleOpenDeleteModal = () => setOpenDeleteModat(true);
+  const handleCloseDeleteModal = () => setOpenDeleteModat(false);
+
+  async function generateCustomerId() {
+    // console.log("custId");
     try {
       let token = localStorage.getItem("access_token");
-      const response = await axios.get(
-        // "https://dpp-server-app.azurewebsites.net/genCustId",
-        "http://localhost:9000/genCustId",
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
+      const response = await axios.get(`${serverUrl}/genCustId`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
       let custId = response.data.message;
+
       router.push(`/admin/addCustomer/${custId}`);
     } catch (error) {
       alert(error);
@@ -49,14 +70,11 @@ export default function Home() {
 
     if (token && role == "admin") {
       try {
-        const response = await axios.get(
-          "https://dpp-server-app.azurewebsites.net/",
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        );
+        const response = await axios.get(`${serverUrl}`, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        });
         setCustomerDetails(response.data);
       } catch (error) {
         if (error.response.status == 403) {
@@ -167,7 +185,10 @@ export default function Home() {
                     </IconButton>
                     <IconButton
                       aria-label="delete"
-                      onClick={() => deleteCustomer(customerDetail.id)}
+                      onClick={() => {
+                        handleOpenDeleteModal();
+                        setToDelete(customerDetail.id);
+                      }}
                     >
                       <DeleteIcon />
                     </IconButton>
@@ -195,6 +216,32 @@ export default function Home() {
       </section>
 
       {/* --------------------------------- Add Customer Button Section - END */}
+
+      {/* --------------------------------- Deletion Conformation - END */}
+
+      <div>
+        <Modal
+          open={openDeleteModal}
+          onClose={handleCloseDeleteModal}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Confirm Delete?
+            </Typography>
+            <Button
+              variant="contained"
+              onClick={() => {
+                deleteCustomer(toDelete);
+                handleCloseDeleteModal();
+              }}
+            >
+              Yes
+            </Button>
+          </Box>
+        </Modal>
+      </div>
     </div>
   );
 }

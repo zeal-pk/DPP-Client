@@ -10,19 +10,21 @@ import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
 import BackButton from "@/components/backButton";
 
-async function handleSignup(userData) {
-  let response = await axios
-    .post("https://dpp-server-app.azurewebsites.net/postUser", userData)
-    .then((response) => {
-      // console.log(response);
-    });
-}
-
 export default function Signup() {
+  let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   let [firstName, setFirstName] = useState();
   let [lastName, setLastName] = useState();
   let [email, setEmail] = useState();
   let [password, setPassword] = useState();
+
+  async function handleSignup(userData) {
+    let response = await axios
+      .post(`${serverUrl}/postUser`, userData)
+      .then((response) => {
+        // console.log(response);
+      });
+  }
+
   return (
     <div className="main">
       <Image src={zealitLogo} width="260" height="100" />

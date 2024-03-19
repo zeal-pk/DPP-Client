@@ -16,6 +16,7 @@ import ProductDetails from "@/components/user/productDetailsPanel";
 import BackButton from "@/components/backButton";
 
 export default function CustomerDetials({ params }) {
+  let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   let router = useRouter();
   let customerId = params.customerId;
   let [customerDetail, setCustomerDetail] = useState([]);
@@ -47,14 +48,11 @@ export default function CustomerDetials({ params }) {
     if (token && role == "user") {
       try {
         await axios
-          .get(
-            `https://dpp-server-app.azurewebsites.net/getCustomer/${customerId}`,
-            {
-              headers: {
-                Authorization: "Bearer " + token,
-              },
-            }
-          )
+          .get(`${serverUrl}/${customerId}`, {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          })
           .then((res) => {
             setCustomerDetail(res.data);
           });
@@ -69,14 +67,11 @@ export default function CustomerDetials({ params }) {
 
     try {
       await axios
-        .get(
-          `https://dpp-server-app.azurewebsites.net/getProducts/${customerId}`,
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        )
+        .get(`${serverUrl}/getProducts/${customerId}`, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
         .then((res) => {
           setProductDetails(res.data);
           setSelectedProduct(res.data[0]);

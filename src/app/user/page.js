@@ -10,6 +10,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
 export default function Home() {
+  let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   let router = useRouter();
   let [customerDetails, setCustomerDetails] = useState([]);
 
@@ -18,14 +19,11 @@ export default function Home() {
     let role = localStorage.getItem("current_user_role");
     if (token && role == "user") {
       try {
-        const response = await axios.get(
-          "https://dpp-server-app.azurewebsites.net/",
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        );
+        const response = await axios.get(`${serverUrl}/`, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        });
         setCustomerDetails(response.data);
       } catch (error) {
         if (error.response.status == 403) {
@@ -35,11 +33,9 @@ export default function Home() {
     } else {
       router.push("/error");
     }
-
     // if (response.status !== 200) {
     //   router.push("/error.js");
     // }
-
     // console.log(response);
   };
   useEffect(() => {

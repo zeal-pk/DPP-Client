@@ -37,6 +37,7 @@ const style = {
 };
 
 export default function Home() {
+  let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   const router = useRouter();
   let [productDetails, setProductDetails] = useState([]);
   let [productName, setProductName] = useState();
@@ -58,16 +59,11 @@ export default function Home() {
   async function postProduct(data) {
     try {
       let token = localStorage.getItem("access_token");
-      const response = await axios.post(
-        "https://dpp-server-app.azurewebsites.net/postProduct",
-        // "http://localhost:9000/postProduct",
-        data,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
+      const response = await axios.post(`${serverUrl}/postProduct`, data, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
     } catch (error) {
       alert(error);
     }
@@ -77,15 +73,11 @@ export default function Home() {
     let token = localStorage.getItem("access_token");
     let role = localStorage.getItem("current_user_role");
     try {
-      const response = await axios.get(
-        "https://dpp-server-app.azurewebsites.net/genProdId",
-        // "http://localhost:9000/genProdId",
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
+      const response = await axios.get(`${serverUrl}/genProdId`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
       console.log(response);
       if (response.data.message == "ID Range did not match") {
         alert("ID Range did not match");
@@ -97,6 +89,7 @@ export default function Home() {
           name: prodName,
         };
         postProduct(prodData);
+        Fun();
       }
     } catch (error) {
       alert(error);
@@ -109,14 +102,11 @@ export default function Home() {
 
     if (token && role == "admin") {
       try {
-        const response = await axios.get(
-          "https://dpp-server-app.azurewebsites.net/getAllProducts",
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        );
+        const response = await axios.get(`${serverUrl}/getAllProducts`, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        });
         setProductDetails(response.data);
       } catch (error) {
         if (error.response.status == 403) {
@@ -127,6 +117,7 @@ export default function Home() {
       router.push("/error");
     }
   };
+
   useEffect(() => {
     Fun();
   }, []);
@@ -134,15 +125,11 @@ export default function Home() {
   const deleteProduct = async (productId) => {
     let token = localStorage.getItem("access_token");
     axios
-      .delete(
-        // `https://dpp-server-app.azurewebsites.net/deleteProduct/${productId}`,
-        `http://localhost:9000/deleteProduct/${productId}`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      )
+      .delete(`${serverUrl}/deleteProduct/${productId}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         if (res.status == 200) {
           setAlertSeverity("success");
@@ -228,7 +215,6 @@ export default function Home() {
                       onClick={() => {
                         handleOpenDeleteModal();
                         setToDelete(productDetail.id);
-                        console.log(productDetail.id);
                       }}
                     >
                       <DeleteIcon />
@@ -302,7 +288,6 @@ export default function Home() {
               onClick={() => {
                 deleteProduct(toDelete);
                 handleCloseDeleteModal();
-                // location.reload();
               }}
             >
               Yes

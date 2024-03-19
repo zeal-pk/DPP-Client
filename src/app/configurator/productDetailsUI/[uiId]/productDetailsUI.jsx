@@ -49,6 +49,7 @@ const charts = [
 ];
 
 export default function AddProductsSection({ params }) {
+  let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   let router = useRouter();
 
   let [fullData, setFullData] = useState({});
@@ -331,7 +332,7 @@ export default function AddProductsSection({ params }) {
 
   const form = useForm();
   const { register, control, handleSubmit, formState } = form;
-  let dataStruct = {
+  let [dataStruct, setDataStruct] = useState({
     templateId: "",
     [tab1]: {
       [tab1SubTab1]: {
@@ -443,7 +444,7 @@ export default function AddProductsSection({ params }) {
         Fields: tab5SubTab5Fields,
       },
     },
-  };
+  })
 
     // Disable toggle code - START
   const [disabledStates, setDisabledStates] = useState(
@@ -479,12 +480,14 @@ export default function AddProductsSection({ params }) {
     let token = localStorage.getItem("access_token");
     try {
       let response = await axios.post(
-        // `https://dpp-server-app.azurewebsites.net/postProductDetailsUI/${id}`,
-        `http://localhost:9000/postProductDetailsUI/${id}`,
+        `${serverUrl}/postProductDetailsUI/${id}`,
         data
       );
-      // let response = await axios.post(`http://localhost:9000/postProductDetailsUI/${id}`, data);
-      router.push("/configurator");
+      
+      if (response.status == 200) {
+        alert("UI Configuration Successful")
+        router.push("/configurator");
+      }
     } catch (error) {
       alert(error, "Please try again later");
     }
@@ -1359,7 +1362,7 @@ export default function AddProductsSection({ params }) {
     if (token && role == "configurator") {
       try {
         await axios.get(
-          "https://dpp-server-app.azurewebsites.net/routVerification",
+          `${serverUrl}/routVerification`,
           {
             headers: {
               Authorization: "Bearer " + token,

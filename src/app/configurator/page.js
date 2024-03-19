@@ -32,6 +32,7 @@ const style = {
 };
 
 export default function Home() {
+  let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   const router = useRouter();
   let [productDetails, setProductDetails] = useState([]);
   let [productName, setProductName] = useState();
@@ -71,7 +72,7 @@ export default function Home() {
     if (token && role == "configurator") {
       try {
         const response = await axios.get(
-          "https://dpp-server-app.azurewebsites.net/getAllProducts",
+          `${serverUrl}/getAllProducts`,
           // "http://localhost:9000/getAllProducts",
           {
             headers: {

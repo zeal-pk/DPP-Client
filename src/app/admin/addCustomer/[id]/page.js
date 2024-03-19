@@ -18,6 +18,7 @@ import {
 import "react-country-state-city/dist/react-country-state-city.css";
 
 export default function AddCustomer() {
+  let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   let router = useRouter();
 
   let [name, setCustomerName] = useState("");
@@ -42,15 +43,11 @@ export default function AddCustomer() {
       try {
         let token = localStorage.getItem("access_token");
         const response = await axios
-          .post(
-            "https://dpp-server-app.azurewebsites.net/postCustomer",
-            newCustomerData,
-            {
-              headers: {
-                Authorization: "Bearer " + token,
-              },
-            }
-          )
+          .post(`${serverUrl}/postCustomer`, newCustomerData, {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          })
           .then((response) => {
             console.log(response);
             if (response.data.message == "This Customer Data Already Exist") {
@@ -106,7 +103,7 @@ export default function AddCustomer() {
     if (token && role == "admin") {
       try {
         await axios
-          .get("https://dpp-server-app.azurewebsites.net/getAllProducts", {
+          .get(`${serverUrl}/getAllProducts`, {
             headers: {
               Authorization: "Bearer " + token,
             },
