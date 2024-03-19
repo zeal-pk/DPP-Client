@@ -40,20 +40,18 @@ export default function CustomerDetials({ params }) {
 
   // Function to get the selected customer detials and product details
   const getDetails = async () => {
+    let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
     let token = localStorage.getItem("access_token");
     let role = localStorage.getItem("current_user_role");
 
     if (token && role == "admin") {
       try {
         await axios
-          .get(
-            `https://dpp-server-app.azurewebsites.net/getCustomer/${customerId}`,
-            {
-              headers: {
-                Authorization: "Bearer " + token,
-              },
-            }
-          )
+          .get(`${serverUrl}/getCustomer/${customerId}`, {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          })
           .then((res) => {
             setCustomerDetail(res.data);
           });
@@ -67,15 +65,13 @@ export default function CustomerDetials({ params }) {
     }
 
     await axios
-      .get(
-        `https://dpp-server-app.azurewebsites.net/getProducts/${customerId}`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      )
+      .get(`${serverUrl}/getProducts/${customerId}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
+        console.log(res);
         setProductDetails(res.data);
         setSelectedProduct(res.data[0]);
       });

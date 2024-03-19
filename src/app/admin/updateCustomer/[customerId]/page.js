@@ -10,6 +10,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import BackButton from "../../../../components/backButton.js";
 
 export default function UpdateCustomer({ params }) {
+  let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   let router = useRouter();
   let custId = params.customerId;
   let [customerDetails, setCustomerDetails] = useState("-");
@@ -22,60 +23,64 @@ export default function UpdateCustomer({ params }) {
   let [city, setCity] = useState("-");
   let [state, setState] = useState("-");
   let [country, setCountry] = useState("-");
+  let [prodObjArr, setProdObjArr] = useState([]);
   let [products, setProducts] = useState([]);
 
   async function handleGetCustomerData() {
     let token = localStorage.getItem("access_token");
     let prods = [];
+    let prodObjArr = [];
     try {
       const response = await axios
-        .get(`https://dpp-server-app.azurewebsites.net/getCustomer/${custId}`, {
+        .get(`${serverUrl}/getCustomer/${custId}`, {
           headers: {
             Authorization: "Bearer " + token,
           },
         })
         .then((response) => {
-          setCustomerDetails(response.data.name);
+          // setCustomerDetails(response.data.name);
           return response.data;
         });
+      setCustomerName(response.name);
+      setCustomerId(response.id);
+      setLogoUrl(response.logoUrl);
+      setDescription(response.descreption);
+      setAddressL1(response.addressL1);
+      setAddressL2(response.addressL2);
+      setCity(response.city);
+      setState(response.state);
+      setCountry(response.country);
+
+      for (let i = 0; i < response.products.length; i++) {
+        prods.push(response.products[i].id);
+        prodObjArr.push(response.products[i]);
+      }
+      setProducts(prods);
+      setProdObjArr(prodObjArr);
     } catch (error) {
       if (error.response.status == 403) {
         router.push("/error");
       }
     }
-
-    setCustomerName(response.name);
-    setCustomerId(response.id);
-    setLogoUrl(response.logoUrl);
-    setDescription(response.descreption);
-    setAddressL1(response.addressL1);
-    setAddressL2(response.addressL2);
-    setCity(response.city);
-    setState(response.state);
-    setCountry(response.country);
-
-    for (let i = 0; i < response.products.length; i++) {
-      prods.push(response.products[i].productId);
-    }
-    setProducts(prods);
-    // console.log(products);
   }
 
   async function handleUpdateCustomer(newCustomerData) {
     let token = localStorage.getItem("access_token");
-    const response = await axios
-      .post(
-        `https://dpp-server-app.azurewebsites.net/updateCustomer/${customerId}`,
-        newCustomerData,
-        {
+    try {
+      const response = await axios
+        .post(`${serverUrl}/updateCustomer/${customerId}`, newCustomerData, {
           headers: {
             Authorization: "Bearer " + token,
           },
-        }
-      )
-      .then((response) => {
-        console.log(response.data);
-      });
+        })
+        .then((response) => {
+          console.log(response.data);
+        });
+      router.push("/admin/customerList");
+    } catch (error) {
+      console.log(error);
+      alert(error);
+    }
   }
 
   useEffect(() => {
@@ -197,27 +202,53 @@ export default function UpdateCustomer({ params }) {
           <Button
             variant="contained"
             startIcon={<EditIcon />}
-            onClick={() => {
+            onClick={async () => {
+              let token = localStorage.getItem("access_token");
               let productArray = products;
               let prods = [];
+              let unavailableProd;
               for (let i = 0; i < productArray.length; i++) {
-                let prod = { productId: productArray[i], templateId: "" };
-                prods.push(prod);
+                let prod = await axios.get(
+                  `${serverUrl}/getProduct/${productArray[i]}`,
+                  {
+                    headers: {
+                      Authorization: "Bearer " + token,
+                    },
+                  }
+                );
+                if (!prod.data.id) {
+                  alert(`Product ID "${productArray[i]}" does not exist`);
+                  unavailableProd = productArray[i];
+                } else {
+                  prods.push({ id: prod.data.id, name: prod.data.name });
+                }
               }
-              let newCustomerData = {
-                id: customerId,
-                name: customerName,
-                logoUrl: logoUrl,
-                descreption: descreption,
-                addressL1: addressL1,
-                addressL2: addressL2,
-                city: city,
-                state: state,
-                country: country,
-                products: prods,
-              };
-              handleUpdateCustomer(newCustomerData);
-              router.push("/admin");
+              if (unavailableProd) {
+                alert(`Product "${unavailableProd}" does not exist`);
+              } else {
+                if (
+                  logoUrl.match(
+                    /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
+                  ) != null
+                ) {
+                  let newCustomerData = {
+                    id: customerId,
+                    name: customerName,
+                    logoUrl: logoUrl,
+                    descreption: descreption,
+                    addressL1: addressL1,
+                    addressL2: addressL2,
+                    city: city,
+                    state: state,
+                    country: country,
+                    products: prods,
+                  };
+                  console.log(newCustomerData);
+                  handleUpdateCustomer(newCustomerData);
+                } else {
+                  alert("Please enter valid URL");
+                }
+              }
             }}
           >
             Update Customer

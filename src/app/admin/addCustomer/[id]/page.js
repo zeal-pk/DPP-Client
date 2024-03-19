@@ -37,36 +37,30 @@ export default function AddCustomer() {
   let [products, setProducts] = useState([]);
 
   async function handleAddCustomer(newCustomerData) {
-    if (!id) {
-      alert("Please Generate Customer ID");
-    } else {
-      try {
-        let token = localStorage.getItem("access_token");
-        const response = await axios
-          .post(`${serverUrl}/postCustomer`, newCustomerData, {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          })
-          .then((response) => {
-            console.log(response);
-            if (response.data.message == "This Customer Data Already Exist") {
-              alert("This Customer Data Already Exist");
-            } else if (response.status == 200) {
-              alert("Customer Data Submitted");
-              router.push("/admin/customerList");
-            } else {
-              alert("There was an error. Please Try again later");
-              router.push("/admin/customerList");
-            }
-          });
-      } catch (error) {
-        if (error.message == "Network Error") {
-          alert("Network Error, please try later");
-        } else if (error.response.status == 403) {
-          console.log(error);
-          router.push("/error");
-        }
+    try {
+      let token = localStorage.getItem("access_token");
+      const response = await axios
+        .post(`${serverUrl}/postCustomer`, newCustomerData, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
+        .then((response) => {
+          if (response.data.message == "This Customer Data Already Exist") {
+            alert("This Customer Data Already Exist");
+          } else if (response.status == 200) {
+            alert("Customer Data Submitted");
+            router.push("/admin/customerList");
+          } else {
+            alert("There was an error. Please Try again later");
+            router.push("/admin/customerList");
+          }
+        });
+    } catch (error) {
+      if (error.message == "Network Error") {
+        alert("Network Error, please try later");
+      } else if (error.response.status == 403) {
+        router.push("/error");
       }
     }
   }
@@ -90,7 +84,18 @@ export default function AddCustomer() {
         country: country,
         products: products,
       };
-      handleAddCustomer(newCustomerData);
+      if (
+        name == "" ||
+        id == "" ||
+        addressL1 == "" ||
+        city == "" ||
+        state == "" ||
+        country == ""
+      ) {
+        alert("Please fill all the mandatory fields");
+      } else {
+        handleAddCustomer(newCustomerData);
+      }
     },
   });
 
@@ -115,8 +120,6 @@ export default function AddCustomer() {
               let prod = { id: data[i].id, name: data[i].name };
               setAllProducts((existingProds) => [...existingProds, prod]);
             }
-
-            console.log(allProducts);
           });
       } catch (error) {
         if (error.message == "Network Error") {
@@ -159,7 +162,9 @@ export default function AddCustomer() {
           </div>
           <h3>Please Enter Customer Details</h3>
           <div>
-            <p className="addCustomerInputLable">Customer Name</p>
+            <p className="addCustomerInputLable">
+              Customer Name <span style={{ color: "red" }}>*</span>
+            </p>
             <TextField
               fullWidth
               id="fullWidth"
@@ -170,7 +175,9 @@ export default function AddCustomer() {
           </div>
 
           <div>
-            <p className="addCustomerInputLable">Logo URL</p>
+            <p className="addCustomerInputLable">
+              Logo URL <span style={{ color: "red" }}>*</span>
+            </p>
             <TextField
               fullWidth
               id="fullWidth"
@@ -192,7 +199,9 @@ export default function AddCustomer() {
           </div>
 
           <div>
-            <p className="addCustomerInputLable">Address Line 1</p>
+            <p className="addCustomerInputLable">
+              Address Line 1 <span style={{ color: "red" }}>*</span>
+            </p>
             <TextField
               fullWidth
               id="fullWidth"
@@ -214,7 +223,9 @@ export default function AddCustomer() {
           </div>
 
           <div>
-            <p className="addCustomerInputLable">Country</p>
+            <p className="addCustomerInputLable">
+              Country <span style={{ color: "red" }}>*</span>
+            </p>
             <CountrySelect
               onChange={(e) => {
                 setCountryid(e.id);
@@ -223,7 +234,9 @@ export default function AddCustomer() {
               }}
               placeHolder="Select Country"
             />
-            <p className="addCustomerInputLable">State</p>
+            <p className="addCustomerInputLable">
+              State <span style={{ color: "red" }}>*</span>
+            </p>
             <StateSelect
               countryid={countryid}
               onChange={(e) => {
@@ -233,7 +246,9 @@ export default function AddCustomer() {
               }}
               placeHolder="Select State"
             />
-            <p className="addCustomerInputLable">City</p>
+            <p className="addCustomerInputLable">
+              City <span style={{ color: "red" }}>*</span>
+            </p>
             <CitySelect
               countryid={countryid}
               stateid={stateid}

@@ -2050,6 +2050,7 @@ export default function AddProductsSection({ params }) {
                         chartLable,
                       ]);
                     }
+                    handleCloseAddChart()
                   }}
                 >
                   Add Field

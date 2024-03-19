@@ -65,7 +65,7 @@ export default function AdminProductDetails(data) {
   let addressL2 = customerDetials.addressL2;
   let city = customerDetials.city;
   let country = customerDetials.country;
-  let productName = productDetails.name;
+  // let productName = productDetails.name;
   return (
     <ThemeProvider>
       <ObjectPage
@@ -92,7 +92,7 @@ export default function AdminProductDetails(data) {
           <DynamicPageTitle
             header={customerName}
             showSubHeaderRight
-            subHeader={productName}
+            // subHeader={productName}
           ></DynamicPageTitle>
         }
         image={customerLogo}
