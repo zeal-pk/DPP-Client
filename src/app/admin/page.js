@@ -9,9 +9,12 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import LoadingPage from "../loading";
 
 export default function Home() {
   let router = useRouter();
+
+  let [loadPage, setLoadPage] = useState(false);
 
   async function VerifyToken() {
     let token = localStorage.getItem("access_token");
@@ -37,6 +40,13 @@ export default function Home() {
     }
   }
 
+  function pageLoading() {
+    setLoadPage(true);
+    // setTimeout(() => {
+    //   setLoadPage(false);
+    // }, 60000);
+  }
+
   useEffect(() => {
     VerifyToken();
   }, []);
@@ -44,27 +54,41 @@ export default function Home() {
   return (
     <div className="main">
       <NavBar />
-      <div className="tilePage">
-        <Button onClick={() => router.push("/admin/customerList")}>
-          <Card variant="outlined">
-            <CardContent>
-              <Typography variant="h5" component="div">
-                Customer List
-              </Typography>
-            </CardContent>
-          </Card>
-        </Button>
+      {loadPage ? (
+        <LoadingPage />
+      ) : (
+        <div className="tilePage">
+          <Button
+            onClick={() => {
+              pageLoading();
+              router.push("/admin/customerList");
+            }}
+          >
+            <Card variant="outlined">
+              <CardContent>
+                <Typography variant="h5" component="div">
+                  Customer List
+                </Typography>
+              </CardContent>
+            </Card>
+          </Button>
 
-        <Button onClick={() => router.push("/admin/productList")}>
-          <Card variant="outlined">
-            <CardContent>
-              <Typography variant="h5" component="div">
-                Product List
-              </Typography>
-            </CardContent>
-          </Card>
-        </Button>
-      </div>
+          <Button
+            onClick={() => {
+              pageLoading();
+              router.push("/admin/productList");
+            }}
+          >
+            <Card variant="outlined">
+              <CardContent>
+                <Typography variant="h5" component="div">
+                  Product List
+                </Typography>
+              </CardContent>
+            </Card>
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

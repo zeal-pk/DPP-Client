@@ -14,6 +14,7 @@ import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
 import SettingsIcon from "@mui/icons-material/Settings";
+import LoadingPage from "../loading";
 
 const style = {
   display: "flex",
@@ -33,6 +34,8 @@ const style = {
 export default function Home() {
   let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   const router = useRouter();
+  let [loadPage, setLoadPage] = useState(false);
+
   let [productDetails, setProductDetails] = useState([]);
   let [productName, setProductName] = useState();
   let [showAlert, setShowAlert] = useState("none");
@@ -44,6 +47,13 @@ export default function Home() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   // Modal Helper - END
+
+  function pageLoading(val) {
+    setLoadPage(val);
+    // setTimeout(() => {
+    //   setLoadPage(false);
+    // }, 60000);
+  }
 
   // async function postProduct(data) {
 
@@ -67,7 +77,7 @@ export default function Home() {
   const Fun = async () => {
     let token = localStorage.getItem("access_token");
     let role = localStorage.getItem("current_user_role");
-
+    pageLoading(true);
     if (token && role == "configurator") {
       try {
         const response = await axios.get(
@@ -79,6 +89,7 @@ export default function Home() {
             },
           }
         );
+        pageLoading(false);
         setProductDetails(response.data);
       } catch (error) {
         if (error.response.status == 403) {
@@ -108,56 +119,61 @@ export default function Home() {
           ? "Success! Action Completed"
           : "Error! Please Try Again Later"}
       </Alert>
-
-      {/* --------------------------------- Product List Section - START */}
-      <section className="customerList-scroll">
-        <section className="customerList-scroll-content">
-          <section className="customerList-section">
-            {productDetails.map((productDetail) => (
-              <Card sx={{ maxWidth: 350 }} key={productDetail.id}>
-                <Link
-                  className="customerList-link"
-                  href={`/configurator/productDetailsUI/${productDetail.id}`}
-                >
-                  <CardContent>
-                    <Typography
-                      sx={{ fontSize: 14 }}
-                      color="text.secondary"
-                      gutterBottom
+      {loadPage ? (
+        <LoadingPage />
+      ) : (
+        <>
+          {/* --------------------------------- Product List Section - START */}
+          <section className="customerList-scroll">
+            <section className="customerList-scroll-content">
+              <section className="customerList-section">
+                {productDetails.map((productDetail) => (
+                  <Card sx={{ maxWidth: 350 }} key={productDetail.id}>
+                    <Link
+                      className="customerList-link"
+                      href={`/configurator/productDetailsUI/${productDetail.id}`}
                     >
-                      ID: {productDetail.id}
-                    </Typography>
-                    <Typography variant="h5" component="div">
-                      {productDetail.name}
-                    </Typography>
-                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                      {productDetail.category}
-                    </Typography>
-                    <Typography variant="body2">
-                      {productDetail.description}
-                    </Typography>
-                  </CardContent>
-                </Link>
-                <CardActions className="customerList-card-cardAction">
-                  <Stack direction="row" spacing={0}>
-                    <IconButton
-                      aria-label="delete"
-                      onClick={() =>
-                        router.push(
-                          `/configurator/productDetailsUI/${productDetail.id}`
-                        )
-                      }
-                    >
-                      <SettingsIcon />
-                    </IconButton>
-                  </Stack>
-                </CardActions>
-              </Card>
-            ))}
+                      <CardContent>
+                        <Typography
+                          sx={{ fontSize: 14 }}
+                          color="text.secondary"
+                          gutterBottom
+                        >
+                          ID: {productDetail.id}
+                        </Typography>
+                        <Typography variant="h5" component="div">
+                          {productDetail.name}
+                        </Typography>
+                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                          {productDetail.category}
+                        </Typography>
+                        <Typography variant="body2">
+                          {productDetail.description}
+                        </Typography>
+                      </CardContent>
+                    </Link>
+                    <CardActions className="customerList-card-cardAction">
+                      <Stack direction="row" spacing={0}>
+                        <IconButton
+                          aria-label="delete"
+                          onClick={() => {
+                            router.push(
+                              `/configurator/productDetailsUI/${productDetail.id}`
+                            );
+                            pageLoading(true);
+                          }}
+                        >
+                          <SettingsIcon />
+                        </IconButton>
+                      </Stack>
+                    </CardActions>
+                  </Card>
+                ))}
+              </section>
+            </section>
           </section>
-        </section>
-      </section>
-
+        </>
+      )}
       {/* --------------------------------- Product List Section - END */}
     </div>
   );

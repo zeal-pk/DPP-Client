@@ -23,6 +23,7 @@ import TextField from "@mui/material/TextField";
 import CircularProgress from "@mui/material/CircularProgress";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import DoneIcon from "@mui/icons-material/Done";
+import LoadingPage from "@/app/loading";
 
 const style = {
   display: "flex",
@@ -42,6 +43,8 @@ const style = {
 export default function Home() {
   let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   const router = useRouter();
+  let [loadPage, setLoadPage] = useState(false);
+
   let [customerDetails, setCustomerDetails] = useState([]);
   let [showAlert, setShowAlert] = useState("none");
   let [alertSeverity, setAlertSeverity] = useState("");
@@ -71,11 +74,19 @@ export default function Home() {
     }
   }
 
+  function pageLoading(val) {
+    setLoadPage(val);
+    // setTimeout(() => {
+    //   setLoadPage(false);
+    // }, 60000);
+  }
+
   const Fun = async () => {
     let token = localStorage.getItem("access_token");
     let role = localStorage.getItem("current_user_role");
 
     if (token && role == "admin") {
+      pageLoading(true);
       try {
         const response = await axios.get(`${serverUrl}`, {
           headers: {
@@ -83,6 +94,7 @@ export default function Home() {
           },
         });
         setCustomerDetails(response.data);
+        pageLoading(false);
       } catch (error) {
         if (error.response.status == 403) {
           router.push("/error");
@@ -183,73 +195,74 @@ export default function Home() {
       </Alert>
 
       {/* --------------------------------- Customer List Section - START */}
-      <section className="customerList-scroll">
-        <section className="customerList-scroll-content">
-          <section className="customerList-section">
-            {customerDetails.map((customerDetail, index) => (
-              <Card sx={{ maxWidth: 350 }} key={customerDetail.id}>
-                <Link
-                  className="customerList-link"
-                  href={`/admin/customerDetails/${customerDetail.id}`}
-                >
-                  <CardContent>
-                    <Typography
-                      sx={{ fontSize: 14 }}
-                      color="text.secondary"
-                      gutterBottom
-                    >
-                      ID: {customerDetail.id}
-                    </Typography>
-                    <Typography variant="h5" component="div">
-                      {customerDetail.name}
-                    </Typography>
-                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                      {customerDetail.businessType}
-                    </Typography>
-                    <Typography variant="body2">
-                      {customerDetail.descreption}
-                    </Typography>
-                  </CardContent>
-                </Link>
-                <CardActions className="customerList-card-cardAction">
-                  <Stack direction="row" spacing={0}>
-                    <IconButton
-                      aria-label="delete"
-                      onClick={() =>
-                        router.push(
-                          `/admin/updateCustomer/${customerDetail.id}`
-                        )
-                      }
-                    >
-                      <EditIcon />
-                    </IconButton>
-                    <IconButton
-                      aria-label="delete"
-                      onClick={() => {
-                        load();
-                        setLoadId(index);
-                        copyCustomer(customerDetail.id);
-                      }}
-                    >
-                      {copyAnimation(index)}
-                    </IconButton>
-                    <IconButton
-                      aria-label="delete"
-                      onClick={() => {
-                        handleOpenDeleteModal();
-                        setToDelete(customerDetail.id);
-                      }}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                  </Stack>
-                </CardActions>
-              </Card>
-            ))}
+      {loadPage ? (
+        <LoadingPage />
+      ) : (
+        <>
+          <section className="customerList-scroll">
+            <section className="customerList-scroll-content">
+              <section className="customerList-section">
+                {customerDetails.map((customerDetail, index) => (
+                  <Card sx={{ maxWidth: 350 }} key={customerDetail.id}>
+                    <CardContent>
+                      <Typography
+                        sx={{ fontSize: 14 }}
+                        color="text.secondary"
+                        gutterBottom
+                      >
+                        ID: {customerDetail.id}
+                      </Typography>
+                      <Typography variant="h5" component="div">
+                        {customerDetail.name}
+                      </Typography>
+                      <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        {customerDetail.businessType}
+                      </Typography>
+                      <Typography variant="body2">
+                        {customerDetail.descreption}
+                      </Typography>
+                    </CardContent>
+                    <CardActions className="customerList-card-cardAction">
+                      <Stack direction="row" spacing={0}>
+                        <IconButton
+                          aria-label="delete"
+                          onClick={() => {
+                            router.push(
+                              `/admin/updateCustomer/${customerDetail.id}`
+                            );
+                            pageLoading(true);
+                          }}
+                        >
+                          <EditIcon />
+                        </IconButton>
+                        <IconButton
+                          aria-label="delete"
+                          onClick={() => {
+                            load();
+                            setLoadId(index);
+                            copyCustomer(customerDetail.id);
+                          }}
+                        >
+                          {copyAnimation(index)}
+                        </IconButton>
+                        <IconButton
+                          aria-label="delete"
+                          onClick={() => {
+                            handleOpenDeleteModal();
+                            setToDelete(customerDetail.id);
+                          }}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </Stack>
+                    </CardActions>
+                  </Card>
+                ))}
+              </section>
+            </section>
           </section>
-        </section>
-      </section>
-
+        </>
+      )}
       {/* --------------------------------- Customer List Section - END */}
 
       {/* --------------------------------- Add Customer Button Section - START */}

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -23,6 +23,7 @@ import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import CircularProgress from "@mui/material/CircularProgress";
 import DoneIcon from "@mui/icons-material/Done";
+import LoadingPage from "../../loading";
 
 const style = {
   display: "flex",
@@ -42,6 +43,8 @@ const style = {
 export default function Home() {
   let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   const router = useRouter();
+  let [loadPage, setLoadPage] = useState(false);
+
   let [productDetails, setProductDetails] = useState([]);
   let [productName, setProductName] = useState();
   let [productId, setProductId] = useState();
@@ -51,7 +54,7 @@ export default function Home() {
   let [toDelete, setToDelete] = useState("");
   let [loading, setLoading] = useState(false);
   let [done, setDone] = useState(false);
-  let [loadId, setLoadId] = useState();
+  let [loadId, setLoadId] = useState(false);
 
   // Modal Helper -START
   const [open, setOpen] = useState(false);
@@ -78,6 +81,13 @@ export default function Home() {
     } catch (error) {
       alert(error);
     }
+  }
+
+  function pageLoading(val) {
+    setLoadPage(val);
+    // setTimeout(() => {
+    //   setLoadPage(false);
+    // }, 60000);
   }
 
   async function load() {
@@ -141,12 +151,14 @@ export default function Home() {
     let role = localStorage.getItem("current_user_role");
 
     if (token && role == "admin") {
+      pageLoading(true);
       try {
         const response = await axios.get(`${serverUrl}/getAllProducts`, {
           headers: {
             Authorization: "Bearer " + token,
           },
         });
+        pageLoading(false);
         setProductDetails(response.data);
       } catch (error) {
         if (error.response.status == 403) {
@@ -202,86 +214,90 @@ export default function Home() {
   return (
     <div className="main">
       <NavBar />
-      <div style={{ display: "flex", alignItems: "baseline" }}>
-        <BackButton />
-        <h3 className="pageTitle">Product List</h3>
-      </div>
-      <Alert
-        variant="filled"
-        severity={alertSeverity}
-        sx={{ display: showAlert }}
-      >
-        {alertSeverity == "success"
-          ? "Success! Action Completed"
-          : "Error! Please Try Again Later"}
-      </Alert>
+      {loadPage ? (
+        <LoadingPage />
+      ) : (
+        <>
+          <div style={{ display: "flex", alignItems: "baseline" }}>
+            <BackButton />
+            <h3 className="pageTitle">Product List</h3>
+          </div>
 
-      {/* --------------------------------- Product List Section - START */}
-      <section className="customerList-scroll">
-        <section className="customerList-scroll-content">
-          <section className="customerList-section">
-            {productDetails.map((productDetail, index) => (
-              <Card sx={{ maxWidth: 350 }} key={productDetail.id}>
-                <Link
-                  className="customerList-link"
-                  href={`/admin/productDetails/${productDetail.id}`}
-                >
-                  <CardContent>
-                    <Typography
-                      sx={{ fontSize: 14 }}
-                      color="text.secondary"
-                      gutterBottom
-                    >
-                      ID: {productDetail.id}
-                    </Typography>
-                    <Typography variant="h5" component="div">
-                      {productDetail.name}
-                    </Typography>
-                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                      {productDetail.category}
-                    </Typography>
-                    <Typography variant="body2">
-                      {productDetail.description}
-                    </Typography>
-                  </CardContent>
-                </Link>
-                <CardActions className="customerList-card-cardAction">
-                  <Stack direction="row" spacing={0}>
-                    <IconButton
-                      aria-label="delete"
-                      onClick={() =>
-                        router.push(`/admin/editProduct/${productDetail.id}`)
-                      }
-                    >
-                      <EditIcon />
-                    </IconButton>
-                    <IconButton
-                      aria-label="delete"
-                      onClick={() => {
-                        load();
-                        setLoadId(index);
-                        copyProduct(productDetail.id);
-                      }}
-                    >
-                      {copyAnimation(index)}
-                    </IconButton>
-                    <IconButton
-                      aria-label="delete"
-                      onClick={() => {
-                        handleOpenDeleteModal();
-                        setToDelete(productDetail.id);
-                      }}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                  </Stack>
-                </CardActions>
-              </Card>
-            ))}
+          <Alert
+            variant="filled"
+            severity={alertSeverity}
+            sx={{ display: showAlert }}
+          >
+            {alertSeverity == "success"
+              ? "Success! Action Completed"
+              : "Error! Please Try Again Later"}
+          </Alert>
+
+          {/* --------------------------------- Product List Section - START */}
+          <section className="customerList-scroll">
+            <section className="customerList-scroll-content">
+              <section className="customerList-section">
+                {productDetails.map((productDetail, index) => (
+                  <Card sx={{ maxWidth: 350 }} key={productDetail.id}>
+                    <CardContent>
+                      <Typography
+                        sx={{ fontSize: 14 }}
+                        color="text.secondary"
+                        gutterBottom
+                      >
+                        ID: {productDetail.id}
+                      </Typography>
+                      <Typography variant="h5" component="div">
+                        {productDetail.name}
+                      </Typography>
+                      <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        {productDetail.category}
+                      </Typography>
+                      <Typography variant="body2">
+                        {productDetail.description}
+                      </Typography>
+                    </CardContent>
+                    <CardActions className="customerList-card-cardAction">
+                      <Stack direction="row" spacing={0}>
+                        <IconButton
+                          aria-label="delete"
+                          onClick={() => {
+                            router.push(
+                              `/admin/editProduct/${productDetail.id}`
+                            );
+                            pageLoading(true);
+                          }}
+                        >
+                          <EditIcon />
+                        </IconButton>
+                        <IconButton
+                          aria-label="delete"
+                          onClick={() => {
+                            load();
+                            setLoadId(index);
+                            copyProduct(productDetail.id);
+                          }}
+                        >
+                          {copyAnimation(index)}
+                        </IconButton>
+                        <IconButton
+                          aria-label="delete"
+                          onClick={() => {
+                            handleOpenDeleteModal();
+                            setToDelete(productDetail.id);
+                          }}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </Stack>
+                    </CardActions>
+                  </Card>
+                ))}
+              </section>
+            </section>
           </section>
-        </section>
-      </section>
-
+        </>
+      )}
       {/* --------------------------------- Product List Section - END */}
 
       {/* --------------------------------- Add Product Button Section - START */}

@@ -134,7 +134,7 @@ export default function Login() {
             </FormControl>
             {loading == true ? (
               <Button variant="text">
-                <CircularProgress color="secondary" />
+                <CircularProgress color="primary" />
               </Button>
             ) : (
               <Button type="submit" variant="contained">

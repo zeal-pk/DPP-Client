@@ -28,6 +28,7 @@ import {
 } from "@ui5/webcomponents-react";
 import { Mode } from "@mui/icons-material";
 import BackButton from "@/components/backButton";
+import LoadingPage from "@/app/loading";
 
 const charts = [
   {
@@ -51,6 +52,7 @@ const charts = [
 export default function AddProductsSection({ params }) {
   let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   let router = useRouter();
+  let [loadPage, setLoadPage] = useState(false);
 
   let [fullData, setFullData] = useState({});
   let [tabDetails, setTabDetails] = useState([]);
@@ -405,6 +407,13 @@ export default function AddProductsSection({ params }) {
   let [tab10SubTab9Type, setTab10SubTab9Type] = useState([]);
   let [tab10SubTab10Type, setTab10SubTab10Type] = useState([]);
 
+
+  function pageLoading(val) {
+    setLoadPage(val);
+    // setTimeout(() => {
+    //   setLoadPage(false);
+    // }, 60000);
+  }
 
   let dataStruct = {
     templateId: "",
@@ -2607,8 +2616,9 @@ export default function AddProductsSection({ params }) {
   async function VerifyToken() {
     let token = localStorage.getItem("access_token");
     let role = localStorage.getItem("current_user_role");
-
+    
     if (token && role == "configurator") {
+      pageLoading(true)
       try {
         await axios.get(
           `${serverUrl}/routVerification`,
@@ -2618,6 +2628,7 @@ export default function AddProductsSection({ params }) {
             },
           }
         );
+        pageLoading(false)
       } catch (error) {
         if (error.response.status !== 403) {
           router.push("/error");
@@ -2637,6 +2648,7 @@ export default function AddProductsSection({ params }) {
   }
   return (
     <div className="main">
+      {loadPage ? <LoadingPage /> : <>
       <form>
         <ObjectPage
           footer={
@@ -2669,6 +2681,7 @@ export default function AddProductsSection({ params }) {
           {ShowUIElements(dataStruct)}
         </ObjectPage>
       </form>
+      </> }
       {/* ----------------------- Tab Lable Change Modal ----------------------- */}
       <Modal
         aria-labelledby="transition-modal-title"
