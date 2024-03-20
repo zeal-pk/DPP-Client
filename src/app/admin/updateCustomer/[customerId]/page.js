@@ -103,6 +103,7 @@ export default function UpdateCustomer({ params }) {
             onChange={(e) => {
               setCustomerId(e.target.value);
             }}
+            disabled
           />
           <TextField
             className="addCustomer-form-div-input"
