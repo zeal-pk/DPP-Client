@@ -33,6 +33,7 @@ const VisuallyHiddenInput = styled("input")({
 });
 
 export default function EditProduct() {
+  let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   let router = useRouter();
   let [UiTemplate, setUiTemplate] = useState({});
   let [image, setImage] = useState();
@@ -49,15 +50,11 @@ export default function EditProduct() {
     if (token && role == "admin") {
       try {
         await axios
-          .get(
-            // `https://dpp-server-app.azurewebsites.net/productUiTemplate/${productId}`,
-            `http://localhost:9000/productUiTemplate/${productId}`,
-            {
-              headers: {
-                Authorization: "Bearer " + token,
-              },
-            }
-          )
+          .get(`${serverUrl}/productUiTemplate/${productId}`, {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          })
           .then((response) => {
             setUiTemplate(response.data);
             console.log(response.data);

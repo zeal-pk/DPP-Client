@@ -14,12 +14,15 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import AddIcon from "@mui/icons-material/Add";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
+import CircularProgress from "@mui/material/CircularProgress";
+import DoneIcon from "@mui/icons-material/Done";
 
 const style = {
   display: "flex",
@@ -41,15 +44,23 @@ export default function Home() {
   const router = useRouter();
   let [productDetails, setProductDetails] = useState([]);
   let [productName, setProductName] = useState();
+  let [productId, setProductId] = useState();
   let [showAlert, setShowAlert] = useState("none");
   let [alertSeverity, setAlertSeverity] = useState("");
   let [newProductID, setNewProductID] = useState();
   let [toDelete, setToDelete] = useState("");
+  let [loading, setLoading] = useState(false);
+  let [done, setDone] = useState(false);
+  let [loadId, setLoadId] = useState();
 
   // Modal Helper -START
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [openCopy, setOpenCopy] = useState(false);
+  const handleOpenCopy = () => setOpenCopy(true);
+  const handleCloseCopy = () => setOpenCopy(false);
 
   const [openDeleteModal, setOpenDeleteModat] = useState(false);
   const handleOpenDeleteModal = () => setOpenDeleteModat(true);
@@ -67,6 +78,19 @@ export default function Home() {
     } catch (error) {
       alert(error);
     }
+  }
+
+  async function load() {
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+      setDone(true);
+      setTimeout(() => {
+        setDone(false);
+      }, 1000);
+      Fun();
+    }, 2000);
   }
 
   async function generateProdID(prodName) {
@@ -96,6 +120,22 @@ export default function Home() {
     }
   }
 
+  async function copyProduct(prodId) {
+    let token = localStorage.getItem("access_token");
+    let role = localStorage.getItem("current_user_role");
+
+    try {
+      let res = await axios.get(`${serverUrl}/copyProd/${prodId}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+      Fun();
+    } catch (err) {
+      alert(err);
+    }
+  }
+
   const Fun = async () => {
     let token = localStorage.getItem("access_token");
     let role = localStorage.getItem("current_user_role");
@@ -118,11 +158,22 @@ export default function Home() {
     }
   };
 
+  function copyAnimation(index) {
+    if (loading && loadId == index) {
+      return <CircularProgress color="inherit" size="20px" />;
+    } else if (done && loadId == index) {
+      return <DoneIcon color="success" />;
+    } else {
+      return <ContentCopyIcon />;
+    }
+  }
+
   useEffect(() => {
     Fun();
   }, []);
 
   const deleteProduct = async (productId) => {
+    console.log(productId);
     let token = localStorage.getItem("access_token");
     axios
       .delete(`${serverUrl}/deleteProduct/${productId}`, {
@@ -169,7 +220,7 @@ export default function Home() {
       <section className="customerList-scroll">
         <section className="customerList-scroll-content">
           <section className="customerList-section">
-            {productDetails.map((productDetail) => (
+            {productDetails.map((productDetail, index) => (
               <Card sx={{ maxWidth: 350 }} key={productDetail.id}>
                 <Link
                   className="customerList-link"
@@ -195,12 +246,6 @@ export default function Home() {
                   </CardContent>
                 </Link>
                 <CardActions className="customerList-card-cardAction">
-                  <Button
-                    size="small"
-                    // onClick={getCustomerData(customerDetail.customerId)}
-                  >
-                    Learn More
-                  </Button>
                   <Stack direction="row" spacing={0}>
                     <IconButton
                       aria-label="delete"
@@ -209,6 +254,16 @@ export default function Home() {
                       }
                     >
                       <EditIcon />
+                    </IconButton>
+                    <IconButton
+                      aria-label="delete"
+                      onClick={() => {
+                        load();
+                        setLoadId(index);
+                        copyProduct(productDetail.id);
+                      }}
+                    >
+                      {copyAnimation(index)}
                     </IconButton>
                     <IconButton
                       aria-label="delete"
@@ -238,6 +293,13 @@ export default function Home() {
         >
           Add Product
         </Button>
+        <Button
+          variant="contained"
+          startIcon={<ContentCopyIcon />}
+          onClick={handleOpenCopy}
+        >
+          Copy Product
+        </Button>
       </section>
 
       {/* --------------------------------- Add Product Button Section - END */}
@@ -262,6 +324,36 @@ export default function Home() {
               onClick={() => {
                 generateProdID(productName);
                 handleClose();
+              }}
+            >
+              Save
+            </Button>
+          </Box>
+        </Modal>
+      </div>
+
+      {/* --------------------------------- Copy Product Button Section - END */}
+
+      <div>
+        <Modal
+          open={openCopy}
+          onClose={handleCloseCopy}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Product ID
+            </Typography>
+            <TextField
+              size="small"
+              onChange={(e) => setProductId(e.target.value)}
+            />
+            <Button
+              variant="contained"
+              onClick={() => {
+                copyProduct(productId);
+                handleCloseCopy();
               }}
             >
               Save

@@ -19,6 +19,10 @@ import EditIcon from "@mui/icons-material/Edit";
 import Alert from "@mui/material/Alert";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import CircularProgress from "@mui/material/CircularProgress";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import DoneIcon from "@mui/icons-material/Done";
 
 const style = {
   display: "flex",
@@ -42,6 +46,9 @@ export default function Home() {
   let [showAlert, setShowAlert] = useState("none");
   let [alertSeverity, setAlertSeverity] = useState("");
   let [toDelete, setToDelete] = useState("");
+  let [loading, setLoading] = useState(false);
+  let [done, setDone] = useState(false);
+  let [loadId, setLoadId] = useState();
 
   const [openDeleteModal, setOpenDeleteModat] = useState(false);
   const handleOpenDeleteModal = () => setOpenDeleteModat(true);
@@ -85,6 +92,45 @@ export default function Home() {
       router.push("/error");
     }
   };
+
+  async function load() {
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+      setDone(true);
+      setTimeout(() => {
+        setDone(false);
+      }, 1000);
+      Fun();
+    }, 2000);
+  }
+
+  async function copyCustomer(custId) {
+    let token = localStorage.getItem("access_token");
+    let role = localStorage.getItem("current_user_role");
+
+    try {
+      let res = await axios.get(`${serverUrl}/copyCustomer/${custId}`, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+    } catch (err) {
+      alert(err);
+    }
+  }
+
+  function copyAnimation(index) {
+    if (loading && loadId == index) {
+      return <CircularProgress color="inherit" size="20px" />;
+    } else if (done && loadId == index) {
+      return <DoneIcon color="success" />;
+    } else {
+      return <ContentCopyIcon />;
+    }
+  }
+
   useEffect(() => {
     Fun();
   }, []);
@@ -140,7 +186,7 @@ export default function Home() {
       <section className="customerList-scroll">
         <section className="customerList-scroll-content">
           <section className="customerList-section">
-            {customerDetails.map((customerDetail) => (
+            {customerDetails.map((customerDetail, index) => (
               <Card sx={{ maxWidth: 350 }} key={customerDetail.id}>
                 <Link
                   className="customerList-link"
@@ -166,12 +212,6 @@ export default function Home() {
                   </CardContent>
                 </Link>
                 <CardActions className="customerList-card-cardAction">
-                  <Button
-                    size="small"
-                    // onClick={getCustomerData(customerDetail.customerId)}
-                  >
-                    Learn More
-                  </Button>
                   <Stack direction="row" spacing={0}>
                     <IconButton
                       aria-label="delete"
@@ -182,6 +222,16 @@ export default function Home() {
                       }
                     >
                       <EditIcon />
+                    </IconButton>
+                    <IconButton
+                      aria-label="delete"
+                      onClick={() => {
+                        load();
+                        setLoadId(index);
+                        copyCustomer(customerDetail.id);
+                      }}
+                    >
+                      {copyAnimation(index)}
                     </IconButton>
                     <IconButton
                       aria-label="delete"
