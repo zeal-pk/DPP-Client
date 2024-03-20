@@ -3,7 +3,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import BackButton from "@/components/backButton";
 import axios from "axios";
 import NavBar from "@/components/navBar";
 import Button from "@mui/material/Button";
@@ -98,7 +97,6 @@ export default function Home() {
     <div className="main">
       <NavBar />
       <div style={{ display: "flex", alignItems: "baseline" }}>
-        <BackButton />
         <h3 className="pageTitle">Product List</h3>
       </div>
       <Alert

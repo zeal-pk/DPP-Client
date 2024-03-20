@@ -15,9 +15,12 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Login() {
   const router = useRouter();
+
+  let [loading, setLoading] = useState(false);
 
   // MUI Show and Hide Password - START
   const [showPassword, setShowPassword] = React.useState(false);
@@ -27,11 +30,20 @@ export default function Login() {
   };
   // MUI Show and Hide Password - END
 
+  function loadData() {
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 15000);
+  }
+
   let [email, setEmail] = useState();
   let [password, setPassword] = useState();
 
   async function handleLogin(e) {
     let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+    loadData();
     e.preventDefault();
     let mail = email;
     let pass = password;
@@ -120,9 +132,15 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </FormControl>
-            <Button type="submit" variant="contained">
-              Login
-            </Button>
+            {loading == true ? (
+              <Button variant="text">
+                <CircularProgress color="secondary" />
+              </Button>
+            ) : (
+              <Button type="submit" variant="contained">
+                Login
+              </Button>
+            )}
           </Stack>
           <p>
             Don&apos;t have an account? Please
