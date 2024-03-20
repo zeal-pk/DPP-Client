@@ -6,7 +6,6 @@ import axios from "axios";
 import NavBar from "@/components/navBar";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Chip from "@mui/material/Chip";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useFormik } from "formik";
 import BackButton from "../../../../components/backButton.js";
