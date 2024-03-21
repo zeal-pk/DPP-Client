@@ -59,6 +59,7 @@ export default function Home() {
 
   async function generateCustomerId() {
     // console.log("custId");
+    pageLoading(true);
     try {
       let token = localStorage.getItem("access_token");
       const response = await axios.get(`${serverUrl}/genCustId`, {
@@ -67,7 +68,7 @@ export default function Home() {
         },
       });
       let custId = response.data.message;
-
+      pageLoading(true);
       router.push(`/admin/addCustomer/${custId}`);
     } catch (error) {
       alert(error);

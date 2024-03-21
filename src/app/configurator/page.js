@@ -107,22 +107,23 @@ export default function Home() {
   return (
     <div className="main">
       <NavBar />
-      <div style={{ display: "flex", alignItems: "baseline" }}>
-        <h3 className="pageTitle">Product List</h3>
-      </div>
-      <Alert
-        variant="filled"
-        severity={alertSeverity}
-        sx={{ display: showAlert }}
-      >
-        {alertSeverity == "success"
-          ? "Success! Action Completed"
-          : "Error! Please Try Again Later"}
-      </Alert>
       {loadPage ? (
         <LoadingPage />
       ) : (
         <>
+          <div style={{ display: "flex", alignItems: "baseline" }}>
+            <h3 className="pageTitle">Product List</h3>
+          </div>
+          <Alert
+            variant="filled"
+            severity={alertSeverity}
+            sx={{ display: showAlert }}
+          >
+            {alertSeverity == "success"
+              ? "Success! Action Completed"
+              : "Error! Please Try Again Later"}
+          </Alert>
+
           {/* --------------------------------- Product List Section - START */}
           <section className="customerList-scroll">
             <section className="customerList-scroll-content">

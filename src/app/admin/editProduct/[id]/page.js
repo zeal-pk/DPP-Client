@@ -20,6 +20,8 @@ import { TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
+import * as XLSX from "xlsx";
+
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
   clipPath: "inset(50%)",
@@ -35,7 +37,7 @@ const VisuallyHiddenInput = styled("input")({
 export default function EditProduct() {
   let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   let router = useRouter();
-  let [UiTemplate, setUiTemplate] = useState({});
+  let [UiTemplate, setUiTemplate] = useState([]);
   let [image, setImage] = useState();
 
   async function getProductUI() {
@@ -114,6 +116,28 @@ export default function EditProduct() {
     }
   }
 
+  let testData = [
+    { Tab1: "Lokesh Kanna", SubTab1: "Dev" },
+    { name: "Premanand", type: "SAP" },
+    { name: "Narendhran", type: "Con" },
+    // Object.keys(UiTemplate).map((key, index) => {
+    //   return Object.keys(UiTemplate[key]).map((child) => {
+    //     return { tab: key, subTab: UiTemplate[key][child] };
+    //   });
+    // }),
+  ];
+
+  function downloadExcel(testData) {
+    var workbook = XLSX.utils.book_new();
+    var worksheet = XLSX.utils.json_to_sheet(testData);
+    let sheetName = "Sheet1";
+    let fileName = "Test.xlsx";
+
+    XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
+
+    XLSX.writeFileXLSX(workbook, fileName);
+  }
+
   function ShowUIElements(UiTemplate) {
     return Object.keys(UiTemplate).map((key, index) => {
       if (
@@ -123,7 +147,12 @@ export default function EditProduct() {
         key != "Tab 2" &&
         key != "Tab 3" &&
         key != "Tab 4" &&
-        key != "Tab 5"
+        key != "Tab 5" &&
+        key != "Tab 6" &&
+        key != "Tab 7" &&
+        key != "Tab 8" &&
+        key != "Tab 9" &&
+        key != "Tab 10"
       ) {
         return (
           <ObjectPageSection
@@ -183,11 +212,9 @@ export default function EditProduct() {
                     <BackButton />
                     <Button
                       design="Emphasized"
-                      onClick={() => {
-                        handleOpenTab();
-                      }}
+                      onClick={() => downloadExcel(testData)}
                     >
-                      Edit Lables
+                      Download Excel
                     </Button>
 
                     <Button
