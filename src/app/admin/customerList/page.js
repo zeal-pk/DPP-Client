@@ -44,10 +44,11 @@ export default function Home() {
   let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   const router = useRouter();
   let [loadPage, setLoadPage] = useState(false);
+  let [alert, setAlert] = useState(false);
+  let [alertMessage, setAlertMessage] = useState();
+  let [alertSeverity, setAlertSeverity] = useState();
 
   let [customerDetails, setCustomerDetails] = useState([]);
-  let [showAlert, setShowAlert] = useState("none");
-  let [alertSeverity, setAlertSeverity] = useState("");
   let [toDelete, setToDelete] = useState("");
   let [loading, setLoading] = useState(false);
   let [done, setDone] = useState(false);
@@ -56,6 +57,19 @@ export default function Home() {
   const [openDeleteModal, setOpenDeleteModat] = useState(false);
   const handleOpenDeleteModal = () => setOpenDeleteModat(true);
   const handleCloseDeleteModal = () => setOpenDeleteModat(false);
+
+  function errAlert(errData) {
+    setLoadPage(false);
+    let message = errData.message;
+    let severity = errData.severity;
+    setAlert(true);
+    setAlertMessage(message);
+    setAlertSeverity(severity);
+
+    setTimeout(() => {
+      setAlert(false);
+    }, 3000);
+  }
 
   async function generateCustomerId() {
     // console.log("custId");
@@ -71,15 +85,16 @@ export default function Home() {
       pageLoading(true);
       router.push(`/admin/addCustomer/${custId}`);
     } catch (error) {
-      alert(error);
+      let errData = {
+        message: error.message,
+        severity: "error",
+      };
+      errAlert(errData);
     }
   }
 
   function pageLoading(val) {
     setLoadPage(val);
-    // setTimeout(() => {
-    //   setLoadPage(false);
-    // }, 60000);
   }
 
   const Fun = async () => {
@@ -97,9 +112,11 @@ export default function Home() {
         setCustomerDetails(response.data);
         pageLoading(false);
       } catch (error) {
-        if (error.response.status == 403) {
-          router.push("/error");
-        }
+        let errData = {
+          message: error.message,
+          severity: "error",
+        };
+        errAlert(errData);
       }
     } else {
       router.push("/error");
@@ -129,8 +146,12 @@ export default function Home() {
           Authorization: "Bearer " + token,
         },
       });
-    } catch (err) {
-      alert(err);
+    } catch (error) {
+      let errData = {
+        message: error.message,
+        severity: "error",
+      };
+      errAlert(errData);
     }
   }
 
@@ -150,51 +171,56 @@ export default function Home() {
 
   const deleteCustomer = async (customerId) => {
     let token = localStorage.getItem("access_token");
-    axios
-      .delete(
-        `https://dpp-server-app.azurewebsites.net/deleteCustomer/${customerId}`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      )
-      .then((res) => {
-        if (res.status == 200) {
-          setAlertSeverity("success");
-          setShowAlert("block");
-          setTimeout(() => {
-            setShowAlert("none");
+    try {
+      axios
+        .delete(
+          `https://dpp-server-app.azurewebsites.net/deleteCustomer/${customerId}`,
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        )
+        .then((res) => {
+          if (res.status == 200) {
+            let alertData = {
+              message: `Customer: ${customerId} Deleted`,
+              severity: "success",
+            };
+            errAlert(alertData);
             Fun();
-          }, "2000");
-        } else {
-          setAlertSeverity("error");
-          setShowAlert("block");
-          setTimeout(() => {
-            setShowAlert("none");
-          }, "2000");
-        }
-      });
+          } else {
+            let alertData = {
+              message: `ERROR: Customer: ${customerId} Not Deleted`,
+              severity: "error",
+            };
+            errAlert(alertData);
+          }
+        });
+    } catch (error) {
+      let errData = {
+        message: error.message,
+        severity: "error",
+      };
+      errAlert(errData);
+    }
   };
 
   return (
     <div className="main">
       <NavBar />
+      {alert ? (
+        <Alert severity={alertSeverity} style={{ marginTop: "10px" }}>
+          {alertMessage}
+        </Alert>
+      ) : (
+        <></>
+      )}
+
       <div style={{ display: "flex", alignItems: "baseline" }}>
         <BackButton />
         <h3 className="pageTitle">Customer List</h3>
       </div>
-
-      <Alert
-        variant="filled"
-        severity={alertSeverity}
-        sx={{ display: showAlert }}
-      >
-        {alertSeverity == "success"
-          ? "Success! Action Completed"
-          : "Error! Please Try Again Later"}
-      </Alert>
-
       {/* --------------------------------- Customer List Section - START */}
       {loadPage ? (
         <LoadingPage />

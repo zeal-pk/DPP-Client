@@ -35,12 +35,26 @@ export default function Home() {
   let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   const router = useRouter();
   let [loadPage, setLoadPage] = useState(false);
+  let [alert, setAlert] = useState(false);
+  let [alertMessage, setAlertMessage] = useState();
+  let [alertSeverity, setAlertSeverity] = useState();
 
   let [productDetails, setProductDetails] = useState([]);
   let [productName, setProductName] = useState();
-  let [showAlert, setShowAlert] = useState("none");
-  let [alertSeverity, setAlertSeverity] = useState("");
   let [newProductID, setNewProductID] = useState();
+
+  function errAlert(errData) {
+    setLoadPage(false);
+    let message = errData.message;
+    let severity = errData.severity;
+    setAlert(true);
+    setAlertMessage(message);
+    setAlertSeverity(severity);
+
+    setTimeout(() => {
+      setAlert(false);
+    }, 3000);
+  }
 
   // Modal Helper -START
   const [open, setOpen] = useState(false);
@@ -50,9 +64,6 @@ export default function Home() {
 
   function pageLoading(val) {
     setLoadPage(val);
-    // setTimeout(() => {
-    //   setLoadPage(false);
-    // }, 60000);
   }
 
   // async function postProduct(data) {
@@ -92,8 +103,14 @@ export default function Home() {
         pageLoading(false);
         setProductDetails(response.data);
       } catch (error) {
-        if (error.response.status == 403) {
+        if (error.status == 403) {
           router.push("/error");
+        } else {
+          let errData = {
+            message: error.message,
+            severity: "error",
+          };
+          errAlert(errData);
         }
       }
     } else {
@@ -107,6 +124,8 @@ export default function Home() {
   return (
     <div className="main">
       <NavBar />
+      {alert ? <Alert severity={alertSeverity}>{alertMessage}</Alert> : <></>}
+
       {loadPage ? (
         <LoadingPage />
       ) : (
@@ -114,15 +133,6 @@ export default function Home() {
           <div style={{ display: "flex", alignItems: "baseline" }}>
             <h3 className="pageTitle">Product List</h3>
           </div>
-          <Alert
-            variant="filled"
-            severity={alertSeverity}
-            sx={{ display: showAlert }}
-          >
-            {alertSeverity == "success"
-              ? "Success! Action Completed"
-              : "Error! Please Try Again Later"}
-          </Alert>
 
           {/* --------------------------------- Product List Section - START */}
           <section className="customerList-scroll">

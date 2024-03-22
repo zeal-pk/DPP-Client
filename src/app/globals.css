@@ -295,3 +295,8 @@ a {
   justify-content: center;
   align-items: center;
 }
+
+/* Alert */
+.alert {
+  position: "relative";
+}

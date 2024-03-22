@@ -10,7 +10,7 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
+import Alert from "@mui/material/Alert";
 import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
@@ -21,6 +21,9 @@ export default function Login() {
   const router = useRouter();
 
   let [loading, setLoading] = useState(false);
+  let [alert, setAlert] = useState(false);
+  let [alertMessage, setAlertMessage] = useState();
+  let [alertSeverity, setAlertSeverity] = useState();
 
   // MUI Show and Hide Password - START
   const [showPassword, setShowPassword] = React.useState(false);
@@ -38,6 +41,19 @@ export default function Login() {
     }, 15000);
   }
 
+  function errAlert(errData) {
+    setLoading(false);
+    let message = errData.message;
+    let severity = errData.severity;
+    setAlert(true);
+    setAlertMessage(message);
+    setAlertSeverity(severity);
+
+    setTimeout(() => {
+      setAlert(false);
+    }, 3000);
+  }
+
   let [email, setEmail] = useState();
   let [password, setPassword] = useState();
 
@@ -50,9 +66,17 @@ export default function Login() {
     if (!mail) {
       alert("Please Provide an Email Address");
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
-      alert("Please Provide a valid Email Address");
+      let errData = {
+        message: "Please Provide a Valid Email Address",
+        severity: "error",
+      };
+      errAlert(errData);
     } else if (!pass) {
-      alert("Please Provide Password");
+      let errData = {
+        message: "Please Provide a Password",
+        severity: "error",
+      };
+      errAlert(errData);
     } else {
       try {
         let data = {
@@ -60,7 +84,6 @@ export default function Login() {
           password: pass,
         };
 
-        console.log(serverUrl);
         let response = await axios
           .post(`${serverUrl}/login`, data)
           .then((response) => {
@@ -73,24 +96,22 @@ export default function Login() {
             ) {
               router.push(`/${response.data.role}`);
             } else {
-              alert("Email or Password is Incorrect!");
+              let errData = {
+                message: "Email or Password is Incorrect",
+                severity: "error",
+              };
+              errAlert(errData);
             }
-            console.log(response.data);
           });
       } catch (error) {
-        console.log(error);
+        let errData = {
+          message: error.message,
+          severity: "error",
+        };
+        errAlert(errData);
       }
     }
   }
-
-  // useEffect(() => {
-  //   if (
-  //     localStorage.getItem("access_token") &&
-  //     localStorage.getItem("current_user_role")
-  //   ) {
-  //     router.push(`/${localStorage.getItem("current_user_role")}`);
-  //   }
-  // });
 
   return (
     <div className="main">
@@ -131,6 +152,13 @@ export default function Login() {
                 value={password || ""}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              {alert ? (
+                <Alert severity={alertSeverity} style={{ marginTop: "10px" }}>
+                  {alertMessage}
+                </Alert>
+              ) : (
+                <></>
+              )}
             </FormControl>
             {loading == true ? (
               <Button variant="text">

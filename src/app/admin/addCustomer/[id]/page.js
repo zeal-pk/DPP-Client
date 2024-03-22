@@ -7,6 +7,7 @@ import NavBar from "@/components/navBar";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Autocomplete from "@mui/material/Autocomplete";
+import Alert from "@mui/material/Alert";
 import { useFormik } from "formik";
 import BackButton from "../../../../components/backButton.js";
 import {
@@ -19,6 +20,9 @@ import "react-country-state-city/dist/react-country-state-city.css";
 export default function AddCustomer() {
   let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   let router = useRouter();
+  let [alert, setAlert] = useState(false);
+  let [alertMessage, setAlertMessage] = useState();
+  let [alertSeverity, setAlertSeverity] = useState();
 
   let [name, setCustomerName] = useState("");
   let [id, setId] = useState();
@@ -35,6 +39,18 @@ export default function AddCustomer() {
   let [productString, setProductString] = useState();
   let [products, setProducts] = useState([]);
 
+  function errAlert(errData) {
+    let message = errData.message;
+    let severity = errData.severity;
+    setAlert(true);
+    setAlertMessage(message);
+    setAlertSeverity(severity);
+
+    setTimeout(() => {
+      setAlert(false);
+    }, 3000);
+  }
+
   async function handleAddCustomer(newCustomerData) {
     try {
       let token = localStorage.getItem("access_token");
@@ -46,20 +62,36 @@ export default function AddCustomer() {
         })
         .then((response) => {
           if (response.data.message == "This Customer Data Already Exist") {
-            alert("This Customer Data Already Exist");
+            let errData = {
+              message: "This Customer Data Already Exist",
+              severity: "error",
+            };
+            errAlert(errData);
           } else if (response.status == 200) {
-            alert("Customer Data Submitted");
+            let errData = {
+              message: "Customer Data Submitted",
+              severity: "success",
+            };
+            errAlert(errData);
             router.push("/admin/customerList");
           } else {
-            alert("There was an error. Please Try again later");
+            let errData = {
+              message: "There was an error. Please Try again later",
+              severity: "error",
+            };
+            errAlert(errData);
             router.push("/admin/customerList");
           }
         });
     } catch (error) {
-      if (error.message == "Network Error") {
-        alert("Network Error, please try later");
-      } else if (error.response.status == 403) {
+      if (error.status == 403) {
         router.push("/error");
+      } else {
+        let errData = {
+          message: error.message,
+          severity: "error",
+        };
+        errAlert(errData);
       }
     }
   }
@@ -91,7 +123,19 @@ export default function AddCustomer() {
         state == "" ||
         country == ""
       ) {
-        alert("Please fill all the mandatory fields");
+        let errData = {
+          message: "Please fill all the mandatory fields",
+          severity: "error",
+        };
+        errAlert(errData);
+      } else if (
+        /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|png)/g.test(logoUrl) == false
+      ) {
+        let errData = {
+          message: "Please enter valid image url",
+          severity: "error",
+        };
+        errAlert(errData);
       } else {
         handleAddCustomer(newCustomerData);
       }
@@ -121,10 +165,14 @@ export default function AddCustomer() {
             }
           });
       } catch (error) {
-        if (error.message == "Network Error") {
-          alert(error);
-        } else if (error.response.status == 403) {
+        if (error.status == 403) {
           router.push("/error");
+        } else {
+          let errData = {
+            message: error.message,
+            severity: "error",
+          };
+          errAlert(errData);
         }
       }
     } else {
@@ -174,9 +222,7 @@ export default function AddCustomer() {
           </div>
 
           <div>
-            <p className="addCustomerInputLable">
-              Logo URL <span style={{ color: "red" }}>*</span>
-            </p>
+            <p className="addCustomerInputLable">Logo URL</p>
             <TextField
               fullWidth
               id="fullWidth"
@@ -278,6 +324,13 @@ export default function AddCustomer() {
               }}
             />
           </div>
+          {alert ? (
+            <Alert severity={alertSeverity} style={{ marginTop: "10px" }}>
+              {alertMessage}
+            </Alert>
+          ) : (
+            <></>
+          )}
 
           <Button type="submit" variant="contained">
             Submit

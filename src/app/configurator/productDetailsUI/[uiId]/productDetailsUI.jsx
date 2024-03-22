@@ -18,6 +18,7 @@ import FormLabel from "@mui/material/FormLabel";
 import { Typography } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import {Button as MUIButton} from "@mui/material";
 import { useForm, useFieldArray } from "react-hook-form";
 import {
   ObjectPage,
@@ -27,7 +28,6 @@ import {
   Button,
 } from "@ui5/webcomponents-react";
 import { Mode } from "@mui/icons-material";
-import BackButton from "@/components/backButton";
 import LoadingPage from "@/app/loading";
 import { Reorder } from "framer-motion";
 
@@ -408,12 +408,8 @@ export default function AddProductsSection({ params }) {
   let [tab10SubTab9Type, setTab10SubTab9Type] = useState([]);
   let [tab10SubTab10Type, setTab10SubTab10Type] = useState([]);
 
-
   function pageLoading(val) {
     setLoadPage(val);
-    // setTimeout(() => {
-    //   setLoadPage(false);
-    // }, 60000);
   }
 
   let dataStruct = {
@@ -838,7 +834,7 @@ export default function AddProductsSection({ params }) {
         Fields: tab10SubTab10Fields,
       },
     },
-  }
+  };
 
   // MUI Modal Code - START
   const [openTab, setOpenTab] = useState(false);
@@ -1016,8 +1012,7 @@ export default function AddProductsSection({ params }) {
   const form = useForm();
   const { register, control, handleSubmit, formState } = form;
 
-
-    // Disable toggle code - START
+  // Disable toggle code - START
   const [disabledStates, setDisabledStates] = useState(
     Object.keys(dataStruct).reduce((acc, key) => {
       if (key !== "_id" && key !== "templateId") {
@@ -1054,9 +1049,9 @@ export default function AddProductsSection({ params }) {
         `${serverUrl}/postProductDetailsUI/${id}`,
         data
       );
-      
+
       if (response.status == 200) {
-        alert("UI Configuration Successful")
+        alert("UI Configuration Successful");
         router.push("/configurator");
       }
     } catch (error) {
@@ -1413,7 +1408,7 @@ export default function AddProductsSection({ params }) {
     return Object.keys(dataStruct).map((key, index) => {
       let tabIndex = index;
       if (key != "_id" && key != "templateId") {
-        if (disabledStates[key] == false) {
+        if (disabledStates[key] == false || !disabledStates[key]) {
           return (
             <ObjectPageSection
               aria-label={key}
@@ -1424,1186 +1419,1169 @@ export default function AddProductsSection({ params }) {
               id={key.replace(/\s/g, "")}
               titleText={key}
             >
-                {Object.keys(dataStruct[key]).map((child, index) => {
-                  let subTabindex = index;
-                  let id = `${key.replace(/\s/g, "")}-${child.replace(
-                    /\s/g,
-                    ""
-                  )}`;
-                  return (
-                    <ObjectPageSubSection
-                      key={index}
-                      aria-label="Product Conformity"
-                      id={id}
-                      titleText={child}
-                    >
-                      <div>
-                        {MapFields(id)}
-                        <Button
-                          onClick={() => {
-                            handleOpenFieldSelection();
-                            let indices = `${tabIndex}-${subTabindex}`;
-                            let ci = indices.replace(/\s/g, "");
-                            setCombinedIndex(ci);
-                            setId(id);
-                            if (
-                              id ==
-                              `${tab1.replace(/\s/g, "")}-${tab1SubTab1.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab1SubTab1Fields([]);
-                              setTab1SubTab1Type([]);
-                            } else if (
-                              id ==
-                              `${tab1.replace(/\s/g, "")}-${tab1SubTab2.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab1SubTab2Fields([]);
-                              setTab1SubTab2Type([]);
-                            } else if (
-                              id ==
-                              `${tab1.replace(/\s/g, "")}-${tab1SubTab3.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab1SubTab3Fields([]);
-                              setTab1SubTab3Type([]);
-                            } else if (
-                              id ==
-                              `${tab1.replace(/\s/g, "")}-${tab1SubTab4.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab1SubTab4Fields([]);
-                              setTab1SubTab4Type([]);
-                            } else if (
-                              id ==
-                              `${tab1.replace(/\s/g, "")}-${tab1SubTab5.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab1SubTab5Fields([]);
-                              setTab1SubTab5Type([]);
-                            } else if (
-                              id ==
-                              `${tab1.replace(/\s/g, "")}-${tab1SubTab5.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab1SubTab6Fields([]);
-                              setTab1SubTab6Type([]);
-                            } else if (
-                              id ==
-                              `${tab1.replace(/\s/g, "")}-${tab1SubTab7.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab1SubTab7Fields([]);
-                              setTab1SubTab7Type([]);
-                            } else if (
-                              id ==
-                              `${tab1.replace(/\s/g, "")}-${tab1SubTab8.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab1SubTab8Fields([]);
-                              setTab1SubTab8Type([]);
-                            } else if (
-                              id ==
-                              `${tab1.replace(/\s/g, "")}-${tab1SubTab9.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab1SubTab9Fields([]);
-                              setTab1SubTab9Type([]);
-                            } else if (
-                              id ==
-                              `${tab1.replace(/\s/g, "")}-${tab1SubTab10.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab1SubTab10Fields([]);
-                              setTab1SubTab10Type([]);
-                            }
-                            else if (
-                              id ==
-                              `${tab2.replace(/\s/g, "")}-${tab2SubTab1.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab2SubTab1Fields([]);
-                              setTab2SubTab1Type([]);
-                            } else if (
-                              id ==
-                              `${tab2.replace(/\s/g, "")}-${tab2SubTab2.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab2SubTab2Fields([]);
-                              setTab2SubTab2Type([]);
-                            } else if (
-                              id ==
-                              `${tab2.replace(/\s/g, "")}-${tab2SubTab3.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab2SubTab3Fields([]);
-                              setTab2SubTab3Type([]);
-                            } else if (
-                              id ==
-                              `${tab2.replace(/\s/g, "")}-${tab2SubTab4.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab2SubTab4Fields([]);
-                              setTab2SubTab4Type([]);
-                            } else if (
-                              id ==
-                              `${tab2.replace(/\s/g, "")}-${tab2SubTab5.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab2SubTab5Fields([]);
-                              setTab2SubTab5Type([]);
-                            } else if (
-                              id ==
-                              `${tab2.replace(/\s/g, "")}-${tab2SubTab6.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab2SubTab6Fields([]);
-                              setTab2SubTab6Type([]);
-                            } else if (
-                              id ==
-                              `${tab2.replace(/\s/g, "")}-${tab2SubTab7.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab2SubTab7Fields([]);
-                              setTab2SubTab7Type([]);
-                            } else if (
-                              id ==
-                              `${tab2.replace(/\s/g, "")}-${tab2SubTab8.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab2SubTab8Fields([]);
-                              setTab2SubTab8Type([]);
-                            } else if (
-                              id ==
-                              `${tab2.replace(/\s/g, "")}-${tab2SubTab9.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab2SubTab9Fields([]);
-                              setTab2SubTab9Type([]);
-                            } else if (
-                              id ==
-                              `${tab2.replace(/\s/g, "")}-${tab2SubTab10.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab2SubTab10Fields([]);
-                              setTab2SubTab10Type([]);
-                            } 
-
-                            else if (
-                              id ==
-                              `${tab3.replace(/\s/g, "")}-${tab3SubTab1.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab3SubTab1Fields([]);
-                              setTab3SubTab1Type([]);
-                            } else if (
-                              id ==
-                              `${tab3.replace(/\s/g, "")}-${tab3SubTab2.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab3SubTab2Fields([]);
-                              setTab3SubTab2Type([]);
-                            } else if (
-                              id ==
-                              `${tab3.replace(/\s/g, "")}-${tab3SubTab3.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab3SubTab3Fields([]);
-                              setTab3SubTab3Type([]);
-                            } else if (
-                              id ==
-                              `${tab3.replace(/\s/g, "")}-${tab3SubTab4.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab3SubTab4Fields([]);
-                              setTab3SubTab4Type([]);
-                            } else if (
-                              id ==
-                              `${tab3.replace(/\s/g, "")}-${tab3SubTab5.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab3SubTab5Fields([]);
-                              setTab3SubTab5Type([]);
-                            } else if (
-                              id ==
-                              `${tab3.replace(/\s/g, "")}-${tab3SubTab6.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab3SubTab6Fields([]);
-                              setTab3SubTab6Type([]);
-                            } else if (
-                              id ==
-                              `${tab3.replace(/\s/g, "")}-${tab3SubTab7.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab3SubTab7Fields([]);
-                              setTab3SubTab7Type([]);
-                            } else if (
-                              id ==
-                              `${tab3.replace(/\s/g, "")}-${tab3SubTab8.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab3SubTab8Fields([]);
-                              setTab3SubTab8Type([]);
-                            } else if (
-                              id ==
-                              `${tab3.replace(/\s/g, "")}-${tab3SubTab9.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab3SubTab9Fields([]);
-                              setTab3SubTab9Type([]);
-                            } else if (
-                              id ==
-                              `${tab3.replace(/\s/g, "")}-${tab3SubTab10.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab3SubTab10Fields([]);
-                              setTab3SubTab10Type([]);
-                            } 
-                            
-                            else if (
-                              id ==
-                              `${tab4.replace(/\s/g, "")}-${tab4SubTab1.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab4SubTab1Fields([]);
-                              setTab4SubTab1Type([]);
-                            } else if (
-                              id ==
-                              `${tab4.replace(/\s/g, "")}-${tab4SubTab2.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab4SubTab2Fields([]);
-                              setTab4SubTab2Type([]);
-                            } else if (
-                              id ==
-                              `${tab4.replace(/\s/g, "")}-${tab4SubTab3.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab4SubTab3Fields([]);
-                              setTab4SubTab3Type([]);
-                            } else if (
-                              id ==
-                              `${tab4.replace(/\s/g, "")}-${tab4SubTab4.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab4SubTab4Fields([]);
-                              setTab4SubTab4Type();
-                            } else if (
-                              id ==
-                              `${tab4.replace(/\s/g, "")}-${tab4SubTab5.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab4SubTab5Fields([]);
-                              setTab4SubTab5Type([]);
-                            } else if (
-                              id ==
-                              `${tab4.replace(/\s/g, "")}-${tab4SubTab6.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab4SubTab6Fields([]);
-                              setTab4SubTab6Type([]);
-                            } else if (
-                              id ==
-                              `${tab4.replace(/\s/g, "")}-${tab4SubTab7.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab4SubTab7Fields([]);
-                              setTab4SubTab7Type([]);
-                            } else if (
-                              id ==
-                              `${tab4.replace(/\s/g, "")}-${tab4SubTab8.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab4SubTab8Fields([]);
-                              setTab4SubTab8Type([]);
-                            } else if (
-                              id ==
-                              `${tab4.replace(/\s/g, "")}-${tab4SubTab9.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab4SubTab9Fields([]);
-                              setTab4SubTab9Type([]);
-                            } else if (
-                              id ==
-                              `${tab4.replace(/\s/g, "")}-${tab4SubTab10.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab4SubTab10Fields([]);
-                              setTab4SubTab10Type([]);
-                            } 
-                            
-                            else if (
-                              id ==
-                              `${tab5.replace(/\s/g, "")}-${tab5SubTab1.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab5SubTab1Fields([]);
-                              setTab5SubTab1Type([]);
-                            } else if (
-                              id ==
-                              `${tab5.replace(/\s/g, "")}-${tab5SubTab2.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab5SubTab2Fields([]);
-                              setTab5SubTab2Type([]);
-                            } else if (
-                              id ==
-                              `${tab5.replace(/\s/g, "")}-${tab5SubTab3.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab5SubTab3Fields([]);
-                              setTab5SubTab3Type([]);
-                            } else if (
-                              id ==
-                              `${tab5.replace(/\s/g, "")}-${tab5SubTab4.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab5SubTab4Fields([]);
-                              setTab5SubTab4Type([]);
-                            } else if (
-                              id ==
-                              `${tab5.replace(/\s/g, "")}-${tab5SubTab5.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab5SubTab5Fields([]);
-                              setTab5SubTab5Type([]);
-                            } else if (
-                              id ==
-                              `${tab5.replace(/\s/g, "")}-${tab5SubTab6.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab5SubTab6Fields([]);
-                              setTab5SubTab6Type([]);
-                            } else if (
-                              id ==
-                              `${tab5.replace(/\s/g, "")}-${tab5SubTab7.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab5SubTab7Fields([]);
-                              setTab5SubTab7Type([]);
-                            } else if (
-                              id ==
-                              `${tab5.replace(/\s/g, "")}-${tab5SubTab8.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab5SubTab8Fields([]);
-                              setTab5SubTab8Type([]);
-                            } else if (
-                              id ==
-                              `${tab5.replace(/\s/g, "")}-${tab5SubTab9.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab5SubTab9Fields([]);
-                              setTab5SubTab9Type([]);
-                            } else if (
-                              id ==
-                              `${tab5.replace(/\s/g, "")}-${tab5SubTab10.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab5SubTab10Fields([]);
-                              setTab5SubTab10Type([]);
-                            }
-
-                            else if (
-                              id ==
-                              `${tab6.replace(/\s/g, "")}-${tab6SubTab1.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab6SubTab1Fields([]);
-                              setTab6SubTab1Type([]);
-                            } else if (
-                              id ==
-                              `${tab6.replace(/\s/g, "")}-${tab6SubTab2.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab6SubTab2Fields([]);
-                              setTab6SubTab2Type([]);
-                            } else if (
-                              id ==
-                              `${tab6.replace(/\s/g, "")}-${tab6SubTab3.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab6SubTab3Fields([]);
-                              setTab6SubTab3Type([]);
-                            } else if (
-                              id ==
-                              `${tab6.replace(/\s/g, "")}-${tab6SubTab4.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab6SubTab4Fields([]);
-                              setTab6SubTab4Type([]);
-                            } else if (
-                              id ==
-                              `${tab6.replace(/\s/g, "")}-${tab6SubTab5.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab6SubTab5Fields([]);
-                              setTab6SubTab5Type([]);
-                            } else if (
-                              id ==
-                              `${tab6.replace(/\s/g, "")}-${tab6SubTab6.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab6SubTab6Fields([]);
-                              setTab6SubTab6Type([]);
-                            } else if (
-                              id ==
-                              `${tab6.replace(/\s/g, "")}-${tab6SubTab7.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab6SubTab7Fields([]);
-                              setTab6SubTab7Type([]);
-                            } else if (
-                              id ==
-                              `${tab6.replace(/\s/g, "")}-${tab6SubTab8.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab6SubTab8Fields([]);
-                              setTab6SubTab8Type([]);
-                            } else if (
-                              id ==
-                              `${tab6.replace(/\s/g, "")}-${tab6SubTab9.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab6SubTab9Fields([]);
-                              setTab6SubTab9Type([]);
-                            } else if (
-                              id ==
-                              `${tab6.replace(/\s/g, "")}-${tab6SubTab10.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab6SubTab10Fields([]);
-                              setTab6SubTab10Type([]);
-                            }
-
-                            else if (
-                              id ==
-                              `${tab7.replace(/\s/g, "")}-${tab7SubTab1.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab7SubTab1Fields([]);
-                              setTab7SubTab1Type([]);
-                            } else if (
-                              id ==
-                              `${tab7.replace(/\s/g, "")}-${tab7SubTab2.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab7SubTab2Fields([]);
-                              setTab7SubTab2Type([]);
-                            } else if (
-                              id ==
-                              `${tab7.replace(/\s/g, "")}-${tab7SubTab3.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab7SubTab3Fields([]);
-                              setTab7SubTab3Type([]);
-                            } else if (
-                              id ==
-                              `${tab7.replace(/\s/g, "")}-${tab7SubTab4.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab7SubTab4Fields([]);
-                              setTab7SubTab4Type([]);
-                            } else if (
-                              id ==
-                              `${tab7.replace(/\s/g, "")}-${tab7SubTab5.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab7SubTab5Fields([]);
-                              setTab7SubTab5Type([]);
-                            } else if (
-                              id ==
-                              `${tab7.replace(/\s/g, "")}-${tab7SubTab6.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab7SubTab6Fields([]);
-                              setTab7SubTab6Type([]);
-                            } else if (
-                              id ==
-                              `${tab7.replace(/\s/g, "")}-${tab7SubTab7.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab7SubTab7Fields([]);
-                              setTab7SubTab7Type([]);
-                            } else if (
-                              id ==
-                              `${tab7.replace(/\s/g, "")}-${tab7SubTab8.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab7SubTab8Fields([]);
-                              setTab7SubTab8Type([]);
-                            } else if (
-                              id ==
-                              `${tab7.replace(/\s/g, "")}-${tab7SubTab9.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab7SubTab9Fields([]);
-                              setTab7SubTab9Type([]);
-                            } else if (
-                              id ==
-                              `${tab7.replace(/\s/g, "")}-${tab7SubTab10.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab7SubTab10Fields([]);
-                              setTab7SubTab10Type([]);
-                            } 
-
-                            else if (
-                              id ==
-                              `${tab8.replace(/\s/g, "")}-${tab8SubTab1.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab8SubTab1Fields([]);
-                              setTab8SubTab1Type([]);
-                            } else if (
-                              id ==
-                              `${tab8.replace(/\s/g, "")}-${tab8SubTab2.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab8SubTab2Fields([]);
-                              setTab8SubTab2Type([]);
-                            } else if (
-                              id ==
-                              `${tab8.replace(/\s/g, "")}-${tab8SubTab3.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab8SubTab3Fields([]);
-                              setTab8SubTab3Type([]);
-                            } else if (
-                              id ==
-                              `${tab8.replace(/\s/g, "")}-${tab8SubTab4.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab8SubTab4Fields([]);
-                              setTab8SubTab4Type([]);
-                            } else if (
-                              id ==
-                              `${tab8.replace(/\s/g, "")}-${tab8SubTab5.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab8SubTab5Fields([]);
-                              setTab8SubTab5Type([]);
-                            } else if (
-                              id ==
-                              `${tab8.replace(/\s/g, "")}-${tab8SubTab6.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab8SubTab6Fields([]);
-                              setTab8SubTab6Type([]);
-                            } else if (
-                              id ==
-                              `${tab8.replace(/\s/g, "")}-${tab8SubTab7.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab8SubTab7Fields([]);
-                              setTab8SubTab7Type([]);
-                            } else if (
-                              id ==
-                              `${tab8.replace(/\s/g, "")}-${tab8SubTab8.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab8SubTab8Fields([]);
-                              setTab8SubTab8Type([]);
-                            } else if (
-                              id ==
-                              `${tab8.replace(/\s/g, "")}-${tab8SubTab9.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab8SubTab9Fields([]);
-                              setTab8SubTab9Type([]);
-                            } else if (
-                              id ==
-                              `${tab8.replace(/\s/g, "")}-${tab8SubTab10.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab8SubTab10Fields([]);
-                              setTab8SubTab10Type([]);
-                            }
-
-                            else if (
-                              id ==
-                              `${tab9.replace(/\s/g, "")}-${tab9SubTab1.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab9SubTab1Fields([]);
-                              setTab9SubTab1Type([]);
-                            } else if (
-                              id ==
-                              `${tab9.replace(/\s/g, "")}-${tab9SubTab2.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab9SubTab2Fields([]);
-                              setTab9SubTab2Type([]);
-                            } else if (
-                              id ==
-                              `${tab9.replace(/\s/g, "")}-${tab9SubTab3.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab9SubTab3Fields([]);
-                              setTab9SubTab3Type([]);
-                            } else if (
-                              id ==
-                              `${tab9.replace(/\s/g, "")}-${tab9SubTab4.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab9SubTab4Fields([]);
-                              setTab9SubTab4Type([]);
-                            } else if (
-                              id ==
-                              `${tab9.replace(/\s/g, "")}-${tab9SubTab5.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab9SubTab5Fields([]);
-                              setTab9SubTab5Type([]);
-                            } else if (
-                              id ==
-                              `${tab9.replace(/\s/g, "")}-${tab9SubTab6.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab9SubTab6Fields([]);
-                              setTab9SubTab6Type([]);
-                            } else if (
-                              id ==
-                              `${tab9.replace(/\s/g, "")}-${tab9SubTab7.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab9SubTab7Fields([]);
-                              setTab9SubTab7Type([]);
-                            } else if (
-                              id ==
-                              `${tab9.replace(/\s/g, "")}-${tab9SubTab8.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab9SubTab8Fields([]);
-                              setTab9SubTab8Type([]);
-                            } else if (
-                              id ==
-                              `${tab9.replace(/\s/g, "")}-${tab9SubTab9.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab9SubTab9Fields([]);
-                              setTab9SubTab9Type([]);
-                            } else if (
-                              id ==
-                              `${tab9.replace(/\s/g, "")}-${tab9SubTab10.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab9SubTab10Fields([]);
-                              setTab9SubTab10Type([]);
-                            }
-
-                            else if (
-                              id ==
-                              `${tab10.replace(/\s/g, "")}-${tab10SubTab1.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab10SubTab1Fields([]);
-                              setTab10SubTab1Type([]);
-                            } else if (
-                              id ==
-                              `${tab10.replace(/\s/g, "")}-${tab10SubTab2.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab10SubTab2Fields([]);
-                              setTab10SubTab2Type([]);
-                            } else if (
-                              id ==
-                              `${tab10.replace(/\s/g, "")}-${tab10SubTab3.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab10SubTab3Fields([]);
-                              setTab10SubTab3Type([]);
-                            } else if (
-                              id ==
-                              `${tab10.replace(/\s/g, "")}-${tab10SubTab4.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab10SubTab4Fields([]);
-                              setTab10SubTab4Type([]);
-                            } else if (
-                              id ==
-                              `${tab10.replace(/\s/g, "")}-${tab10SubTab5.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab10SubTab5Fields([]);
-                              setTab10SubTab5Type([]);
-                            } else if (
-                              id ==
-                              `${tab10.replace(/\s/g, "")}-${tab10SubTab6.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab10SubTab6Fields([]);
-                              setTab10SubTab6Type([]);
-                            } else if (
-                              id ==
-                              `${tab10.replace(/\s/g, "")}-${tab10SubTab7.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab10SubTab7Fields([]);
-                              setTab10SubTab7Type([]);
-                            } else if (
-                              id ==
-                              `${tab10.replace(/\s/g, "")}-${tab10SubTab8.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab10SubTab8Fields([]);
-                              setTab10SubTab8Type([]);
-                            } else if (
-                              id ==
-                              `${tab10.replace(/\s/g, "")}-${tab10SubTab9.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab10SubTab9Fields([]);
-                              setTab10SubTab9Type([]);
-                            } else if (
-                              id ==
-                              `${tab10.replace(/\s/g, "")}-${tab10SubTab10.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab10SubTab10Fields([]);
-                              setTab10SubTab10Type([]);
-                            }
-                          }}
-                        >
-                          Select Sub Tab Type
-                        </Button>
-                        <Button
-                          onClick={() => {
-                            if (
-                              id ==
-                              `${tab1.replace(/\s/g, "")}-${tab1SubTab1.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab1SubTab1Fields([]);
-                              setTab1SubTab1Type([]);
-                            } else if (
-                              id ==
-                              `${tab1.replace(/\s/g, "")}-${tab1SubTab2.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab1SubTab2Fields([]);
-                              setTab1SubTab2Type([]);
-                            } else if (
-                              id ==
-                              `${tab1.replace(/\s/g, "")}-${tab1SubTab3.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab1SubTab3Fields([]);
-                              setTab1SubTab3Type([]);
-                            } else if (
-                              id ==
-                              `${tab1.replace(/\s/g, "")}-${tab1SubTab4.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab1SubTab4Fields([]);
-                              setTab1SubTab4Type([]);
-                            } else if (
-                              id ==
-                              `${tab1.replace(/\s/g, "")}-${tab1SubTab5.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab1SubTab5Fields([]);
-                              setTab1SubTab5Type([]);
-                            } else if (
-                              id ==
-                              `${tab2.replace(/\s/g, "")}-${tab2SubTab1.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab2SubTab1Fields([]);
-                              setTab2SubTab1Type([]);
-                            } else if (
-                              id ==
-                              `${tab2.replace(/\s/g, "")}-${tab2SubTab2.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab2SubTab2Fields([]);
-                              setTab2SubTab2Type([]);
-                            } else if (
-                              id ==
-                              `${tab2.replace(/\s/g, "")}-${tab2SubTab3.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab2SubTab3Fields([]);
-                              setTab2SubTab3Type([]);
-                            } else if (
-                              id ==
-                              `${tab2.replace(/\s/g, "")}-${tab2SubTab4.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab2SubTab4Fields([]);
-                              setTab2SubTab4Type([]);
-                            } else if (
-                              id ==
-                              `${tab2.replace(/\s/g, "")}-${tab2SubTab5.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab2SubTab5Fields([]);
-                              setTab2SubTab5Type([]);
-                            } else if (
-                              id ==
-                              `${tab3.replace(/\s/g, "")}-${tab3SubTab1.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab3SubTab1Fields([]);
-                              setTab3SubTab1Type([]);
-                            } else if (
-                              id ==
-                              `${tab3.replace(/\s/g, "")}-${tab3SubTab2.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab3SubTab2Fields([]);
-                              setTab3SubTab2Type([]);
-                            } else if (
-                              id ==
-                              `${tab3.replace(/\s/g, "")}-${tab3SubTab3.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab3SubTab3Fields([]);
-                              setTab3SubTab3Type([]);
-                            } else if (
-                              id ==
-                              `${tab3.replace(/\s/g, "")}-${tab3SubTab4.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab3SubTab4Fields([]);
-                              setTab3SubTab4Type([]);
-                            } else if (
-                              id ==
-                              `${tab3.replace(/\s/g, "")}-${tab3SubTab5.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab3SubTab5Fields([]);
-                              setTab3SubTab5Type([]);
-                            } else if (
-                              id ==
-                              `${tab4.replace(/\s/g, "")}-${tab4SubTab1.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab4SubTab1Fields([]);
-                              setTab4SubTab1Type([]);
-                            } else if (
-                              id ==
-                              `${tab4.replace(/\s/g, "")}-${tab4SubTab2.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab4SubTab2Fields([]);
-                              setTab4SubTab2Type([]);
-                            } else if (
-                              id ==
-                              `${tab4.replace(/\s/g, "")}-${tab4SubTab3.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab4SubTab3Fields([]);
-                              setTab4SubTab3Type([]);
-                            } else if (
-                              id ==
-                              `${tab4.replace(/\s/g, "")}-${tab4SubTab4.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab4SubTab4Fields([]);
-                              setTab4SubTab4Type();
-                            } else if (
-                              id ==
-                              `${tab4.replace(/\s/g, "")}-${tab4SubTab5.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab4SubTab5Fields([]);
-                              setTab4SubTab5Type([]);
-                            } else if (
-                              id ==
-                              `${tab5.replace(/\s/g, "")}-${tab5SubTab1.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab5SubTab1Fields([]);
-                              setTab5SubTab1Type([]);
-                            } else if (
-                              id ==
-                              `${tab5.replace(/\s/g, "")}-${tab5SubTab2.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab5SubTab2Fields([]);
-                              setTab5SubTab2Type([]);
-                            } else if (
-                              id ==
-                              `${tab5.replace(/\s/g, "")}-${tab5SubTab3.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab5SubTab3Fields([]);
-                              setTab5SubTab3Type([]);
-                            } else if (
-                              id ==
-                              `${tab5.replace(/\s/g, "")}-${tab5SubTab4.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab5SubTab4Fields([]);
-                              setTab5SubTab4Type([]);
-                            } else if (
-                              id ==
-                              `${tab5.replace(/\s/g, "")}-${tab5SubTab5.replace(
-                                /\s/g,
-                                ""
-                              )}`
-                            ) {
-                              setTab5SubTab5Fields([]);
-                              setTab5SubTab5Type([]);
-                            }
-                          }}
-                        >
-                          Reset Tab
-                        </Button>
-                      </div>
-                    </ObjectPageSubSection>
-                  );
-                })}
+              {Object.keys(dataStruct[key]).map((child, index) => {
+                let subTabindex = index;
+                let id = `${key.replace(/\s/g, "")}-${child.replace(
+                  /\s/g,
+                  ""
+                )}`;
+                return (
+                  <ObjectPageSubSection
+                    key={index}
+                    aria-label="Product Conformity"
+                    id={id}
+                    titleText={child}
+                  >
+                    <div>
+                      {MapFields(id)}
+                      <Button
+                        onClick={() => {
+                          handleOpenFieldSelection();
+                          let indices = `${tabIndex}-${subTabindex}`;
+                          let ci = indices.replace(/\s/g, "");
+                          setCombinedIndex(ci);
+                          setId(id);
+                          if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab1Fields([]);
+                            setTab1SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab2Fields([]);
+                            setTab1SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab3Fields([]);
+                            setTab1SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab4Fields([]);
+                            setTab1SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab5Fields([]);
+                            setTab1SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab6Fields([]);
+                            setTab1SubTab6Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab7.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab7Fields([]);
+                            setTab1SubTab7Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab8.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab8Fields([]);
+                            setTab1SubTab8Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab9.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab9Fields([]);
+                            setTab1SubTab9Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab10.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab10Fields([]);
+                            setTab1SubTab10Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab1Fields([]);
+                            setTab2SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab2Fields([]);
+                            setTab2SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab3Fields([]);
+                            setTab2SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab4Fields([]);
+                            setTab2SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab5Fields([]);
+                            setTab2SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab6.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab6Fields([]);
+                            setTab2SubTab6Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab7.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab7Fields([]);
+                            setTab2SubTab7Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab8.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab8Fields([]);
+                            setTab2SubTab8Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab9.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab9Fields([]);
+                            setTab2SubTab9Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab10.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab10Fields([]);
+                            setTab2SubTab10Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab1Fields([]);
+                            setTab3SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab2Fields([]);
+                            setTab3SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab3Fields([]);
+                            setTab3SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab4Fields([]);
+                            setTab3SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab5Fields([]);
+                            setTab3SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab6.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab6Fields([]);
+                            setTab3SubTab6Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab7.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab7Fields([]);
+                            setTab3SubTab7Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab8.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab8Fields([]);
+                            setTab3SubTab8Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab9.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab9Fields([]);
+                            setTab3SubTab9Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab10.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab10Fields([]);
+                            setTab3SubTab10Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab1Fields([]);
+                            setTab4SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab2Fields([]);
+                            setTab4SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab3Fields([]);
+                            setTab4SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab4Fields([]);
+                            setTab4SubTab4Type();
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab5Fields([]);
+                            setTab4SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab6.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab6Fields([]);
+                            setTab4SubTab6Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab7.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab7Fields([]);
+                            setTab4SubTab7Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab8.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab8Fields([]);
+                            setTab4SubTab8Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab9.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab9Fields([]);
+                            setTab4SubTab9Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab10.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab10Fields([]);
+                            setTab4SubTab10Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab1Fields([]);
+                            setTab5SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab2Fields([]);
+                            setTab5SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab3Fields([]);
+                            setTab5SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab4Fields([]);
+                            setTab5SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab5Fields([]);
+                            setTab5SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab6.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab6Fields([]);
+                            setTab5SubTab6Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab7.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab7Fields([]);
+                            setTab5SubTab7Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab8.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab8Fields([]);
+                            setTab5SubTab8Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab9.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab9Fields([]);
+                            setTab5SubTab9Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab10.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab10Fields([]);
+                            setTab5SubTab10Type([]);
+                          } else if (
+                            id ==
+                            `${tab6.replace(/\s/g, "")}-${tab6SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab6SubTab1Fields([]);
+                            setTab6SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab6.replace(/\s/g, "")}-${tab6SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab6SubTab2Fields([]);
+                            setTab6SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab6.replace(/\s/g, "")}-${tab6SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab6SubTab3Fields([]);
+                            setTab6SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab6.replace(/\s/g, "")}-${tab6SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab6SubTab4Fields([]);
+                            setTab6SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab6.replace(/\s/g, "")}-${tab6SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab6SubTab5Fields([]);
+                            setTab6SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab6.replace(/\s/g, "")}-${tab6SubTab6.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab6SubTab6Fields([]);
+                            setTab6SubTab6Type([]);
+                          } else if (
+                            id ==
+                            `${tab6.replace(/\s/g, "")}-${tab6SubTab7.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab6SubTab7Fields([]);
+                            setTab6SubTab7Type([]);
+                          } else if (
+                            id ==
+                            `${tab6.replace(/\s/g, "")}-${tab6SubTab8.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab6SubTab8Fields([]);
+                            setTab6SubTab8Type([]);
+                          } else if (
+                            id ==
+                            `${tab6.replace(/\s/g, "")}-${tab6SubTab9.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab6SubTab9Fields([]);
+                            setTab6SubTab9Type([]);
+                          } else if (
+                            id ==
+                            `${tab6.replace(/\s/g, "")}-${tab6SubTab10.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab6SubTab10Fields([]);
+                            setTab6SubTab10Type([]);
+                          } else if (
+                            id ==
+                            `${tab7.replace(/\s/g, "")}-${tab7SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab7SubTab1Fields([]);
+                            setTab7SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab7.replace(/\s/g, "")}-${tab7SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab7SubTab2Fields([]);
+                            setTab7SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab7.replace(/\s/g, "")}-${tab7SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab7SubTab3Fields([]);
+                            setTab7SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab7.replace(/\s/g, "")}-${tab7SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab7SubTab4Fields([]);
+                            setTab7SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab7.replace(/\s/g, "")}-${tab7SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab7SubTab5Fields([]);
+                            setTab7SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab7.replace(/\s/g, "")}-${tab7SubTab6.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab7SubTab6Fields([]);
+                            setTab7SubTab6Type([]);
+                          } else if (
+                            id ==
+                            `${tab7.replace(/\s/g, "")}-${tab7SubTab7.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab7SubTab7Fields([]);
+                            setTab7SubTab7Type([]);
+                          } else if (
+                            id ==
+                            `${tab7.replace(/\s/g, "")}-${tab7SubTab8.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab7SubTab8Fields([]);
+                            setTab7SubTab8Type([]);
+                          } else if (
+                            id ==
+                            `${tab7.replace(/\s/g, "")}-${tab7SubTab9.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab7SubTab9Fields([]);
+                            setTab7SubTab9Type([]);
+                          } else if (
+                            id ==
+                            `${tab7.replace(/\s/g, "")}-${tab7SubTab10.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab7SubTab10Fields([]);
+                            setTab7SubTab10Type([]);
+                          } else if (
+                            id ==
+                            `${tab8.replace(/\s/g, "")}-${tab8SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab8SubTab1Fields([]);
+                            setTab8SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab8.replace(/\s/g, "")}-${tab8SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab8SubTab2Fields([]);
+                            setTab8SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab8.replace(/\s/g, "")}-${tab8SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab8SubTab3Fields([]);
+                            setTab8SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab8.replace(/\s/g, "")}-${tab8SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab8SubTab4Fields([]);
+                            setTab8SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab8.replace(/\s/g, "")}-${tab8SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab8SubTab5Fields([]);
+                            setTab8SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab8.replace(/\s/g, "")}-${tab8SubTab6.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab8SubTab6Fields([]);
+                            setTab8SubTab6Type([]);
+                          } else if (
+                            id ==
+                            `${tab8.replace(/\s/g, "")}-${tab8SubTab7.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab8SubTab7Fields([]);
+                            setTab8SubTab7Type([]);
+                          } else if (
+                            id ==
+                            `${tab8.replace(/\s/g, "")}-${tab8SubTab8.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab8SubTab8Fields([]);
+                            setTab8SubTab8Type([]);
+                          } else if (
+                            id ==
+                            `${tab8.replace(/\s/g, "")}-${tab8SubTab9.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab8SubTab9Fields([]);
+                            setTab8SubTab9Type([]);
+                          } else if (
+                            id ==
+                            `${tab8.replace(/\s/g, "")}-${tab8SubTab10.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab8SubTab10Fields([]);
+                            setTab8SubTab10Type([]);
+                          } else if (
+                            id ==
+                            `${tab9.replace(/\s/g, "")}-${tab9SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab9SubTab1Fields([]);
+                            setTab9SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab9.replace(/\s/g, "")}-${tab9SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab9SubTab2Fields([]);
+                            setTab9SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab9.replace(/\s/g, "")}-${tab9SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab9SubTab3Fields([]);
+                            setTab9SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab9.replace(/\s/g, "")}-${tab9SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab9SubTab4Fields([]);
+                            setTab9SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab9.replace(/\s/g, "")}-${tab9SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab9SubTab5Fields([]);
+                            setTab9SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab9.replace(/\s/g, "")}-${tab9SubTab6.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab9SubTab6Fields([]);
+                            setTab9SubTab6Type([]);
+                          } else if (
+                            id ==
+                            `${tab9.replace(/\s/g, "")}-${tab9SubTab7.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab9SubTab7Fields([]);
+                            setTab9SubTab7Type([]);
+                          } else if (
+                            id ==
+                            `${tab9.replace(/\s/g, "")}-${tab9SubTab8.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab9SubTab8Fields([]);
+                            setTab9SubTab8Type([]);
+                          } else if (
+                            id ==
+                            `${tab9.replace(/\s/g, "")}-${tab9SubTab9.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab9SubTab9Fields([]);
+                            setTab9SubTab9Type([]);
+                          } else if (
+                            id ==
+                            `${tab9.replace(/\s/g, "")}-${tab9SubTab10.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab9SubTab10Fields([]);
+                            setTab9SubTab10Type([]);
+                          } else if (
+                            id ==
+                            `${tab10.replace(/\s/g, "")}-${tab10SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab10SubTab1Fields([]);
+                            setTab10SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab10.replace(/\s/g, "")}-${tab10SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab10SubTab2Fields([]);
+                            setTab10SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab10.replace(/\s/g, "")}-${tab10SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab10SubTab3Fields([]);
+                            setTab10SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab10.replace(/\s/g, "")}-${tab10SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab10SubTab4Fields([]);
+                            setTab10SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab10.replace(/\s/g, "")}-${tab10SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab10SubTab5Fields([]);
+                            setTab10SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab10.replace(/\s/g, "")}-${tab10SubTab6.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab10SubTab6Fields([]);
+                            setTab10SubTab6Type([]);
+                          } else if (
+                            id ==
+                            `${tab10.replace(/\s/g, "")}-${tab10SubTab7.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab10SubTab7Fields([]);
+                            setTab10SubTab7Type([]);
+                          } else if (
+                            id ==
+                            `${tab10.replace(/\s/g, "")}-${tab10SubTab8.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab10SubTab8Fields([]);
+                            setTab10SubTab8Type([]);
+                          } else if (
+                            id ==
+                            `${tab10.replace(/\s/g, "")}-${tab10SubTab9.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab10SubTab9Fields([]);
+                            setTab10SubTab9Type([]);
+                          } else if (
+                            id ==
+                            `${tab10.replace(
+                              /\s/g,
+                              ""
+                            )}-${tab10SubTab10.replace(/\s/g, "")}`
+                          ) {
+                            setTab10SubTab10Fields([]);
+                            setTab10SubTab10Type([]);
+                          }
+                        }}
+                      >
+                        Select Sub Tab Type
+                      </Button>
+                      <Button
+                        onClick={() => {
+                          if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab1Fields([]);
+                            setTab1SubTab1Type('');
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab2Fields([]);
+                            setTab1SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab3Fields([]);
+                            setTab1SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab4Fields([]);
+                            setTab1SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab5Fields([]);
+                            setTab1SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab1Fields([]);
+                            setTab2SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab2Fields([]);
+                            setTab2SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab3Fields([]);
+                            setTab2SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab4Fields([]);
+                            setTab2SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab5Fields([]);
+                            setTab2SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab1Fields([]);
+                            setTab3SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab2Fields([]);
+                            setTab3SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab3Fields([]);
+                            setTab3SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab4Fields([]);
+                            setTab3SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab5Fields([]);
+                            setTab3SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab1Fields([]);
+                            setTab4SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab2Fields([]);
+                            setTab4SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab3Fields([]);
+                            setTab4SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab4Fields([]);
+                            setTab4SubTab4Type();
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab5Fields([]);
+                            setTab4SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab1Fields([]);
+                            setTab5SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab2Fields([]);
+                            setTab5SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab3Fields([]);
+                            setTab5SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab4Fields([]);
+                            setTab5SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab5Fields([]);
+                            setTab5SubTab5Type([]);
+                          }
+                        }}
+                      >
+                        Reset Tab
+                      </Button>
+                    </div>
+                  </ObjectPageSubSection>
+                );
+              })}
             </ObjectPageSection>
           );
         }
@@ -2615,24 +2593,19 @@ export default function AddProductsSection({ params }) {
     setSubTabArray((existing) => [...existing, child]);
   }
 
-
-
   async function VerifyToken() {
     let token = localStorage.getItem("access_token");
     let role = localStorage.getItem("current_user_role");
-    
+
     if (token && role == "configurator") {
-      pageLoading(true)
+      pageLoading(true);
       try {
-        await axios.get(
-          `${serverUrl}/routVerification`,
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        );
-        pageLoading(false)
+        await axios.get(`${serverUrl}/routVerification`, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        });
+        pageLoading(false);
       } catch (error) {
         if (error.response.status !== 403) {
           router.push("/error");
@@ -2652,40 +2625,48 @@ export default function AddProductsSection({ params }) {
   }
   return (
     <div className="main">
-      {loadPage ? <LoadingPage /> : <>
-      <form>
-        <ObjectPage
-          footer={
-            <Bar
-              endContent={
-                <>
-                  <BackButton />
-                  <Button
-                    design="Emphasized"
-                    onClick={() => {
-                      handleOpenTab();
-                    }}
-                  >
-                    Edit Lables
-                  </Button>
+      {loadPage ? (
+        <LoadingPage />
+      ) : (
+        <>
+          <form>
+            <ObjectPage
+              footer={
+                <Bar
+                  endContent={
+                    <div style={{display: "flex", gap: "10px"}}>
+                      <MUIButton
+                      variant="contained"
+                        onClick={() => {
+                          handleOpenTab();
+                        }}
+                      >
+                        Edit Lables
+                      </MUIButton>
 
-                  <Button
-                    design="Emphasized"
-                    onClick={() => handlePostUIData(dataStruct)}
-                  >
-                    Submit
-                  </Button>
-                </>
+                      <MUIButton
+                      variant="contained"
+                        onClick={() => handlePostUIData(dataStruct)}
+                      >
+                        Submit
+                      </MUIButton>
+                    </div>
+                  }
+                  startContent={
+                    <>
+                      <MUIButton variant="contained" onClick={() => router.back()}>Back</MUIButton>
+                    </>
+                  }
+                />
               }
-            />
-          }
-          headerContent={<NavBar />}
-        >
-          {/* Destructrues and displays the entire page */}
-          {ShowUIElements(dataStruct)}
-        </ObjectPage>
-      </form>
-      </> }
+              headerContent={<NavBar />}
+            >
+              {/* Destructrues and displays the entire page */}
+              {ShowUIElements(dataStruct)}
+            </ObjectPage>
+          </form>
+        </>
+      )}
       {/* ----------------------- Tab Lable Change Modal ----------------------- */}
       <Modal
         aria-labelledby="transition-modal-title"
@@ -2705,7 +2686,7 @@ export default function AddProductsSection({ params }) {
               let k = key.replace(/\s/g, "");
               if (key != "_id" && key != "templateId") {
                 return (
-                  <div key={index}>
+                  <div key={index} style={{display: "flex", gap: "10px"}}>
                     <TextField
                       id={key}
                       variant="outlined"
@@ -2738,6 +2719,8 @@ export default function AddProductsSection({ params }) {
                     />
                     <Button
                       variant="contained"
+                      size="small"
+                      disabled={disabledStates[key]}
                       onClick={() => {
                         {
                           Object.keys(dataStruct[key]).map((child) => {
@@ -2810,8 +2793,7 @@ export default function AddProductsSection({ params }) {
                       setTab1SubTab9(e.target.value);
                     } else if (selectedTabIndex == 1 && index == 9) {
                       setTab1SubTab10(e.target.value);
-                    }
-                    else if (selectedTabIndex == 2 && index == 0) {
+                    } else if (selectedTabIndex == 2 && index == 0) {
                       setTab2SubTab1(e.target.value);
                     } else if (selectedTabIndex == 2 && index == 1) {
                       setTab2SubTab2(e.target.value);
@@ -2831,8 +2813,7 @@ export default function AddProductsSection({ params }) {
                       setTab2SubTab9(e.target.value);
                     } else if (selectedTabIndex == 2 && index == 9) {
                       setTab2SubTab10(e.target.value);
-                    }
-                    else if (selectedTabIndex == 3 && index == 0) {
+                    } else if (selectedTabIndex == 3 && index == 0) {
                       setTab3SubTab1(e.target.value);
                     } else if (selectedTabIndex == 3 && index == 1) {
                       setTab3SubTab2(e.target.value);
@@ -2852,8 +2833,7 @@ export default function AddProductsSection({ params }) {
                       setTab3SubTab9(e.target.value);
                     } else if (selectedTabIndex == 3 && index == 9) {
                       setTab3SubTab10(e.target.value);
-                    } 
-                    else if (selectedTabIndex == 4 && index == 0) {
+                    } else if (selectedTabIndex == 4 && index == 0) {
                       setTab4SubTab1(e.target.value);
                     } else if (selectedTabIndex == 4 && index == 1) {
                       setTab4SubTab2(e.target.value);
@@ -2873,8 +2853,7 @@ export default function AddProductsSection({ params }) {
                       setTab4SubTab9(e.target.value);
                     } else if (selectedTabIndex == 4 && index == 9) {
                       setTab4SubTab10(e.target.value);
-                    } 
-                    else if (selectedTabIndex == 5 && index == 0) {
+                    } else if (selectedTabIndex == 5 && index == 0) {
                       setTab5SubTab1(e.target.value);
                     } else if (selectedTabIndex == 5 && index == 1) {
                       setTab5SubTab2(e.target.value);
@@ -2894,8 +2873,7 @@ export default function AddProductsSection({ params }) {
                       setTab5SubTab9(e.target.value);
                     } else if (selectedTabIndex == 5 && index == 9) {
                       setTab5SubTab10(e.target.value);
-                    } 
-                    else if (selectedTabIndex == 6 && index == 0) {
+                    } else if (selectedTabIndex == 6 && index == 0) {
                       setTab6SubTab1(e.target.value);
                     } else if (selectedTabIndex == 6 && index == 1) {
                       setTab6SubTab2(e.target.value);
@@ -2915,8 +2893,7 @@ export default function AddProductsSection({ params }) {
                       setTab6SubTab9(e.target.value);
                     } else if (selectedTabIndex == 6 && index == 9) {
                       setTab6SubTab10(e.target.value);
-                    } 
-                    else if (selectedTabIndex == 7 && index == 0) {
+                    } else if (selectedTabIndex == 7 && index == 0) {
                       setTab7SubTab1(e.target.value);
                     } else if (selectedTabIndex == 7 && index == 1) {
                       setTab7SubTab2(e.target.value);
@@ -2936,8 +2913,7 @@ export default function AddProductsSection({ params }) {
                       setTab7SubTab9(e.target.value);
                     } else if (selectedTabIndex == 7 && index == 9) {
                       setTab7SubTab10(e.target.value);
-                    } 
-                    else if (selectedTabIndex == 8 && index == 0) {
+                    } else if (selectedTabIndex == 8 && index == 0) {
                       setTab8SubTab1(e.target.value);
                     } else if (selectedTabIndex == 8 && index == 1) {
                       setTab8SubTab2(e.target.value);
@@ -2957,8 +2933,7 @@ export default function AddProductsSection({ params }) {
                       setTab8SubTab9(e.target.value);
                     } else if (selectedTabIndex == 8 && index == 9) {
                       setTab8SubTab10(e.target.value);
-                    } 
-                    else if (selectedTabIndex == 9 && index == 0) {
+                    } else if (selectedTabIndex == 9 && index == 0) {
                       setTab9SubTab1(e.target.value);
                     } else if (selectedTabIndex == 9 && index == 1) {
                       setTab9SubTab2(e.target.value);
@@ -2978,8 +2953,7 @@ export default function AddProductsSection({ params }) {
                       setTab9SubTab9(e.target.value);
                     } else if (selectedTabIndex == 9 && index == 9) {
                       setTab9SubTab10(e.target.value);
-                    } 
-                    else if (selectedTabIndex == 10 && index == 0) {
+                    } else if (selectedTabIndex == 10 && index == 0) {
                       setTab10SubTab1(e.target.value);
                     } else if (selectedTabIndex == 10 && index == 1) {
                       setTab10SubTab2(e.target.value);
@@ -2999,7 +2973,7 @@ export default function AddProductsSection({ params }) {
                       setTab10SubTab9(e.target.value);
                     } else if (selectedTabIndex == 10 && index == 9) {
                       setTab10SubTab10(e.target.value);
-                    } 
+                    }
                   }}
                 />
               );
@@ -3041,7 +3015,6 @@ export default function AddProductsSection({ params }) {
                 <RadioGroup
                   aria-labelledby="demo-controlled-radio-buttons-group"
                   name="controlled-radio-buttons-group"
-                  value={value}
                   onChange={handleChange}
                 >
                   <FormControlLabel
@@ -3224,9 +3197,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         fieldName,
                       ]);
-                    } 
-                    
-                    else if (combinedIndex == "2-0") {
+                    } else if (combinedIndex == "2-0") {
                       setTab2SubTab1Fields((existingFields) => [
                         ...existingFields,
                         fieldName,
@@ -3276,9 +3247,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         fieldName,
                       ]);
-                    } 
-                    
-                    else if (combinedIndex == "3-0") {
+                    } else if (combinedIndex == "3-0") {
                       setTab3SubTab1Fields((existingFields) => [
                         ...existingFields,
                         fieldName,
@@ -3328,9 +3297,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         fieldName,
                       ]);
-                    }
-                    
-                    else if (combinedIndex == "4-0") {
+                    } else if (combinedIndex == "4-0") {
                       setTab4SubTab1Fields((existingFields) => [
                         ...existingFields,
                         fieldName,
@@ -3380,9 +3347,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         fieldName,
                       ]);
-                    } 
-                    
-                    else if (combinedIndex == "5-0") {
+                    } else if (combinedIndex == "5-0") {
                       setTab5SubTab1Fields((existingFields) => [
                         ...existingFields,
                         fieldName,
@@ -3432,9 +3397,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         fieldName,
                       ]);
-                    }
-
-                      else if (combinedIndex == "5-0") {
+                    } else if (combinedIndex == "5-0") {
                       setTab5SubTab1Fields((existingFields) => [
                         ...existingFields,
                         fieldName,
@@ -3484,9 +3447,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         fieldName,
                       ]);
-                    } 
-
-                    else if (combinedIndex == "6-0") {
+                    } else if (combinedIndex == "6-0") {
                       setTab6SubTab1Fields((existingFields) => [
                         ...existingFields,
                         fieldName,
@@ -3536,9 +3497,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         fieldName,
                       ]);
-                    } 
-
-                    else if (combinedIndex == "7-0") {
+                    } else if (combinedIndex == "7-0") {
                       setTab7SubTab1Fields((existingFields) => [
                         ...existingFields,
                         fieldName,
@@ -3588,9 +3547,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         fieldName,
                       ]);
-                    } 
-
-                    else if (combinedIndex == "8-0") {
+                    } else if (combinedIndex == "8-0") {
                       setTab8SubTab1Fields((existingFields) => [
                         ...existingFields,
                         fieldName,
@@ -3640,9 +3597,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         fieldName,
                       ]);
-                    } 
-
-                    else if (combinedIndex == "9-0") {
+                    } else if (combinedIndex == "9-0") {
                       setTab9SubTab1Fields((existingFields) => [
                         ...existingFields,
                         fieldName,
@@ -3692,9 +3647,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         fieldName,
                       ]);
-                    } 
-
-                    else if (combinedIndex == "10-0") {
+                    } else if (combinedIndex == "10-0") {
                       setTab10SubTab1Fields((existingFields) => [
                         ...existingFields,
                         fieldName,
@@ -3744,7 +3697,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         fieldName,
                       ]);
-                    } 
+                    }
                   }}
                 >
                   Add Field
@@ -3857,9 +3810,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         chartLable,
                       ]);
-                    } 
-                    
-                    else if (combinedIndex == "2-0") {
+                    } else if (combinedIndex == "2-0") {
                       setTab2SubTab1Fields((existingFields) => [
                         ...existingFields,
                         chartLable,
@@ -3909,9 +3860,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         chartLable,
                       ]);
-                    } 
-                    
-                    else if (combinedIndex == "3-0") {
+                    } else if (combinedIndex == "3-0") {
                       setTab3SubTab1Fields((existingFields) => [
                         ...existingFields,
                         chartLable,
@@ -3961,9 +3910,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         chartLable,
                       ]);
-                    }
-                    
-                    else if (combinedIndex == "4-0") {
+                    } else if (combinedIndex == "4-0") {
                       setTab4SubTab1Fields((existingFields) => [
                         ...existingFields,
                         chartLable,
@@ -4013,9 +3960,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         chartLable,
                       ]);
-                    } 
-                    
-                    else if (combinedIndex == "5-0") {
+                    } else if (combinedIndex == "5-0") {
                       setTab5SubTab1Fields((existingFields) => [
                         ...existingFields,
                         chartLable,
@@ -4065,9 +4010,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         chartLable,
                       ]);
-                    }
-
-                      else if (combinedIndex == "5-0") {
+                    } else if (combinedIndex == "5-0") {
                       setTab5SubTab1Fields((existingFields) => [
                         ...existingFields,
                         chartLable,
@@ -4117,9 +4060,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         chartLable,
                       ]);
-                    } 
-
-                    else if (combinedIndex == "6-0") {
+                    } else if (combinedIndex == "6-0") {
                       setTab6SubTab1Fields((existingFields) => [
                         ...existingFields,
                         chartLable,
@@ -4169,9 +4110,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         chartLable,
                       ]);
-                    } 
-
-                    else if (combinedIndex == "7-0") {
+                    } else if (combinedIndex == "7-0") {
                       setTab7SubTab1Fields((existingFields) => [
                         ...existingFields,
                         chartLable,
@@ -4221,9 +4160,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         chartLable,
                       ]);
-                    } 
-
-                    else if (combinedIndex == "8-0") {
+                    } else if (combinedIndex == "8-0") {
                       setTab8SubTab1Fields((existingFields) => [
                         ...existingFields,
                         chartLable,
@@ -4273,9 +4210,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         chartLable,
                       ]);
-                    } 
-
-                    else if (combinedIndex == "9-0") {
+                    } else if (combinedIndex == "9-0") {
                       setTab9SubTab1Fields((existingFields) => [
                         ...existingFields,
                         chartLable,
@@ -4325,9 +4260,7 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         chartLable,
                       ]);
-                    } 
-
-                    else if (combinedIndex == "10-0") {
+                    } else if (combinedIndex == "10-0") {
                       setTab10SubTab1Fields((existingFields) => [
                         ...existingFields,
                         chartLable,
@@ -4377,7 +4310,8 @@ export default function AddProductsSection({ params }) {
                         ...existingFields,
                         chartLable,
                       ]);
-                    } 
+                    }
+                    handleCloseAddChart();
                   }}
                 >
                   Add Field
