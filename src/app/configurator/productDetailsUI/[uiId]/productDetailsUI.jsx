@@ -14,11 +14,12 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
+import Alert from "@mui/material/Alert";
 import FormLabel from "@mui/material/FormLabel";
 import { Typography } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import {Button as MUIButton} from "@mui/material";
+import { Button as MUIButton } from "@mui/material";
 import { useForm, useFieldArray } from "react-hook-form";
 import {
   ObjectPage,
@@ -54,6 +55,9 @@ export default function AddProductsSection({ params }) {
   let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   let router = useRouter();
   let [loadPage, setLoadPage] = useState(false);
+  let [alert, setAlert] = useState(false);
+  let [alertMessage, setAlertMessage] = useState();
+  let [alertSeverity, setAlertSeverity] = useState();
 
   let [fullData, setFullData] = useState({});
   let [tabDetails, setTabDetails] = useState([]);
@@ -78,6 +82,17 @@ export default function AddProductsSection({ params }) {
   let [tab9, setTab9] = useState("Tab 9");
   let [tab10, setTab10] = useState("Tab 10");
 
+  let [ttab1, setTtab1] = useState("Tab 1");
+  let [ttab2, setTtab2] = useState("Tab 2");
+  let [ttab3, setTtab3] = useState("Tab 3");
+  let [ttab4, setTtab4] = useState("Tab 4");
+  let [ttab5, setTtab5] = useState("Tab 5");
+  let [ttab6, setTtab6] = useState("Tab 6");
+  let [ttab7, setTtab7] = useState("Tab 7");
+  let [ttab8, setTtab8] = useState("Tab 8");
+  let [ttab9, setTtab9] = useState("Tab 9");
+  let [ttab10, setTtab10] = useState("Tab 10");
+
   let [tab1SubTab1, setTab1SubTab1] = useState("Sub Tab 1-1");
   let [tab1SubTab2, setTab1SubTab2] = useState("Sub Tab 1-2");
   let [tab1SubTab3, setTab1SubTab3] = useState("Sub Tab 1-3");
@@ -88,6 +103,17 @@ export default function AddProductsSection({ params }) {
   let [tab1SubTab8, setTab1SubTab8] = useState("Sub Tab 1-8");
   let [tab1SubTab9, setTab1SubTab9] = useState("Sub Tab 1-9");
   let [tab1SubTab10, setTab1SubTab10] = useState("Sub Tab 1-10");
+
+  let [tab1SubTtab1, setTab1SubTtab1] = useState("Sub Tab 1-1");
+  let [tab1SubTtab2, setTab1SubTtab2] = useState("Sub Tab 1-2");
+  let [tab1SubTtab3, setTab1SubTtab3] = useState("Sub Tab 1-3");
+  let [tab1SubTtab4, setTab1SubTtab4] = useState("Sub Tab 1-4");
+  let [tab1SubTtab5, setTab1SubTtab5] = useState("Sub Tab 1-5");
+  let [tab1SubTtab6, setTab1SubTtab6] = useState("Sub Tab 1-6");
+  let [tab1SubTtab7, setTab1SubTtab7] = useState("Sub Tab 1-7");
+  let [tab1SubTtab8, setTab1SubTtab8] = useState("Sub Tab 1-8");
+  let [tab1SubTtab9, setTab1SubTtab9] = useState("Sub Tab 1-9");
+  let [tab1SubTtab10, setTab1SubTtab10] = useState("Sub Tab 1-10");
 
   let [tab2SubTab1, setTab2SubTab1] = useState("Sub Tab 2-1");
   let [tab2SubTab2, setTab2SubTab2] = useState("Sub Tab 2-2");
@@ -100,6 +126,17 @@ export default function AddProductsSection({ params }) {
   let [tab2SubTab9, setTab2SubTab9] = useState("Sub Tab 2-9");
   let [tab2SubTab10, setTab2SubTab10] = useState("Sub Tab 2-10");
 
+  let [tab2SubTtab1, setTab2SubTtab1] = useState("Sub Tab 2-1");
+  let [tab2SubTtab2, setTab2SubTtab2] = useState("Sub Tab 2-2");
+  let [tab2SubTtab3, setTab2SubTtab3] = useState("Sub Tab 2-3");
+  let [tab2SubTtab4, setTab2SubTtab4] = useState("Sub Tab 2-4");
+  let [tab2SubTtab5, setTab2SubTtab5] = useState("Sub Tab 2-5");
+  let [tab2SubTtab6, setTab2SubTtab6] = useState("Sub Tab 2-6");
+  let [tab2SubTtab7, setTab2SubTtab7] = useState("Sub Tab 2-7");
+  let [tab2SubTtab8, setTab2SubTtab8] = useState("Sub Tab 2-8");
+  let [tab2SubTtab9, setTab2SubTtab9] = useState("Sub Tab 2-9");
+  let [tab2SubTtab10, setTab2SubTtab10] = useState("Sub Tab 2-10");
+
   let [tab3SubTab1, setTab3SubTab1] = useState("Sub Tab 3-1");
   let [tab3SubTab2, setTab3SubTab2] = useState("Sub Tab 3-2");
   let [tab3SubTab3, setTab3SubTab3] = useState("Sub Tab 3-3");
@@ -110,6 +147,17 @@ export default function AddProductsSection({ params }) {
   let [tab3SubTab8, setTab3SubTab8] = useState("Sub Tab 3-8");
   let [tab3SubTab9, setTab3SubTab9] = useState("Sub Tab 3-9");
   let [tab3SubTab10, setTab3SubTab10] = useState("Sub Tab 3-10");
+
+  let [tab3SubTtab1, setTab3SubTtab1] = useState("Sub Tab 3-1");
+  let [tab3SubTtab2, setTab3SubTtab2] = useState("Sub Tab 3-2");
+  let [tab3SubTtab3, setTab3SubTtab3] = useState("Sub Tab 3-3");
+  let [tab3SubTtab4, setTab3SubTtab4] = useState("Sub Tab 3-4");
+  let [tab3SubTtab5, setTab3SubTtab5] = useState("Sub Tab 3-5");
+  let [tab3SubTtab6, setTab3SubTtab6] = useState("Sub Tab 3-6");
+  let [tab3SubTtab7, setTab3SubTtab7] = useState("Sub Tab 3-7");
+  let [tab3SubTtab8, setTab3SubTtab8] = useState("Sub Tab 3-8");
+  let [tab3SubTtab9, setTab3SubTtab9] = useState("Sub Tab 3-9");
+  let [tab3SubTtab10, setTab3SubTtab10] = useState("Sub Tab 3-10");
 
   let [tab4SubTab1, setTab4SubTab1] = useState("Sub Tab 4-1");
   let [tab4SubTab2, setTab4SubTab2] = useState("Sub Tab 4-2");
@@ -122,6 +170,17 @@ export default function AddProductsSection({ params }) {
   let [tab4SubTab9, setTab4SubTab9] = useState("Sub Tab 4-9");
   let [tab4SubTab10, setTab4SubTab10] = useState("Sub Tab 4-10");
 
+  let [tab4SubTtab1, setTab4SubTtab1] = useState("Sub Tab 4-1");
+  let [tab4SubTtab2, setTab4SubTtab2] = useState("Sub Tab 4-2");
+  let [tab4SubTtab3, setTab4SubTtab3] = useState("Sub Tab 4-3");
+  let [tab4SubTtab4, setTab4SubTtab4] = useState("Sub Tab 4-4");
+  let [tab4SubTtab5, setTab4SubTtab5] = useState("Sub Tab 4-5");
+  let [tab4SubTtab6, setTab4SubTtab6] = useState("Sub Tab 4-6");
+  let [tab4SubTtab7, setTab4SubTtab7] = useState("Sub Tab 4-7");
+  let [tab4SubTtab8, setTab4SubTtab8] = useState("Sub Tab 4-8");
+  let [tab4SubTtab9, setTab4SubTtab9] = useState("Sub Tab 4-9");
+  let [tab4SubTtab10, setTab4SubTtab10] = useState("Sub Tab 4-10");
+
   let [tab5SubTab1, setTab5SubTab1] = useState("Sub Tab 5-1");
   let [tab5SubTab2, setTab5SubTab2] = useState("Sub Tab 5-2");
   let [tab5SubTab3, setTab5SubTab3] = useState("Sub Tab 5-3");
@@ -132,6 +191,17 @@ export default function AddProductsSection({ params }) {
   let [tab5SubTab8, setTab5SubTab8] = useState("Sub Tab 5-8");
   let [tab5SubTab9, setTab5SubTab9] = useState("Sub Tab 5-9");
   let [tab5SubTab10, setTab5SubTab10] = useState("Sub Tab 5-10");
+
+  let [tab5SubTtab1, setTab5SubTtab1] = useState("Sub Tab 5-1");
+  let [tab5SubTtab2, setTab5SubTtab2] = useState("Sub Tab 5-2");
+  let [tab5SubTtab3, setTab5SubTtab3] = useState("Sub Tab 5-3");
+  let [tab5SubTtab4, setTab5SubTtab4] = useState("Sub Tab 5-4");
+  let [tab5SubTtab5, setTab5SubTtab5] = useState("Sub Tab 5-5");
+  let [tab5SubTtab6, setTab5SubTtab6] = useState("Sub Tab 5-6");
+  let [tab5SubTtab7, setTab5SubTtab7] = useState("Sub Tab 5-7");
+  let [tab5SubTtab8, setTab5SubTtab8] = useState("Sub Tab 5-8");
+  let [tab5SubTtab9, setTab5SubTtab9] = useState("Sub Tab 5-9");
+  let [tab5SubTtab10, setTab5SubTtab10] = useState("Sub Tab 5-10");
 
   let [tab6SubTab1, setTab6SubTab1] = useState("Sub Tab 6-1");
   let [tab6SubTab2, setTab6SubTab2] = useState("Sub Tab 6-2");
@@ -144,6 +214,17 @@ export default function AddProductsSection({ params }) {
   let [tab6SubTab9, setTab6SubTab9] = useState("Sub Tab 6-9");
   let [tab6SubTab10, setTab6SubTab10] = useState("Sub Tab 6-10");
 
+  let [tab6SubTtab1, setTab6SubTtab1] = useState("Sub Tab 6-1");
+  let [tab6SubTtab2, setTab6SubTtab2] = useState("Sub Tab 6-2");
+  let [tab6SubTtab3, setTab6SubTtab3] = useState("Sub Tab 6-3");
+  let [tab6SubTtab4, setTab6SubTtab4] = useState("Sub Tab 6-4");
+  let [tab6SubTtab5, setTab6SubTtab5] = useState("Sub Tab 6-5");
+  let [tab6SubTtab6, setTab6SubTtab6] = useState("Sub Tab 6-6");
+  let [tab6SubTtab7, setTab6SubTtab7] = useState("Sub Tab 6-7");
+  let [tab6SubTtab8, setTab6SubTtab8] = useState("Sub Tab 6-8");
+  let [tab6SubTtab9, setTab6SubTtab9] = useState("Sub Tab 6-9");
+  let [tab6SubTtab10, setTab6SubTtab10] = useState("Sub Tab 6-10");
+
   let [tab7SubTab1, setTab7SubTab1] = useState("Sub Tab 7-1");
   let [tab7SubTab2, setTab7SubTab2] = useState("Sub Tab 7-2");
   let [tab7SubTab3, setTab7SubTab3] = useState("Sub Tab 7-3");
@@ -154,6 +235,17 @@ export default function AddProductsSection({ params }) {
   let [tab7SubTab8, setTab7SubTab8] = useState("Sub Tab 7-8");
   let [tab7SubTab9, setTab7SubTab9] = useState("Sub Tab 7-9");
   let [tab7SubTab10, setTab7SubTab10] = useState("Sub Tab 7-10");
+
+  let [tab7SubTtab1, setTab7SubTtab1] = useState("Sub Tab 7-1");
+  let [tab7SubTtab2, setTab7SubTtab2] = useState("Sub Tab 7-2");
+  let [tab7SubTtab3, setTab7SubTtab3] = useState("Sub Tab 7-3");
+  let [tab7SubTtab4, setTab7SubTtab4] = useState("Sub Tab 7-4");
+  let [tab7SubTtab5, setTab7SubTtab5] = useState("Sub Tab 7-5");
+  let [tab7SubTtab6, setTab7SubTtab6] = useState("Sub Tab 7-6");
+  let [tab7SubTtab7, setTab7SubTtab7] = useState("Sub Tab 7-7");
+  let [tab7SubTtab8, setTab7SubTtab8] = useState("Sub Tab 7-8");
+  let [tab7SubTtab9, setTab7SubTtab9] = useState("Sub Tab 7-9");
+  let [tab7SubTtab10, setTab7SubTtab10] = useState("Sub Tab 7-10");
 
   let [tab8SubTab1, setTab8SubTab1] = useState("Sub Tab 8-1");
   let [tab8SubTab2, setTab8SubTab2] = useState("Sub Tab 8-2");
@@ -166,6 +258,17 @@ export default function AddProductsSection({ params }) {
   let [tab8SubTab9, setTab8SubTab9] = useState("Sub Tab 8-9");
   let [tab8SubTab10, setTab8SubTab10] = useState("Sub Tab 8-10");
 
+  let [tab8SubTtab1, setTab8SubTtab1] = useState("Sub Tab 8-1");
+  let [tab8SubTtab2, setTab8SubTtab2] = useState("Sub Tab 8-2");
+  let [tab8SubTtab3, setTab8SubTtab3] = useState("Sub Tab 8-3");
+  let [tab8SubTtab4, setTab8SubTtab4] = useState("Sub Tab 8-4");
+  let [tab8SubTtab5, setTab8SubTtab5] = useState("Sub Tab 8-5");
+  let [tab8SubTtab6, setTab8SubTtab6] = useState("Sub Tab 8-6");
+  let [tab8SubTtab7, setTab8SubTtab7] = useState("Sub Tab 8-7");
+  let [tab8SubTtab8, setTab8SubTtab8] = useState("Sub Tab 8-8");
+  let [tab8SubTtab9, setTab8SubTtab9] = useState("Sub Tab 8-9");
+  let [tab8SubTtab10, setTab8SubTtab10] = useState("Sub Tab 8-10");
+
   let [tab9SubTab1, setTab9SubTab1] = useState("Sub Tab 9-1");
   let [tab9SubTab2, setTab9SubTab2] = useState("Sub Tab 9-2");
   let [tab9SubTab3, setTab9SubTab3] = useState("Sub Tab 9-3");
@@ -177,6 +280,17 @@ export default function AddProductsSection({ params }) {
   let [tab9SubTab9, setTab9SubTab9] = useState("Sub Tab 9-9");
   let [tab9SubTab10, setTab9SubTab10] = useState("Sub Tab 9-10");
 
+  let [tab9SubTtab1, setTab9SubTtab1] = useState("Sub Tab 9-1");
+  let [tab9SubTtab2, setTab9SubTtab2] = useState("Sub Tab 9-2");
+  let [tab9SubTtab3, setTab9SubTtab3] = useState("Sub Tab 9-3");
+  let [tab9SubTtab4, setTab9SubTtab4] = useState("Sub Tab 9-4");
+  let [tab9SubTtab5, setTab9SubTtab5] = useState("Sub Tab 9-5");
+  let [tab9SubTtab6, setTab9SubTtab6] = useState("Sub Tab 9-6");
+  let [tab9SubTtab7, setTab9SubTtab7] = useState("Sub Tab 9-7");
+  let [tab9SubTtab8, setTab9SubTtab8] = useState("Sub Tab 9-8");
+  let [tab9SubTtab9, setTab9SubTtab9] = useState("Sub Tab 9-9");
+  let [tab9SubTtab10, setTab9SubTtab10] = useState("Sub Tab 9-10");
+
   let [tab10SubTab1, setTab10SubTab1] = useState("Sub Tab 10-1");
   let [tab10SubTab2, setTab10SubTab2] = useState("Sub Tab 10-2");
   let [tab10SubTab3, setTab10SubTab3] = useState("Sub Tab 10-3");
@@ -187,6 +301,17 @@ export default function AddProductsSection({ params }) {
   let [tab10SubTab8, setTab10SubTab8] = useState("Sub Tab 10-8");
   let [tab10SubTab9, setTab10SubTab9] = useState("Sub Tab 10-9");
   let [tab10SubTab10, setTab10SubTab10] = useState("Sub Tab 10-10");
+
+  let [tab10SubTtab1, setTab10SubTtab1] = useState("Sub Tab 10-1");
+  let [tab10SubTtab2, setTab10SubTtab2] = useState("Sub Tab 10-2");
+  let [tab10SubTtab3, setTab10SubTtab3] = useState("Sub Tab 10-3");
+  let [tab10SubTtab4, setTab10SubTtab4] = useState("Sub Tab 10-4");
+  let [tab10SubTtab5, setTab10SubTtab5] = useState("Sub Tab 10-5");
+  let [tab10SubTtab6, setTab10SubTtab6] = useState("Sub Tab 10-6");
+  let [tab10SubTtab7, setTab10SubTtab7] = useState("Sub Tab 10-7");
+  let [tab10SubTtab8, setTab10SubTtab8] = useState("Sub Tab 10-8");
+  let [tab10SubTtab9, setTab10SubTtab9] = useState("Sub Tab 10-9");
+  let [tab10SubTtab10, setTab10SubTtab10] = useState("Sub Tab 10-10");
 
   let [tab1SubTab1Fields, setTab1SubTab1Fields] = useState([]);
   let [tab1SubTab2Fields, setTab1SubTab2Fields] = useState([]);
@@ -408,8 +533,162 @@ export default function AddProductsSection({ params }) {
   let [tab10SubTab9Type, setTab10SubTab9Type] = useState([]);
   let [tab10SubTab10Type, setTab10SubTab10Type] = useState([]);
 
+  function errAlert(errData) {
+    let message = errData.message;
+    let severity = errData.severity;
+    setAlert(true);
+    setAlertMessage(message);
+    setAlertSeverity(severity);
+
+    setTimeout(() => {
+      setAlert(false);
+    }, 3000);
+  }
+
   function pageLoading(val) {
     setLoadPage(val);
+  }
+
+  function saveTabs() {
+    let tabArray = [
+      ttab1,
+      ttab2,
+      ttab3,
+      ttab4,
+      ttab5,
+      ttab6,
+      ttab7,
+      ttab8,
+      ttab9,
+      ttab10,
+    ];
+    const uniqueTabs = new Set();
+    const duplicatesTabs = tabArray.filter(
+      (item, index) => tabArray.indexOf(item) !== index
+    );
+
+    if (!duplicatesTabs[0]) {
+      console.log("No Duplicates");
+      setTab1(ttab1);
+      setTab2(ttab2);
+      setTab3(ttab3);
+      setTab4(ttab4);
+      setTab5(ttab5);
+      setTab6(ttab6);
+      setTab7(ttab7);
+      setTab8(ttab8);
+      setTab9(ttab9);
+      setTab10(ttab10);
+    } else {
+      let errData = {
+        message: "Tab names must be unique",
+        severity: "error",
+      };
+      errAlert(errData);
+    }
+  }
+
+  function resetSubTabTitle() {
+    setTab1SubTtab1("Sub Tab 1-1");
+    setTab1SubTtab2("Sub Tab 1-2");
+    setTab1SubTtab3("Sub Tab 1-3");
+    setTab1SubTtab4("Sub Tab 1-4");
+    setTab1SubTtab5("Sub Tab 1-5");
+    setTab1SubTtab6("Sub Tab 1-6");
+    setTab1SubTtab7("Sub Tab 1-7");
+    setTab1SubTtab8("Sub Tab 1-8");
+    setTab1SubTtab9("Sub Tab 1-9");
+    setTab1SubTtab10("Sub Tab 1-10");
+    setTab2SubTtab1("Sub Tab 2-1");
+    setTab2SubTtab2("Sub Tab 2-2");
+    setTab2SubTtab3("Sub Tab 2-3");
+    setTab2SubTtab4("Sub Tab 2-4");
+    setTab2SubTtab5("Sub Tab 2-5");
+    setTab2SubTtab6("Sub Tab 2-6");
+    setTab2SubTtab7("Sub Tab 2-7");
+    setTab2SubTtab8("Sub Tab 2-8");
+    setTab2SubTtab9("Sub Tab 2-9");
+    setTab2SubTtab10("Sub Tab 2-10");
+    setTab3SubTtab1("Sub Tab 3-1");
+    setTab3SubTtab2("Sub Tab 3-2");
+    setTab3SubTtab3("Sub Tab 3-3");
+    setTab3SubTtab4("Sub Tab 3-4");
+    setTab3SubTtab5("Sub Tab 3-5");
+    setTab3SubTtab6("Sub Tab 3-6");
+    setTab3SubTtab7("Sub Tab 3-7");
+    setTab3SubTtab8("Sub Tab 3-8");
+    setTab3SubTtab9("Sub Tab 3-9");
+    setTab3SubTtab10("Sub Tab 3-10");
+    setTab4SubTtab1("Sub Tab 4-1");
+    setTab4SubTtab2("Sub Tab 4-2");
+    setTab4SubTtab3("Sub Tab 4-3");
+    setTab4SubTtab4("Sub Tab 4-4");
+    setTab4SubTtab5("Sub Tab 4-5");
+    setTab4SubTtab6("Sub Tab 4-6");
+    setTab4SubTtab7("Sub Tab 4-7");
+    setTab4SubTtab8("Sub Tab 4-8");
+    setTab4SubTtab9("Sub Tab 4-9");
+    setTab4SubTtab10("Sub Tab 4-10");
+    setTab5SubTtab1("Sub Tab 5-1");
+    setTab5SubTtab2("Sub Tab 5-2");
+    setTab5SubTtab3("Sub Tab 5-3");
+    setTab5SubTtab4("Sub Tab 5-4");
+    setTab5SubTtab5("Sub Tab 5-5");
+    setTab5SubTtab6("Sub Tab 5-6");
+    setTab5SubTtab7("Sub Tab 5-7");
+    setTab5SubTtab8("Sub Tab 5-8");
+    setTab5SubTtab9("Sub Tab 5-9");
+    setTab5SubTtab10("Sub Tab 5-10");
+    setTab6SubTtab1("Sub Tab 6-1");
+    setTab6SubTtab2("Sub Tab 6-2");
+    setTab6SubTtab3("Sub Tab 6-3");
+    setTab6SubTtab4("Sub Tab 6-4");
+    setTab6SubTtab5("Sub Tab 6-5");
+    setTab6SubTtab6("Sub Tab 6-6");
+    setTab6SubTtab7("Sub Tab 6-7");
+    setTab6SubTtab8("Sub Tab 6-8");
+    setTab6SubTtab9("Sub Tab 6-9");
+    setTab6SubTtab10("Sub Tab 6-10");
+    setTab7SubTtab1("Sub Tab 7-1");
+    setTab7SubTtab2("Sub Tab 7-2");
+    setTab7SubTtab3("Sub Tab 7-3");
+    setTab7SubTtab4("Sub Tab 7-4");
+    setTab7SubTtab5("Sub Tab 7-5");
+    setTab7SubTtab6("Sub Tab 7-6");
+    setTab7SubTtab7("Sub Tab 7-7");
+    setTab7SubTtab8("Sub Tab 7-8");
+    setTab7SubTtab9("Sub Tab 7-9");
+    setTab7SubTtab10("Sub Tab 7-10");
+    setTab8SubTtab1("Sub Tab 8-1");
+    setTab8SubTtab2("Sub Tab 8-2");
+    setTab8SubTtab3("Sub Tab 8-3");
+    setTab8SubTtab4("Sub Tab 8-4");
+    setTab8SubTtab5("Sub Tab 8-5");
+    setTab8SubTtab6("Sub Tab 8-6");
+    setTab8SubTtab7("Sub Tab 8-7");
+    setTab8SubTtab8("Sub Tab 8-8");
+    setTab8SubTtab9("Sub Tab 8-9");
+    setTab8SubTtab10("Sub Tab 8-10");
+    setTab9SubTtab1("Sub Tab 9-1");
+    setTab9SubTtab2("Sub Tab 9-2");
+    setTab9SubTtab3("Sub Tab 9-3");
+    setTab9SubTtab4("Sub Tab 9-4");
+    setTab9SubTtab5("Sub Tab 9-5");
+    setTab9SubTtab6("Sub Tab 9-6");
+    setTab9SubTtab7("Sub Tab 9-7");
+    setTab9SubTtab8("Sub Tab 9-8");
+    setTab9SubTtab9("Sub Tab 9-9");
+    setTab9SubTtab10("Sub Tab 9-10");
+    setTab10SubTtab1("Sub Tab 10-1");
+    setTab10SubTtab2("Sub Tab 10-2");
+    setTab10SubTtab3("Sub Tab 10-3");
+    setTab10SubTtab4("Sub Tab 10-4");
+    setTab10SubTtab5("Sub Tab 10-5");
+    setTab10SubTtab6("Sub Tab 10-6");
+    setTab10SubTtab7("Sub Tab 10-7");
+    setTab10SubTtab8("Sub Tab 10-8");
+    setTab10SubTtab9("Sub Tab 10-9");
+    setTab10SubTtab10("Sub Tab 10-10");
   }
 
   let dataStruct = {
@@ -1029,16 +1308,6 @@ export default function AddProductsSection({ params }) {
     }));
   };
 
-  // useEffect(() => {
-  //   setDisabledStates(Object.keys(dataStruct).reduce((acc, key) => {
-  //     if (key !== "_id" && key !== "templateId") {
-  //       acc[key] = false;
-  //     }
-  //     return acc;
-  //   }, {}))
-  // }, [tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10])
-  // Disable toggle code - End
-
   async function handlePostUIData(data) {
     let path = window.location.pathname;
     let pathArr = path.split("/");
@@ -1062,8 +1331,7 @@ export default function AddProductsSection({ params }) {
   function RenderInputFields(field) {
     return (
       <div key={field}>
-        <p>{field}</p>
-        <TextField />
+        <p>Field Name : {field}</p>
       </div>
     );
   }
@@ -2356,7 +2624,7 @@ export default function AddProductsSection({ params }) {
                             )}`
                           ) {
                             setTab1SubTab1Fields([]);
-                            setTab1SubTab1Type('');
+                            setTab1SubTab1Type("");
                           } else if (
                             id ==
                             `${tab1.replace(/\s/g, "")}-${tab1SubTab2.replace(
@@ -2616,8 +2884,252 @@ export default function AddProductsSection({ params }) {
     }
   }
 
+  async function existingUI() {
+    let path = window.location.pathname;
+    let pathArr = path.split("/");
+    let id = pathArr[3];
+
+    try {
+      let response = await axios.get(
+        `${serverUrl}/getProductDetailsUI/${id}`,
+        )
+
+        let data = response.data
+
+        if(data) {
+          Object.keys(data).map((key, index) => {
+            let tabIndex = index;
+            if(key != "_id" && key != "templateId") {
+              if(index == 2) {setTab1(key)}
+              else if(index == 3) {setTab2(key)}
+              else if(index == 4) {setTab3(key)}
+              else if(index == 5) {setTab4(key)}
+              else if(index == 6) {setTab5(key)}
+              else if(index == 7) {setTab6(key)}
+              else if(index == 8) {setTab7(key)}
+              else if(index == 9) {setTab8(key)}
+              else if(index == 10) {setTab9(key)}
+              else if(index == 11) {setTab10(key)}
+            }
+            if(key != "_id" && key != "templateId") {
+            Object.keys(data[key]).map((child, index) => {
+              let subTabIndex = index
+              let ci = `${tabIndex}-${subTabIndex}`
+              if(ci == "2-0") {
+                setTab1SubTab1(child)
+              } else if (ci == "2-1") {
+                setTab1SubTab2(child)
+              } else if (ci == "2-3") {
+                setTab1SubTab3(child)
+              } else if (ci == "2-4") {
+                setTab1SubTab4(child)
+              } else if (ci == "2-5") {
+                setTab1SubTab5(child)
+              } else if (ci == "2-6") {
+                setTab1SubTab6(child)
+              } else if (ci == "2-7") {
+                setTab1SubTab7(child)
+              } else if (ci == "2-8") {
+                setTab1SubTab8(child)
+              } else if (ci == "2-9") {
+                setTab1SubTab9(child)
+              } else if (ci == "2-10") {
+                setTab1SubTab10(child)
+              } else if(ci == "3-0") {
+                setTab2SubTab1(child)
+              } else if (ci == "3-1") {
+                setTab2SubTab2(child)
+              } else if (ci == "3-3") {
+                setTab2SubTab3(child)
+              } else if (ci == "3-4") {
+                setTab2SubTab4(child)
+              } else if (ci == "3-5") {
+                setTab2SubTab5(child)
+              } else if (ci == "3-6") {
+                setTab2SubTab6(child)
+              } else if (ci == "3-7") {
+                setTab2SubTab7(child)
+              } else if (ci == "3-8") {
+                setTab2SubTab8(child)
+              } else if (ci == "3-9") {
+                setTab2SubTab9(child)
+              } else if (ci == "3-10") {
+                setTab2SubTab10(child)
+              } else if(ci == "4-0") {
+                setTab3SubTab1(child)
+              } else if (ci == "4-1") {
+                setTab3SubTab2(child)
+              } else if (ci == "4-3") {
+                setTab3SubTab3(child)
+              } else if (ci == "4-4") {
+                setTab3SubTab4(child)
+              } else if (ci == "4-5") {
+                setTab3SubTab5(child)
+              } else if (ci == "4-6") {
+                setTab3SubTab6(child)
+              } else if (ci == "4-7") {
+                setTab3SubTab7(child)
+              } else if (ci == "4-8") {
+                setTab3SubTab8(child)
+              } else if (ci == "4-9") {
+                setTab3SubTab9(child)
+              } else if (ci == "4-10") {
+                setTab3SubTab10(child)
+              } else if(ci == "5-0") {
+                setTab4SubTab1(child)
+              } else if (ci == "5-1") {
+                setTab4SubTab2(child)
+              } else if (ci == "5-3") {
+                setTab4SubTab3(child)
+              } else if (ci == "5-4") {
+                setTab4SubTab4(child)
+              } else if (ci == "5-5") {
+                setTab4SubTab5(child)
+              } else if (ci == "5-6") {
+                setTab4SubTab6(child)
+              } else if (ci == "5-7") {
+                setTab4SubTab7(child)
+              } else if (ci == "5-8") {
+                setTab4SubTab8(child)
+              } else if (ci == "5-9") {
+                setTab4SubTab9(child)
+              } else if (ci == "5-10") {
+                setTab4SubTab10(child)
+              } else if(ci == "6-0") {
+                setTab5SubTab1(child)
+              } else if (ci == "6-1") {
+                setTab5SubTab2(child)
+              } else if (ci == "6-3") {
+                setTab5SubTab3(child)
+              } else if (ci == "6-4") {
+                setTab5SubTab4(child)
+              } else if (ci == "6-5") {
+                setTab5SubTab5(child)
+              } else if (ci == "6-6") {
+                setTab5SubTab6(child)
+              } else if (ci == "6-7") {
+                setTab5SubTab7(child)
+              } else if (ci == "6-8") {
+                setTab5SubTab8(child)
+              } else if (ci == "6-9") {
+                setTab5SubTab9(child)
+              } else if (ci == "6-10") {
+                setTab5SubTab10(child)
+              } else if(ci == "7-0") {
+                setTab6SubTab1(child)
+              } else if (ci == "7-1") {
+                setTab6SubTab2(child)
+              } else if (ci == "7-3") {
+                setTab6SubTab3(child)
+              } else if (ci == "7-4") {
+                setTab6SubTab4(child)
+              } else if (ci == "7-5") {
+                setTab6SubTab5(child)
+              } else if (ci == "7-6") {
+                setTab6SubTab6(child)
+              } else if (ci == "7-7") {
+                setTab6SubTab7(child)
+              } else if (ci == "7-8") {
+                setTab6SubTab8(child)
+              } else if (ci == "7-9") {
+                setTab6SubTab9(child)
+              } else if (ci == "7-10") {
+                setTab6SubTab10(child)
+              } else if(ci == "8-0") {
+                setTab7SubTab1(child)
+              } else if (ci == "8-1") {
+                setTab7SubTab2(child)
+              } else if (ci == "8-3") {
+                setTab7SubTab3(child)
+              } else if (ci == "8-4") {
+                setTab7SubTab4(child)
+              } else if (ci == "8-5") {
+                setTab7SubTab5(child)
+              } else if (ci == "8-6") {
+                setTab7SubTab6(child)
+              } else if (ci == "8-7") {
+                setTab7SubTab7(child)
+              } else if (ci == "8-8") {
+                setTab7SubTab8(child)
+              } else if (ci == "8-9") {
+                setTab7SubTab9(child)
+              } else if (ci == "8-10") {
+                setTab7SubTab10(child)
+              } else if(ci == "9-0") {
+                setTab8SubTab1(child)
+              } else if (ci == "9-1") {
+                setTab8SubTab2(child)
+              } else if (ci == "9-3") {
+                setTab8SubTab3(child)
+              } else if (ci == "9-4") {
+                setTab8SubTab4(child)
+              } else if (ci == "9-5") {
+                setTab8SubTab5(child)
+              } else if (ci == "9-6") {
+                setTab8SubTab6(child)
+              } else if (ci == "9-7") {
+                setTab8SubTab7(child)
+              } else if (ci == "9-8") {
+                setTab8SubTab8(child)
+              } else if (ci == "9-9") {
+                setTab8SubTab9(child)
+              } else if (ci == "9-10") {
+                setTab8SubTab10(child)
+              } else if(ci == "10-0") {
+                setTab9SubTab1(child)
+              } else if (ci == "10-1") {
+                setTab9SubTab2(child)
+              } else if (ci == "10-3") {
+                setTab9SubTab3(child)
+              } else if (ci == "10-4") {
+                setTab9SubTab4(child)
+              } else if (ci == "10-5") {
+                setTab9SubTab5(child)
+              } else if (ci == "10-6") {
+                setTab9SubTab6(child)
+              } else if (ci == "10-7") {
+                setTab9SubTab7(child)
+              } else if (ci == "10-8") {
+                setTab9SubTab8(child)
+              } else if (ci == "10-9") {
+                setTab9SubTab9(child)
+              } else if (ci == "10-10") {
+                setTab9SubTab10(child)
+              }  else if(ci == "11-0") {
+                setTab10SubTab1(child)
+              } else if (ci == "11-1") {
+                setTab10SubTab2(child)
+              } else if (ci == "11-3") {
+                setTab10SubTab3(child)
+              } else if (ci == "11-4") {
+                setTab10SubTab4(child)
+              } else if (ci == "11-5") {
+                setTab10SubTab5(child)
+              } else if (ci == "11-6") {
+                setTab10SubTab6(child)
+              } else if (ci == "11-7") {
+                setTab10SubTab7(child)
+              } else if (ci == "11-8") {
+                setTab10SubTab8(child)
+              } else if (ci == "11-9") {
+                setTab10SubTab9(child)
+              } else if (ci == "11-10") {
+                setTab10SubTab10(child)
+              }
+              
+            })
+          }
+          })
+        }
+
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+
   useEffect(() => {
-    VerifyToken();
+    existingUI();
   }, []);
 
   {
@@ -2634,9 +3146,9 @@ export default function AddProductsSection({ params }) {
               footer={
                 <Bar
                   endContent={
-                    <div style={{display: "flex", gap: "10px"}}>
+                    <div style={{ display: "flex", gap: "10px" }}>
                       <MUIButton
-                      variant="contained"
+                        variant="contained"
                         onClick={() => {
                           handleOpenTab();
                         }}
@@ -2645,7 +3157,7 @@ export default function AddProductsSection({ params }) {
                       </MUIButton>
 
                       <MUIButton
-                      variant="contained"
+                        variant="contained"
                         onClick={() => handlePostUIData(dataStruct)}
                       >
                         Submit
@@ -2654,7 +3166,12 @@ export default function AddProductsSection({ params }) {
                   }
                   startContent={
                     <>
-                      <MUIButton variant="contained" onClick={() => router.back()}>Back</MUIButton>
+                      <MUIButton
+                        variant="contained"
+                        onClick={() => router.back()}
+                      >
+                        Back
+                      </MUIButton>
                     </>
                   }
                 />
@@ -2686,7 +3203,7 @@ export default function AddProductsSection({ params }) {
               let k = key.replace(/\s/g, "");
               if (key != "_id" && key != "templateId") {
                 return (
-                  <div key={index} style={{display: "flex", gap: "10px"}}>
+                  <div key={index} style={{ display: "flex", gap: "10px" }}>
                     <TextField
                       id={key}
                       variant="outlined"
@@ -2695,25 +3212,25 @@ export default function AddProductsSection({ params }) {
                       size="small"
                       onChange={(e) => {
                         if (index == 1) {
-                          setTab1(e.target.value);
+                          setTtab1(e.target.value);
                         } else if (index == 2) {
-                          setTab2(e.target.value);
+                          setTtab2(e.target.value);
                         } else if (index == 3) {
-                          setTab3(e.target.value);
+                          setTtab3(e.target.value);
                         } else if (index == 4) {
-                          setTab4(e.target.value);
+                          setTtab4(e.target.value);
                         } else if (index == 5) {
-                          setTab5(e.target.value);
+                          setTtab5(e.target.value);
                         } else if (index == 6) {
-                          setTab6(e.target.value);
+                          setTtab6(e.target.value);
                         } else if (index == 7) {
-                          setTab7(e.target.value);
+                          setTtab7(e.target.value);
                         } else if (index == 8) {
-                          setTab8(e.target.value);
+                          setTtab8(e.target.value);
                         } else if (index == 9) {
-                          setTab9(e.target.value);
+                          setTtab9(e.target.value);
                         } else if (index == 10) {
-                          setTab10(e.target.value);
+                          setTtab10(e.target.value);
                         }
                       }}
                     />
@@ -2722,6 +3239,7 @@ export default function AddProductsSection({ params }) {
                       size="small"
                       disabled={disabledStates[key]}
                       onClick={() => {
+                        saveTabs()
                         {
                           Object.keys(dataStruct[key]).map((child) => {
                             setOpenTab(false);
@@ -2743,7 +3261,21 @@ export default function AddProductsSection({ params }) {
                 );
               }
             })}
+            {alert ? (
+              <Alert severity={alertSeverity} style={{ marginTop: "10px" }}>
+                {alertMessage}
+              </Alert>
+            ) : (
+              <></>
+            )}
             <Button onClick={handleCloseTab}>Close</Button>
+            <Button
+              onClick={() => { 
+                saveTabs()
+              }}
+            >
+              Save Tabs
+            </Button>
           </Box>
         </Fade>
       </Modal>
@@ -2774,220 +3306,483 @@ export default function AddProductsSection({ params }) {
                   // disabled={disabled}
                   onChange={(e) => {
                     if (selectedTabIndex == 1 && index == 0) {
-                      setTab1SubTab1(e.target.value);
+                      setTab1SubTtab1(e.target.value);
                     } else if (selectedTabIndex == 1 && index == 1) {
-                      setTab1SubTab2(e.target.value);
+                      setTab1SubTtab2(e.target.value);
                     } else if (selectedTabIndex == 1 && index == 2) {
-                      setTab1SubTab3(e.target.value);
+                      setTab1SubTtab3(e.target.value);
                     } else if (selectedTabIndex == 1 && index == 3) {
-                      setTab1SubTab4(e.target.value);
+                      setTab1SubTtab4(e.target.value);
                     } else if (selectedTabIndex == 1 && index == 4) {
-                      setTab1SubTab5(e.target.value);
+                      setTab1SubTtab5(e.target.value);
                     } else if (selectedTabIndex == 1 && index == 5) {
-                      setTab1SubTab6(e.target.value);
+                      setTab1SubTtab6(e.target.value);
                     } else if (selectedTabIndex == 1 && index == 6) {
-                      setTab1SubTab7(e.target.value);
+                      setTab1SubTtab7(e.target.value);
                     } else if (selectedTabIndex == 1 && index == 7) {
-                      setTab1SubTab8(e.target.value);
+                      setTab1SubTtab8(e.target.value);
                     } else if (selectedTabIndex == 1 && index == 8) {
-                      setTab1SubTab9(e.target.value);
+                      setTab1SubTtab9(e.target.value);
                     } else if (selectedTabIndex == 1 && index == 9) {
-                      setTab1SubTab10(e.target.value);
+                      setTab1SubTtab10(e.target.value);
                     } else if (selectedTabIndex == 2 && index == 0) {
-                      setTab2SubTab1(e.target.value);
+                      setTab2SubTtab1(e.target.value);
                     } else if (selectedTabIndex == 2 && index == 1) {
-                      setTab2SubTab2(e.target.value);
+                      setTab2SubTtab2(e.target.value);
                     } else if (selectedTabIndex == 2 && index == 2) {
-                      setTab2SubTab3(e.target.value);
+                      setTab2SubTtab3(e.target.value);
                     } else if (selectedTabIndex == 2 && index == 3) {
-                      setTab2SubTab4(e.target.value);
+                      setTab2SubTtab4(e.target.value);
                     } else if (selectedTabIndex == 2 && index == 4) {
-                      setTab2SubTab5(e.target.value);
+                      setTab2SubTtab5(e.target.value);
                     } else if (selectedTabIndex == 2 && index == 5) {
-                      setTab2SubTab6(e.target.value);
+                      setTab2SubTtab6(e.target.value);
                     } else if (selectedTabIndex == 2 && index == 6) {
-                      setTab2SubTab7(e.target.value);
+                      setTab2SubTtab7(e.target.value);
                     } else if (selectedTabIndex == 2 && index == 7) {
-                      setTab2SubTab8(e.target.value);
+                      setTab2SubTtab8(e.target.value);
                     } else if (selectedTabIndex == 2 && index == 8) {
-                      setTab2SubTab9(e.target.value);
+                      setTab2SubTtab9(e.target.value);
                     } else if (selectedTabIndex == 2 && index == 9) {
-                      setTab2SubTab10(e.target.value);
+                      setTab2SubTtab10(e.target.value);
                     } else if (selectedTabIndex == 3 && index == 0) {
-                      setTab3SubTab1(e.target.value);
+                      setTab3SubTtab1(e.target.value);
                     } else if (selectedTabIndex == 3 && index == 1) {
-                      setTab3SubTab2(e.target.value);
+                      setTab3SubTtab2(e.target.value);
                     } else if (selectedTabIndex == 3 && index == 2) {
-                      setTab3SubTab3(e.target.value);
+                      setTab3SubTtab3(e.target.value);
                     } else if (selectedTabIndex == 3 && index == 3) {
-                      setTab3SubTab4(e.target.value);
+                      setTab3SubTtab4(e.target.value);
                     } else if (selectedTabIndex == 3 && index == 4) {
-                      setTab3SubTab5(e.target.value);
+                      setTab3SubTtab5(e.target.value);
                     } else if (selectedTabIndex == 3 && index == 5) {
-                      setTab3SubTab6(e.target.value);
+                      setTab3SubTtab6(e.target.value);
                     } else if (selectedTabIndex == 3 && index == 6) {
-                      setTab3SubTab7(e.target.value);
+                      setTab3SubTtab7(e.target.value);
                     } else if (selectedTabIndex == 3 && index == 7) {
-                      setTab3SubTab8(e.target.value);
+                      setTab3SubTtab8(e.target.value);
                     } else if (selectedTabIndex == 3 && index == 8) {
-                      setTab3SubTab9(e.target.value);
+                      setTab3SubTtab9(e.target.value);
                     } else if (selectedTabIndex == 3 && index == 9) {
-                      setTab3SubTab10(e.target.value);
+                      setTab3SubTtab10(e.target.value);
                     } else if (selectedTabIndex == 4 && index == 0) {
-                      setTab4SubTab1(e.target.value);
+                      setTab4SubTtab1(e.target.value);
                     } else if (selectedTabIndex == 4 && index == 1) {
-                      setTab4SubTab2(e.target.value);
+                      setTab4SubTtab2(e.target.value);
                     } else if (selectedTabIndex == 4 && index == 2) {
-                      setTab4SubTab3(e.target.value);
+                      setTab4SubTtab3(e.target.value);
                     } else if (selectedTabIndex == 4 && index == 3) {
-                      setTab4SubTab4(e.target.value);
+                      setTab4SubTtab4(e.target.value);
                     } else if (selectedTabIndex == 4 && index == 4) {
-                      setTab4SubTab5(e.target.value);
+                      setTab4SubTtab5(e.target.value);
                     } else if (selectedTabIndex == 4 && index == 5) {
-                      setTab4SubTab6(e.target.value);
+                      setTab4SubTtab6(e.target.value);
                     } else if (selectedTabIndex == 4 && index == 6) {
-                      setTab4SubTab7(e.target.value);
+                      setTab4SubTtab7(e.target.value);
                     } else if (selectedTabIndex == 4 && index == 7) {
-                      setTab4SubTab8(e.target.value);
+                      setTab4SubTtab8(e.target.value);
                     } else if (selectedTabIndex == 4 && index == 8) {
-                      setTab4SubTab9(e.target.value);
+                      setTab4SubTtab9(e.target.value);
                     } else if (selectedTabIndex == 4 && index == 9) {
-                      setTab4SubTab10(e.target.value);
+                      setTab4SubTtab10(e.target.value);
                     } else if (selectedTabIndex == 5 && index == 0) {
-                      setTab5SubTab1(e.target.value);
+                      setTab5SubTtab1(e.target.value);
                     } else if (selectedTabIndex == 5 && index == 1) {
-                      setTab5SubTab2(e.target.value);
+                      setTab5SubTtab2(e.target.value);
                     } else if (selectedTabIndex == 5 && index == 2) {
-                      setTab5SubTab3(e.target.value);
+                      setTab5SubTtab3(e.target.value);
                     } else if (selectedTabIndex == 5 && index == 3) {
-                      setTab5SubTab4(e.target.value);
+                      setTab5SubTtab4(e.target.value);
                     } else if (selectedTabIndex == 5 && index == 4) {
-                      setTab5SubTab5(e.target.value);
+                      setTab5SubTtab5(e.target.value);
                     } else if (selectedTabIndex == 5 && index == 5) {
-                      setTab5SubTab6(e.target.value);
+                      setTab5SubTtab6(e.target.value);
                     } else if (selectedTabIndex == 5 && index == 6) {
-                      setTab5SubTab7(e.target.value);
+                      setTab5SubTtab7(e.target.value);
                     } else if (selectedTabIndex == 5 && index == 7) {
-                      setTab5SubTab8(e.target.value);
+                      setTab5SubTtab8(e.target.value);
                     } else if (selectedTabIndex == 5 && index == 8) {
-                      setTab5SubTab9(e.target.value);
+                      setTab5SubTtab9(e.target.value);
                     } else if (selectedTabIndex == 5 && index == 9) {
-                      setTab5SubTab10(e.target.value);
+                      setTab5SubTtab10(e.target.value);
                     } else if (selectedTabIndex == 6 && index == 0) {
-                      setTab6SubTab1(e.target.value);
+                      setTab6SubTtab1(e.target.value);
                     } else if (selectedTabIndex == 6 && index == 1) {
-                      setTab6SubTab2(e.target.value);
+                      setTab6SubTtab2(e.target.value);
                     } else if (selectedTabIndex == 6 && index == 2) {
-                      setTab6SubTab3(e.target.value);
+                      setTab6SubTtab3(e.target.value);
                     } else if (selectedTabIndex == 6 && index == 3) {
-                      setTab6SubTab4(e.target.value);
+                      setTab6SubTtab4(e.target.value);
                     } else if (selectedTabIndex == 6 && index == 4) {
-                      setTab6SubTab5(e.target.value);
+                      setTab6SubTtab5(e.target.value);
                     } else if (selectedTabIndex == 6 && index == 5) {
-                      setTab6SubTab6(e.target.value);
+                      setTab6SubTtab6(e.target.value);
                     } else if (selectedTabIndex == 6 && index == 6) {
-                      setTab6SubTab7(e.target.value);
+                      setTab6SubTtab7(e.target.value);
                     } else if (selectedTabIndex == 6 && index == 7) {
-                      setTab6SubTab8(e.target.value);
+                      setTab6SubTtab8(e.target.value);
                     } else if (selectedTabIndex == 6 && index == 8) {
-                      setTab6SubTab9(e.target.value);
+                      setTab6SubTtab9(e.target.value);
                     } else if (selectedTabIndex == 6 && index == 9) {
-                      setTab6SubTab10(e.target.value);
+                      setTab6SubTtab10(e.target.value);
                     } else if (selectedTabIndex == 7 && index == 0) {
-                      setTab7SubTab1(e.target.value);
+                      setTab7SubTtab1(e.target.value);
                     } else if (selectedTabIndex == 7 && index == 1) {
-                      setTab7SubTab2(e.target.value);
+                      setTab7SubTtab2(e.target.value);
                     } else if (selectedTabIndex == 7 && index == 2) {
-                      setTab7SubTab3(e.target.value);
+                      setTab7SubTtab3(e.target.value);
                     } else if (selectedTabIndex == 7 && index == 3) {
-                      setTab7SubTab4(e.target.value);
+                      setTab7SubTtab4(e.target.value);
                     } else if (selectedTabIndex == 7 && index == 4) {
-                      setTab7SubTab5(e.target.value);
+                      setTab7SubTtab5(e.target.value);
                     } else if (selectedTabIndex == 7 && index == 5) {
-                      setTab7SubTab6(e.target.value);
+                      setTab7SubTtab6(e.target.value);
                     } else if (selectedTabIndex == 7 && index == 6) {
-                      setTab7SubTab7(e.target.value);
+                      setTab7SubTtab7(e.target.value);
                     } else if (selectedTabIndex == 7 && index == 7) {
-                      setTab7SubTab8(e.target.value);
+                      setTab7SubTtab8(e.target.value);
                     } else if (selectedTabIndex == 7 && index == 8) {
-                      setTab7SubTab9(e.target.value);
+                      setTab7SubTtab9(e.target.value);
                     } else if (selectedTabIndex == 7 && index == 9) {
-                      setTab7SubTab10(e.target.value);
+                      setTab7SubTtab10(e.target.value);
                     } else if (selectedTabIndex == 8 && index == 0) {
-                      setTab8SubTab1(e.target.value);
+                      setTab8SubTtab1(e.target.value);
                     } else if (selectedTabIndex == 8 && index == 1) {
-                      setTab8SubTab2(e.target.value);
+                      setTab8SubTtab2(e.target.value);
                     } else if (selectedTabIndex == 8 && index == 2) {
-                      setTab8SubTab3(e.target.value);
+                      setTab8SubTtab3(e.target.value);
                     } else if (selectedTabIndex == 8 && index == 3) {
-                      setTab8SubTab4(e.target.value);
+                      setTab8SubTtab4(e.target.value);
                     } else if (selectedTabIndex == 8 && index == 4) {
-                      setTab8SubTab5(e.target.value);
+                      setTab8SubTtab5(e.target.value);
                     } else if (selectedTabIndex == 8 && index == 5) {
-                      setTab8SubTab6(e.target.value);
+                      setTab8SubTtab6(e.target.value);
                     } else if (selectedTabIndex == 8 && index == 6) {
-                      setTab8SubTab7(e.target.value);
+                      setTab8SubTtab7(e.target.value);
                     } else if (selectedTabIndex == 8 && index == 7) {
-                      setTab8SubTab8(e.target.value);
+                      setTab8SubTtab8(e.target.value);
                     } else if (selectedTabIndex == 8 && index == 8) {
-                      setTab8SubTab9(e.target.value);
+                      setTab8SubTtab9(e.target.value);
                     } else if (selectedTabIndex == 8 && index == 9) {
-                      setTab8SubTab10(e.target.value);
+                      setTab8SubTtab10(e.target.value);
                     } else if (selectedTabIndex == 9 && index == 0) {
-                      setTab9SubTab1(e.target.value);
+                      setTab9SubTtab1(e.target.value);
                     } else if (selectedTabIndex == 9 && index == 1) {
-                      setTab9SubTab2(e.target.value);
+                      setTab9SubTtab2(e.target.value);
                     } else if (selectedTabIndex == 9 && index == 2) {
-                      setTab9SubTab3(e.target.value);
+                      setTab9SubTtab3(e.target.value);
                     } else if (selectedTabIndex == 9 && index == 3) {
-                      setTab9SubTab4(e.target.value);
+                      setTab9SubTtab4(e.target.value);
                     } else if (selectedTabIndex == 9 && index == 4) {
-                      setTab9SubTab5(e.target.value);
+                      setTab9SubTtab5(e.target.value);
                     } else if (selectedTabIndex == 9 && index == 5) {
-                      setTab9SubTab6(e.target.value);
+                      setTab9SubTtab6(e.target.value);
                     } else if (selectedTabIndex == 9 && index == 6) {
-                      setTab9SubTab7(e.target.value);
+                      setTab9SubTtab7(e.target.value);
                     } else if (selectedTabIndex == 9 && index == 7) {
-                      setTab9SubTab8(e.target.value);
+                      setTab9SubTtab8(e.target.value);
                     } else if (selectedTabIndex == 9 && index == 8) {
-                      setTab9SubTab9(e.target.value);
+                      setTab9SubTtab9(e.target.value);
                     } else if (selectedTabIndex == 9 && index == 9) {
-                      setTab9SubTab10(e.target.value);
+                      setTab9SubTtab10(e.target.value);
                     } else if (selectedTabIndex == 10 && index == 0) {
-                      setTab10SubTab1(e.target.value);
+                      setTab10SubTtab1(e.target.value);
                     } else if (selectedTabIndex == 10 && index == 1) {
-                      setTab10SubTab2(e.target.value);
+                      setTab10SubTtab2(e.target.value);
                     } else if (selectedTabIndex == 10 && index == 2) {
-                      setTab10SubTab3(e.target.value);
+                      setTab10SubTtab3(e.target.value);
                     } else if (selectedTabIndex == 10 && index == 3) {
-                      setTab10SubTab4(e.target.value);
+                      setTab10SubTtab4(e.target.value);
                     } else if (selectedTabIndex == 10 && index == 4) {
-                      setTab10SubTab5(e.target.value);
+                      setTab10SubTtab5(e.target.value);
                     } else if (selectedTabIndex == 10 && index == 5) {
-                      setTab10SubTab6(e.target.value);
+                      setTab10SubTtab6(e.target.value);
                     } else if (selectedTabIndex == 10 && index == 6) {
-                      setTab10SubTab7(e.target.value);
+                      setTab10SubTtab7(e.target.value);
                     } else if (selectedTabIndex == 10 && index == 7) {
-                      setTab10SubTab8(e.target.value);
+                      setTab10SubTtab8(e.target.value);
                     } else if (selectedTabIndex == 10 && index == 8) {
-                      setTab10SubTab9(e.target.value);
+                      setTab10SubTtab9(e.target.value);
                     } else if (selectedTabIndex == 10 && index == 9) {
-                      setTab10SubTab10(e.target.value);
+                      setTab10SubTtab10(e.target.value);
                     }
                   }}
                 />
               );
             })}
+            {alert ? (
+              <Alert severity={alertSeverity} style={{ marginTop: "10px" }}>
+                {alertMessage}
+              </Alert>
+            ) : (
+              <></>
+            )}
             <Button
               onClick={() => {
-                setOpenSubTab(false);
-                setOpenTab(true);
-                setSubTabArray([]);
-              }}
+                handleCloseSubTab()
+                handleOpenTab()
+                resetSubTabTitle()
+               }}
             >
               back
             </Button>
-            <Button onClick={handleCloseSubTab}>Close</Button>
+            <Button onClick={() => {
+              handleCloseSubTab() 
+              resetSubTabTitle()
+              }}>Close</Button>
+
+            <Button onClick={() => {
+               let subTabArray = [
+                tab1SubTtab1,
+                tab1SubTtab2,
+                tab1SubTtab3,
+                tab1SubTtab4,
+                tab1SubTtab5,
+                tab1SubTtab6,
+                tab1SubTtab7,
+                tab1SubTtab8,
+                tab1SubTtab9,
+                tab1SubTtab10,
+
+                tab2SubTtab1,
+                tab2SubTtab2,
+                tab2SubTtab3,
+                tab2SubTtab4,
+                tab2SubTtab5,
+                tab2SubTtab6,
+                tab2SubTtab7,
+                tab2SubTtab8,
+                tab2SubTtab9,
+                tab2SubTtab10,
+                
+                tab3SubTtab1,
+                tab3SubTtab2,
+                tab3SubTtab3,
+                tab3SubTtab4,
+                tab3SubTtab5,
+                tab3SubTtab6,
+                tab3SubTtab7,
+                tab3SubTtab8,
+                tab3SubTtab9,
+                tab3SubTtab10,
+
+                tab4SubTtab1,
+                tab4SubTtab2,
+                tab4SubTtab3,
+                tab4SubTtab4,
+                tab4SubTtab5,
+                tab4SubTtab6,
+                tab4SubTtab7,
+                tab4SubTtab8,
+                tab4SubTtab9,
+                tab4SubTtab10,
+
+                tab5SubTtab1,
+                tab5SubTtab2,
+                tab5SubTtab3,
+                tab5SubTtab4,
+                tab5SubTtab5,
+                tab5SubTtab6,
+                tab5SubTtab7,
+                tab5SubTtab8,
+                tab5SubTtab9,
+                tab5SubTtab10,
+
+                tab6SubTtab1,
+                tab6SubTtab2,
+                tab6SubTtab3,
+                tab6SubTtab4,
+                tab6SubTtab5,
+                tab6SubTtab6,
+                tab6SubTtab7,
+                tab6SubTtab8,
+                tab6SubTtab9,
+                tab6SubTtab10,
+
+                tab7SubTtab1,
+                tab7SubTtab2,
+                tab7SubTtab3,
+                tab7SubTtab4,
+                tab7SubTtab5,
+                tab7SubTtab6,
+                tab7SubTtab7,
+                tab7SubTtab8,
+                tab7SubTtab9,
+                tab7SubTtab10,
+
+                tab8SubTtab1,
+                tab8SubTtab2,
+                tab8SubTtab3,
+                tab8SubTtab4,
+                tab8SubTtab5,
+                tab8SubTtab6,
+                tab8SubTtab7,
+                tab8SubTtab8,
+                tab8SubTtab9,
+                tab8SubTtab10,
+
+                tab9SubTtab1,
+                tab9SubTtab2,
+                tab9SubTtab3,
+                tab9SubTtab4,
+                tab9SubTtab5,
+                tab9SubTtab6,
+                tab9SubTtab7,
+                tab9SubTtab8,
+                tab9SubTtab9,
+                tab9SubTtab10,
+
+                tab10SubTtab1,
+                tab10SubTtab2,
+                tab10SubTtab3,
+                tab10SubTtab4,
+                tab10SubTtab5,
+                tab10SubTtab6,
+                tab10SubTtab7,
+                tab10SubTtab8,
+                tab10SubTtab9,
+                tab10SubTtab10,
+              ];
+              const uniqueSubTabs = new Set();
+              const duplicatesSubTabs = subTabArray.filter(
+                (item, index) => subTabArray.indexOf(item) !== index
+              );
+
+              if (!duplicatesSubTabs[0]) {
+                setOpenSubTab(false);
+                setOpenTab(true);
+                setSubTabArray([]);
+
+                setTab1SubTab1(tab1SubTtab1);
+                setTab1SubTab2(tab1SubTtab2);
+                setTab1SubTab3(tab1SubTtab3);
+                setTab1SubTab4(tab1SubTtab4);
+                setTab1SubTab5(tab1SubTtab5);
+                setTab1SubTab6(tab1SubTtab6);
+                setTab1SubTab7(tab1SubTtab7);
+                setTab1SubTab8(tab1SubTtab8);
+                setTab1SubTab9(tab1SubTtab9);
+                setTab1SubTab10(tab1SubTtab10);
+
+                setTab2SubTab1(tab2SubTtab1);
+                setTab2SubTab2(tab2SubTtab2);
+                setTab2SubTab3(tab2SubTtab3);
+                setTab2SubTab4(tab2SubTtab4);
+                setTab2SubTab5(tab2SubTtab5);
+                setTab2SubTab6(tab2SubTtab6);
+                setTab2SubTab7(tab2SubTtab7);
+                setTab2SubTab8(tab2SubTtab8);
+                setTab2SubTab9(tab2SubTtab9);
+                setTab2SubTab10(tab2SubTtab10);
+
+                setTab2SubTab1(tab2SubTtab1);
+                setTab2SubTab2(tab2SubTtab2);
+                setTab2SubTab3(tab2SubTtab3);
+                setTab2SubTab4(tab2SubTtab4);
+                setTab2SubTab5(tab2SubTtab5);
+                setTab2SubTab6(tab2SubTtab6);
+                setTab2SubTab7(tab2SubTtab7);
+                setTab2SubTab8(tab2SubTtab8);
+                setTab2SubTab9(tab2SubTtab9);
+                setTab2SubTab10(tab2SubTtab10);
+
+                setTab3SubTab1(tab3SubTtab1);
+                setTab3SubTab2(tab3SubTtab2);
+                setTab3SubTab3(tab3SubTtab3);
+                setTab3SubTab4(tab3SubTtab4);
+                setTab3SubTab5(tab3SubTtab5);
+                setTab3SubTab6(tab3SubTtab6);
+                setTab3SubTab7(tab3SubTtab7);
+                setTab3SubTab8(tab3SubTtab8);
+                setTab3SubTab9(tab3SubTtab9);
+                setTab3SubTab10(tab3SubTtab10);
+
+                setTab4SubTab1(tab4SubTtab1);
+                setTab4SubTab2(tab4SubTtab2);
+                setTab4SubTab3(tab4SubTtab3);
+                setTab4SubTab4(tab4SubTtab4);
+                setTab4SubTab5(tab4SubTtab5);
+                setTab4SubTab6(tab4SubTtab6);
+                setTab4SubTab7(tab4SubTtab7);
+                setTab4SubTab8(tab4SubTtab8);
+                setTab4SubTab9(tab4SubTtab9);
+                setTab4SubTab10(tab4SubTtab10);
+
+                setTab5SubTab1(tab5SubTtab1);
+                setTab5SubTab2(tab5SubTtab2);
+                setTab5SubTab3(tab5SubTtab3);
+                setTab5SubTab4(tab5SubTtab4);
+                setTab5SubTab5(tab5SubTtab5);
+                setTab5SubTab6(tab5SubTtab6);
+                setTab5SubTab7(tab5SubTtab7);
+                setTab5SubTab8(tab5SubTtab8);
+                setTab5SubTab9(tab5SubTtab9);
+                setTab5SubTab10(tab5SubTtab10);
+
+                setTab6SubTab1(tab6SubTtab1);
+                setTab6SubTab2(tab6SubTtab2);
+                setTab6SubTab3(tab6SubTtab3);
+                setTab6SubTab4(tab6SubTtab4);
+                setTab6SubTab5(tab6SubTtab5);
+                setTab6SubTab6(tab6SubTtab6);
+                setTab6SubTab7(tab6SubTtab7);
+                setTab6SubTab8(tab6SubTtab8);
+                setTab6SubTab9(tab6SubTtab9);
+                setTab6SubTab10(tab6SubTtab10);
+
+                setTab7SubTab1(tab7SubTtab1);
+                setTab7SubTab2(tab7SubTtab2);
+                setTab7SubTab3(tab7SubTtab3);
+                setTab7SubTab4(tab7SubTtab4);
+                setTab7SubTab5(tab7SubTtab5);
+                setTab7SubTab6(tab7SubTtab6);
+                setTab7SubTab7(tab7SubTtab7);
+                setTab7SubTab8(tab7SubTtab8);
+                setTab7SubTab9(tab7SubTtab9);
+                setTab7SubTab10(tab7SubTtab10);
+
+                setTab8SubTab1(tab8SubTtab1);
+                setTab8SubTab2(tab8SubTtab2);
+                setTab8SubTab3(tab8SubTtab3);
+                setTab8SubTab4(tab8SubTtab4);
+                setTab8SubTab5(tab8SubTtab5);
+                setTab8SubTab6(tab8SubTtab6);
+                setTab8SubTab7(tab8SubTtab7);
+                setTab8SubTab8(tab8SubTtab8);
+                setTab8SubTab9(tab8SubTtab9);
+                setTab8SubTab10(tab8SubTtab10);
+
+                setTab9SubTab1(tab9SubTtab1);
+                setTab9SubTab2(tab9SubTtab2);
+                setTab9SubTab3(tab9SubTtab3);
+                setTab9SubTab4(tab9SubTtab4);
+                setTab9SubTab5(tab9SubTtab5);
+                setTab9SubTab6(tab9SubTtab6);
+                setTab9SubTab7(tab9SubTtab7);
+                setTab9SubTab8(tab9SubTtab8);
+                setTab9SubTab9(tab9SubTtab9);
+                setTab9SubTab10(tab9SubTtab10);
+
+                setTab10SubTab1(tab10SubTtab1);
+                setTab10SubTab2(tab10SubTtab2);
+                setTab10SubTab3(tab10SubTtab3);
+                setTab10SubTab4(tab10SubTtab4);
+                setTab10SubTab5(tab10SubTtab5);
+                setTab10SubTab6(tab10SubTtab6);
+                setTab10SubTab7(tab10SubTtab7);
+                setTab10SubTab8(tab10SubTtab8);
+                setTab10SubTab9(tab10SubTtab9);
+                setTab10SubTab10(tab10SubTtab10);
+              } else {
+                let errData = {
+                  message: "Sub Tab names must be unique",
+                  severity: "error",
+                  tabIndex: duplicatesSubTabs
+                };
+                errAlert(errData);
+              }
+            
+            }}>Save</Button>
           </Box>
         </Fade>
       </Modal>

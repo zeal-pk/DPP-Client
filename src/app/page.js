@@ -10,7 +10,7 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import Alert from "@mui/material/Alert";
+// import Alert from "@mui/material/Alert";
 import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
@@ -64,7 +64,11 @@ export default function Login() {
     let mail = email;
     let pass = password;
     if (!mail) {
-      alert("Please Provide an Email Address");
+      let errData = {
+        message: "Please Provide an Email Address",
+        severity: "error",
+      };
+      errAlert(errData);
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
       let errData = {
         message: "Please Provide a Valid Email Address",
@@ -176,9 +180,12 @@ export default function Login() {
               variant="text"
               onClick={() => {
                 // router.push("/signup");
-                alert(
-                  "Currently a new user can be created only by the product team."
-                );
+                let errData = {
+                  message:
+                    "Currently a new user can be created only by the product team.",
+                  severity: "error",
+                };
+                errAlert(errData);
               }}
             >
               Signup
