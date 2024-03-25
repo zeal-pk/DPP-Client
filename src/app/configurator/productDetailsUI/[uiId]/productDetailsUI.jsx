@@ -2936,304 +2936,304 @@ export default function AddProductsSection({ params }) {
               let ci = `${tabIndex}-${subTabIndex}`;
               if (ci == "2-0") {
                 setTab1SubTab1(child);
-                // setTab1SubTtab1(child)
+                setTab1SubTtab1(child)
               } else if (ci == "2-1") {
                 setTab1SubTab2(child);
-                // setTab1SubTtab2(child)
+                setTab1SubTtab2(child)
               } else if (ci == "2-3") {
                 setTab1SubTab3(child);
                 setTab1SubTtab3(child)
               } else if (ci == "2-4") {
                 setTab1SubTab4(child);
-                // setTab1SubTtab4(child)
+                setTab1SubTtab4(child)
               } else if (ci == "2-5") {
                 setTab1SubTab5(child);
-                // setTab1SubTtab5(child)
+                setTab1SubTtab5(child)
               } else if (ci == "2-6") {
                 setTab1SubTab6(child);
-                // setTab1SubTtab6(child)
+                setTab1SubTtab6(child)
               } else if (ci == "2-7") {
                 setTab1SubTab7(child);
-                // setTab1SubTtab7(child)
+                setTab1SubTtab7(child)
               } else if (ci == "2-8") {
                 setTab1SubTab8(child);
-                // setTab1SubTtab8(child)
+                setTab1SubTtab8(child)
               } else if (ci == "2-9") {
                 setTab1SubTab9(child);
-                // setTab1SubTtab9(child)
+                setTab1SubTtab9(child)
               } else if (ci == "2-10") {
                 setTab1SubTab10(child);
-                // setTab1SubTtab10(child)
+                setTab1SubTtab10(child)
               } else if (ci == "3-0") {
                 setTab2SubTab1(child);
-                // setTab2SubTtab1(child)
+                setTab2SubTtab1(child)
               } else if (ci == "3-1") {
                 setTab2SubTab2(child);
-                // setTab2SubTtab2(child)
+                setTab2SubTtab2(child)
               } else if (ci == "3-3") {
                 setTab2SubTab3(child);
-                // setTab2SubTtab3(child)
+                setTab2SubTtab3(child)
               } else if (ci == "3-4") {
                 setTab2SubTab4(child);
-                // setTab2SubTtab4(child)
+                setTab2SubTtab4(child)
               } else if (ci == "3-5") {
                 setTab2SubTab5(child);
-                // setTab2SubTtab5(child)
+                setTab2SubTtab5(child)
               } else if (ci == "3-6") {
                 setTab2SubTab6(child);
-                // setTab2SubTtab6(child)
+                setTab2SubTtab6(child)
               } else if (ci == "3-7") {
                 setTab2SubTab7(child);
-                // setTab2SubTtab7(child)
+                setTab2SubTtab7(child)
               } else if (ci == "3-8") {
                 setTab2SubTab8(child);
-                // setTab2SubTtab8(child)
+                setTab2SubTtab8(child)
               } else if (ci == "3-9") {
                 setTab2SubTab9(child);
-                // setTab2SubTtab9(child)
+                setTab2SubTtab9(child)
               } else if (ci == "3-10") {
                 setTab2SubTab10(child);
-                // setTab2SubTtab10(child)
+                setTab2SubTtab10(child)
               } else if (ci == "4-0") {
                 setTab3SubTab1(child);
-                // setTab3SubTtab1(child)
+                setTab3SubTtab1(child)
               } else if (ci == "4-1") {
                 setTab3SubTab2(child);
-                // setTab3SubTtab2(child)
+                setTab3SubTtab2(child)
               } else if (ci == "4-3") {
                 setTab3SubTab3(child);
-                // setTab3SubTtab3(child)
+                setTab3SubTtab3(child)
               } else if (ci == "4-4") {
                 setTab3SubTab4(child);
-                // setTab3SubTtab4(child)
+                setTab3SubTtab4(child)
               } else if (ci == "4-5") {
                 setTab3SubTab5(child);
-                // setTab3SubTtab5(child)
+                setTab3SubTtab5(child)
               } else if (ci == "4-6") {
                 setTab3SubTab6(child);
-                // setTab3SubTtab6(child)
+                setTab3SubTtab6(child)
               } else if (ci == "4-7") {
                 setTab3SubTab7(child);
-                // setTab3SubTtab7(child)
+                setTab3SubTtab7(child)
               } else if (ci == "4-8") {
                 setTab3SubTab8(child);
-                // setTab3SubTtab8(child)
+                setTab3SubTtab8(child)
               } else if (ci == "4-9") {
                 setTab3SubTab9(child);
-                // setTab3SubTtab9(child)
+                setTab3SubTtab9(child)
               } else if (ci == "4-10") {
                 setTab3SubTab10(child);
-                // setTab3SubTtab10(child)
+                setTab3SubTtab10(child)
               } else if (ci == "5-0") {
                 setTab4SubTab1(child);
-                // setTab4SubTtab1(child)
+                setTab4SubTtab1(child)
               } else if (ci == "5-1") {
                 setTab4SubTab2(child);
-                // setTab4SubTtab2(child)
+                setTab4SubTtab2(child)
               } else if (ci == "5-3") {
                 setTab4SubTab3(child);
-                // setTab4SubTtab3(child)
+                setTab4SubTtab3(child)
               } else if (ci == "5-4") {
                 setTab4SubTab4(child);
-                // setTab4SubTtab4(child)
+                setTab4SubTtab4(child)
               } else if (ci == "5-5") {
                 setTab4SubTab5(child);
-                // setTab4SubTtab5(child)
+                setTab4SubTtab5(child)
               } else if (ci == "5-6") {
                 setTab4SubTab6(child);
-                // setTab4SubTtab6(child)
+                setTab4SubTtab6(child)
               } else if (ci == "5-7") {
                 setTab4SubTab7(child);
-                // setTab4SubTtab7(child)
+                setTab4SubTtab7(child)
               } else if (ci == "5-8") {
                 setTab4SubTab8(child);
-                // setTab4SubTtab8(child)
+                setTab4SubTtab8(child)
               } else if (ci == "5-9") {
                 setTab4SubTab9(child);
-                // setTab4SubTtab9(child)
+                setTab4SubTtab9(child)
               } else if (ci == "5-10") {
                 setTab4SubTab10(child);
-                // setTab4SubTtab10(child)
+                setTab4SubTtab10(child)
               } else if (ci == "6-0") {
                 setTab5SubTab1(child);
-                // setTab5SubTtab1(child)
+                setTab5SubTtab1(child)
               } else if (ci == "6-1") {
                 setTab5SubTab2(child);
-                // setTab5SubTtab2(child)
+                setTab5SubTtab2(child)
               } else if (ci == "6-3") {
                 setTab5SubTab3(child);
-                // setTab5SubTtab3(child)
+                setTab5SubTtab3(child)
               } else if (ci == "6-4") {
                 setTab5SubTab4(child);
-                // setTab5SubTtab4(child)
+                setTab5SubTtab4(child)
               } else if (ci == "6-5") {
                 setTab5SubTab5(child);
-                // setTab5SubTtab5(child)
+                setTab5SubTtab5(child)
               } else if (ci == "6-6") {
                 setTab5SubTab6(child);
-                // setTab5SubTtab6(child)
+                setTab5SubTtab6(child)
               } else if (ci == "6-7") {
                 setTab5SubTab7(child);
-                // setTab5SubTtab7(child)
+                setTab5SubTtab7(child)
               } else if (ci == "6-8") {
                 setTab5SubTab8(child);
-                // setTab5SubTtab8(child)
+                setTab5SubTtab8(child)
               } else if (ci == "6-9") {
                 setTab5SubTab9(child);
-                // setTab5SubTtab9(child)
+                setTab5SubTtab9(child)
               } else if (ci == "6-10") {
                 setTab5SubTab10(child);
-                // setTab5SubTtab10(child)
+                setTab5SubTtab10(child)
               } else if (ci == "7-0") {
                 setTab6SubTab1(child);
-                // setTab6SubTtab1(child)
+                setTab6SubTtab1(child)
               } else if (ci == "7-1") {
                 setTab6SubTab2(child);
-                // setTab6SubTtab2(child)
+                setTab6SubTtab2(child)
               } else if (ci == "7-3") {
                 setTab6SubTab3(child);
-                // setTab6SubTtab3(child)
+                setTab6SubTtab3(child)
               } else if (ci == "7-4") {
                 setTab6SubTab4(child);
-                // setTab6SubTtab4(child)
+                setTab6SubTtab4(child)
               } else if (ci == "7-5") {
                 setTab6SubTab5(child);
-                // setTab6SubTtab5(child)
+                setTab6SubTtab5(child)
               } else if (ci == "7-6") {
                 setTab6SubTab6(child);
-                // setTab6SubTtab6(child)
+                setTab6SubTtab6(child)
               } else if (ci == "7-7") {
                 setTab6SubTab7(child);
-                // setTab6SubTtab7(child)
+                setTab6SubTtab7(child)
               } else if (ci == "7-8") {
                 setTab6SubTab8(child);
-                // setTab6SubTtab8(child)
+                setTab6SubTtab8(child)
               } else if (ci == "7-9") {
                 setTab6SubTab9(child);
-                // setTab6SubTtab9(child)
+                setTab6SubTtab9(child)
               } else if (ci == "7-10") {
                 setTab6SubTab10(child);
-                // setTab6SubTtab10(child)
+                setTab6SubTtab10(child)
               } else if (ci == "8-0") {
                 setTab7SubTab1(child);
-                // setTab7SubTtab1(child)
+                setTab7SubTtab1(child)
               } else if (ci == "8-1") {
                 setTab7SubTab2(child);
-                // setTab7SubTtab2(child)
+                setTab7SubTtab2(child)
               } else if (ci == "8-3") {
                 setTab7SubTab3(child);
-                // setTab7SubTtab3(child)
+                setTab7SubTtab3(child)
               } else if (ci == "8-4") {
                 setTab7SubTab4(child);
-                // setTab7SubTtab4(child)
+                setTab7SubTtab4(child)
               } else if (ci == "8-5") {
                 setTab7SubTab5(child);
-                // setTab7SubTtab5(child)
+                setTab7SubTtab5(child)
               } else if (ci == "8-6") {
                 setTab7SubTab6(child);
-                // setTab7SubTtab6(child)
+                setTab7SubTtab6(child)
               } else if (ci == "8-7") {
                 setTab7SubTab7(child);
-                // setTab7SubTtab7(child)
+                setTab7SubTtab7(child)
               } else if (ci == "8-8") {
                 setTab7SubTab8(child);
-                // setTab7SubTtab8(child)
+                setTab7SubTtab8(child)
               } else if (ci == "8-9") {
                 setTab7SubTab9(child);
-                // setTab7SubTtab9(child)
+                setTab7SubTtab9(child)
               } else if (ci == "8-10") {
                 setTab7SubTab10(child);
-                // setTab7SubTtab10(child)
+                setTab7SubTtab10(child)
               } else if (ci == "9-0") {
                 setTab8SubTab1(child);
-                // setTab8SubTtab1(child)
+                setTab8SubTtab1(child)
               } else if (ci == "9-1") {
                 setTab8SubTab2(child);
-                // setTab8SubTtab2(child)
+                setTab8SubTtab2(child)
               } else if (ci == "9-3") {
                 setTab8SubTab3(child);
-                // setTab8SubTtab3(child)
+                setTab8SubTtab3(child)
               } else if (ci == "9-4") {
                 setTab8SubTab4(child);
-                // setTab8SubTtab4(child)
+                setTab8SubTtab4(child)
               } else if (ci == "9-5") {
                 setTab8SubTab5(child);
-                // setTab8SubTtab5(child)
+                setTab8SubTtab5(child)
               } else if (ci == "9-6") {
                 setTab8SubTab6(child);
-                // setTab8SubTtab6(child)
+                setTab8SubTtab6(child)
               } else if (ci == "9-7") {
                 setTab8SubTab7(child);
-                // setTab8SubTtab7(child)
+                setTab8SubTtab7(child)
               } else if (ci == "9-8") {
                 setTab8SubTab8(child);
-                // setTab8SubTtab8(child)
+                setTab8SubTtab8(child)
               } else if (ci == "9-9") {
                 setTab8SubTab9(child);
-                // setTab8SubTtab9(child)
+                setTab8SubTtab9(child)
               } else if (ci == "9-10") {
                 setTab8SubTab10(child);
-                // setTab8SubTtab10(child)
+                setTab8SubTtab10(child)
               } else if (ci == "10-0") {
                 setTab9SubTab1(child);
-                // setTab9SubTtab1(child)
+                setTab9SubTtab1(child)
               } else if (ci == "10-1") {
                 setTab9SubTab2(child);
-                // setTab9SubTtab2(child)
+                setTab9SubTtab2(child)
               } else if (ci == "10-3") {
                 setTab9SubTab3(child);
-                // setTab9SubTtab3(child)
+                setTab9SubTtab3(child)
               } else if (ci == "10-4") {
-                // setTab9SubTab4(child);
+                setTab9SubTab4(child);
                 setTab9SubTtab4(child)
               } else if (ci == "10-5") {
                 setTab9SubTab5(child);
-                // setTab9SubTtab5(child)
+                setTab9SubTtab5(child)
               } else if (ci == "10-6") {
                 setTab9SubTab6(child);
-                // setTab9SubTtab6(child)
+                setTab9SubTtab6(child)
               } else if (ci == "10-7") {
                 setTab9SubTab7(child);
-                // setTab9SubTtab7(child)
+                setTab9SubTtab7(child)
               } else if (ci == "10-8") {
                 setTab9SubTab8(child);
-                // setTab9SubTtab8(child)
+                setTab9SubTtab8(child)
               } else if (ci == "10-9") {
                 setTab9SubTab9(child);
-                // setTab9SubTtab9(child)
+                setTab9SubTtab9(child)
               } else if (ci == "10-10") {
                 setTab9SubTab10(child);
-                // setTab9SubTtab10(child)
+                setTab9SubTtab10(child)
               } else if (ci == "11-0") {
                 setTab10SubTab1(child);
-                // setTab10SubTtab1(child)
+                setTab10SubTtab1(child)
               } else if (ci == "11-1") {
                 setTab10SubTab2(child);
-                // setTab10SubTtab2(child)
+                setTab10SubTtab2(child)
               } else if (ci == "11-3") {
                 setTab10SubTab3(child);
-                // setTab10SubTtab3(child)
+                setTab10SubTtab3(child)
               } else if (ci == "11-4") {
                 setTab10SubTab4(child);
-                // setTab10SubTtab4(child)
+                setTab10SubTtab4(child)
               } else if (ci == "11-5") {
                 setTab10SubTab5(child);
-                // setTab10SubTtab5(child)
+                setTab10SubTtab5(child)
               } else if (ci == "11-6") {
                 setTab10SubTab6(child);
-                // setTab10SubTtab6(child)
+                setTab10SubTtab6(child)
               } else if (ci == "11-7") {
                 setTab10SubTab7(child);
-                // setTab10SubTtab7(child)
+                setTab10SubTtab7(child)
               } else if (ci == "11-8") {
                 setTab10SubTab8(child);
-                // setTab10SubTtab8(child)
+                setTab10SubTtab8(child)
               } else if (ci == "11-9") {
                 setTab10SubTab9(child);
-                // setTab10SubTtab9(child)
+                setTab10SubTtab9(child)
               } else if (ci == "11-10") {
                 setTab10SubTab10(child);
-                // setTab10SubTtab10(child)
+                setTab10SubTtab10(child)
               }
             });
           }
