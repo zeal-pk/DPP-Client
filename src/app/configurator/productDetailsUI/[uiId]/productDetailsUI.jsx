@@ -2890,242 +2890,358 @@ export default function AddProductsSection({ params }) {
     let id = pathArr[3];
 
     try {
-      let response = await axios.get(
-        `${serverUrl}/getProductDetailsUI/${id}`,
-        )
+      let response = await axios.get(`${serverUrl}/getProductDetailsUI/${id}`);
 
-        let data = response.data
+      let data = response.data;
 
-        if(data) {
-          Object.keys(data).map((key, index) => {
-            let tabIndex = index;
-            if(key != "_id" && key != "templateId") {
-              if(index == 2) {setTab1(key)}
-              else if(index == 3) {setTab2(key)}
-              else if(index == 4) {setTab3(key)}
-              else if(index == 5) {setTab4(key)}
-              else if(index == 6) {setTab5(key)}
-              else if(index == 7) {setTab6(key)}
-              else if(index == 8) {setTab7(key)}
-              else if(index == 9) {setTab8(key)}
-              else if(index == 10) {setTab9(key)}
-              else if(index == 11) {setTab10(key)}
+      if (data) {
+        Object.keys(data).map((key, index) => {
+          let tabIndex = index;
+          if (key != "_id" && key != "templateId") {
+            if (index == 2) {
+              setTab1(key);
+              setTtab1(key);
+            } else if (index == 3) {
+              setTab2(key);
+              setTtab2(key);
+            } else if (index == 4) {
+              setTab3(key);
+              setTtab3(key);
+            } else if (index == 5) {
+              setTab4(key);
+              setTtab4(key);
+            } else if (index == 6) {
+              setTab5(key);
+              setTtab5(key);
+            } else if (index == 7) {
+              setTab6(key);
+              setTtab6(key);
+            } else if (index == 8) {
+              setTab7(key);
+              setTtab7(key);
+            } else if (index == 9) {
+              setTab8(key);
+              setTtab8(key);
+            } else if (index == 10) {
+              setTab9(key);
+              setTtab9(key);
+            } else if (index == 11) {
+              setTab10(key);
+              setTtab10(key);
             }
-            if(key != "_id" && key != "templateId") {
-            Object.keys(data[key]).map((child, index) => {
-              let subTabIndex = index
-              let ci = `${tabIndex}-${subTabIndex}`
-              if(ci == "2-0") {
-                setTab1SubTab1(child)
-              } else if (ci == "2-1") {
-                setTab1SubTab2(child)
-              } else if (ci == "2-3") {
-                setTab1SubTab3(child)
-              } else if (ci == "2-4") {
-                setTab1SubTab4(child)
-              } else if (ci == "2-5") {
-                setTab1SubTab5(child)
-              } else if (ci == "2-6") {
-                setTab1SubTab6(child)
-              } else if (ci == "2-7") {
-                setTab1SubTab7(child)
-              } else if (ci == "2-8") {
-                setTab1SubTab8(child)
-              } else if (ci == "2-9") {
-                setTab1SubTab9(child)
-              } else if (ci == "2-10") {
-                setTab1SubTab10(child)
-              } else if(ci == "3-0") {
-                setTab2SubTab1(child)
-              } else if (ci == "3-1") {
-                setTab2SubTab2(child)
-              } else if (ci == "3-3") {
-                setTab2SubTab3(child)
-              } else if (ci == "3-4") {
-                setTab2SubTab4(child)
-              } else if (ci == "3-5") {
-                setTab2SubTab5(child)
-              } else if (ci == "3-6") {
-                setTab2SubTab6(child)
-              } else if (ci == "3-7") {
-                setTab2SubTab7(child)
-              } else if (ci == "3-8") {
-                setTab2SubTab8(child)
-              } else if (ci == "3-9") {
-                setTab2SubTab9(child)
-              } else if (ci == "3-10") {
-                setTab2SubTab10(child)
-              } else if(ci == "4-0") {
-                setTab3SubTab1(child)
-              } else if (ci == "4-1") {
-                setTab3SubTab2(child)
-              } else if (ci == "4-3") {
-                setTab3SubTab3(child)
-              } else if (ci == "4-4") {
-                setTab3SubTab4(child)
-              } else if (ci == "4-5") {
-                setTab3SubTab5(child)
-              } else if (ci == "4-6") {
-                setTab3SubTab6(child)
-              } else if (ci == "4-7") {
-                setTab3SubTab7(child)
-              } else if (ci == "4-8") {
-                setTab3SubTab8(child)
-              } else if (ci == "4-9") {
-                setTab3SubTab9(child)
-              } else if (ci == "4-10") {
-                setTab3SubTab10(child)
-              } else if(ci == "5-0") {
-                setTab4SubTab1(child)
-              } else if (ci == "5-1") {
-                setTab4SubTab2(child)
-              } else if (ci == "5-3") {
-                setTab4SubTab3(child)
-              } else if (ci == "5-4") {
-                setTab4SubTab4(child)
-              } else if (ci == "5-5") {
-                setTab4SubTab5(child)
-              } else if (ci == "5-6") {
-                setTab4SubTab6(child)
-              } else if (ci == "5-7") {
-                setTab4SubTab7(child)
-              } else if (ci == "5-8") {
-                setTab4SubTab8(child)
-              } else if (ci == "5-9") {
-                setTab4SubTab9(child)
-              } else if (ci == "5-10") {
-                setTab4SubTab10(child)
-              } else if(ci == "6-0") {
-                setTab5SubTab1(child)
-              } else if (ci == "6-1") {
-                setTab5SubTab2(child)
-              } else if (ci == "6-3") {
-                setTab5SubTab3(child)
-              } else if (ci == "6-4") {
-                setTab5SubTab4(child)
-              } else if (ci == "6-5") {
-                setTab5SubTab5(child)
-              } else if (ci == "6-6") {
-                setTab5SubTab6(child)
-              } else if (ci == "6-7") {
-                setTab5SubTab7(child)
-              } else if (ci == "6-8") {
-                setTab5SubTab8(child)
-              } else if (ci == "6-9") {
-                setTab5SubTab9(child)
-              } else if (ci == "6-10") {
-                setTab5SubTab10(child)
-              } else if(ci == "7-0") {
-                setTab6SubTab1(child)
-              } else if (ci == "7-1") {
-                setTab6SubTab2(child)
-              } else if (ci == "7-3") {
-                setTab6SubTab3(child)
-              } else if (ci == "7-4") {
-                setTab6SubTab4(child)
-              } else if (ci == "7-5") {
-                setTab6SubTab5(child)
-              } else if (ci == "7-6") {
-                setTab6SubTab6(child)
-              } else if (ci == "7-7") {
-                setTab6SubTab7(child)
-              } else if (ci == "7-8") {
-                setTab6SubTab8(child)
-              } else if (ci == "7-9") {
-                setTab6SubTab9(child)
-              } else if (ci == "7-10") {
-                setTab6SubTab10(child)
-              } else if(ci == "8-0") {
-                setTab7SubTab1(child)
-              } else if (ci == "8-1") {
-                setTab7SubTab2(child)
-              } else if (ci == "8-3") {
-                setTab7SubTab3(child)
-              } else if (ci == "8-4") {
-                setTab7SubTab4(child)
-              } else if (ci == "8-5") {
-                setTab7SubTab5(child)
-              } else if (ci == "8-6") {
-                setTab7SubTab6(child)
-              } else if (ci == "8-7") {
-                setTab7SubTab7(child)
-              } else if (ci == "8-8") {
-                setTab7SubTab8(child)
-              } else if (ci == "8-9") {
-                setTab7SubTab9(child)
-              } else if (ci == "8-10") {
-                setTab7SubTab10(child)
-              } else if(ci == "9-0") {
-                setTab8SubTab1(child)
-              } else if (ci == "9-1") {
-                setTab8SubTab2(child)
-              } else if (ci == "9-3") {
-                setTab8SubTab3(child)
-              } else if (ci == "9-4") {
-                setTab8SubTab4(child)
-              } else if (ci == "9-5") {
-                setTab8SubTab5(child)
-              } else if (ci == "9-6") {
-                setTab8SubTab6(child)
-              } else if (ci == "9-7") {
-                setTab8SubTab7(child)
-              } else if (ci == "9-8") {
-                setTab8SubTab8(child)
-              } else if (ci == "9-9") {
-                setTab8SubTab9(child)
-              } else if (ci == "9-10") {
-                setTab8SubTab10(child)
-              } else if(ci == "10-0") {
-                setTab9SubTab1(child)
-              } else if (ci == "10-1") {
-                setTab9SubTab2(child)
-              } else if (ci == "10-3") {
-                setTab9SubTab3(child)
-              } else if (ci == "10-4") {
-                setTab9SubTab4(child)
-              } else if (ci == "10-5") {
-                setTab9SubTab5(child)
-              } else if (ci == "10-6") {
-                setTab9SubTab6(child)
-              } else if (ci == "10-7") {
-                setTab9SubTab7(child)
-              } else if (ci == "10-8") {
-                setTab9SubTab8(child)
-              } else if (ci == "10-9") {
-                setTab9SubTab9(child)
-              } else if (ci == "10-10") {
-                setTab9SubTab10(child)
-              }  else if(ci == "11-0") {
-                setTab10SubTab1(child)
-              } else if (ci == "11-1") {
-                setTab10SubTab2(child)
-              } else if (ci == "11-3") {
-                setTab10SubTab3(child)
-              } else if (ci == "11-4") {
-                setTab10SubTab4(child)
-              } else if (ci == "11-5") {
-                setTab10SubTab5(child)
-              } else if (ci == "11-6") {
-                setTab10SubTab6(child)
-              } else if (ci == "11-7") {
-                setTab10SubTab7(child)
-              } else if (ci == "11-8") {
-                setTab10SubTab8(child)
-              } else if (ci == "11-9") {
-                setTab10SubTab9(child)
-              } else if (ci == "11-10") {
-                setTab10SubTab10(child)
-              }
-              
-            })
           }
-          })
-        }
-
+          if (key != "_id" && key != "templateId") {
+            Object.keys(data[key]).map((child, index) => {
+              let subTabIndex = index;
+              let ci = `${tabIndex}-${subTabIndex}`;
+              if (ci == "2-0") {
+                setTab1SubTab1(child);
+                // setTab1SubTtab1(child)
+              } else if (ci == "2-1") {
+                setTab1SubTab2(child);
+                // setTab1SubTtab2(child)
+              } else if (ci == "2-3") {
+                setTab1SubTab3(child);
+                setTab1SubTtab3(child)
+              } else if (ci == "2-4") {
+                setTab1SubTab4(child);
+                // setTab1SubTtab4(child)
+              } else if (ci == "2-5") {
+                setTab1SubTab5(child);
+                // setTab1SubTtab5(child)
+              } else if (ci == "2-6") {
+                setTab1SubTab6(child);
+                // setTab1SubTtab6(child)
+              } else if (ci == "2-7") {
+                setTab1SubTab7(child);
+                // setTab1SubTtab7(child)
+              } else if (ci == "2-8") {
+                setTab1SubTab8(child);
+                // setTab1SubTtab8(child)
+              } else if (ci == "2-9") {
+                setTab1SubTab9(child);
+                // setTab1SubTtab9(child)
+              } else if (ci == "2-10") {
+                setTab1SubTab10(child);
+                // setTab1SubTtab10(child)
+              } else if (ci == "3-0") {
+                setTab2SubTab1(child);
+                // setTab2SubTtab1(child)
+              } else if (ci == "3-1") {
+                setTab2SubTab2(child);
+                // setTab2SubTtab2(child)
+              } else if (ci == "3-3") {
+                setTab2SubTab3(child);
+                // setTab2SubTtab3(child)
+              } else if (ci == "3-4") {
+                setTab2SubTab4(child);
+                // setTab2SubTtab4(child)
+              } else if (ci == "3-5") {
+                setTab2SubTab5(child);
+                // setTab2SubTtab5(child)
+              } else if (ci == "3-6") {
+                setTab2SubTab6(child);
+                // setTab2SubTtab6(child)
+              } else if (ci == "3-7") {
+                setTab2SubTab7(child);
+                // setTab2SubTtab7(child)
+              } else if (ci == "3-8") {
+                setTab2SubTab8(child);
+                // setTab2SubTtab8(child)
+              } else if (ci == "3-9") {
+                setTab2SubTab9(child);
+                // setTab2SubTtab9(child)
+              } else if (ci == "3-10") {
+                setTab2SubTab10(child);
+                // setTab2SubTtab10(child)
+              } else if (ci == "4-0") {
+                setTab3SubTab1(child);
+                // setTab3SubTtab1(child)
+              } else if (ci == "4-1") {
+                setTab3SubTab2(child);
+                // setTab3SubTtab2(child)
+              } else if (ci == "4-3") {
+                setTab3SubTab3(child);
+                // setTab3SubTtab3(child)
+              } else if (ci == "4-4") {
+                setTab3SubTab4(child);
+                // setTab3SubTtab4(child)
+              } else if (ci == "4-5") {
+                setTab3SubTab5(child);
+                // setTab3SubTtab5(child)
+              } else if (ci == "4-6") {
+                setTab3SubTab6(child);
+                // setTab3SubTtab6(child)
+              } else if (ci == "4-7") {
+                setTab3SubTab7(child);
+                // setTab3SubTtab7(child)
+              } else if (ci == "4-8") {
+                setTab3SubTab8(child);
+                // setTab3SubTtab8(child)
+              } else if (ci == "4-9") {
+                setTab3SubTab9(child);
+                // setTab3SubTtab9(child)
+              } else if (ci == "4-10") {
+                setTab3SubTab10(child);
+                // setTab3SubTtab10(child)
+              } else if (ci == "5-0") {
+                setTab4SubTab1(child);
+                // setTab4SubTtab1(child)
+              } else if (ci == "5-1") {
+                setTab4SubTab2(child);
+                // setTab4SubTtab2(child)
+              } else if (ci == "5-3") {
+                setTab4SubTab3(child);
+                // setTab4SubTtab3(child)
+              } else if (ci == "5-4") {
+                setTab4SubTab4(child);
+                // setTab4SubTtab4(child)
+              } else if (ci == "5-5") {
+                setTab4SubTab5(child);
+                // setTab4SubTtab5(child)
+              } else if (ci == "5-6") {
+                setTab4SubTab6(child);
+                // setTab4SubTtab6(child)
+              } else if (ci == "5-7") {
+                setTab4SubTab7(child);
+                // setTab4SubTtab7(child)
+              } else if (ci == "5-8") {
+                setTab4SubTab8(child);
+                // setTab4SubTtab8(child)
+              } else if (ci == "5-9") {
+                setTab4SubTab9(child);
+                // setTab4SubTtab9(child)
+              } else if (ci == "5-10") {
+                setTab4SubTab10(child);
+                // setTab4SubTtab10(child)
+              } else if (ci == "6-0") {
+                setTab5SubTab1(child);
+                // setTab5SubTtab1(child)
+              } else if (ci == "6-1") {
+                setTab5SubTab2(child);
+                // setTab5SubTtab2(child)
+              } else if (ci == "6-3") {
+                setTab5SubTab3(child);
+                // setTab5SubTtab3(child)
+              } else if (ci == "6-4") {
+                setTab5SubTab4(child);
+                // setTab5SubTtab4(child)
+              } else if (ci == "6-5") {
+                setTab5SubTab5(child);
+                // setTab5SubTtab5(child)
+              } else if (ci == "6-6") {
+                setTab5SubTab6(child);
+                // setTab5SubTtab6(child)
+              } else if (ci == "6-7") {
+                setTab5SubTab7(child);
+                // setTab5SubTtab7(child)
+              } else if (ci == "6-8") {
+                setTab5SubTab8(child);
+                // setTab5SubTtab8(child)
+              } else if (ci == "6-9") {
+                setTab5SubTab9(child);
+                // setTab5SubTtab9(child)
+              } else if (ci == "6-10") {
+                setTab5SubTab10(child);
+                // setTab5SubTtab10(child)
+              } else if (ci == "7-0") {
+                setTab6SubTab1(child);
+                // setTab6SubTtab1(child)
+              } else if (ci == "7-1") {
+                setTab6SubTab2(child);
+                // setTab6SubTtab2(child)
+              } else if (ci == "7-3") {
+                setTab6SubTab3(child);
+                // setTab6SubTtab3(child)
+              } else if (ci == "7-4") {
+                setTab6SubTab4(child);
+                // setTab6SubTtab4(child)
+              } else if (ci == "7-5") {
+                setTab6SubTab5(child);
+                // setTab6SubTtab5(child)
+              } else if (ci == "7-6") {
+                setTab6SubTab6(child);
+                // setTab6SubTtab6(child)
+              } else if (ci == "7-7") {
+                setTab6SubTab7(child);
+                // setTab6SubTtab7(child)
+              } else if (ci == "7-8") {
+                setTab6SubTab8(child);
+                // setTab6SubTtab8(child)
+              } else if (ci == "7-9") {
+                setTab6SubTab9(child);
+                // setTab6SubTtab9(child)
+              } else if (ci == "7-10") {
+                setTab6SubTab10(child);
+                // setTab6SubTtab10(child)
+              } else if (ci == "8-0") {
+                setTab7SubTab1(child);
+                // setTab7SubTtab1(child)
+              } else if (ci == "8-1") {
+                setTab7SubTab2(child);
+                // setTab7SubTtab2(child)
+              } else if (ci == "8-3") {
+                setTab7SubTab3(child);
+                // setTab7SubTtab3(child)
+              } else if (ci == "8-4") {
+                setTab7SubTab4(child);
+                // setTab7SubTtab4(child)
+              } else if (ci == "8-5") {
+                setTab7SubTab5(child);
+                // setTab7SubTtab5(child)
+              } else if (ci == "8-6") {
+                setTab7SubTab6(child);
+                // setTab7SubTtab6(child)
+              } else if (ci == "8-7") {
+                setTab7SubTab7(child);
+                // setTab7SubTtab7(child)
+              } else if (ci == "8-8") {
+                setTab7SubTab8(child);
+                // setTab7SubTtab8(child)
+              } else if (ci == "8-9") {
+                setTab7SubTab9(child);
+                // setTab7SubTtab9(child)
+              } else if (ci == "8-10") {
+                setTab7SubTab10(child);
+                // setTab7SubTtab10(child)
+              } else if (ci == "9-0") {
+                setTab8SubTab1(child);
+                // setTab8SubTtab1(child)
+              } else if (ci == "9-1") {
+                setTab8SubTab2(child);
+                // setTab8SubTtab2(child)
+              } else if (ci == "9-3") {
+                setTab8SubTab3(child);
+                // setTab8SubTtab3(child)
+              } else if (ci == "9-4") {
+                setTab8SubTab4(child);
+                // setTab8SubTtab4(child)
+              } else if (ci == "9-5") {
+                setTab8SubTab5(child);
+                // setTab8SubTtab5(child)
+              } else if (ci == "9-6") {
+                setTab8SubTab6(child);
+                // setTab8SubTtab6(child)
+              } else if (ci == "9-7") {
+                setTab8SubTab7(child);
+                // setTab8SubTtab7(child)
+              } else if (ci == "9-8") {
+                setTab8SubTab8(child);
+                // setTab8SubTtab8(child)
+              } else if (ci == "9-9") {
+                setTab8SubTab9(child);
+                // setTab8SubTtab9(child)
+              } else if (ci == "9-10") {
+                setTab8SubTab10(child);
+                // setTab8SubTtab10(child)
+              } else if (ci == "10-0") {
+                setTab9SubTab1(child);
+                // setTab9SubTtab1(child)
+              } else if (ci == "10-1") {
+                setTab9SubTab2(child);
+                // setTab9SubTtab2(child)
+              } else if (ci == "10-3") {
+                setTab9SubTab3(child);
+                // setTab9SubTtab3(child)
+              } else if (ci == "10-4") {
+                // setTab9SubTab4(child);
+                setTab9SubTtab4(child)
+              } else if (ci == "10-5") {
+                setTab9SubTab5(child);
+                // setTab9SubTtab5(child)
+              } else if (ci == "10-6") {
+                setTab9SubTab6(child);
+                // setTab9SubTtab6(child)
+              } else if (ci == "10-7") {
+                setTab9SubTab7(child);
+                // setTab9SubTtab7(child)
+              } else if (ci == "10-8") {
+                setTab9SubTab8(child);
+                // setTab9SubTtab8(child)
+              } else if (ci == "10-9") {
+                setTab9SubTab9(child);
+                // setTab9SubTtab9(child)
+              } else if (ci == "10-10") {
+                setTab9SubTab10(child);
+                // setTab9SubTtab10(child)
+              } else if (ci == "11-0") {
+                setTab10SubTab1(child);
+                // setTab10SubTtab1(child)
+              } else if (ci == "11-1") {
+                setTab10SubTab2(child);
+                // setTab10SubTtab2(child)
+              } else if (ci == "11-3") {
+                setTab10SubTab3(child);
+                // setTab10SubTtab3(child)
+              } else if (ci == "11-4") {
+                setTab10SubTab4(child);
+                // setTab10SubTtab4(child)
+              } else if (ci == "11-5") {
+                setTab10SubTab5(child);
+                // setTab10SubTtab5(child)
+              } else if (ci == "11-6") {
+                setTab10SubTab6(child);
+                // setTab10SubTtab6(child)
+              } else if (ci == "11-7") {
+                setTab10SubTab7(child);
+                // setTab10SubTtab7(child)
+              } else if (ci == "11-8") {
+                setTab10SubTab8(child);
+                // setTab10SubTtab8(child)
+              } else if (ci == "11-9") {
+                setTab10SubTab9(child);
+                // setTab10SubTtab9(child)
+              } else if (ci == "11-10") {
+                setTab10SubTab10(child);
+                // setTab10SubTtab10(child)
+              }
+            });
+          }
+        });
+      }
     } catch (error) {
       console.log(error);
     }
-
   }
 
   useEffect(() => {
@@ -3239,7 +3355,7 @@ export default function AddProductsSection({ params }) {
                       size="small"
                       disabled={disabledStates[key]}
                       onClick={() => {
-                        saveTabs()
+                        saveTabs();
                         {
                           Object.keys(dataStruct[key]).map((child) => {
                             setOpenTab(false);
@@ -3270,8 +3386,8 @@ export default function AddProductsSection({ params }) {
             )}
             <Button onClick={handleCloseTab}>Close</Button>
             <Button
-              onClick={() => { 
-                saveTabs()
+              onClick={() => {
+                saveTabs();
               }}
             >
               Save Tabs
@@ -3519,270 +3635,278 @@ export default function AddProductsSection({ params }) {
             )}
             <Button
               onClick={() => {
-                handleCloseSubTab()
-                handleOpenTab()
-                resetSubTabTitle()
-               }}
+                handleCloseSubTab();
+                handleOpenTab();
+                resetSubTabTitle();
+              }}
             >
               back
             </Button>
-            <Button onClick={() => {
-              handleCloseSubTab() 
-              resetSubTabTitle()
-              }}>Close</Button>
+            <Button
+              onClick={() => {
+                handleCloseSubTab();
+                resetSubTabTitle();
+              }}
+            >
+              Close
+            </Button>
 
-            <Button onClick={() => {
-               let subTabArray = [
-                tab1SubTtab1,
-                tab1SubTtab2,
-                tab1SubTtab3,
-                tab1SubTtab4,
-                tab1SubTtab5,
-                tab1SubTtab6,
-                tab1SubTtab7,
-                tab1SubTtab8,
-                tab1SubTtab9,
-                tab1SubTtab10,
+            <Button
+              onClick={() => {
+                let subTabArray = [
+                  tab1SubTtab1,
+                  tab1SubTtab2,
+                  tab1SubTtab3,
+                  tab1SubTtab4,
+                  tab1SubTtab5,
+                  tab1SubTtab6,
+                  tab1SubTtab7,
+                  tab1SubTtab8,
+                  tab1SubTtab9,
+                  tab1SubTtab10,
 
-                tab2SubTtab1,
-                tab2SubTtab2,
-                tab2SubTtab3,
-                tab2SubTtab4,
-                tab2SubTtab5,
-                tab2SubTtab6,
-                tab2SubTtab7,
-                tab2SubTtab8,
-                tab2SubTtab9,
-                tab2SubTtab10,
-                
-                tab3SubTtab1,
-                tab3SubTtab2,
-                tab3SubTtab3,
-                tab3SubTtab4,
-                tab3SubTtab5,
-                tab3SubTtab6,
-                tab3SubTtab7,
-                tab3SubTtab8,
-                tab3SubTtab9,
-                tab3SubTtab10,
+                  tab2SubTtab1,
+                  tab2SubTtab2,
+                  tab2SubTtab3,
+                  tab2SubTtab4,
+                  tab2SubTtab5,
+                  tab2SubTtab6,
+                  tab2SubTtab7,
+                  tab2SubTtab8,
+                  tab2SubTtab9,
+                  tab2SubTtab10,
 
-                tab4SubTtab1,
-                tab4SubTtab2,
-                tab4SubTtab3,
-                tab4SubTtab4,
-                tab4SubTtab5,
-                tab4SubTtab6,
-                tab4SubTtab7,
-                tab4SubTtab8,
-                tab4SubTtab9,
-                tab4SubTtab10,
+                  tab3SubTtab1,
+                  tab3SubTtab2,
+                  tab3SubTtab3,
+                  tab3SubTtab4,
+                  tab3SubTtab5,
+                  tab3SubTtab6,
+                  tab3SubTtab7,
+                  tab3SubTtab8,
+                  tab3SubTtab9,
+                  tab3SubTtab10,
 
-                tab5SubTtab1,
-                tab5SubTtab2,
-                tab5SubTtab3,
-                tab5SubTtab4,
-                tab5SubTtab5,
-                tab5SubTtab6,
-                tab5SubTtab7,
-                tab5SubTtab8,
-                tab5SubTtab9,
-                tab5SubTtab10,
+                  tab4SubTtab1,
+                  tab4SubTtab2,
+                  tab4SubTtab3,
+                  tab4SubTtab4,
+                  tab4SubTtab5,
+                  tab4SubTtab6,
+                  tab4SubTtab7,
+                  tab4SubTtab8,
+                  tab4SubTtab9,
+                  tab4SubTtab10,
 
-                tab6SubTtab1,
-                tab6SubTtab2,
-                tab6SubTtab3,
-                tab6SubTtab4,
-                tab6SubTtab5,
-                tab6SubTtab6,
-                tab6SubTtab7,
-                tab6SubTtab8,
-                tab6SubTtab9,
-                tab6SubTtab10,
+                  tab5SubTtab1,
+                  tab5SubTtab2,
+                  tab5SubTtab3,
+                  tab5SubTtab4,
+                  tab5SubTtab5,
+                  tab5SubTtab6,
+                  tab5SubTtab7,
+                  tab5SubTtab8,
+                  tab5SubTtab9,
+                  tab5SubTtab10,
 
-                tab7SubTtab1,
-                tab7SubTtab2,
-                tab7SubTtab3,
-                tab7SubTtab4,
-                tab7SubTtab5,
-                tab7SubTtab6,
-                tab7SubTtab7,
-                tab7SubTtab8,
-                tab7SubTtab9,
-                tab7SubTtab10,
+                  tab6SubTtab1,
+                  tab6SubTtab2,
+                  tab6SubTtab3,
+                  tab6SubTtab4,
+                  tab6SubTtab5,
+                  tab6SubTtab6,
+                  tab6SubTtab7,
+                  tab6SubTtab8,
+                  tab6SubTtab9,
+                  tab6SubTtab10,
 
-                tab8SubTtab1,
-                tab8SubTtab2,
-                tab8SubTtab3,
-                tab8SubTtab4,
-                tab8SubTtab5,
-                tab8SubTtab6,
-                tab8SubTtab7,
-                tab8SubTtab8,
-                tab8SubTtab9,
-                tab8SubTtab10,
+                  tab7SubTtab1,
+                  tab7SubTtab2,
+                  tab7SubTtab3,
+                  tab7SubTtab4,
+                  tab7SubTtab5,
+                  tab7SubTtab6,
+                  tab7SubTtab7,
+                  tab7SubTtab8,
+                  tab7SubTtab9,
+                  tab7SubTtab10,
 
-                tab9SubTtab1,
-                tab9SubTtab2,
-                tab9SubTtab3,
-                tab9SubTtab4,
-                tab9SubTtab5,
-                tab9SubTtab6,
-                tab9SubTtab7,
-                tab9SubTtab8,
-                tab9SubTtab9,
-                tab9SubTtab10,
+                  tab8SubTtab1,
+                  tab8SubTtab2,
+                  tab8SubTtab3,
+                  tab8SubTtab4,
+                  tab8SubTtab5,
+                  tab8SubTtab6,
+                  tab8SubTtab7,
+                  tab8SubTtab8,
+                  tab8SubTtab9,
+                  tab8SubTtab10,
 
-                tab10SubTtab1,
-                tab10SubTtab2,
-                tab10SubTtab3,
-                tab10SubTtab4,
-                tab10SubTtab5,
-                tab10SubTtab6,
-                tab10SubTtab7,
-                tab10SubTtab8,
-                tab10SubTtab9,
-                tab10SubTtab10,
-              ];
-              const uniqueSubTabs = new Set();
-              const duplicatesSubTabs = subTabArray.filter(
-                (item, index) => subTabArray.indexOf(item) !== index
-              );
+                  tab9SubTtab1,
+                  tab9SubTtab2,
+                  tab9SubTtab3,
+                  tab9SubTtab4,
+                  tab9SubTtab5,
+                  tab9SubTtab6,
+                  tab9SubTtab7,
+                  tab9SubTtab8,
+                  tab9SubTtab9,
+                  tab9SubTtab10,
 
-              if (!duplicatesSubTabs[0]) {
-                setOpenSubTab(false);
-                setOpenTab(true);
-                setSubTabArray([]);
+                  tab10SubTtab1,
+                  tab10SubTtab2,
+                  tab10SubTtab3,
+                  tab10SubTtab4,
+                  tab10SubTtab5,
+                  tab10SubTtab6,
+                  tab10SubTtab7,
+                  tab10SubTtab8,
+                  tab10SubTtab9,
+                  tab10SubTtab10,
+                ];
+                const uniqueSubTabs = new Set();
+                const duplicatesSubTabs = subTabArray.filter(
+                  (item, index) => subTabArray.indexOf(item) !== index
+                );
 
-                setTab1SubTab1(tab1SubTtab1);
-                setTab1SubTab2(tab1SubTtab2);
-                setTab1SubTab3(tab1SubTtab3);
-                setTab1SubTab4(tab1SubTtab4);
-                setTab1SubTab5(tab1SubTtab5);
-                setTab1SubTab6(tab1SubTtab6);
-                setTab1SubTab7(tab1SubTtab7);
-                setTab1SubTab8(tab1SubTtab8);
-                setTab1SubTab9(tab1SubTtab9);
-                setTab1SubTab10(tab1SubTtab10);
+                if (!duplicatesSubTabs[0]) {
+                  setOpenSubTab(false);
+                  setOpenTab(true);
+                  setSubTabArray([]);
 
-                setTab2SubTab1(tab2SubTtab1);
-                setTab2SubTab2(tab2SubTtab2);
-                setTab2SubTab3(tab2SubTtab3);
-                setTab2SubTab4(tab2SubTtab4);
-                setTab2SubTab5(tab2SubTtab5);
-                setTab2SubTab6(tab2SubTtab6);
-                setTab2SubTab7(tab2SubTtab7);
-                setTab2SubTab8(tab2SubTtab8);
-                setTab2SubTab9(tab2SubTtab9);
-                setTab2SubTab10(tab2SubTtab10);
+                  setTab1SubTab1(tab1SubTtab1);
+                  setTab1SubTab2(tab1SubTtab2);
+                  setTab1SubTab3(tab1SubTtab3);
+                  setTab1SubTab4(tab1SubTtab4);
+                  setTab1SubTab5(tab1SubTtab5);
+                  setTab1SubTab6(tab1SubTtab6);
+                  setTab1SubTab7(tab1SubTtab7);
+                  setTab1SubTab8(tab1SubTtab8);
+                  setTab1SubTab9(tab1SubTtab9);
+                  setTab1SubTab10(tab1SubTtab10);
 
-                setTab2SubTab1(tab2SubTtab1);
-                setTab2SubTab2(tab2SubTtab2);
-                setTab2SubTab3(tab2SubTtab3);
-                setTab2SubTab4(tab2SubTtab4);
-                setTab2SubTab5(tab2SubTtab5);
-                setTab2SubTab6(tab2SubTtab6);
-                setTab2SubTab7(tab2SubTtab7);
-                setTab2SubTab8(tab2SubTtab8);
-                setTab2SubTab9(tab2SubTtab9);
-                setTab2SubTab10(tab2SubTtab10);
+                  setTab2SubTab1(tab2SubTtab1);
+                  setTab2SubTab2(tab2SubTtab2);
+                  setTab2SubTab3(tab2SubTtab3);
+                  setTab2SubTab4(tab2SubTtab4);
+                  setTab2SubTab5(tab2SubTtab5);
+                  setTab2SubTab6(tab2SubTtab6);
+                  setTab2SubTab7(tab2SubTtab7);
+                  setTab2SubTab8(tab2SubTtab8);
+                  setTab2SubTab9(tab2SubTtab9);
+                  setTab2SubTab10(tab2SubTtab10);
 
-                setTab3SubTab1(tab3SubTtab1);
-                setTab3SubTab2(tab3SubTtab2);
-                setTab3SubTab3(tab3SubTtab3);
-                setTab3SubTab4(tab3SubTtab4);
-                setTab3SubTab5(tab3SubTtab5);
-                setTab3SubTab6(tab3SubTtab6);
-                setTab3SubTab7(tab3SubTtab7);
-                setTab3SubTab8(tab3SubTtab8);
-                setTab3SubTab9(tab3SubTtab9);
-                setTab3SubTab10(tab3SubTtab10);
+                  setTab2SubTab1(tab2SubTtab1);
+                  setTab2SubTab2(tab2SubTtab2);
+                  setTab2SubTab3(tab2SubTtab3);
+                  setTab2SubTab4(tab2SubTtab4);
+                  setTab2SubTab5(tab2SubTtab5);
+                  setTab2SubTab6(tab2SubTtab6);
+                  setTab2SubTab7(tab2SubTtab7);
+                  setTab2SubTab8(tab2SubTtab8);
+                  setTab2SubTab9(tab2SubTtab9);
+                  setTab2SubTab10(tab2SubTtab10);
 
-                setTab4SubTab1(tab4SubTtab1);
-                setTab4SubTab2(tab4SubTtab2);
-                setTab4SubTab3(tab4SubTtab3);
-                setTab4SubTab4(tab4SubTtab4);
-                setTab4SubTab5(tab4SubTtab5);
-                setTab4SubTab6(tab4SubTtab6);
-                setTab4SubTab7(tab4SubTtab7);
-                setTab4SubTab8(tab4SubTtab8);
-                setTab4SubTab9(tab4SubTtab9);
-                setTab4SubTab10(tab4SubTtab10);
+                  setTab3SubTab1(tab3SubTtab1);
+                  setTab3SubTab2(tab3SubTtab2);
+                  setTab3SubTab3(tab3SubTtab3);
+                  setTab3SubTab4(tab3SubTtab4);
+                  setTab3SubTab5(tab3SubTtab5);
+                  setTab3SubTab6(tab3SubTtab6);
+                  setTab3SubTab7(tab3SubTtab7);
+                  setTab3SubTab8(tab3SubTtab8);
+                  setTab3SubTab9(tab3SubTtab9);
+                  setTab3SubTab10(tab3SubTtab10);
 
-                setTab5SubTab1(tab5SubTtab1);
-                setTab5SubTab2(tab5SubTtab2);
-                setTab5SubTab3(tab5SubTtab3);
-                setTab5SubTab4(tab5SubTtab4);
-                setTab5SubTab5(tab5SubTtab5);
-                setTab5SubTab6(tab5SubTtab6);
-                setTab5SubTab7(tab5SubTtab7);
-                setTab5SubTab8(tab5SubTtab8);
-                setTab5SubTab9(tab5SubTtab9);
-                setTab5SubTab10(tab5SubTtab10);
+                  setTab4SubTab1(tab4SubTtab1);
+                  setTab4SubTab2(tab4SubTtab2);
+                  setTab4SubTab3(tab4SubTtab3);
+                  setTab4SubTab4(tab4SubTtab4);
+                  setTab4SubTab5(tab4SubTtab5);
+                  setTab4SubTab6(tab4SubTtab6);
+                  setTab4SubTab7(tab4SubTtab7);
+                  setTab4SubTab8(tab4SubTtab8);
+                  setTab4SubTab9(tab4SubTtab9);
+                  setTab4SubTab10(tab4SubTtab10);
 
-                setTab6SubTab1(tab6SubTtab1);
-                setTab6SubTab2(tab6SubTtab2);
-                setTab6SubTab3(tab6SubTtab3);
-                setTab6SubTab4(tab6SubTtab4);
-                setTab6SubTab5(tab6SubTtab5);
-                setTab6SubTab6(tab6SubTtab6);
-                setTab6SubTab7(tab6SubTtab7);
-                setTab6SubTab8(tab6SubTtab8);
-                setTab6SubTab9(tab6SubTtab9);
-                setTab6SubTab10(tab6SubTtab10);
+                  setTab5SubTab1(tab5SubTtab1);
+                  setTab5SubTab2(tab5SubTtab2);
+                  setTab5SubTab3(tab5SubTtab3);
+                  setTab5SubTab4(tab5SubTtab4);
+                  setTab5SubTab5(tab5SubTtab5);
+                  setTab5SubTab6(tab5SubTtab6);
+                  setTab5SubTab7(tab5SubTtab7);
+                  setTab5SubTab8(tab5SubTtab8);
+                  setTab5SubTab9(tab5SubTtab9);
+                  setTab5SubTab10(tab5SubTtab10);
 
-                setTab7SubTab1(tab7SubTtab1);
-                setTab7SubTab2(tab7SubTtab2);
-                setTab7SubTab3(tab7SubTtab3);
-                setTab7SubTab4(tab7SubTtab4);
-                setTab7SubTab5(tab7SubTtab5);
-                setTab7SubTab6(tab7SubTtab6);
-                setTab7SubTab7(tab7SubTtab7);
-                setTab7SubTab8(tab7SubTtab8);
-                setTab7SubTab9(tab7SubTtab9);
-                setTab7SubTab10(tab7SubTtab10);
+                  setTab6SubTab1(tab6SubTtab1);
+                  setTab6SubTab2(tab6SubTtab2);
+                  setTab6SubTab3(tab6SubTtab3);
+                  setTab6SubTab4(tab6SubTtab4);
+                  setTab6SubTab5(tab6SubTtab5);
+                  setTab6SubTab6(tab6SubTtab6);
+                  setTab6SubTab7(tab6SubTtab7);
+                  setTab6SubTab8(tab6SubTtab8);
+                  setTab6SubTab9(tab6SubTtab9);
+                  setTab6SubTab10(tab6SubTtab10);
 
-                setTab8SubTab1(tab8SubTtab1);
-                setTab8SubTab2(tab8SubTtab2);
-                setTab8SubTab3(tab8SubTtab3);
-                setTab8SubTab4(tab8SubTtab4);
-                setTab8SubTab5(tab8SubTtab5);
-                setTab8SubTab6(tab8SubTtab6);
-                setTab8SubTab7(tab8SubTtab7);
-                setTab8SubTab8(tab8SubTtab8);
-                setTab8SubTab9(tab8SubTtab9);
-                setTab8SubTab10(tab8SubTtab10);
+                  setTab7SubTab1(tab7SubTtab1);
+                  setTab7SubTab2(tab7SubTtab2);
+                  setTab7SubTab3(tab7SubTtab3);
+                  setTab7SubTab4(tab7SubTtab4);
+                  setTab7SubTab5(tab7SubTtab5);
+                  setTab7SubTab6(tab7SubTtab6);
+                  setTab7SubTab7(tab7SubTtab7);
+                  setTab7SubTab8(tab7SubTtab8);
+                  setTab7SubTab9(tab7SubTtab9);
+                  setTab7SubTab10(tab7SubTtab10);
 
-                setTab9SubTab1(tab9SubTtab1);
-                setTab9SubTab2(tab9SubTtab2);
-                setTab9SubTab3(tab9SubTtab3);
-                setTab9SubTab4(tab9SubTtab4);
-                setTab9SubTab5(tab9SubTtab5);
-                setTab9SubTab6(tab9SubTtab6);
-                setTab9SubTab7(tab9SubTtab7);
-                setTab9SubTab8(tab9SubTtab8);
-                setTab9SubTab9(tab9SubTtab9);
-                setTab9SubTab10(tab9SubTtab10);
+                  setTab8SubTab1(tab8SubTtab1);
+                  setTab8SubTab2(tab8SubTtab2);
+                  setTab8SubTab3(tab8SubTtab3);
+                  setTab8SubTab4(tab8SubTtab4);
+                  setTab8SubTab5(tab8SubTtab5);
+                  setTab8SubTab6(tab8SubTtab6);
+                  setTab8SubTab7(tab8SubTtab7);
+                  setTab8SubTab8(tab8SubTtab8);
+                  setTab8SubTab9(tab8SubTtab9);
+                  setTab8SubTab10(tab8SubTtab10);
 
-                setTab10SubTab1(tab10SubTtab1);
-                setTab10SubTab2(tab10SubTtab2);
-                setTab10SubTab3(tab10SubTtab3);
-                setTab10SubTab4(tab10SubTtab4);
-                setTab10SubTab5(tab10SubTtab5);
-                setTab10SubTab6(tab10SubTtab6);
-                setTab10SubTab7(tab10SubTtab7);
-                setTab10SubTab8(tab10SubTtab8);
-                setTab10SubTab9(tab10SubTtab9);
-                setTab10SubTab10(tab10SubTtab10);
-              } else {
-                let errData = {
-                  message: "Sub Tab names must be unique",
-                  severity: "error",
-                  tabIndex: duplicatesSubTabs
-                };
-                errAlert(errData);
-              }
-            
-            }}>Save</Button>
+                  setTab9SubTab1(tab9SubTtab1);
+                  setTab9SubTab2(tab9SubTtab2);
+                  setTab9SubTab3(tab9SubTtab3);
+                  setTab9SubTab4(tab9SubTtab4);
+                  setTab9SubTab5(tab9SubTtab5);
+                  setTab9SubTab6(tab9SubTtab6);
+                  setTab9SubTab7(tab9SubTtab7);
+                  setTab9SubTab8(tab9SubTtab8);
+                  setTab9SubTab9(tab9SubTtab9);
+                  setTab9SubTab10(tab9SubTtab10);
+
+                  setTab10SubTab1(tab10SubTtab1);
+                  setTab10SubTab2(tab10SubTtab2);
+                  setTab10SubTab3(tab10SubTtab3);
+                  setTab10SubTab4(tab10SubTtab4);
+                  setTab10SubTab5(tab10SubTtab5);
+                  setTab10SubTab6(tab10SubTtab6);
+                  setTab10SubTab7(tab10SubTtab7);
+                  setTab10SubTab8(tab10SubTtab8);
+                  setTab10SubTab9(tab10SubTtab9);
+                  setTab10SubTab10(tab10SubTtab10);
+                } else {
+                  let errData = {
+                    message: "Sub Tab names must be unique",
+                    severity: "error",
+                    tabIndex: duplicatesSubTabs,
+                  };
+                  errAlert(errData);
+                  console.log(duplicatesSubTabs);
+                }
+              }}
+            >
+              Save
+            </Button>
           </Box>
         </Fade>
       </Modal>
