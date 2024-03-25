@@ -41,6 +41,7 @@ const style = {
 };
 
 export default function Home() {
+  
   let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   const router = useRouter();
   let [loadPage, setLoadPage] = useState(false);
