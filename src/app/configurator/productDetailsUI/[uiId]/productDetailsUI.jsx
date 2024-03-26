@@ -17,10 +17,12 @@ import FormControl from "@mui/material/FormControl";
 import Alert from "@mui/material/Alert";
 import FormLabel from "@mui/material/FormLabel";
 import { Typography } from "@mui/material";
+import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import MenuItem from "@mui/material/MenuItem";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Button as MUIButton } from "@mui/material";
 import { useForm, useFieldArray } from "react-hook-form";
+
 import {
   ObjectPage,
   ObjectPageSection,
@@ -28,9 +30,13 @@ import {
   Bar,
   Button,
 } from "@ui5/webcomponents-react";
-import { Mode } from "@mui/icons-material";
 import LoadingPage from "@/app/loading";
-import { Reorder } from "framer-motion";
+import { DataGrid,   GridActionsCellItem, } from "@mui/x-data-grid";
+import {
+  randomCreatedDate,
+  randomTraderName,
+  randomUpdatedDate,
+} from "@mui/x-data-grid-generator";
 
 const charts = [
   {
@@ -50,6 +56,8 @@ const charts = [
     label: "Scatter Chart",
   },
 ];
+
+
 
 export default function AddProductsSection({ params }) {
   let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
@@ -533,6 +541,19 @@ export default function AddProductsSection({ params }) {
   let [tab10SubTab9Type, setTab10SubTab9Type] = useState([]);
   let [tab10SubTab10Type, setTab10SubTab10Type] = useState([]);
 
+  let rows = [
+    {
+      id: 1,
+      index: 0,
+      fieldName: "Field 1",
+    },
+    {
+      id: 2,
+      index: 1,
+      fieldName: "Field 2",
+    },
+  ];
+
   function errAlert(errData) {
     let message = errData.message;
     let severity = errData.severity;
@@ -587,6 +608,41 @@ export default function AddProductsSection({ params }) {
       errAlert(errData);
     }
   }
+
+  function handleDeleteClick(fieldName) {
+    let deleted = tab1SubTab1Fields.filter((field) => field == fieldName)
+    console.log(deleted);
+  }
+
+  const columns = [
+    {
+      field: "index",
+      headerName: "Index",
+      width: 130,
+      type: "number",
+      editable: true,
+      align: "left",
+      headerAlign: "left",
+    },
+    { field: "fieldName", headerName: "Field Name", width: 380, editable: true },
+    // {
+    //   field: 'actions',
+    //   type: 'actions',
+    //   headerName: 'Actions',
+    //   width: 100,
+    //   cellClassName: 'actions',
+    //   getActions: (fieldName) => {
+    //     return [
+    //       <GridActionsCellItem
+    //         icon={<DeleteIcon />}
+    //         label="Delete"
+    //         onClick={handleDeleteClick(id)}
+    //         color="inherit"
+    //       />,
+    //     ];
+    //   },
+    // }
+  ];
 
   function resetSubTabTitle() {
     setTab1SubTtab1("Sub Tab 1-1");
@@ -1332,13 +1388,24 @@ export default function AddProductsSection({ params }) {
     }
   }
 
-  function RenderInputFields(field) {
+  function RenderInputFields() {
     return (
-      <div key={field}>
-        <p>Field Name : {field}</p>
-      </div>
+      <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              processRowUpdate={
+                (event) =>{
+                  rows[event.index].fieldName = event.fieldName
+                  setTab1SubTab1Fields((oldFields) => [...oldFields, {id:event.id, index: event.index, fieldName: event.fieldName}]);
+                  console.log(tab1SubTab1Fields);
+                }
+              }
+            />
+          </div>
     );
   }
+  
   function RenderChartFields(field) {
     return (
       <div key={field.xAxis}>
@@ -1359,7 +1426,7 @@ export default function AddProductsSection({ params }) {
   function MapFields(id) {
     if (id == `${tab1.replace(/\s/g, "")}-${tab1SubTab1.replace(/\s/g, "")}`) {
       if (tab1SubTab1Type == "inputFields") {
-        return tab1SubTab1Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields()
       } else if (tab1SubTab1Type == "chart") {
         return tab1SubTab1Fields.map((field) => RenderChartFields(field));
       } else if (
@@ -1373,7 +1440,8 @@ export default function AddProductsSection({ params }) {
       id == `${tab1.replace(/\s/g, "")}-${tab1SubTab2.replace(/\s/g, "")}`
     ) {
       if (tab1SubTab2Type == "inputFields") {
-        return tab1SubTab2Fields.map((field) => RenderInputFields(field));
+        return (RenderInputFields()
+        );
       } else if (tab1SubTab2Type == "chart") {
         return tab1SubTab2Fields.map((field) => RenderChartFields(field));
       } else {
@@ -1383,7 +1451,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab1.replace(/\s/g, "")}-${tab1SubTab3.replace(/\s/g, "")}`
     ) {
       if (tab1SubTab3Type == "inputFields") {
-        return tab1SubTab3Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields();
       } else if (tab1SubTab3Type == "chart") {
         return tab1SubTab3Fields.map((field) => RenderChartFields(field));
       } else {
@@ -1393,7 +1461,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab1.replace(/\s/g, "")}-${tab1SubTab4.replace(/\s/g, "")}`
     ) {
       if (tab1SubTab3Type == "inputFields") {
-        return tab1SubTab4Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields();
       } else if (tab1SubTab4Type == "chart") {
         return tab1SubTab4Fields.map((field) => RenderChartFields(field));
       } else {
@@ -1403,7 +1471,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab1.replace(/\s/g, "")}-${tab1SubTab5.replace(/\s/g, "")}`
     ) {
       if (tab1SubTab5Type == "inputFields") {
-        return tab1SubTab5Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields();
       } else if (tab1SubTab3Type == "chart") {
         return tab1SubTab5Fields.map((field) => RenderChartFields(field));
       } else {
@@ -1413,7 +1481,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab2.replace(/\s/g, "")}-${tab2SubTab1.replace(/\s/g, "")}`
     ) {
       if (tab2SubTab1Type == "inputFields") {
-        return tab2SubTab1Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields();
       } else if (tab2SubTab1Type == "chart") {
         return tab1SubTab1Fields.map((field) => RenderChartFields(field));
       } else if (
@@ -1427,7 +1495,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab2.replace(/\s/g, "")}-${tab2SubTab2.replace(/\s/g, "")}`
     ) {
       if (tab2SubTab2Type == "inputFields") {
-        return tab2SubTab2Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields();
       } else if (tab2SubTab2Type == "chart") {
         return tab2SubTab2Fields.map((field) => RenderChartFields(field));
       } else {
@@ -1437,7 +1505,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab2.replace(/\s/g, "")}-${tab2SubTab3.replace(/\s/g, "")}`
     ) {
       if (tab2SubTab3Type == "inputFields") {
-        return tab2SubTab3Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields();
       } else if (tab2SubTab3Type == "chart") {
         return tab2SubTab3Fields.map((field) => RenderChartFields(field));
       } else {
@@ -1447,7 +1515,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab2.replace(/\s/g, "")}-${tab2SubTab4.replace(/\s/g, "")}`
     ) {
       if (tab2SubTab3Type == "inputFields") {
-        return tab2SubTab4Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields();
       } else if (tab2SubTab4Type == "chart") {
         return tab2SubTab4Fields.map((field) => RenderChartFields(field));
       } else {
@@ -1457,7 +1525,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab2.replace(/\s/g, "")}-${tab2SubTab5.replace(/\s/g, "")}`
     ) {
       if (tab2SubTab5Type == "inputFields") {
-        return tab2SubTab5Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields();
       } else if (tab1SubTab3Type == "chart") {
         return tab2SubTab5Fields.map((field) => RenderChartFields(field));
       } else {
@@ -1467,7 +1535,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab3.replace(/\s/g, "")}-${tab3SubTab1.replace(/\s/g, "")}`
     ) {
       if (tab3SubTab1Type == "inputFields") {
-        return tab3SubTab1Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields();
       } else if (tab3SubTab1Type == "chart") {
         return tab3SubTab1Fields.map((field) => RenderChartFields(field));
       } else if (
@@ -1481,7 +1549,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab3.replace(/\s/g, "")}-${tab3SubTab2.replace(/\s/g, "")}`
     ) {
       if (tab3SubTab2Type == "inputFields") {
-        return tab3SubTab2Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields();
       } else if (tab3SubTab2Type == "chart") {
         return tab3SubTab2Fields.map((field) => RenderChartFields(field));
       } else if (
@@ -1495,7 +1563,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab3.replace(/\s/g, "")}-${tab3SubTab3.replace(/\s/g, "")}`
     ) {
       if (tab3SubTab3Type == "inputFields") {
-        return tab3SubTab3Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields();
       } else if (tab3SubTab3Type == "chart") {
         return tab3SubTab3Fields.map((field) => RenderChartFields(field));
       } else if (
@@ -1509,7 +1577,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab3.replace(/\s/g, "")}-${tab3SubTab4.replace(/\s/g, "")}`
     ) {
       if (tab3SubTab4Type == "inputFields") {
-        return tab3SubTab4Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields();
       } else if (tab3SubTab4Type == "chart") {
         return tab3SubTab4Fields.map((field) => RenderChartFields(field));
       } else if (
@@ -1523,7 +1591,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab3.replace(/\s/g, "")}-${tab3SubTab5.replace(/\s/g, "")}`
     ) {
       if (tab3SubTab5Type == "inputFields") {
-        return tab3SubTab5Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields();
       } else if (tab3SubTab5Type == "chart") {
         return tab3SubTab5Fields.map((field) => RenderChartFields(field));
       } else if (
@@ -1537,7 +1605,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab4.replace(/\s/g, "")}-${tab4SubTab1.replace(/\s/g, "")}`
     ) {
       if (tab4SubTab1Type == "inputFields") {
-        return tab4SubTab1Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields();
       } else if (tab4SubTab1Type == "chart") {
         return tab4SubTab1Fields.map((field) => RenderChartFields(field));
       } else if (
@@ -1551,7 +1619,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab4.replace(/\s/g, "")}-${tab4SubTab2.replace(/\s/g, "")}`
     ) {
       if (tab4SubTab2Type == "inputFields") {
-        return tab4SubTab2Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields();
       } else if (tab4SubTab2Type == "chart") {
         return tab4SubTab2Fields.map((field) => RenderChartFields(field));
       } else if (
@@ -1565,7 +1633,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab4.replace(/\s/g, "")}-${tab4SubTab3.replace(/\s/g, "")}`
     ) {
       if (tab4SubTab3Type == "inputFields") {
-        return tab4SubTab3Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields(field);
       } else if (tab4SubTab3Type == "chart") {
         return tab4SubTab3Fields.map((field) => RenderChartFields(field));
       } else if (
@@ -1579,7 +1647,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab4.replace(/\s/g, "")}-${tab4SubTab4.replace(/\s/g, "")}`
     ) {
       if (tab4SubTab4Type == "inputFields") {
-        return tab4SubTab4Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields(field);
       } else if (tab4SubTab4Type == "chart") {
         return tab4SubTab4Fields.map((field) => RenderChartFields(field));
       } else if (
@@ -1593,7 +1661,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab4.replace(/\s/g, "")}-${tab4SubTab5.replace(/\s/g, "")}`
     ) {
       if (tab4SubTab5Type == "inputFields") {
-        return tab4SubTab5Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields(field);
       } else if (tab4SubTab5Type == "chart") {
         return tab4SubTab5Fields.map((field) => RenderChartFields(field));
       } else if (
@@ -1607,7 +1675,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab5.replace(/\s/g, "")}-${tab5SubTab1.replace(/\s/g, "")}`
     ) {
       if (tab5SubTab1Type == "inputFields") {
-        return tab5SubTab1Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields(field);
       } else if (tab5SubTab1Type == "chart") {
         return tab5SubTab1Fields.map((field) => RenderChartFields(field));
       } else if (
@@ -1621,7 +1689,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab5.replace(/\s/g, "")}-${tab5SubTab2.replace(/\s/g, "")}`
     ) {
       if (tab5SubTab2Type == "inputFields") {
-        return tab5SubTab2Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields(field);
       } else if (tab5SubTab2Type == "chart") {
         return tab5SubTab2Fields.map((field) => RenderChartFields(field));
       } else if (
@@ -1635,7 +1703,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab5.replace(/\s/g, "")}-${tab5SubTab3.replace(/\s/g, "")}`
     ) {
       if (tab5SubTab3Type == "inputFields") {
-        return tab5SubTab3Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields(field);
       } else if (tab5SubTab3Type == "chart") {
         return tab5SubTab3Fields.map((field) => RenderChartFields(field));
       } else if (
@@ -1649,7 +1717,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab5.replace(/\s/g, "")}-${tab5SubTab4.replace(/\s/g, "")}`
     ) {
       if (tab5SubTab4Type == "inputFields") {
-        return tab5SubTab4Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields(field);
       } else if (tab5SubTab4Type == "chart") {
         return tab5SubTab4Fields.map((field) => RenderChartFields(field));
       } else if (
@@ -1663,7 +1731,7 @@ export default function AddProductsSection({ params }) {
       id == `${tab5.replace(/\s/g, "")}-${tab5SubTab5.replace(/\s/g, "")}`
     ) {
       if (tab5SubTab5Type == "inputFields") {
-        return tab5SubTab5Fields.map((field) => RenderInputFields(field));
+        return RenderInputFields(field);
       } else if (tab5SubTab5Type == "chart") {
         return tab5SubTab5Fields.map((field) => RenderChartFields(field));
       } else if (
@@ -2940,314 +3008,304 @@ export default function AddProductsSection({ params }) {
               let ci = `${tabIndex}-${subTabIndex}`;
               if (ci == "2-0") {
                 setTab1SubTab1(child);
-                setTab1SubTtab1(child)
-                console.log(child, subTabIndex);
+                setTab1SubTtab1(child);
               } else if (ci == "2-1") {
                 setTab1SubTab2(child);
-                setTab1SubTtab2(child)
-                console.log(child, subTabIndex);
+                setTab1SubTtab2(child);
               } else if (ci == "2-2") {
                 setTab1SubTab3(child);
-                setTab1SubTtab3(child)
-                console.log(child, subTabIndex);
+                setTab1SubTtab3(child);
               } else if (ci == "2-3") {
                 setTab1SubTab4(child);
-                setTab1SubTtab4(child)
-                console.log(child, subTabIndex);
+                setTab1SubTtab4(child);
               } else if (ci == "2-4") {
                 setTab1SubTab5(child);
-                setTab1SubTtab5(child)
-                console.log(child, subTabIndex);
+                setTab1SubTtab5(child);
               } else if (ci == "2-5") {
                 setTab1SubTab6(child);
-                setTab1SubTtab6(child)
-                console.log(child, subTabIndex);
+                setTab1SubTtab6(child);
               } else if (ci == "2-6") {
                 setTab1SubTab7(child);
-                setTab1SubTtab7(child)
-                console.log(child, subTabIndex);
+                setTab1SubTtab7(child);
               } else if (ci == "2-7") {
                 setTab1SubTab8(child);
-                setTab1SubTtab8(child)
-                console.log(child, subTabIndex);
+                setTab1SubTtab8(child);
               } else if (ci == "2-8") {
                 setTab1SubTab9(child);
-                setTab1SubTtab9(child)
-                console.log(child, subTabIndex);
+                setTab1SubTtab9(child);
               } else if (ci == "2-9") {
                 setTab1SubTab10(child);
-                setTab1SubTtab10(child)
-                console.log(child, subTabIndex);
+                setTab1SubTtab10(child);
               } else if (ci == "3-0") {
                 setTab2SubTab1(child);
-                setTab2SubTtab1(child)
+                setTab2SubTtab1(child);
               } else if (ci == "3-1") {
                 setTab2SubTab2(child);
-                setTab2SubTtab2(child)
+                setTab2SubTtab2(child);
               } else if (ci == "3-2") {
                 setTab2SubTab3(child);
-                setTab2SubTtab3(child)
+                setTab2SubTtab3(child);
               } else if (ci == "3-3") {
                 setTab2SubTab4(child);
-                setTab2SubTtab4(child)
+                setTab2SubTtab4(child);
               } else if (ci == "3-4") {
                 setTab2SubTab5(child);
-                setTab2SubTtab5(child)
+                setTab2SubTtab5(child);
               } else if (ci == "3-5") {
                 setTab2SubTab6(child);
-                setTab2SubTtab6(child)
+                setTab2SubTtab6(child);
               } else if (ci == "3-6") {
                 setTab2SubTab7(child);
-                setTab2SubTtab7(child)
+                setTab2SubTtab7(child);
               } else if (ci == "3-7") {
                 setTab2SubTab8(child);
-                setTab2SubTtab8(child)
+                setTab2SubTtab8(child);
               } else if (ci == "3-8") {
                 setTab2SubTab9(child);
-                setTab2SubTtab9(child)
+                setTab2SubTtab9(child);
               } else if (ci == "3-9") {
                 setTab2SubTab10(child);
-                setTab2SubTtab10(child)
+                setTab2SubTtab10(child);
               } else if (ci == "4-0") {
                 setTab3SubTab1(child);
-                setTab3SubTtab1(child)
+                setTab3SubTtab1(child);
               } else if (ci == "4-1") {
                 setTab3SubTab2(child);
-                setTab3SubTtab2(child)
+                setTab3SubTtab2(child);
               } else if (ci == "4-2") {
                 setTab3SubTab3(child);
-                setTab3SubTtab3(child)
+                setTab3SubTtab3(child);
               } else if (ci == "4-3") {
                 setTab3SubTab4(child);
-                setTab3SubTtab4(child)
+                setTab3SubTtab4(child);
               } else if (ci == "4-4") {
                 setTab3SubTab5(child);
-                setTab3SubTtab5(child)
+                setTab3SubTtab5(child);
               } else if (ci == "4-5") {
                 setTab3SubTab6(child);
-                setTab3SubTtab6(child)
+                setTab3SubTtab6(child);
               } else if (ci == "4-6") {
                 setTab3SubTab7(child);
-                setTab3SubTtab7(child)
+                setTab3SubTtab7(child);
               } else if (ci == "4-7") {
                 setTab3SubTab8(child);
-                setTab3SubTtab8(child)
+                setTab3SubTtab8(child);
               } else if (ci == "4-8") {
                 setTab3SubTab9(child);
-                setTab3SubTtab9(child)
+                setTab3SubTtab9(child);
               } else if (ci == "4-9") {
                 setTab3SubTab10(child);
-                setTab3SubTtab10(child)
+                setTab3SubTtab10(child);
               } else if (ci == "5-0") {
                 setTab4SubTab1(child);
-                setTab4SubTtab1(child)
+                setTab4SubTtab1(child);
               } else if (ci == "5-1") {
                 setTab4SubTab2(child);
-                setTab4SubTtab2(child)
+                setTab4SubTtab2(child);
               } else if (ci == "5-2") {
                 setTab4SubTab3(child);
-                setTab4SubTtab3(child)
+                setTab4SubTtab3(child);
               } else if (ci == "5-3") {
                 setTab4SubTab4(child);
-                setTab4SubTtab4(child)
+                setTab4SubTtab4(child);
               } else if (ci == "5-4") {
                 setTab4SubTab5(child);
-                setTab4SubTtab5(child)
+                setTab4SubTtab5(child);
               } else if (ci == "5-5") {
                 setTab4SubTab6(child);
-                setTab4SubTtab6(child)
+                setTab4SubTtab6(child);
               } else if (ci == "5-6") {
                 setTab4SubTab7(child);
-                setTab4SubTtab7(child)
+                setTab4SubTtab7(child);
               } else if (ci == "5-7") {
                 setTab4SubTab8(child);
-                setTab4SubTtab8(child)
+                setTab4SubTtab8(child);
               } else if (ci == "5-8") {
                 setTab4SubTab9(child);
-                setTab4SubTtab9(child)
+                setTab4SubTtab9(child);
               } else if (ci == "5-9") {
                 setTab4SubTab10(child);
-                setTab4SubTtab10(child)
+                setTab4SubTtab10(child);
               } else if (ci == "6-0") {
                 setTab5SubTab1(child);
-                setTab5SubTtab1(child)
+                setTab5SubTtab1(child);
               } else if (ci == "6-1") {
                 setTab5SubTab2(child);
-                setTab5SubTtab2(child)
+                setTab5SubTtab2(child);
               } else if (ci == "6-2") {
                 setTab5SubTab3(child);
-                setTab5SubTtab3(child)
+                setTab5SubTtab3(child);
               } else if (ci == "6-3") {
                 setTab5SubTab4(child);
-                setTab5SubTtab4(child)
+                setTab5SubTtab4(child);
               } else if (ci == "6-4") {
                 setTab5SubTab5(child);
-                setTab5SubTtab5(child)
+                setTab5SubTtab5(child);
               } else if (ci == "6-5") {
                 setTab5SubTab6(child);
-                setTab5SubTtab6(child)
+                setTab5SubTtab6(child);
               } else if (ci == "6-6") {
                 setTab5SubTab7(child);
-                setTab5SubTtab7(child)
+                setTab5SubTtab7(child);
               } else if (ci == "6-7") {
                 setTab5SubTab8(child);
-                setTab5SubTtab8(child)
+                setTab5SubTtab8(child);
               } else if (ci == "6-8") {
                 setTab5SubTab9(child);
-                setTab5SubTtab9(child)
+                setTab5SubTtab9(child);
               } else if (ci == "6-9") {
                 setTab5SubTab10(child);
-                setTab5SubTtab10(child)
+                setTab5SubTtab10(child);
               } else if (ci == "7-0") {
                 setTab6SubTab1(child);
-                setTab6SubTtab1(child)
+                setTab6SubTtab1(child);
               } else if (ci == "7-1") {
                 setTab6SubTab2(child);
-                setTab6SubTtab2(child)
+                setTab6SubTtab2(child);
               } else if (ci == "7-2") {
                 setTab6SubTab3(child);
-                setTab6SubTtab3(child)
+                setTab6SubTtab3(child);
               } else if (ci == "7-3") {
                 setTab6SubTab4(child);
-                setTab6SubTtab4(child)
+                setTab6SubTtab4(child);
               } else if (ci == "7-4") {
                 setTab6SubTab5(child);
-                setTab6SubTtab5(child)
+                setTab6SubTtab5(child);
               } else if (ci == "7-5") {
                 setTab6SubTab6(child);
-                setTab6SubTtab6(child)
+                setTab6SubTtab6(child);
               } else if (ci == "7-6") {
                 setTab6SubTab7(child);
-                setTab6SubTtab7(child)
+                setTab6SubTtab7(child);
               } else if (ci == "7-7") {
                 setTab6SubTab8(child);
-                setTab6SubTtab8(child)
+                setTab6SubTtab8(child);
               } else if (ci == "7-8") {
                 setTab6SubTab9(child);
-                setTab6SubTtab9(child)
+                setTab6SubTtab9(child);
               } else if (ci == "7-9") {
                 setTab6SubTab10(child);
-                setTab6SubTtab10(child)
+                setTab6SubTtab10(child);
               } else if (ci == "8-0") {
                 setTab7SubTab1(child);
-                setTab7SubTtab1(child)
+                setTab7SubTtab1(child);
               } else if (ci == "8-1") {
                 setTab7SubTab2(child);
-                setTab7SubTtab2(child)
+                setTab7SubTtab2(child);
               } else if (ci == "8-2") {
                 setTab7SubTab3(child);
-                setTab7SubTtab3(child)
+                setTab7SubTtab3(child);
               } else if (ci == "8-3") {
                 setTab7SubTab4(child);
-                setTab7SubTtab4(child)
+                setTab7SubTtab4(child);
               } else if (ci == "8-4") {
                 setTab7SubTab5(child);
-                setTab7SubTtab5(child)
+                setTab7SubTtab5(child);
               } else if (ci == "8-5") {
                 setTab7SubTab6(child);
-                setTab7SubTtab6(child)
+                setTab7SubTtab6(child);
               } else if (ci == "8-6") {
                 setTab7SubTab7(child);
-                setTab7SubTtab7(child)
+                setTab7SubTtab7(child);
               } else if (ci == "8-7") {
                 setTab7SubTab8(child);
-                setTab7SubTtab8(child)
+                setTab7SubTtab8(child);
               } else if (ci == "8-8") {
                 setTab7SubTab9(child);
-                setTab7SubTtab9(child)
+                setTab7SubTtab9(child);
               } else if (ci == "8-9") {
                 setTab7SubTab10(child);
-                setTab7SubTtab10(child)
+                setTab7SubTtab10(child);
               } else if (ci == "9-0") {
                 setTab8SubTab1(child);
-                setTab8SubTtab1(child)
+                setTab8SubTtab1(child);
               } else if (ci == "9-1") {
                 setTab8SubTab2(child);
-                setTab8SubTtab2(child)
+                setTab8SubTtab2(child);
               } else if (ci == "9-2") {
                 setTab8SubTab3(child);
-                setTab8SubTtab3(child)
+                setTab8SubTtab3(child);
               } else if (ci == "9-3") {
                 setTab8SubTab4(child);
-                setTab8SubTtab4(child)
+                setTab8SubTtab4(child);
               } else if (ci == "9-4") {
                 setTab8SubTab5(child);
-                setTab8SubTtab5(child)
+                setTab8SubTtab5(child);
               } else if (ci == "9-5") {
                 setTab8SubTab6(child);
-                setTab8SubTtab6(child)
+                setTab8SubTtab6(child);
               } else if (ci == "9-6") {
                 setTab8SubTab7(child);
-                setTab8SubTtab7(child)
+                setTab8SubTtab7(child);
               } else if (ci == "9-7") {
                 setTab8SubTab8(child);
-                setTab8SubTtab8(child)
+                setTab8SubTtab8(child);
               } else if (ci == "9-8") {
                 setTab8SubTab9(child);
-                setTab8SubTtab9(child)
+                setTab8SubTtab9(child);
               } else if (ci == "9-9") {
                 setTab8SubTab10(child);
-                setTab8SubTtab10(child)
+                setTab8SubTtab10(child);
               } else if (ci == "10-0") {
                 setTab9SubTab1(child);
-                setTab9SubTtab1(child)
+                setTab9SubTtab1(child);
               } else if (ci == "10-1") {
                 setTab9SubTab2(child);
-                setTab9SubTtab2(child)
+                setTab9SubTtab2(child);
               } else if (ci == "10-2") {
                 setTab9SubTab3(child);
-                setTab9SubTtab3(child)
+                setTab9SubTtab3(child);
               } else if (ci == "10-3") {
                 setTab9SubTab4(child);
-                setTab9SubTtab4(child)
+                setTab9SubTtab4(child);
               } else if (ci == "10-4") {
                 setTab9SubTab5(child);
-                setTab9SubTtab5(child)
+                setTab9SubTtab5(child);
               } else if (ci == "10-5") {
                 setTab9SubTab6(child);
-                setTab9SubTtab6(child)
+                setTab9SubTtab6(child);
               } else if (ci == "10-6") {
                 setTab9SubTab7(child);
-                setTab9SubTtab7(child)
+                setTab9SubTtab7(child);
               } else if (ci == "10-7") {
                 setTab9SubTab8(child);
-                setTab9SubTtab8(child)
+                setTab9SubTtab8(child);
               } else if (ci == "10-8") {
                 setTab9SubTab9(child);
-                setTab9SubTtab9(child)
+                setTab9SubTtab9(child);
               } else if (ci == "10-9") {
                 setTab9SubTab10(child);
-                setTab9SubTtab10(child)
+                setTab9SubTtab10(child);
               } else if (ci == "11-0") {
                 setTab10SubTab1(child);
-                setTab10SubTtab1(child)
+                setTab10SubTtab1(child);
               } else if (ci == "11-1") {
                 setTab10SubTab2(child);
-                setTab10SubTtab2(child)
+                setTab10SubTtab2(child);
               } else if (ci == "11-2") {
                 setTab10SubTab3(child);
-                setTab10SubTtab3(child)
+                setTab10SubTtab3(child);
               } else if (ci == "11-3") {
                 setTab10SubTab4(child);
-                setTab10SubTtab4(child)
+                setTab10SubTtab4(child);
               } else if (ci == "11-4") {
                 setTab10SubTab5(child);
-                setTab10SubTtab5(child)
+                setTab10SubTtab5(child);
               } else if (ci == "11-5") {
                 setTab10SubTab6(child);
-                setTab10SubTtab6(child)
+                setTab10SubTtab6(child);
               } else if (ci == "11-6") {
                 setTab10SubTab7(child);
-                setTab10SubTtab7(child)
+                setTab10SubTtab7(child);
               } else if (ci == "11-7") {
                 setTab10SubTab8(child);
-                setTab10SubTtab8(child)
+                setTab10SubTtab8(child);
               } else if (ci == "11-8") {
                 setTab10SubTab9(child);
-                setTab10SubTtab9(child)
+                setTab10SubTtab9(child);
               } else if (ci == "11-9") {
                 setTab10SubTab10(child);
-                setTab10SubTtab10(child)
+                setTab10SubTtab10(child);
               }
             });
           }
@@ -3782,10 +3840,10 @@ export default function AddProductsSection({ params }) {
                   (item, index) => subTabArray.indexOf(item) !== index
                 );
 
-                let allSubTabs = []
+                let allSubTabs = [];
                 const test = subTabArray.map((subtab) => {
-                  allSubTabs.push(subtab)
-                })
+                  allSubTabs.push(subtab);
+                });
 
                 if (!duplicatesSubTabs[0]) {
                   setOpenSubTab(false);
@@ -3930,7 +3988,7 @@ export default function AddProductsSection({ params }) {
         </Fade>
       </Modal>
 
-      {/* ----------------------- Add Fields Modal ----------------------- */}
+      {/* ----------------------- Select Field Type Modal ----------------------- */}
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -3987,8 +4045,8 @@ export default function AddProductsSection({ params }) {
             <Button
               onClick={() => {
                 if (value == "inputFields") {
+                  setTab1SubTab1Type("inputFields");
                   handleCloseFieldSelection();
-                  handleOpenAddField();
                 } else if (value == "chart") {
                   handleCloseFieldSelection();
                   handleOpenAddChart();
