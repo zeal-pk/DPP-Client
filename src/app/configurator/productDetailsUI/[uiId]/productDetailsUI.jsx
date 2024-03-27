@@ -36,6 +36,7 @@ import {
   randomCreatedDate,
   randomTraderName,
   randomUpdatedDate,
+  randomInt
 } from "@mui/x-data-grid-generator";
 
 const charts = [
@@ -1892,9 +1893,12 @@ export default function AddProductsSection({ params }) {
   function MapFields(id) {
     if (id == `${tab1.replace(/\s/g, "")}-${tab1SubTab1.replace(/\s/g, "")}`) {
       if (tab1SubTab1Type == "inputFields") {
+        let data = []
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
+          <div style={{ height: 300, width: "100%", marginBottom: "10px", display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
+            
             <DataGrid
+            sx={{width: "100%"}}
               rows={tab1SubTab1Fields.length !== 0 ? tab1SubTab1Fields : rows}
               columns={columns}
               processRowUpdate={(event) => {
@@ -1907,8 +1911,16 @@ export default function AddProductsSection({ params }) {
                     fieldName: event.fieldName,
                   },
                 ]);
+                // let t = ({
+                //       id: event.id,
+                //     index: event.index,
+                //     fieldName: event.fieldName,
+                // })
               }}
             />
+            {/* <MUIButton size="small" variant="contained" onClick={() => setTab1SubTab1Fields((oldFields) => [...oldFields, data])}>
+          save
+        </MUIButton> */}
           </div>
         );
       } else if (tab1SubTab1Type == "chart") {
