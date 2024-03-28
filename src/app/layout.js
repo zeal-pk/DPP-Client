@@ -12,12 +12,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <StrictMode>
-      <html lang="en">
-        <body className={inter.className}>
-          <Suspense fallback={<Loading />}>{children}</Suspense>
-        </body>
-      </html>
-    </StrictMode>
+    // <StrictMode>
+    <html lang="en">
+      <body className={inter.className}>
+        <Suspense fallback={<Loading />}>{children}</Suspense>
+      </body>
+    </html>
+    // </StrictMode>
   );
 }

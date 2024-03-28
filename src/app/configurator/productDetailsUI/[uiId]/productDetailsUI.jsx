@@ -22,7 +22,11 @@ import MenuItem from "@mui/material/MenuItem";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Button as MUIButton } from "@mui/material";
 import { useForm, useFieldArray } from "react-hook-form";
-
+import Stack from '@mui/material/Stack';
+import Sheet from "@mui/joy/Sheet";
+import List from "@mui/joy/List";
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import {
   ObjectPage,
   ObjectPageSection,
@@ -31,13 +35,6 @@ import {
   Button,
 } from "@ui5/webcomponents-react";
 import LoadingPage from "@/app/loading";
-import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
-import {
-  randomCreatedDate,
-  randomTraderName,
-  randomUpdatedDate,
-  randomInt
-} from "@mui/x-data-grid-generator";
 
 const charts = [
   {
@@ -320,7 +317,11 @@ export default function AddProductsSection({ params }) {
   let [tab10SubTtab9, setTab10SubTtab9] = useState("Sub Tab 10-9");
   let [tab10SubTtab10, setTab10SubTtab10] = useState("Sub Tab 10-10");
 
-  let [tab1SubTab1Fields, setTab1SubTab1Fields] = useState([]);
+  let [tab1SubTab1Fields, setTab1SubTab1Fields] = useState([
+    "test",
+    "hello",
+    "world",
+  ]);
   let [tab1SubTab2Fields, setTab1SubTab2Fields] = useState([]);
   let [tab1SubTab3Fields, setTab1SubTab3Fields] = useState([]);
   let [tab1SubTab4Fields, setTab1SubTab4Fields] = useState([]);
@@ -540,107 +541,27 @@ export default function AddProductsSection({ params }) {
   let [tab10SubTab9Type, setTab10SubTab9Type] = useState([]);
   let [tab10SubTab10Type, setTab10SubTab10Type] = useState([]);
 
-  let rows = [
-    {
-      id: 1,
-      index: 1,
-      fieldName: "Field 1",
-    },
-    {
-      id: 2,
-      index: 2,
-      fieldName: "Field 2",
-    },
-    {
-      id: 3,
-      index: 3,
-      fieldName: "Field 3",
-    },
-    {
-      id: 4,
-      index: 4,
-      fieldName: "Field 4",
-    },
-    {
-      id: 5,
-      index: 5,
-      fieldName: "Field 5",
-    },
-    {
-      id: 6,
-      index: 6,
-      fieldName: "Field 6",
-    },
-    {
-      id: 7,
-      index: 7,
-      fieldName: "Field 7",
-    },
-    {
-      id: 8,
-      index: 8,
-      fieldName: "Field 8",
-    },
-    {
-      id: 9,
-      index: 9,
-      fieldName: "Field 9",
-    },
-    {
-      id: 10,
-      index: 10,
-      fieldName: "Field 10",
-    },
-    {
-      id: 11,
-      index: 11,
-      fieldName: "Field 11",
-    },
-    {
-      id: 12,
-      index: 12,
-      fieldName: "Field 12",
-    },
-    {
-      id: 13,
-      index: 13,
-      fieldName: "Field 13",
-    },
-    {
-      id: 14,
-      index: 14,
-      fieldName: "Field 14",
-    },
-    {
-      id: 15,
-      index: 15,
-      fieldName: "Field 15",
-    },
-    {
-      id: 16,
-      index: 16,
-      fieldName: "Field 16",
-    },
-    {
-      id: 17,
-      index: 17,
-      fieldName: "Field 17",
-    },
-    {
-      id: 18,
-      index: 18,
-      fieldName: "Field 18",
-    },
-    {
-      id: 19,
-      index: 19,
-      fieldName: "Field 19",
-    },
-    {
-      id: 20,
-      index: 20,
-      fieldName: "Field 20",
-    },
+  let fields = [
+    "Field 1",
+    "Field 2",
+    "Field 3",
+    "Field 4",
+    "Field 5",
+    "Field 6",
+    "Field 7",
+    "Field 8",
+    "Field 9",
+    "Field 10",
+    "Field 11",
+    "Field 12",
+    "Field 13",
+    "Field 14",
+    "Field 15",
+    "Field 16",
+    "Field 17",
+    "Field 18",
+    "Field 19",
+    "Field 20",
   ];
 
   function errAlert(errData) {
@@ -737,6 +658,12 @@ export default function AddProductsSection({ params }) {
     //   },
     // }
   ];
+
+  //   const handleFieldInputChange = (e, index) => {
+  //     const newFieldValues = [...tab1SubTab1Fields];
+  //     newFieldValues[index] = e.target.value;
+  //     setTab1SubTab1Fields(newFieldValues);
+  //  };
 
   function resetSubTabTitle() {
     setTab1SubTtab1("Sub Tab 1-1");
@@ -1459,7 +1386,7 @@ export default function AddProductsSection({ params }) {
     ) {
       setTab3SubTab10Type(event.target.value);
       setValue(event.target.value);
-    }  else if (
+    } else if (
       id == `${tab4.replace(/\s/g, "")}-${tab4SubTab1.replace(/\s/g, "")}`
     ) {
       setTab4SubTab1Type(event.target.value);
@@ -1559,9 +1486,7 @@ export default function AddProductsSection({ params }) {
     ) {
       setTab5SubTab10Type(event.target.value);
       setValue(event.target.value);
-    } 
-
-    else if (
+    } else if (
       id == `${tab6.replace(/\s/g, "")}-${tab6SubTab1.replace(/\s/g, "")}`
     ) {
       setTab6SubTab1Type(event.target.value);
@@ -1611,9 +1536,7 @@ export default function AddProductsSection({ params }) {
     ) {
       setTab6SubTab10Type(event.target.value);
       setValue(event.target.value);
-    }
-
-    else if (
+    } else if (
       id == `${tab7.replace(/\s/g, "")}-${tab7SubTab1.replace(/\s/g, "")}`
     ) {
       setTab7SubTab1Type(event.target.value);
@@ -1663,9 +1586,7 @@ export default function AddProductsSection({ params }) {
     ) {
       setTab7SubTab10Type(event.target.value);
       setValue(event.target.value);
-    }
-
-    else if (
+    } else if (
       id == `${tab8.replace(/\s/g, "")}-${tab8SubTab1.replace(/\s/g, "")}`
     ) {
       setTab8SubTab1Type(event.target.value);
@@ -1715,9 +1636,7 @@ export default function AddProductsSection({ params }) {
     ) {
       setTab8SubTab10Type(event.target.value);
       setValue(event.target.value);
-    }
-
-    else if (
+    } else if (
       id == `${tab9.replace(/\s/g, "")}-${tab9SubTab1.replace(/\s/g, "")}`
     ) {
       setTab9SubTab1Type(event.target.value);
@@ -1767,9 +1686,7 @@ export default function AddProductsSection({ params }) {
     ) {
       setTab9SubTab10Type(event.target.value);
       setValue(event.target.value);
-    }
-
-    else if (
+    } else if (
       id == `${tab10.replace(/\s/g, "")}-${tab10SubTab1.replace(/\s/g, "")}`
     ) {
       setTab10SubTab1Type(event.target.value);
@@ -1867,11 +1784,9 @@ export default function AddProductsSection({ params }) {
     }
   }
 
-  // function RenderInputFields() {
-  //   return (
-
-  //   );
-  // }
+function handleFieldDown() {
+  
+}
 
   function RenderChartFields(field) {
     return (
@@ -1893,35 +1808,56 @@ export default function AddProductsSection({ params }) {
   function MapFields(id) {
     if (id == `${tab1.replace(/\s/g, "")}-${tab1SubTab1.replace(/\s/g, "")}`) {
       if (tab1SubTab1Type == "inputFields") {
-        let data = []
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px", display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
-            
-            <DataGrid
-            sx={{width: "100%"}}
-              rows={tab1SubTab1Fields.length !== 0 ? tab1SubTab1Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab1SubTab1Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                // let t = ({
-                //       id: event.id,
-                //     index: event.index,
-                //     fieldName: event.fieldName,
-                // })
-              }}
-            />
-            {/* <MUIButton size="small" variant="contained" onClick={() => setTab1SubTab1Fields((oldFields) => [...oldFields, data])}>
-          save
-        </MUIButton> */}
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab1SubTab1Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab1SubTab1Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab1SubTab1Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  console.log(tab1SubTab1Fields);
+                  let x = tab1SubTab1Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab1SubTab1Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  console.log(tab1SubTab1Fields);
+                  let x = tab1SubTab1Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab1SubTab1Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab1SubTab1Type == "chart") {
         return tab1SubTab1Fields.map((field) => RenderChartFields(field));
@@ -1937,24 +1873,55 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab1SubTab2Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab1SubTab2Fields.length !== 0 ? tab1SubTab2Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab1SubTab2Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab1SubTab2Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab1SubTab2Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab1SubTab2Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  console.log(tab1SubTab1Fields);
+                  let x = tab1SubTab2Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab1SubTab2Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  console.log(tab1SubTab1Fields);
+                  let x = tab1SubTab2Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab1SubTab2Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab1SubTab2Type == "chart") {
         return tab1SubTab2Fields.map((field) => RenderChartFields(field));
@@ -1970,24 +1937,55 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab1SubTab3Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab1SubTab3Fields.length !== 0 ? tab1SubTab3Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab1SubTab3Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab1SubTab3Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab1SubTab3Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab1SubTab3Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab1SubTab3Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab1SubTab3Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab1SubTab3Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab1SubTab3Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+
+              
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab1SubTab3Type == "chart") {
         return tab1SubTab3Fields.map((field) => RenderChartFields(field));
@@ -2003,24 +2001,54 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab1SubTab4Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab1SubTab4Fields.length !== 0 ? tab1SubTab4Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab1SubTab4Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+            <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+
+              {fields.map((item, index) => (
+                <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab1SubTab4Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab1SubTab4Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab1SubTab4Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab1SubTab4Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab1SubTab4Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab1SubTab4Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab1SubTab4Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab1SubTab4Type == "chart") {
         return tab1SubTab4Fields.map((field) => RenderChartFields(field));
@@ -2036,24 +2064,54 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab1SubTab5Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab1SubTab5Fields.length !== 0 ? tab1SubTab5Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab1SubTab5Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab1SubTab5Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab1SubTab5Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab1SubTab5Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab1SubTab5Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab1SubTab5Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab1SubTab5Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab1SubTab5Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+              
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab1SubTab3Type == "chart") {
         return tab1SubTab5Fields.map((field) => RenderChartFields(field));
@@ -2069,24 +2127,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab1SubTab6Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab1SubTab6Fields.length !== 0 ? tab1SubTab6Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab1SubTab6Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+          variant="outlined"
+          sx={{
+            width: "auto",
+            maxHeight: 300,
+            overflow: "auto",
+            borderRadius: "sm",
+          }}
+        >
+          <List>
+            {fields.map((item, index) => (
+               <div style={{display: "flex"}}>
+              <TextField
+                key={index}
+                id={index}
+                size="small"
+                placeholder={item}
+                value={tab1SubTab6Fields[index]}
+                onChange={(e) => {
+                  const newFieldValues = [...tab1SubTab6Fields];
+                  newFieldValues[index] = e.target.value;
+                  setTab1SubTab6Fields(newFieldValues);
+                }}
+              />
+              <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab1SubTab6Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab1SubTab6Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab1SubTab6Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab1SubTab6Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+            ))}
+          </List>
+          {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+              Save
+            </Button> */}
+        </Sheet>
         );
       } else if (tab1SubTab6Type == "chart") {
         return tab1SubTab6Fields.map((field) => RenderChartFields(field));
@@ -2102,24 +2189,55 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab1SubTab7Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab1SubTab7Fields.length !== 0 ? tab1SubTab7Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab1SubTab7Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+          variant="outlined"
+          sx={{
+            width: "auto",
+            maxHeight: 300,
+            overflow: "auto",
+            borderRadius: "sm",
+          }}
+        >
+          <List>
+            {fields.map((item, index) => (
+               <div style={{display: "flex"}}>
+              <TextField
+                key={index}
+                id={index}
+                size="small"
+                placeholder={item}
+                value={tab1SubTab7Fields[index]}
+                onChange={(e) => {
+                  const newFieldValues = [...tab1SubTab7Fields];
+                  newFieldValues[index] = e.target.value;
+                  setTab1SubTab7Fields(newFieldValues);
+                }}
+              />
+              <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab1SubTab7Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab1SubTab7Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab1SubTab7Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab1SubTab7Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+            ))}
+
+            
+          </List>
+          {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+              Save
+            </Button> */}
+        </Sheet>
         );
       } else if (tab1SubTab7Type == "chart") {
         return tab1SubTab7Fields.map((field) => RenderChartFields(field));
@@ -2131,24 +2249,55 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab1SubTab8Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab1SubTab8Fields.length !== 0 ? tab1SubTab8Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab1SubTab8Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+          variant="outlined"
+          sx={{
+            width: "auto",
+            maxHeight: 300,
+            overflow: "auto",
+            borderRadius: "sm",
+          }}
+        >
+          <List>
+            {fields.map((item, index) => (
+               <div style={{display: "flex"}}>
+              <TextField
+                key={index}
+                id={index}
+                size="small"
+                placeholder={item}
+                value={tab1SubTab8Fields[index]}
+                onChange={(e) => {
+                  const newFieldValues = [...tab1SubTab8Fields];
+                  newFieldValues[index] = e.target.value;
+                  setTab1SubTab8Fields(newFieldValues);
+                }}
+              />
+              <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab1SubTab8Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab1SubTab8Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab1SubTab8Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab1SubTab8Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+            ))}
+
+            
+          </List>
+          {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+              Save
+            </Button> */}
+        </Sheet>
         );
       } else if (tab1SubTab8Type == "chart") {
         return tab1SubTab8Fields.map((field) => RenderChartFields(field));
@@ -2160,24 +2309,55 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab1SubTab9Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab1SubTab9Fields.length !== 0 ? tab1SubTab9Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab1SubTab9Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab1SubTab9Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab1SubTab9Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab1SubTab9Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab1SubTab9Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab1SubTab9Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab1SubTab9Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab1SubTab9Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+
+              
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab1SubTab9Type == "chart") {
         return tab1SubTab9Fields.map((field) => RenderChartFields(field));
@@ -2189,23 +2369,55 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab1SubTab10Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab1SubTab10Fields.length !== 0 ? tab1SubTab10Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab1SubTab10Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab1SubTab10Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab1SubTab10Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab1SubTab10Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab1SubTab10Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab1SubTab10Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab1SubTab10Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab1SubTab10Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+
+              
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab1SubTab10Type == "chart") {
         return tab1SubTab10Fields.map((field) => RenderChartFields(field));
@@ -2217,24 +2429,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab2SubTab1Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab2SubTab1Fields.length !== 0 ? tab2SubTab1Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab2SubTab1Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab2SubTab1Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab2SubTab1Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab2SubTab1Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab2SubTab1Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab2SubTab1Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab2SubTab1Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab2SubTab1Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab2SubTab1Type == "chart") {
         return tab1SubTab1Fields.map((field) => RenderChartFields(field));
@@ -2250,24 +2491,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab2SubTab2Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab2SubTab2Fields.length !== 0 ? tab2SubTab2Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab2SubTab2Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab2SubTab2Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab1SubTab2Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab2SubTab2Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab2SubTab2Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab2SubTab2Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab2SubTab2Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab2SubTab2Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab2SubTab2Type == "chart") {
         return tab2SubTab2Fields.map((field) => RenderChartFields(field));
@@ -2279,24 +2549,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab2SubTab3Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab2SubTab3Fields.length !== 0 ? tab2SubTab3Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab2SubTab3Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab2SubTab3Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab2SubTab3Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab2SubTab3Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab2SubTab3Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab2SubTab3Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab2SubTab3Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab2SubTab3Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab2SubTab3Type == "chart") {
         return tab2SubTab3Fields.map((field) => RenderChartFields(field));
@@ -2308,24 +2607,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab2SubTab4Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab2SubTab4Fields.length !== 0 ? tab2SubTab4Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab2SubTab4Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab2SubTab4Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab2SubTab4Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab2SubTab4Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab2SubTab4Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab2SubTab4Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab2SubTab4Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab2SubTab4Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab2SubTab4Type == "chart") {
         return tab2SubTab4Fields.map((field) => RenderChartFields(field));
@@ -2337,24 +2665,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab2SubTab5Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab2SubTab5Fields.length !== 0 ? tab2SubTab5Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab2SubTab5Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab2SubTab5Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab2SubTab5Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab2SubTab5Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab2SubTab5Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab2SubTab5Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab2SubTab5Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab2SubTab5Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab1SubTab3Type == "chart") {
         return tab2SubTab5Fields.map((field) => RenderChartFields(field));
@@ -2366,24 +2723,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab2SubTab6Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab2SubTab6Fields.length !== 0 ? tab2SubTab6Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab2SubTab6Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab2SubTab6Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab2SubTab6Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab2SubTab6Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab2SubTab6Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab2SubTab6Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab2SubTab6Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab2SubTab6Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab2SubTab6Type == "chart") {
         return tab2SubTab6Fields.map((field) => RenderChartFields(field));
@@ -2395,24 +2781,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab2SubTab7Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab2SubTab7Fields.length !== 0 ? tab2SubTab7Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab2SubTab7Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab2SubTab7Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab2SubTab7Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab2SubTab7Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab2SubTab7Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab2SubTab7Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab2SubTab7Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab2SubTab7Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab2SubTab7Type == "chart") {
         return tab2SubTab7Fields.map((field) => RenderChartFields(field));
@@ -2424,24 +2839,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab2SubTab8Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab2SubTab8Fields.length !== 0 ? tab2SubTab8Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab2SubTab8Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+          variant="outlined"
+          sx={{
+            width: "auto",
+            maxHeight: 300,
+            overflow: "auto",
+            borderRadius: "sm",
+          }}
+        >
+          <List>
+            {fields.map((item, index) => (
+               <div style={{display: "flex"}}>
+              <TextField
+                key={index}
+                id={index}
+                size="small"
+                placeholder={item}
+                value={tab2SubTab8Fields[index]}
+                onChange={(e) => {
+                  const newFieldValues = [...tab2SubTab8Fields];
+                  newFieldValues[index] = e.target.value;
+                  setTab2SubTab8Fields(newFieldValues);
+                }}
+              />
+              <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab2SubTab8Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab2SubTab8Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab2SubTab8Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab2SubTab8Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+            ))}
+          </List>
+          {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+              Save
+            </Button> */}
+        </Sheet>
         );
       } else if (tab2SubTab8Type == "chart") {
         return tab2SubTab8Fields.map((field) => RenderChartFields(field));
@@ -2453,23 +2897,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab2SubTab9Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab2SubTab9Fields.length !== 0 ? tab2SubTab9Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab2SubTab9Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab2SubTab9Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab2SubTab9Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab2SubTab9Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab2SubTab9Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab2SubTab9Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab2SubTab9Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab2SubTab9Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab2SubTab9Type == "chart") {
         return tab2SubTab9Fields.map((field) => RenderChartFields(field));
@@ -2481,23 +2955,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab2SubTab10Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab2SubTab10Fields.length !== 0 ? tab2SubTab10Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab2SubTab10Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+          variant="outlined"
+          sx={{
+            width: "auto",
+            maxHeight: 300,
+            overflow: "auto",
+            borderRadius: "sm",
+          }}
+        >
+          <List>
+            {fields.map((item, index) => (
+               <div style={{display: "flex"}}>
+              <TextField
+                key={index}
+                id={index}
+                size="small"
+                placeholder={item}
+                value={tab2SubTab10Fields[index]}
+                onChange={(e) => {
+                  const newFieldValues = [...tab2SubTab10Fields];
+                  newFieldValues[index] = e.target.value;
+                  setTab2SubTab10Fields(newFieldValues);
+                }}
+              />
+              <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab2SubTab10Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab2SubTab10Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab2SubTab10Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab2SubTab10Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+            ))}
+          </List>
+          {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+              Save
+            </Button> */}
+        </Sheet>
         );
       } else if (tab2SubTab10Type == "chart") {
         return tab2SubTab10Fields.map((field) => RenderChartFields(field));
@@ -2509,24 +3013,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab3SubTab1Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab3SubTab1Fields.length !== 0 ? tab3SubTab1Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab3SubTab1Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab3SubTab1Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab3SubTab1Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab3SubTab1Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab3SubTab1Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab3SubTab1Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab3SubTab1Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab3SubTab1Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab3SubTab1Type == "chart") {
         return tab3SubTab1Fields.map((field) => RenderChartFields(field));
@@ -2542,23 +3075,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab3SubTab2Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab3SubTab2Fields.length !== 0 ? tab3SubTab2Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab3SubTab2Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+          variant="outlined"
+          sx={{
+            width: "auto",
+            maxHeight: 300,
+            overflow: "auto",
+            borderRadius: "sm",
+          }}
+        >
+          <List>
+            {fields.map((item, index) => (
+               <div style={{display: "flex"}}>
+              <TextField
+                key={index}
+                id={index}
+                size="small"
+                placeholder={item}
+                value={tab3SubTab2Fields[index]}
+                onChange={(e) => {
+                  const newFieldValues = [...tab3SubTab2Fields];
+                  newFieldValues[index] = e.target.value;
+                  setTab3SubTab2Fields(newFieldValues);
+                }}
+              />
+              <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab3SubTab2Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab3SubTab2Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab3SubTab2Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab3SubTab2Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+            ))}
+          </List>
+          {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+              Save
+            </Button> */}
+        </Sheet>
         );
       } else if (tab3SubTab2Type == "chart") {
         return tab3SubTab2Fields.map((field) => RenderChartFields(field));
@@ -2574,24 +3137,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab3SubTab3Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab3SubTab3Fields.length !== 0 ? tab3SubTab3Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab3SubTab3Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab3SubTab3Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab3SubTab3Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab3SubTab3Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab3SubTab3Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab3SubTab3Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab3SubTab3Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab3SubTab3Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab3SubTab3Type == "chart") {
         return tab3SubTab3Fields.map((field) => RenderChartFields(field));
@@ -2607,24 +3199,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab3SubTab4Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab3SubTab4Fields.length !== 0 ? tab3SubTab4Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab3SubTab4Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab3SubTab4Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab3SubTab4Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab3SubTab4Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab3SubTab4Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab3SubTab4Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab3SubTab4Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab3SubTab4Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab3SubTab4Type == "chart") {
         return tab3SubTab4Fields.map((field) => RenderChartFields(field));
@@ -2640,24 +3261,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab3SubTab5Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab3SubTab5Fields.length !== 0 ? tab3SubTab5Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab3SubTab5Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab3SubTab5Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab3SubTab5Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab3SubTab5Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab3SubTab5Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab3SubTab5Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab3SubTab5Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab3SubTab5Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab3SubTab5Type == "chart") {
         return tab3SubTab5Fields.map((field) => RenderChartFields(field));
@@ -2673,23 +3323,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab3SubTab6Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab3SubTab6Fields.length !== 0 ? tab3SubTab6Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab3SubTab6Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab3SubTab6Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab3SubTab6Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab3SubTab6Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab3SubTab6Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab3SubTab6Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab3SubTab6Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab3SubTab6Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab3SubTab6Type == "chart") {
         return tab3SubTab6Fields.map((field) => RenderChartFields(field));
@@ -2701,24 +3381,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab3SubTab7Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab3SubTab7Fields.length !== 0 ? tab3SubTab7Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab3SubTab7Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab3SubTab7Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab3SubTab7Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab3SubTab7Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab3SubTab7Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab3SubTab7Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab3SubTab7Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab3SubTab7Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab3SubTab7Type == "chart") {
         return tab3SubTab7Fields.map((field) => RenderChartFields(field));
@@ -2730,23 +3439,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab3SubTab8Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab3SubTab8Fields.length !== 0 ? tab3SubTab8Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab3SubTab8Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab3SubTab8Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab3SubTab8Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab3SubTab8Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab3SubTab8Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab3SubTab8Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab3SubTab8Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab3SubTab8Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab3SubTab8Type == "chart") {
         return tab3SubTab8Fields.map((field) => RenderChartFields(field));
@@ -2758,23 +3497,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab3SubTab9Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab3SubTab9Fields.length !== 0 ? tab3SubTab9Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab3SubTab9Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab3SubTab9Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab3SubTab3Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab3SubTab9Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab3SubTab9Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab3SubTab9Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab3SubTab9Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab3SubTab9Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab3SubTab9Type == "chart") {
         return tab3SubTab9Fields.map((field) => RenderChartFields(field));
@@ -2786,23 +3555,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab3SubTab10Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab3SubTab10Fields.length !== 0 ? tab3SubTab10Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab3SubTab10Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+          variant="outlined"
+          sx={{
+            width: "auto",
+            maxHeight: 300,
+            overflow: "auto",
+            borderRadius: "sm",
+          }}
+        >
+          <List>
+            {fields.map((item, index) => (
+               <div style={{display: "flex"}}>
+              <TextField
+                key={index}
+                id={index}
+                size="small"
+                placeholder={item}
+                value={tab3SubTab10Fields[index]}
+                onChange={(e) => {
+                  const newFieldValues = [...tab3SubTab10Fields];
+                  newFieldValues[index] = e.target.value;
+                  setTab3SubTab10Fields(newFieldValues);
+                }}
+              />
+              <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab3SubTab10Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab3SubTab10Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab3SubTab10Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab3SubTab10Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+            ))}
+          </List>
+          {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+              Save
+            </Button> */}
+        </Sheet>
         );
       } else if (tab3SubTab10Type == "chart") {
         return tab3SubTab10Fields.map((field) => RenderChartFields(field));
@@ -2814,22 +3613,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab4SubTab1Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab4SubTab1Fields.length !== 0 ? tab4SubTab1Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab4SubTab1Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
-            }}
-          />
+          <Sheet
+          variant="outlined"
+          sx={{
+            width: "auto",
+            maxHeight: 300,
+            overflow: "auto",
+            borderRadius: "sm",
+          }}
+        >
+          <List>
+            {fields.map((item, index) => (
+               <div style={{display: "flex"}}>
+              <TextField
+                key={index}
+                id={index}
+                size="small"
+                placeholder={item}
+                value={tab4SubTab1Fields[index]}
+                onChange={(e) => {
+                  const newFieldValues = [...tab4SubTab1Fields];
+                  newFieldValues[index] = e.target.value;
+                  setTab4SubTab1Fields(newFieldValues);
+                }}
+              />
+              <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab4SubTab1Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab4SubTab1Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab4SubTab1Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab4SubTab1Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+            ))}
+          </List>
+          {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+              Save
+            </Button> */}
+        </Sheet>
         );
       } else if (tab4SubTab1Type == "chart") {
         return tab4SubTab1Fields.map((field) => RenderChartFields(field));
@@ -2845,22 +3675,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab4SubTab2Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab4SubTab2Fields.length !== 0 ? tab4SubTab2Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab4SubTab2Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab4SubTab2Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab4SubTab2Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab4SubTab2Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab4SubTab2Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab4SubTab2Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab4SubTab2Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab4SubTab2Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab4SubTab2Type == "chart") {
         return tab4SubTab2Fields.map((field) => RenderChartFields(field));
@@ -2876,22 +3737,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab4SubTab3Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab4SubTab3Fields.length !== 0 ? tab4SubTab3Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab4SubTab3Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab4SubTab3Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab4SubTab3Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab4SubTab3Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab4SubTab3Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab4SubTab3Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab4SubTab3Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab4SubTab3Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab4SubTab3Type == "chart") {
         return tab4SubTab3Fields.map((field) => RenderChartFields(field));
@@ -2907,22 +3799,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab4SubTab4Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab4SubTab4Fields.length !== 0 ? tab4SubTab4Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab4SubTab4Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
-            }}
-          />
+          <Sheet
+          variant="outlined"
+          sx={{
+            width: "auto",
+            maxHeight: 300,
+            overflow: "auto",
+            borderRadius: "sm",
+          }}
+        >
+          <List>
+            {fields.map((item, index) => (
+               <div style={{display: "flex"}}>
+              <TextField
+                key={index}
+                id={index}
+                size="small"
+                placeholder={item}
+                value={tab4SubTab4Fields[index]}
+                onChange={(e) => {
+                  const newFieldValues = [...tab4SubTab4Fields];
+                  newFieldValues[index] = e.target.value;
+                  setTab4SubTab4Fields(newFieldValues);
+                }}
+              />
+              <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab4SubTab4Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab4SubTab4Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab4SubTab4Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab4SubTab4Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+            ))}
+          </List>
+          {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+              Save
+            </Button> */}
+        </Sheet>
         );
       } else if (tab4SubTab4Type == "chart") {
         return tab4SubTab4Fields.map((field) => RenderChartFields(field));
@@ -2938,22 +3861,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab4SubTab5Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab4SubTab5Fields.length !== 0 ? tab4SubTab5Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab4SubTab5Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab4SubTab5Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab4SubTab5Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab4SubTab5Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab4SubTab5Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab4SubTab5Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab4SubTab5Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab4SubTab5Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab4SubTab5Type == "chart") {
         return tab4SubTab5Fields.map((field) => RenderChartFields(field));
@@ -2969,23 +3923,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab4SubTab6Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab4SubTab6Fields.length !== 0 ? tab4SubTab6Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab4SubTab6Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab4SubTab6Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab4SubTab6Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab4SubTab6Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab4SubTab6Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab4SubTab6Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab4SubTab6Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab4SubTab6Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab4SubTab6Type == "chart") {
         return tab4SubTab6Fields.map((field) => RenderChartFields(field));
@@ -2997,24 +3981,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab4SubTab7Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab4SubTab7Fields.length !== 0 ? tab4SubTab7Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab4SubTab7Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab4SubTab7Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab4SubTab7Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab4SubTab7Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab4SubTab7Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab4SubTab7Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab4SubTab7Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab4SubTab7Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab4SubTab7Type == "chart") {
         return tab4SubTab7Fields.map((field) => RenderChartFields(field));
@@ -3026,23 +4039,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab4SubTab8Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab4SubTab8Fields.length !== 0 ? tab4SubTab8Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab4SubTab8Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab4SubTab8Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab4SubTab8Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab4SubTab8Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab4SubTab8Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab4SubTab8Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab4SubTab8Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab4SubTab8Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab4SubTab8Type == "chart") {
         return tab4SubTab8Fields.map((field) => RenderChartFields(field));
@@ -3054,23 +4097,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab4SubTab9Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab4SubTab9Fields.length !== 0 ? tab4SubTab9Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab4SubTab9Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab4SubTab9Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab4SubTab9Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab4SubTab9Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab4SubTab9Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab4SubTab9Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab4SubTab9Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab4SubTab9Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab4SubTab9Type == "chart") {
         return tab4SubTab9Fields.map((field) => RenderChartFields(field));
@@ -3082,23 +4155,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab4SubTab10Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab4SubTab10Fields.length !== 0 ? tab4SubTab10Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab4SubTab10Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab4SubTab10Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab4SubTab10Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab4SubTab10Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab4SubTab10Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab4SubTab10Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab4SubTab10Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab4SubTab10Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab4SubTab10Type == "chart") {
         return tab4SubTab10Fields.map((field) => RenderChartFields(field));
@@ -3110,22 +4213,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab5SubTab1Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab5SubTab1Fields.length !== 0 ? tab5SubTab1Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab5SubTab1Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab5SubTab1Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab5SubTab1Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab5SubTab1Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab5SubTab1Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab5SubTab1Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab5SubTab1Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab5SubTab1Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab5SubTab1Type == "chart") {
         return tab5SubTab1Fields.map((field) => RenderChartFields(field));
@@ -3141,22 +4275,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab5SubTab2Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab5SubTab2Fields.length !== 0 ? tab5SubTab2Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab5SubTab2Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
-            }}
-          />
+          <Sheet
+          variant="outlined"
+          sx={{
+            width: "auto",
+            maxHeight: 300,
+            overflow: "auto",
+            borderRadius: "sm",
+          }}
+        >
+          <List>
+            {fields.map((item, index) => (
+               <div style={{display: "flex"}}>
+              <TextField
+                key={index}
+                id={index}
+                size="small"
+                placeholder={item}
+                value={tab5SubTab2Fields[index]}
+                onChange={(e) => {
+                  const newFieldValues = [...tab5SubTab2Fields];
+                  newFieldValues[index] = e.target.value;
+                  setTab5SubTab2Fields(newFieldValues);
+                }}
+              />
+              <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab5SubTab2Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab5SubTab2Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab5SubTab2Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab5SubTab2Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+            ))}
+          </List>
+          {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+              Save
+            </Button> */}
+        </Sheet>
         );
       } else if (tab5SubTab2Type == "chart") {
         return tab5SubTab2Fields.map((field) => RenderChartFields(field));
@@ -3172,22 +4337,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab5SubTab3Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab5SubTab3Fields.length !== 0 ? tab5SubTab3Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab5SubTab3Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
-            }}
-          />
+          <Sheet
+          variant="outlined"
+          sx={{
+            width: "auto",
+            maxHeight: 300,
+            overflow: "auto",
+            borderRadius: "sm",
+          }}
+        >
+          <List>
+            {fields.map((item, index) => (
+               <div style={{display: "flex"}}>
+              <TextField
+                key={index}
+                id={index}
+                size="small"
+                placeholder={item}
+                value={tab5SubTab3Fields[index]}
+                onChange={(e) => {
+                  const newFieldValues = [...tab5SubTab3Fields];
+                  newFieldValues[index] = e.target.value;
+                  setTab5SubTab3Fields(newFieldValues);
+                }}
+              />
+              <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab5SubTab3Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab5SubTab3Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab5SubTab3Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab5SubTab3Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+            ))}
+          </List>
+          {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+              Save
+            </Button> */}
+        </Sheet>
         );
       } else if (tab5SubTab3Type == "chart") {
         return tab5SubTab3Fields.map((field) => RenderChartFields(field));
@@ -3203,22 +4399,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab5SubTab4Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab5SubTab4Fields.length !== 0 ? tab5SubTab4Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab5SubTab4Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
-            }}
-          />
+          <Sheet
+          variant="outlined"
+          sx={{
+            width: "auto",
+            maxHeight: 300,
+            overflow: "auto",
+            borderRadius: "sm",
+          }}
+        >
+          <List>
+            {fields.map((item, index) => (
+               <div style={{display: "flex"}}>
+              <TextField
+                key={index}
+                id={index}
+                size="small"
+                placeholder={item}
+                value={tab5SubTab4Fields[index]}
+                onChange={(e) => {
+                  const newFieldValues = [...tab5SubTab4Fields];
+                  newFieldValues[index] = e.target.value;
+                  setTab5SubTab4Fields(newFieldValues);
+                }}
+              />
+              <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab5SubTab4Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab5SubTab4Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab5SubTab4Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab5SubTab4Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+            ))}
+          </List>
+          {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+              Save
+            </Button> */}
+        </Sheet>
         );
       } else if (tab5SubTab4Type == "chart") {
         return tab5SubTab4Fields.map((field) => RenderChartFields(field));
@@ -3234,22 +4461,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab5SubTab5Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab5SubTab5Fields.length !== 0 ? tab5SubTab5Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab5SubTab5Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
-            }}
-          />
+          <Sheet
+          variant="outlined"
+          sx={{
+            width: "auto",
+            maxHeight: 300,
+            overflow: "auto",
+            borderRadius: "sm",
+          }}
+        >
+          <List>
+            {fields.map((item, index) => (
+               <div style={{display: "flex"}}>
+              <TextField
+                key={index}
+                id={index}
+                size="small"
+                placeholder={item}
+                value={tab5SubTab5Fields[index]}
+                onChange={(e) => {
+                  const newFieldValues = [...tab5SubTab5Fields];
+                  newFieldValues[index] = e.target.value;
+                  setTab5SubTab5Fields(newFieldValues);
+                }}
+              />
+              <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab5SubTab5Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab5SubTab5Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab5SubTab5Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab5SubTab5Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+            ))}
+          </List>
+          {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+              Save
+            </Button> */}
+        </Sheet>
         );
       } else if (tab5SubTab5Type == "chart") {
         return tab5SubTab5Fields.map((field) => RenderChartFields(field));
@@ -3266,21 +4524,53 @@ export default function AddProductsSection({ params }) {
       if (tab5SubTab6Type == "inputFields") {
         return (
           <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab5SubTab6Fields.length !== 0 ? tab5SubTab6Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab5SubTab6Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
+           <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab5SubTab6Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab5SubTab6Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab5SubTab6Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab5SubTab6Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab5SubTab6Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab5SubTab6Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab5SubTab6Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
           </div>
         );
       } else if (tab5SubTab6Type == "chart") {
@@ -3294,22 +4584,53 @@ export default function AddProductsSection({ params }) {
       if (tab5SubTab7Type == "inputFields") {
         return (
           <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab5SubTab7Fields.length !== 0 ? tab5SubTab7Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab5SubTab7Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
+            <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab5SubTab7Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab5SubTab7Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab5SubTab7Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab5SubTab7Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab5SubTab7Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab5SubTab7Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab5SubTab7Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
           </div>
         );
       } else if (tab5SubTab7Type == "chart") {
@@ -3323,21 +4644,53 @@ export default function AddProductsSection({ params }) {
       if (tab5SubTab8Type == "inputFields") {
         return (
           <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab5SubTab8Fields.length !== 0 ? tab5SubTab8Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab5SubTab8Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
+            <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab5SubTab8Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab5SubTab8Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab5SubTab8Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab5SubTab8Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab5SubTab8Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab5SubTab8Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab5SubTab8Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
           </div>
         );
       } else if (tab5SubTab8Type == "chart") {
@@ -3351,21 +4704,53 @@ export default function AddProductsSection({ params }) {
       if (tab5SubTab9Type == "inputFields") {
         return (
           <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab5SubTab9Fields.length !== 0 ? tab5SubTab9Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab5SubTab9Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
+            <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab5SubTab9Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab5SubTab9Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab5SubTab9Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab5SubTab9Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab5SubTab9Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab5SubTab9Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab5SubTab9Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
           </div>
         );
       } else if (tab5SubTab9Type == "chart") {
@@ -3378,52 +4763,111 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab5SubTab10Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab5SubTab10Fields.length !== 0 ? tab5SubTab10Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab5SubTab10Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab5SubTab10Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab5SubTab10Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab5SubTab10Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab5SubTab10Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab5SubTab10Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab5SubTab10Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab5SubTab10Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab5SubTab10Type == "chart") {
         return tab5SubTab10Fields.map((field) => RenderChartFields(field));
       } else {
         return tab5SubTab10Fields.map((field) => RenderOtherFields(field));
       }
-    } 
-
-    else if (
+    } else if (
       id == `${tab6.replace(/\s/g, "")}-${tab6SubTab1.replace(/\s/g, "")}`
     ) {
       if (tab6SubTab1Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab6SubTab1Fields.length !== 0 ? tab6SubTab1Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab6SubTab1Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab6SubTab1Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab6SubTab1Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab6SubTab1Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab6SubTab1Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab6SubTab1Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab6SubTab1Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab6SubTab1Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab6SubTab1Type == "chart") {
         return tab6SubTab1Fields.map((field) => RenderChartFields(field));
@@ -3439,22 +4883,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab6SubTab2Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab6SubTab2Fields.length !== 0 ? tab6SubTab2Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab6SubTab2Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab6SubTab2Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab6SubTab2Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab6SubTab2Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab6SubTab2Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab6SubTab2Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab6SubTab2Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab6SubTab2Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab6SubTab2Type == "chart") {
         return tab6SubTab2Fields.map((field) => RenderChartFields(field));
@@ -3470,22 +4945,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab6SubTab3Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab6SubTab3Fields.length !== 0 ? tab6SubTab3Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab6SubTab3Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab6SubTab3Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab6SubTab3Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab6SubTab3Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab6SubTab3Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab6SubTab3Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab6SubTab3Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab6SubTab3Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab6SubTab3Type == "chart") {
         return tab6SubTab3Fields.map((field) => RenderChartFields(field));
@@ -3501,22 +5007,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab6SubTab4Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab6SubTab4Fields.length !== 0 ? tab6SubTab4Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab6SubTab4Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
-            }}
-          />
+          <Sheet
+          variant="outlined"
+          sx={{
+            width: "auto",
+            maxHeight: 300,
+            overflow: "auto",
+            borderRadius: "sm",
+          }}
+        >
+          <List>
+            {fields.map((item, index) => (
+               <div style={{display: "flex"}}>
+              <TextField
+                key={index}
+                id={index}
+                size="small"
+                placeholder={item}
+                value={tab6SubTab4Fields[index]}
+                onChange={(e) => {
+                  const newFieldValues = [...tab6SubTab4Fields];
+                  newFieldValues[index] = e.target.value;
+                  setTab6SubTab4Fields(newFieldValues);
+                }}
+              />
+              <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab6SubTab4Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab6SubTab4Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab6SubTab4Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab6SubTab4Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+            ))}
+          </List>
+          {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+              Save
+            </Button> */}
+        </Sheet>
         );
       } else if (tab6SubTab4Type == "chart") {
         return tab6SubTab4Fields.map((field) => RenderChartFields(field));
@@ -3532,22 +5069,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab6SubTab5Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab6SubTab5Fields.length !== 0 ? tab6SubTab5Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab6SubTab5Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab6SubTab5Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab6SubTab5Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab6SubTab5Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab6SubTab5Fields.splice(index, 1)
+                let inc = parseInt(index) + 1
+                let toMove = x.toString()
+                tab6SubTab5Fields.splice(inc, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowDownwardIcon /></MUIButton>
+              <MUIButton color="inherit" onClick={() => {
+                let x = tab6SubTab5Fields.splice(index, 1)
+                let dec = parseInt(index) - 1
+                let toMove = x.toString()
+                tab6SubTab5Fields.splice(dec, 0, toMove)
+                handlePostUIData(dataStruct)
+              }}><ArrowUpwardIcon /></MUIButton>
+              </Stack>
+              </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab6SubTab5Type == "chart") {
         return tab6SubTab5Fields.map((field) => RenderChartFields(field));
@@ -3563,23 +5131,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab6SubTab6Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab6SubTab6Fields.length !== 0 ? tab6SubTab6Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab6SubTab6Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div  style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab6SubTab6Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab6SubTab6Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab6SubTab6Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab6SubTab6Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab6SubTab6Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab6SubTab6Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab6SubTab6Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab6SubTab6Type == "chart") {
         return tab6SubTab6Fields.map((field) => RenderChartFields(field));
@@ -3587,7 +5185,7 @@ export default function AddProductsSection({ params }) {
         tab6SubTab5Type == "document" ||
         tab6SubTab5Type == "tracability" ||
         tab6SubTab5Type == "chainOfCustody"
-      )  {
+      ) {
         return tab6SubTab6Fields.map((field) => RenderOtherFields(field));
       }
     } else if (
@@ -3595,24 +5193,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab6SubTab7Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab6SubTab7Fields.length !== 0 ? tab6SubTab7Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab6SubTab7Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab6SubTab7Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab6SubTab7Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab6SubTab7Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab6SubTab7Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab6SubTab7Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab6SubTab7Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab6SubTab7Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab6SubTab7Type == "chart") {
         return tab6SubTab7Fields.map((field) => RenderChartFields(field));
@@ -3628,23 +5255,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab6SubTab8Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab6SubTab8Fields.length !== 0 ? tab6SubTab8Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab6SubTab8Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab6SubTab8Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab6SubTab8Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab6SubTab8Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab6SubTab8Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab6SubTab8Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab6SubTab8Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab6SubTab8Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab6SubTab8Type == "chart") {
         return tab6SubTab8Fields.map((field) => RenderChartFields(field));
@@ -3656,23 +5313,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab6SubTab9Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab6SubTab9Fields.length !== 0 ? tab6SubTab9Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab6SubTab9Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab6SubTab9Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab6SubTab9Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab6SubTab9Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab6SubTab9Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab6SubTab9Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab6SubTab9Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab6SubTab9Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab6SubTab9Type == "chart") {
         return tab6SubTab9Fields.map((field) => RenderChartFields(field));
@@ -3684,52 +5371,111 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab6SubTab10Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab6SubTab10Fields.length !== 0 ? tab6SubTab10Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab6SubTab10Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab6SubTab10Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab6SubTab10Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab6SubTab10Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab6SubTab10Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab6SubTab10Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab6SubTab10Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab6SubTab10Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab6SubTab10Type == "chart") {
         return tab6SubTab10Fields.map((field) => RenderChartFields(field));
       } else {
         return tab6SubTab10Fields.map((field) => RenderOtherFields(field));
       }
-    }
-
-    else if (
+    } else if (
       id == `${tab7.replace(/\s/g, "")}-${tab7SubTab1.replace(/\s/g, "")}`
     ) {
       if (tab7SubTab1Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab7SubTab1Fields.length !== 0 ? tab7SubTab1Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab7SubTab1Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab7SubTab1Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab7SubTab1Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab7SubTab1Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab7SubTab1Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab7SubTab1Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab7SubTab1Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab7SubTab1Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab7SubTab1Type == "chart") {
         return tab7SubTab1Fields.map((field) => RenderChartFields(field));
@@ -3745,22 +5491,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab7SubTab2Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab7SubTab2Fields.length !== 0 ? tab7SubTab2Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab7SubTab2Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
-            }}
-          />
+          <Sheet
+          variant="outlined"
+          sx={{
+            width: "auto",
+            maxHeight: 300,
+            overflow: "auto",
+            borderRadius: "sm",
+          }}
+        >
+          <List>
+            {fields.map((item, index) => (
+               <div style={{display: "flex"}}>
+              <TextField
+                key={index}
+                id={index}
+                size="small"
+                placeholder={item}
+                value={tab7SubTab2Fields[index]}
+                onChange={(e) => {
+                  const newFieldValues = [...tab7SubTab2Fields];
+                  newFieldValues[index] = e.target.value;
+                  setTab7SubTab2Fields(newFieldValues);
+                }}
+              />
+              <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab7SubTab2Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab7SubTab2Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab7SubTab2Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab7SubTab2Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+            ))}
+          </List>
+          {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+              Save
+            </Button> */}
+        </Sheet>
         );
       } else if (tab7SubTab2Type == "chart") {
         return tab7SubTab2Fields.map((field) => RenderChartFields(field));
@@ -3776,22 +5553,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab7SubTab3Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab7SubTab3Fields.length !== 0 ? tab7SubTab3Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab7SubTab3Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab7SubTab3Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab7SubTab3Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab7SubTab3Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab7SubTab3Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab7SubTab3Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab7SubTab3Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab7SubTab3Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab7SubTab3Type == "chart") {
         return tab7SubTab3Fields.map((field) => RenderChartFields(field));
@@ -3807,22 +5615,54 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab7SubTab4Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab7SubTab4Fields.length !== 0 ? tab7SubTab4Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab7SubTab4Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab7SubTab4Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab7SubTab4Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab7SubTab4Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab7SubTab4Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab7SubTab4Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab7SubTab4Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab7SubTab4Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+                
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab7SubTab4Type == "chart") {
         return tab7SubTab4Fields.map((field) => RenderChartFields(field));
@@ -3838,22 +5678,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab7SubTab5Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab7SubTab5Fields.length !== 0 ? tab7SubTab5Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab7SubTab5Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab7SubTab5Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab7SubTab5Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab7SubTab5Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab7SubTab5Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab7SubTab5Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab7SubTab5Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab7SubTab5Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab7SubTab5Type == "chart") {
         return tab7SubTab5Fields.map((field) => RenderChartFields(field));
@@ -3869,23 +5740,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab7SubTab6Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab7SubTab6Fields.length !== 0 ? tab7SubTab6Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab7SubTab6Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab7SubTab6Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab7SubTab6Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab7SubTab6Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab7SubTab6Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab7SubTab6Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab7SubTab6Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab7SubTab6Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab7SubTab6Type == "chart") {
         return tab7SubTab6Fields.map((field) => RenderChartFields(field));
@@ -3893,7 +5794,7 @@ export default function AddProductsSection({ params }) {
         tab7SubTab5Type == "document" ||
         tab7SubTab5Type == "tracability" ||
         tab7SubTab5Type == "chainOfCustody"
-      )  {
+      ) {
         return tab7SubTab6Fields.map((field) => RenderOtherFields(field));
       }
     } else if (
@@ -3901,24 +5802,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab7SubTab7Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab7SubTab7Fields.length !== 0 ? tab7SubTab7Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab7SubTab7Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab7SubTab7Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab7SubTab7Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab7SubTab7Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab7SubTab7Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab7SubTab7Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab7SubTab7Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab7SubTab7Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab7SubTab7Type == "chart") {
         return tab7SubTab7Fields.map((field) => RenderChartFields(field));
@@ -3934,23 +5864,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab7SubTab8Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab7SubTab8Fields.length !== 0 ? tab7SubTab8Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab7SubTab8Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab7SubTab8Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab7SubTab8Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab7SubTab8Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab7SubTab8Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab7SubTab8Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab7SubTab8Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab7SubTab8Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab7SubTab8Type == "chart") {
         return tab7SubTab8Fields.map((field) => RenderChartFields(field));
@@ -3962,23 +5922,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab7SubTab9Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab7SubTab9Fields.length !== 0 ? tab7SubTab9Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab7SubTab9Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+          variant="outlined"
+          sx={{
+            width: "auto",
+            maxHeight: 300,
+            overflow: "auto",
+            borderRadius: "sm",
+          }}
+        >
+          <List>
+            {fields.map((item, index) => (
+               <div style={{display: "flex"}}>
+              <TextField
+                key={index}
+                id={index}
+                size="small"
+                placeholder={item}
+                value={tab7SubTab9Fields[index]}
+                onChange={(e) => {
+                  const newFieldValues = [...tab7SubTab9Fields];
+                  newFieldValues[index] = e.target.value;
+                  setTab7SubTab9Fields(newFieldValues);
+                }}
+              />
+              <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab7SubTab9Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab7SubTab9Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab7SubTab9Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab7SubTab9Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+            ))}
+          </List>
+          {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+              Save
+            </Button> */}
+        </Sheet>
         );
       } else if (tab7SubTab9Type == "chart") {
         return tab7SubTab9Fields.map((field) => RenderChartFields(field));
@@ -3990,52 +5980,111 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab7SubTab10Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab7SubTab10Fields.length !== 0 ? tab7SubTab10Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab7SubTab10Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab7SubTab10Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab7SubTab10Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab7SubTab10Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab7SubTab10Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab7SubTab10Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab7SubTab10Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab7SubTab10Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab7SubTab10Type == "chart") {
         return tab7SubTab10Fields.map((field) => RenderChartFields(field));
       } else {
         return tab7SubTab10Fields.map((field) => RenderOtherFields(field));
       }
-    }
-
-    else if (
+    } else if (
       id == `${tab8.replace(/\s/g, "")}-${tab8SubTab1.replace(/\s/g, "")}`
     ) {
       if (tab8SubTab1Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab8SubTab1Fields.length !== 0 ? tab8SubTab1Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab8SubTab1Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab8SubTab1Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab8SubTab1Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab8SubTab1Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab8SubTab1Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab8SubTab1Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab8SubTab1Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab8SubTab1Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab8SubTab1Type == "chart") {
         return tab8SubTab1Fields.map((field) => RenderChartFields(field));
@@ -4047,22 +6096,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab8SubTab2Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab8SubTab2Fields.length !== 0 ? tab8SubTab2Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab8SubTab2Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab8SubTab2Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab8SubTab2Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab8SubTab2Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab8SubTab2Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab8SubTab2Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab8SubTab2Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab8SubTab2Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab8SubTab2Type == "chart") {
         return tab8SubTab2Fields.map((field) => RenderChartFields(field));
@@ -4078,22 +6158,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab8SubTab3Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab8SubTab3Fields.length !== 0 ? tab8SubTab3Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab8SubTab3Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab8SubTab3Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab8SubTab3Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab8SubTab3Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab8SubTab3Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab8SubTab3Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab8SubTab3Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab8SubTab3Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab8SubTab3Type == "chart") {
         return tab8SubTab3Fields.map((field) => RenderChartFields(field));
@@ -4109,22 +6220,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab8SubTab4Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab8SubTab4Fields.length !== 0 ? tab8SubTab4Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab8SubTab4Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
-            }}
-          />
+          <Sheet
+          variant="outlined"
+          sx={{
+            width: "auto",
+            maxHeight: 300,
+            overflow: "auto",
+            borderRadius: "sm",
+          }}
+        >
+          <List>
+            {fields.map((item, index) => (
+               <div style={{display: "flex"}}>
+              <TextField
+                key={index}
+                id={index}
+                size="small"
+                placeholder={item}
+                value={tab8SubTab4Fields[index]}
+                onChange={(e) => {
+                  const newFieldValues = [...tab8SubTab4Fields];
+                  newFieldValues[index] = e.target.value;
+                  setTab8SubTab4Fields(newFieldValues);
+                }}
+              />
+              <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab8SubTab4Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab8SubTab4Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab8SubTab4Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab8SubTab4Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+            ))}
+          </List>
+          {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+              Save
+            </Button> */}
+        </Sheet>
         );
       } else if (tab8SubTab4Type == "chart") {
         return tab8SubTab4Fields.map((field) => RenderChartFields(field));
@@ -4140,22 +6282,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab8SubTab5Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab8SubTab5Fields.length !== 0 ? tab8SubTab5Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab8SubTab5Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab8SubTab5Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab8SubTab5Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab8SubTab5Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab8SubTab5Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab8SubTab5Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab8SubTab5Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab8SubTab5Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab8SubTab5Type == "chart") {
         return tab8SubTab5Fields.map((field) => RenderChartFields(field));
@@ -4172,21 +6345,53 @@ export default function AddProductsSection({ params }) {
       if (tab8SubTab6Type == "inputFields") {
         return (
           <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab8SubTab6Fields.length !== 0 ? tab8SubTab6Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab8SubTab6Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
+            <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab8SubTab6Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab8SubTab6Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab8SubTab6Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab8SubTab6Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab8SubTab6Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab8SubTab6Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab8SubTab6Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
           </div>
         );
       } else if (tab8SubTab6Type == "chart") {
@@ -4195,7 +6400,7 @@ export default function AddProductsSection({ params }) {
         tab8SubTab5Type == "document" ||
         tab8SubTab5Type == "tracability" ||
         tab8SubTab5Type == "chainOfCustody"
-      )  {
+      ) {
         return tab8SubTab6Fields.map((field) => RenderOtherFields(field));
       }
     } else if (
@@ -4203,24 +6408,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab8SubTab7Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab8SubTab7Fields.length !== 0 ? tab8SubTab7Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab8SubTab7Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab8SubTab7Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab8SubTab7Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab8SubTab7Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab8SubTab7Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab8SubTab7Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab8SubTab7Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab8SubTab7Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab8SubTab7Type == "chart") {
         return tab8SubTab7Fields.map((field) => RenderChartFields(field));
@@ -4236,23 +6470,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab8SubTab8Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab8SubTab8Fields.length !== 0 ? tab8SubTab8Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab8SubTab8Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab8SubTab8Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab8SubTab8Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab8SubTab8Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab8SubTab8Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab8SubTab8Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab8SubTab8Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab8SubTab8Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab8SubTab8Type == "chart") {
         return tab8SubTab8Fields.map((field) => RenderChartFields(field));
@@ -4264,23 +6528,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab8SubTab9Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab8SubTab9Fields.length !== 0 ? tab8SubTab9Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab8SubTab9Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab8SubTab9Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab8SubTab9Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab8SubTab9Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab8SubTab9Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab8SubTab9Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab8SubTab9Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab8SubTab9Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab8SubTab9Type == "chart") {
         return tab8SubTab9Fields.map((field) => RenderChartFields(field));
@@ -4292,52 +6586,111 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab8SubTab10Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab8SubTab10Fields.length !== 0 ? tab8SubTab10Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab8SubTab10Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab8SubTab10Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab8SubTab10Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab8SubTab10Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab8SubTab10Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab8SubTab10Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab8SubTab10Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab8SubTab10Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab8SubTab10Type == "chart") {
         return tab8SubTab10Fields.map((field) => RenderChartFields(field));
       } else {
         return tab8SubTab10Fields.map((field) => RenderOtherFields(field));
       }
-    }
-
-    else if (
+    } else if (
       id == `${tab9.replace(/\s/g, "")}-${tab9SubTab1.replace(/\s/g, "")}`
     ) {
       if (tab9SubTab1Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab9SubTab1Fields.length !== 0 ? tab9SubTab1Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab9SubTab1Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab9SubTab1Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab9SubTab1Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab9SubTab1Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab9SubTab1Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab9SubTab1Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab9SubTab1Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab9SubTab1Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab9SubTab1Type == "chart") {
         return tab9SubTab1Fields.map((field) => RenderChartFields(field));
@@ -4353,22 +6706,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab9SubTab2Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab9SubTab2Fields.length !== 0 ? tab9SubTab2Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab9SubTab2Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab9SubTab2Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab9SubTab2Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab9SubTab2Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab9SubTab2Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab9SubTab2Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab9SubTab2Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab9SubTab2Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab9SubTab2Type == "chart") {
         return tab9SubTab2Fields.map((field) => RenderChartFields(field));
@@ -4384,22 +6768,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab9SubTab3Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab9SubTab3Fields.length !== 0 ? tab9SubTab3Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab9SubTab3Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab9SubTab3Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab9SubTab3Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab9SubTab3Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab9SubTab3Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab9SubTab3Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab9SubTab3Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab9SubTab3Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab9SubTab3Type == "chart") {
         return tab9SubTab3Fields.map((field) => RenderChartFields(field));
@@ -4415,22 +6830,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab9SubTab4Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab9SubTab4Fields.length !== 0 ? tab9SubTab4Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab9SubTab4Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
-            }}
-          />
+          <Sheet
+          variant="outlined"
+          sx={{
+            width: "auto",
+            maxHeight: 300,
+            overflow: "auto",
+            borderRadius: "sm",
+          }}
+        >
+          <List>
+            {fields.map((item, index) => (
+               <div style={{display: "flex"}}>
+              <TextField
+                key={index}
+                id={index}
+                size="small"
+                placeholder={item}
+                value={tab9SubTab4Fields[index]}
+                onChange={(e) => {
+                  const newFieldValues = [...tab9SubTab4Fields];
+                  newFieldValues[index] = e.target.value;
+                  setTab9SubTab4Fields(newFieldValues);
+                }}
+              />
+              <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab9SubTab4Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab9SubTab4Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab9SubTab4Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab9SubTab4Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+            ))}
+          </List>
+          {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+              Save
+            </Button> */}
+        </Sheet>
         );
       } else if (tab9SubTab4Type == "chart") {
         return tab9SubTab4Fields.map((field) => RenderChartFields(field));
@@ -4446,22 +6892,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab9SubTab5Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab9SubTab5Fields.length !== 0 ? tab9SubTab5Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab9SubTab5Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab9SubTab5Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab9SubTab5Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab9SubTab5Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab9SubTab5Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab9SubTab5Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab9SubTab5Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab9SubTab5Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab9SubTab5Type == "chart") {
         return tab9SubTab5Fields.map((field) => RenderChartFields(field));
@@ -4477,23 +6954,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab9SubTab6Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab9SubTab6Fields.length !== 0 ? tab9SubTab6Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab9SubTab6Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab9SubTab6Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab9SubTab6Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab9SubTab6Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab9SubTab6Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab9SubTab6Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab9SubTab6Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab9SubTab6Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab9SubTab6Type == "chart") {
         return tab9SubTab6Fields.map((field) => RenderChartFields(field));
@@ -4501,7 +7008,7 @@ export default function AddProductsSection({ params }) {
         tab9SubTab5Type == "document" ||
         tab9SubTab5Type == "tracability" ||
         tab9SubTab5Type == "chainOfCustody"
-      )  {
+      ) {
         return tab9SubTab6Fields.map((field) => RenderOtherFields(field));
       }
     } else if (
@@ -4509,24 +7016,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab9SubTab7Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab9SubTab7Fields.length !== 0 ? tab9SubTab7Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab9SubTab7Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab9SubTab7Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab9SubTab7Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab9SubTab7Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab9SubTab7Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab9SubTab7Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab9SubTab7Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab9SubTab7Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab9SubTab7Type == "chart") {
         return tab9SubTab7Fields.map((field) => RenderChartFields(field));
@@ -4542,23 +7078,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab9SubTab8Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab9SubTab8Fields.length !== 0 ? tab9SubTab8Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab9SubTab8Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab9SubTab8Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab9SubTab8Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab9SubTab8Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab9SubTab8Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab9SubTab8Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab9SubTab8Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab9SubTab8Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab9SubTab8Type == "chart") {
         return tab9SubTab8Fields.map((field) => RenderChartFields(field));
@@ -4570,23 +7136,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab9SubTab9Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab9SubTab9Fields.length !== 0 ? tab9SubTab9Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab9SubTab9Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab9SubTab9Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab9SubTab9Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab9SubTab9Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab9SubTab9Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab9SubTab9Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab9SubTab9Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab9SubTab9Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab9SubTab9Type == "chart") {
         return tab9SubTab9Fields.map((field) => RenderChartFields(field));
@@ -4598,52 +7194,111 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab9SubTab10Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab9SubTab10Fields.length !== 0 ? tab9SubTab10Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab9SubTab10Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+           <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab9SubTab10Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab9SubTab10Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab9SubTab10Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab9SubTab10Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab9SubTab10Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab9SubTab10Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab9SubTab10Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab9SubTab10Type == "chart") {
         return tab9SubTab10Fields.map((field) => RenderChartFields(field));
       } else {
         return tab9SubTab10Fields.map((field) => RenderOtherFields(field));
       }
-    }
-
-    else if (
+    } else if (
       id == `${tab10.replace(/\s/g, "")}-${tab10SubTab1.replace(/\s/g, "")}`
     ) {
       if (tab10SubTab1Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab10SubTab1Fields.length !== 0 ? tab10SubTab1Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab10SubTab1Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab10SubTab1Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab10SubTab1Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab10SubTab1Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab10SubTab1Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab10SubTab1Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab10SubTab1Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab10SubTab1Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab10SubTab1Type == "chart") {
         return tab10SubTab1Fields.map((field) => RenderChartFields(field));
@@ -4659,22 +7314,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab10SubTab2Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab10SubTab2Fields.length !== 0 ? tab10SubTab2Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab10SubTab2Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab10SubTab2Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab10SubTab2Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab10SubTab2Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab10SubTab2Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab10SubTab2Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab10SubTab2Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab10SubTab2Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab10SubTab2Type == "chart") {
         return tab10SubTab2Fields.map((field) => RenderChartFields(field));
@@ -4690,22 +7376,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab10SubTab3Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab10SubTab3Fields.length !== 0 ? tab10SubTab3Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab10SubTab3Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab10SubTab3Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab10SubTab3Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab10SubTab3Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab10SubTab3Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab10SubTab3Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab10SubTab3Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab10SubTab3Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab10SubTab3Type == "chart") {
         return tab10SubTab3Fields.map((field) => RenderChartFields(field));
@@ -4721,22 +7438,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab6SubTab4Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab10SubTab4Fields.length !== 0 ? tab10SubTab4Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab10SubTab4Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab10SubTab4Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab10SubTab4Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab10SubTab4Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab10SubTab4Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab10SubTab4Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab10SubTab4Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab10SubTab4Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab10SubTab4Type == "chart") {
         return tab10SubTab4Fields.map((field) => RenderChartFields(field));
@@ -4752,22 +7500,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab10SubTab5Type == "inputFields") {
         return (
-          <DataGrid
-            rows={tab10SubTab5Fields.length !== 0 ? tab10SubTab5Fields : rows}
-            columns={columns}
-            processRowUpdate={(event) => {
-              rows[event.index].fieldName = event.fieldName;
-              setTab10SubTab5Fields((oldFields) => [
-                ...oldFields,
-                {
-                  id: event.id,
-                  index: event.index,
-                  fieldName: event.fieldName,
-                },
-              ]);
-              console.log(tab1SubTab1Fields);
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
             }}
-          />
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab10SubTab5Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab10SubTab5Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab10SubTab5Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab10SubTab5Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab10SubTab5Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab10SubTab5Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab10SubTab5Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab10SubTab5Type == "chart") {
         return tab10SubTab5Fields.map((field) => RenderChartFields(field));
@@ -4783,23 +7562,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab10SubTab6Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab10SubTab6Fields.length !== 0 ? tab10SubTab6Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab10SubTab6Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab10SubTab6Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab10SubTab6Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab10SubTab6Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab10SubTab6Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab10SubTab6Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab10SubTab6Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab10SubTab6Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab10SubTab6Type == "chart") {
         return tab10SubTab6Fields.map((field) => RenderChartFields(field));
@@ -4807,7 +7616,7 @@ export default function AddProductsSection({ params }) {
         tab10SubTab5Type == "document" ||
         tab10SubTab5Type == "tracability" ||
         tab10SubTab5Type == "chainOfCustody"
-      )  {
+      ) {
         return tab10SubTab6Fields.map((field) => RenderOtherFields(field));
       }
     } else if (
@@ -4815,24 +7624,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab10SubTab7Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab10SubTab7Fields.length !== 0 ? tab10SubTab7Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab6SubTab7Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-                console.log(tab1SubTab1Fields);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab10SubTab7Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab10SubTab7Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab10SubTab7Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab10SubTab7Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab10SubTab7Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab10SubTab7Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab10SubTab7Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab10SubTab7Type == "chart") {
         return tab10SubTab7Fields.map((field) => RenderChartFields(field));
@@ -4848,23 +7686,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab10SubTab8Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab10SubTab8Fields.length !== 0 ? tab10SubTab8Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab10SubTab8Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab10SubTab8Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab10SubTab8Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab10SubTab8Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab10SubTab8Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab10SubTab8Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab10SubTab8Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab10SubTab8Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab10SubTab8Type == "chart") {
         return tab10SubTab8Fields.map((field) => RenderChartFields(field));
@@ -4876,23 +7744,53 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab10SubTab9Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab10SubTab9Fields.length !== 0 ? tab10SubTab9Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab10SubTab9Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          <Sheet
+            variant="outlined"
+            sx={{
+              width: "auto",
+              maxHeight: 300,
+              overflow: "auto",
+              borderRadius: "sm",
+            }}
+          >
+            <List>
+              {fields.map((item, index) => (
+                 <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab10SubTab9Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab10SubTab9Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab10SubTab9Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab10SubTab9Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab10SubTab9Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab10SubTab9Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab10SubTab9Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+              ))}
+            </List>
+            {/* <Button onClick={() => console.log(tab1SubTab1Fields)}>
+                Save
+              </Button> */}
+          </Sheet>
         );
       } else if (tab10SubTab9Type == "chart") {
         return tab10SubTab9Fields.map((field) => RenderChartFields(field));
@@ -4904,23 +7802,54 @@ export default function AddProductsSection({ params }) {
     ) {
       if (tab10SubTab10Type == "inputFields") {
         return (
-          <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
-            <DataGrid
-              rows={tab10SubTab10Fields.length !== 0 ? tab10SubTab10Fields : rows}
-              columns={columns}
-              processRowUpdate={(event) => {
-                rows[event.index].fieldName = event.fieldName;
-                setTab10SubTab10Fields((oldFields) => [
-                  ...oldFields,
-                  {
-                    id: event.id,
-                    index: event.index,
-                    fieldName: event.fieldName,
-                  },
-                ]);
-              }}
-            />
-          </div>
+          // <Sheet
+          //   variant="outlined"
+          //   sx={{
+          //     width: "auto",
+          //     maxHeight: 300,
+          //     overflow: "auto",
+          //     borderRadius: "sm",
+          //   }}
+          // >
+            <List>
+              <div>
+              {fields.map((item, index) => (
+ <div style={{display: "flex"}}>
+                <TextField
+                  key={index}
+                  id={index}
+                  size="small"
+                  placeholder={item}
+                  value={tab10SubTab10Fields[index]}
+                  onChange={(e) => {
+                    const newFieldValues = [...tab10SubTab10Fields];
+                    newFieldValues[index] = e.target.value;
+                    setTab10SubTab10Fields(newFieldValues);
+                  }}
+                />
+                <Stack direction="row" size="small" spacing={0}>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab10SubTab10Fields.splice(index, 1)
+                  let inc = parseInt(index) + 1
+                  let toMove = x.toString()
+                  tab10SubTab10Fields.splice(inc, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowDownwardIcon /></MUIButton>
+                <MUIButton color="inherit" onClick={() => {
+                  let x = tab10SubTab10Fields.splice(index, 1)
+                  let dec = parseInt(index) - 1
+                  let toMove = x.toString()
+                  tab10SubTab10Fields.splice(dec, 0, toMove)
+                  handlePostUIData(dataStruct)
+                }}><ArrowUpwardIcon /></MUIButton>
+                </Stack>
+                </div>
+
+              ))}
+              </div>
+            </List>
+
+          // </Sheet>
         );
       } else if (tab10SubTab10Type == "chart") {
         return tab10SubTab10Fields.map((field) => RenderChartFields(field));
@@ -6197,503 +9126,503 @@ export default function AddProductsSection({ params }) {
               if (ci == "2-0") {
                 setTab1SubTab1(child);
                 setTab1SubTtab1(child);
-                setTab1SubTab1Fields(fields)
-                setTab1SubTab1Type(type)
+                setTab1SubTab1Fields(fields);
+                setTab1SubTab1Type(type);
               } else if (ci == "2-1") {
                 setTab1SubTab2(child);
                 setTab1SubTtab2(child);
-                setTab1SubTab2Fields(fields)
-                setTab1SubTab2Type(type)
+                setTab1SubTab2Fields(fields);
+                setTab1SubTab2Type(type);
               } else if (ci == "2-2") {
                 setTab1SubTab3(child);
                 setTab1SubTtab3(child);
-                setTab1SubTab3Fields(fields)
-                setTab1SubTab3Type(type)
+                setTab1SubTab3Fields(fields);
+                setTab1SubTab3Type(type);
               } else if (ci == "2-3") {
                 setTab1SubTab4(child);
                 setTab1SubTtab4(child);
-                setTab1SubTab4Fields(fields)
-                setTab1SubTab4Type(type)
+                setTab1SubTab4Fields(fields);
+                setTab1SubTab4Type(type);
               } else if (ci == "2-4") {
                 setTab1SubTab5(child);
                 setTab1SubTtab5(child);
-                setTab1SubTab5Fields(fields)
-                setTab1SubTab5Type(type)
+                setTab1SubTab5Fields(fields);
+                setTab1SubTab5Type(type);
               } else if (ci == "2-5") {
                 setTab1SubTab6(child);
                 setTab1SubTtab6(child);
-                setTab1SubTab6Fields(fields)
-                setTab1SubTab6Type(type)
+                setTab1SubTab6Fields(fields);
+                setTab1SubTab6Type(type);
               } else if (ci == "2-6") {
                 setTab1SubTab7(child);
                 setTab1SubTtab7(child);
-                setTab1SubTab7Fields(fields)
-                setTab1SubTab7Type(type)
+                setTab1SubTab7Fields(fields);
+                setTab1SubTab7Type(type);
               } else if (ci == "2-7") {
                 setTab1SubTab8(child);
                 setTab1SubTtab8(child);
-                setTab1SubTab8Fields(fields)
-                setTab1SubTab8Type(type)
+                setTab1SubTab8Fields(fields);
+                setTab1SubTab8Type(type);
               } else if (ci == "2-8") {
                 setTab1SubTab9(child);
                 setTab1SubTtab9(child);
-                setTab1SubTab9Fields(fields)
-                setTab1SubTab9Type(type)
+                setTab1SubTab9Fields(fields);
+                setTab1SubTab9Type(type);
               } else if (ci == "2-9") {
                 setTab1SubTab10(child);
                 setTab1SubTtab10(child);
-                setTab1SubTab10Fields(fields)
-                setTab1SubTab10Type(type)
+                setTab1SubTab10Fields(fields);
+                setTab1SubTab10Type(type);
               } else if (ci == "3-0") {
                 setTab2SubTab1(child);
                 setTab2SubTtab1(child);
-                setTab2SubTab1Fields(fields)
-                setTab2SubTab1Type(type)
+                setTab2SubTab1Fields(fields);
+                setTab2SubTab1Type(type);
               } else if (ci == "3-1") {
                 setTab2SubTab2(child);
                 setTab2SubTtab2(child);
-                setTab2SubTab2Fields(fields)
-                setTab2SubTab2Type(type)
+                setTab2SubTab2Fields(fields);
+                setTab2SubTab2Type(type);
               } else if (ci == "3-2") {
                 setTab2SubTab3(child);
                 setTab2SubTtab3(child);
-                setTab2SubTab3Fields(fields)
-                setTab2SubTab3Type(type)
+                setTab2SubTab3Fields(fields);
+                setTab2SubTab3Type(type);
               } else if (ci == "3-3") {
                 setTab2SubTab4(child);
                 setTab2SubTtab4(child);
-                setTab2SubTab4Fields(fields)
-                setTab2SubTab4Type(type)
+                setTab2SubTab4Fields(fields);
+                setTab2SubTab4Type(type);
               } else if (ci == "3-4") {
                 setTab2SubTab5(child);
                 setTab2SubTtab5(child);
-                setTab2SubTab5Fields(fields)
-                setTab2SubTab5Type(type)
+                setTab2SubTab5Fields(fields);
+                setTab2SubTab5Type(type);
               } else if (ci == "3-5") {
                 setTab2SubTab6(child);
                 setTab2SubTtab6(child);
-                setTab2SubTab6Fields(fields)
-                setTab2SubTab6Type(type)
+                setTab2SubTab6Fields(fields);
+                setTab2SubTab6Type(type);
               } else if (ci == "3-6") {
                 setTab2SubTab7(child);
                 setTab2SubTtab7(child);
-                setTab2SubTab7Fields(fields)
-                setTab2SubTab7Type(type)
+                setTab2SubTab7Fields(fields);
+                setTab2SubTab7Type(type);
               } else if (ci == "3-7") {
                 setTab2SubTab8(child);
                 setTab2SubTtab8(child);
-                setTab2SubTab8Fields(fields)
-                setTab2SubTab8Type(type)
+                setTab2SubTab8Fields(fields);
+                setTab2SubTab8Type(type);
               } else if (ci == "3-8") {
                 setTab2SubTab9(child);
                 setTab2SubTtab9(child);
-                setTab2SubTab9Fields(fields)
-                setTab2SubTab9Type(type)
+                setTab2SubTab9Fields(fields);
+                setTab2SubTab9Type(type);
               } else if (ci == "3-9") {
                 setTab2SubTab10(child);
                 setTab2SubTtab10(child);
-                setTab2SubTab10Fields(fields)
-                setTab2SubTab10Type(type)
+                setTab2SubTab10Fields(fields);
+                setTab2SubTab10Type(type);
               } else if (ci == "4-0") {
                 setTab3SubTab1(child);
                 setTab3SubTtab1(child);
-                setTab3SubTab1Fields(fields)
-                setTab3SubTab1Type(type)
+                setTab3SubTab1Fields(fields);
+                setTab3SubTab1Type(type);
               } else if (ci == "4-1") {
                 setTab3SubTab2(child);
                 setTab3SubTtab2(child);
-                setTab3SubTab2Fields(fields)
-                setTab3SubTab2Type(type)
+                setTab3SubTab2Fields(fields);
+                setTab3SubTab2Type(type);
               } else if (ci == "4-2") {
                 setTab3SubTab3(child);
                 setTab3SubTtab3(child);
-                setTab3SubTab3Fields(fields)
-                setTab3SubTab3Type(type)
+                setTab3SubTab3Fields(fields);
+                setTab3SubTab3Type(type);
               } else if (ci == "4-3") {
                 setTab3SubTab4(child);
                 setTab3SubTtab4(child);
-                setTab3SubTab4Fields(fields)
-                setTab3SubTab4Type(type)
+                setTab3SubTab4Fields(fields);
+                setTab3SubTab4Type(type);
               } else if (ci == "4-4") {
                 setTab3SubTab5(child);
                 setTab3SubTtab5(child);
-                setTab3SubTab5Fields(fields)
-                setTab3SubTab5Type(type)
+                setTab3SubTab5Fields(fields);
+                setTab3SubTab5Type(type);
               } else if (ci == "4-5") {
                 setTab3SubTab6(child);
                 setTab3SubTtab6(child);
-                setTab3SubTab6Fields(fields)
-                setTab3SubTab6Type(type)
+                setTab3SubTab6Fields(fields);
+                setTab3SubTab6Type(type);
               } else if (ci == "4-6") {
                 setTab3SubTab7(child);
                 setTab3SubTtab7(child);
-                setTab3SubTab7Fields(fields)
-                setTab3SubTab7Type(type)
+                setTab3SubTab7Fields(fields);
+                setTab3SubTab7Type(type);
               } else if (ci == "4-7") {
                 setTab3SubTab8(child);
                 setTab3SubTtab8(child);
-                setTab3SubTab8Fields(fields)
-                setTab3SubTab8Type(type)
+                setTab3SubTab8Fields(fields);
+                setTab3SubTab8Type(type);
               } else if (ci == "4-8") {
                 setTab3SubTab9(child);
                 setTab3SubTtab9(child);
-                setTab3SubTab9Fields(fields)
-                setTab3SubTab9Type(type)
+                setTab3SubTab9Fields(fields);
+                setTab3SubTab9Type(type);
               } else if (ci == "4-9") {
                 setTab3SubTab10(child);
                 setTab3SubTtab10(child);
-                setTab3SubTab10Fields(fields)
-                setTab3SubTab10Type(type)
+                setTab3SubTab10Fields(fields);
+                setTab3SubTab10Type(type);
               } else if (ci == "5-0") {
                 setTab4SubTab1(child);
                 setTab4SubTtab1(child);
-                setTab4SubTab1Fields(fields)
-                setTab4SubTab1Type(type)
+                setTab4SubTab1Fields(fields);
+                setTab4SubTab1Type(type);
               } else if (ci == "5-1") {
                 setTab4SubTab2(child);
                 setTab4SubTtab2(child);
-                setTab4SubTab2Fields(fields)
-                setTab4SubTab2Type(type)
+                setTab4SubTab2Fields(fields);
+                setTab4SubTab2Type(type);
               } else if (ci == "5-2") {
                 setTab4SubTab3(child);
                 setTab4SubTtab3(child);
-                setTab4SubTab3Fields(fields)
-                setTab4SubTab3Type(type)
+                setTab4SubTab3Fields(fields);
+                setTab4SubTab3Type(type);
               } else if (ci == "5-3") {
                 setTab4SubTab4(child);
                 setTab4SubTtab4(child);
-                setTab4SubTab4Fields(fields)
-                setTab4SubTab4Type(type)
+                setTab4SubTab4Fields(fields);
+                setTab4SubTab4Type(type);
               } else if (ci == "5-4") {
                 setTab4SubTab5(child);
                 setTab4SubTtab5(child);
-                setTab4SubTab5Fields(fields)
-                setTab4SubTab5Type(type)
+                setTab4SubTab5Fields(fields);
+                setTab4SubTab5Type(type);
               } else if (ci == "5-5") {
                 setTab4SubTab6(child);
                 setTab4SubTtab6(child);
-                setTab4SubTab6Fields(fields)
-                setTab4SubTab6Type(type)
+                setTab4SubTab6Fields(fields);
+                setTab4SubTab6Type(type);
               } else if (ci == "5-6") {
                 setTab4SubTab7(child);
                 setTab4SubTtab7(child);
-                setTab4SubTab7Fields(fields)
-                setTab4SubTab7Type(type)
+                setTab4SubTab7Fields(fields);
+                setTab4SubTab7Type(type);
               } else if (ci == "5-7") {
                 setTab4SubTab8(child);
                 setTab4SubTtab8(child);
-                setTab4SubTab8Fields(fields)
-                setTab4SubTab8Type(type)
+                setTab4SubTab8Fields(fields);
+                setTab4SubTab8Type(type);
               } else if (ci == "5-8") {
                 setTab4SubTab9(child);
                 setTab4SubTtab9(child);
-                setTab4SubTab9Fields(fields)
-                setTab4SubTab9Type(type)
+                setTab4SubTab9Fields(fields);
+                setTab4SubTab9Type(type);
               } else if (ci == "5-9") {
                 setTab4SubTab10(child);
                 setTab4SubTtab10(child);
-                setTab4SubTab10Fields(fields)
-                setTab4SubTab10Type(type)
+                setTab4SubTab10Fields(fields);
+                setTab4SubTab10Type(type);
               } else if (ci == "6-0") {
                 setTab5SubTab1(child);
                 setTab5SubTtab1(child);
-                setTab5SubTab1Fields(fields)
-                setTab5SubTab1Type(type)
+                setTab5SubTab1Fields(fields);
+                setTab5SubTab1Type(type);
               } else if (ci == "6-1") {
                 setTab5SubTab2(child);
                 setTab5SubTtab2(child);
-                setTab5SubTab2Fields(fields)
-                setTab5SubTab2Type(type)
+                setTab5SubTab2Fields(fields);
+                setTab5SubTab2Type(type);
               } else if (ci == "6-2") {
                 setTab5SubTab3(child);
                 setTab5SubTtab3(child);
-                setTab5SubTab3Fields(fields)
-                setTab5SubTab3Type(type)
+                setTab5SubTab3Fields(fields);
+                setTab5SubTab3Type(type);
               } else if (ci == "6-3") {
                 setTab5SubTab4(child);
                 setTab5SubTtab4(child);
-                setTab5SubTab4Fields(fields)
-                setTab5SubTab4Type(type)
+                setTab5SubTab4Fields(fields);
+                setTab5SubTab4Type(type);
               } else if (ci == "6-4") {
                 setTab5SubTab5(child);
                 setTab5SubTtab5(child);
-                setTab5SubTab5Fields(fields)
-                setTab5SubTab5Type(type)
+                setTab5SubTab5Fields(fields);
+                setTab5SubTab5Type(type);
               } else if (ci == "6-5") {
                 setTab5SubTab6(child);
                 setTab5SubTtab6(child);
-                setTab5SubTab6Fields(fields)
-                setTab5SubTab6Type(type)
+                setTab5SubTab6Fields(fields);
+                setTab5SubTab6Type(type);
               } else if (ci == "6-6") {
                 setTab5SubTab7(child);
                 setTab5SubTtab7(child);
-                setTab5SubTab7Fields(fields)
-                setTab5SubTab7Type(type)
+                setTab5SubTab7Fields(fields);
+                setTab5SubTab7Type(type);
               } else if (ci == "6-7") {
                 setTab5SubTab8(child);
                 setTab5SubTtab8(child);
-                setTab5SubTab8Fields(fields)
-                setTab5SubTab8Type(type)
+                setTab5SubTab8Fields(fields);
+                setTab5SubTab8Type(type);
               } else if (ci == "6-8") {
                 setTab5SubTab9(child);
                 setTab5SubTtab9(child);
-                setTab5SubTab9Fields(fields)
-                setTab5SubTab9Type(type)
+                setTab5SubTab9Fields(fields);
+                setTab5SubTab9Type(type);
               } else if (ci == "6-9") {
                 setTab5SubTab10(child);
                 setTab5SubTtab10(child);
-                setTab5SubTab10Fields(fields)
-                setTab5SubTab10Type(type)
+                setTab5SubTab10Fields(fields);
+                setTab5SubTab10Type(type);
               } else if (ci == "7-0") {
                 setTab6SubTab1(child);
                 setTab6SubTtab1(child);
-                setTab6SubTab1Fields(fields)
-                setTab6SubTab1Type(type)
+                setTab6SubTab1Fields(fields);
+                setTab6SubTab1Type(type);
               } else if (ci == "7-1") {
                 setTab6SubTab2(child);
                 setTab6SubTtab2(child);
-                setTab6SubTab2Fields(fields)
-                setTab6SubTab2Type(type)
+                setTab6SubTab2Fields(fields);
+                setTab6SubTab2Type(type);
               } else if (ci == "7-2") {
                 setTab6SubTab3(child);
                 setTab6SubTtab3(child);
-                setTab6SubTab3Fields(fields)
-                setTab6SubTab3Type(type)
+                setTab6SubTab3Fields(fields);
+                setTab6SubTab3Type(type);
               } else if (ci == "7-3") {
                 setTab6SubTab4(child);
                 setTab6SubTtab4(child);
-                setTab6SubTab4Fields(fields)
-                setTab6SubTab4Type(type)
+                setTab6SubTab4Fields(fields);
+                setTab6SubTab4Type(type);
               } else if (ci == "7-4") {
                 setTab6SubTab5(child);
                 setTab6SubTtab5(child);
-                setTab6SubTab5Fields(fields)
-                setTab6SubTab5Type(type)
+                setTab6SubTab5Fields(fields);
+                setTab6SubTab5Type(type);
               } else if (ci == "7-5") {
                 setTab6SubTab6(child);
                 setTab6SubTtab6(child);
-                setTab6SubTab6Fields(fields)
-                setTab6SubTab6Type(type)
+                setTab6SubTab6Fields(fields);
+                setTab6SubTab6Type(type);
               } else if (ci == "7-6") {
                 setTab6SubTab7(child);
                 setTab6SubTtab7(child);
-                setTab6SubTab7Fields(fields)
-                setTab6SubTab7Type(type)
+                setTab6SubTab7Fields(fields);
+                setTab6SubTab7Type(type);
               } else if (ci == "7-7") {
                 setTab6SubTab8(child);
                 setTab6SubTtab8(child);
-                setTab6SubTab8Fields(fields)
-                setTab6SubTab8Type(type)
+                setTab6SubTab8Fields(fields);
+                setTab6SubTab8Type(type);
               } else if (ci == "7-8") {
                 setTab6SubTab9(child);
                 setTab6SubTtab9(child);
-                setTab6SubTab9Fields(fields)
-                setTab6SubTab9Type(type)
+                setTab6SubTab9Fields(fields);
+                setTab6SubTab9Type(type);
               } else if (ci == "7-9") {
                 setTab6SubTab10(child);
                 setTab6SubTtab10(child);
-                setTab6SubTab10Fields(fields)
-                setTab6SubTab10Type(type)
+                setTab6SubTab10Fields(fields);
+                setTab6SubTab10Type(type);
               } else if (ci == "8-0") {
                 setTab7SubTab1(child);
                 setTab7SubTtab1(child);
-                setTab7SubTab1Fields(fields)
-                setTab7SubTab1Type(type)
+                setTab7SubTab1Fields(fields);
+                setTab7SubTab1Type(type);
               } else if (ci == "8-1") {
                 setTab7SubTab2(child);
                 setTab7SubTtab2(child);
-                setTab7SubTab2Fields(fields)
-                setTab7SubTab2Type(type)
+                setTab7SubTab2Fields(fields);
+                setTab7SubTab2Type(type);
               } else if (ci == "8-2") {
                 setTab7SubTab3(child);
                 setTab7SubTtab3(child);
-                setTab7SubTab3Fields(fields)
-                setTab7SubTab3Type(type)
+                setTab7SubTab3Fields(fields);
+                setTab7SubTab3Type(type);
               } else if (ci == "8-3") {
                 setTab7SubTab4(child);
                 setTab7SubTtab4(child);
-                setTab7SubTab4Fields(fields)
-                setTab7SubTab4Type(type)
+                setTab7SubTab4Fields(fields);
+                setTab7SubTab4Type(type);
               } else if (ci == "8-4") {
                 setTab7SubTab5(child);
                 setTab7SubTtab5(child);
-                setTab7SubTab5Fields(fields)
-                setTab7SubTab5Type(type)
+                setTab7SubTab5Fields(fields);
+                setTab7SubTab5Type(type);
               } else if (ci == "8-5") {
                 setTab7SubTab6(child);
                 setTab7SubTtab6(child);
-                setTab7SubTab6Fields(fields)
-                setTab7SubTab6Type(type)
+                setTab7SubTab6Fields(fields);
+                setTab7SubTab6Type(type);
               } else if (ci == "8-6") {
                 setTab7SubTab7(child);
                 setTab7SubTtab7(child);
-                setTab7SubTab7Fields(fields)
-                setTab7SubTab7Type(type)
+                setTab7SubTab7Fields(fields);
+                setTab7SubTab7Type(type);
               } else if (ci == "8-7") {
                 setTab7SubTab8(child);
                 setTab7SubTtab8(child);
-                setTab7SubTab8Fields(fields)
-                setTab7SubTab8Type(type)
+                setTab7SubTab8Fields(fields);
+                setTab7SubTab8Type(type);
               } else if (ci == "8-8") {
                 setTab7SubTab9(child);
                 setTab7SubTtab9(child);
-                setTab7SubTab9Fields(fields)
-                setTab7SubTab9Type(type)
+                setTab7SubTab9Fields(fields);
+                setTab7SubTab9Type(type);
               } else if (ci == "8-9") {
                 setTab7SubTab10(child);
                 setTab7SubTtab10(child);
-                setTab7SubTab10Fields(fields)
-                setTab7SubTab10Type(type)
+                setTab7SubTab10Fields(fields);
+                setTab7SubTab10Type(type);
               } else if (ci == "9-0") {
                 setTab8SubTab1(child);
                 setTab8SubTtab1(child);
-                setTab8SubTab1Fields(fields)
-                setTab8SubTab1Type(type)
+                setTab8SubTab1Fields(fields);
+                setTab8SubTab1Type(type);
               } else if (ci == "9-1") {
                 setTab8SubTab2(child);
                 setTab8SubTtab2(child);
-                setTab8SubTab2Fields(fields)
-                setTab8SubTab2Type(type)
+                setTab8SubTab2Fields(fields);
+                setTab8SubTab2Type(type);
               } else if (ci == "9-2") {
                 setTab8SubTab3(child);
                 setTab8SubTtab3(child);
-                setTab8SubTab3Fields(fields)
-                setTab8SubTab3Type(type)
+                setTab8SubTab3Fields(fields);
+                setTab8SubTab3Type(type);
               } else if (ci == "9-3") {
                 setTab8SubTab4(child);
                 setTab8SubTtab4(child);
-                setTab8SubTab4Fields(fields)
-                setTab8SubTab4Type(type)
+                setTab8SubTab4Fields(fields);
+                setTab8SubTab4Type(type);
               } else if (ci == "9-4") {
                 setTab8SubTab5(child);
                 setTab8SubTtab5(child);
-                setTab8SubTab5Fields(fields)
-                setTab8SubTab5Type(type)
+                setTab8SubTab5Fields(fields);
+                setTab8SubTab5Type(type);
               } else if (ci == "9-5") {
                 setTab8SubTab6(child);
                 setTab8SubTtab6(child);
-                setTab8SubTab6Fields(fields)
-                setTab8SubTab6Type(type)
+                setTab8SubTab6Fields(fields);
+                setTab8SubTab6Type(type);
               } else if (ci == "9-6") {
                 setTab8SubTab7(child);
                 setTab8SubTtab7(child);
-                setTab8SubTab7Fields(fields)
-                setTab8SubTab7Type(type)
+                setTab8SubTab7Fields(fields);
+                setTab8SubTab7Type(type);
               } else if (ci == "9-7") {
                 setTab8SubTab8(child);
                 setTab8SubTtab8(child);
-                setTab8SubTab8Fields(fields)
-                setTab8SubTab8Type(type)
+                setTab8SubTab8Fields(fields);
+                setTab8SubTab8Type(type);
               } else if (ci == "9-8") {
                 setTab8SubTab9(child);
                 setTab8SubTtab9(child);
-                setTab8SubTab9Fields(fields)
-                setTab8SubTab9Type(type)
+                setTab8SubTab9Fields(fields);
+                setTab8SubTab9Type(type);
               } else if (ci == "9-9") {
                 setTab8SubTab10(child);
                 setTab8SubTtab10(child);
-                setTab8SubTab10Fields(fields)
-                setTab8SubTab10Type(type)
+                setTab8SubTab10Fields(fields);
+                setTab8SubTab10Type(type);
               } else if (ci == "10-0") {
                 setTab9SubTab1(child);
                 setTab9SubTtab1(child);
-                setTab9SubTab1Fields(fields)
-                setTab9SubTab1Type(type)
+                setTab9SubTab1Fields(fields);
+                setTab9SubTab1Type(type);
               } else if (ci == "10-1") {
                 setTab9SubTab2(child);
                 setTab9SubTtab2(child);
-                setTab9SubTab2Fields(fields)
-                setTab9SubTab2Type(type)
+                setTab9SubTab2Fields(fields);
+                setTab9SubTab2Type(type);
               } else if (ci == "10-2") {
                 setTab9SubTab3(child);
                 setTab9SubTtab3(child);
-                setTab9SubTab3Fields(fields)
-                setTab9SubTab3Type(type)
+                setTab9SubTab3Fields(fields);
+                setTab9SubTab3Type(type);
               } else if (ci == "10-3") {
                 setTab9SubTab4(child);
                 setTab9SubTtab4(child);
-                setTab9SubTab4Fields(fields)
-                setTab9SubTab4Type(type)
+                setTab9SubTab4Fields(fields);
+                setTab9SubTab4Type(type);
               } else if (ci == "10-4") {
                 setTab9SubTab5(child);
                 setTab9SubTtab5(child);
-                setTab9SubTab5Fields(fields)
-                setTab9SubTab5Type(type)
+                setTab9SubTab5Fields(fields);
+                setTab9SubTab5Type(type);
               } else if (ci == "10-5") {
                 setTab9SubTab6(child);
                 setTab9SubTtab6(child);
-                setTab9SubTab6Fields(fields)
-                setTab9SubTab6Type(type)
+                setTab9SubTab6Fields(fields);
+                setTab9SubTab6Type(type);
               } else if (ci == "10-6") {
                 setTab9SubTab7(child);
                 setTab9SubTtab7(child);
-                setTab9SubTab7Fields(fields)
-                setTab9SubTab7Type(type)
+                setTab9SubTab7Fields(fields);
+                setTab9SubTab7Type(type);
               } else if (ci == "10-7") {
                 setTab9SubTab8(child);
                 setTab9SubTtab8(child);
-                setTab9SubTab8Fields(fields)
-                setTab9SubTab8Type(type)
+                setTab9SubTab8Fields(fields);
+                setTab9SubTab8Type(type);
               } else if (ci == "10-8") {
                 setTab9SubTab9(child);
                 setTab9SubTtab9(child);
-                setTab9SubTab9Fields(fields)
-                setTab9SubTab9Type(type)
+                setTab9SubTab9Fields(fields);
+                setTab9SubTab9Type(type);
               } else if (ci == "10-9") {
                 setTab9SubTab10(child);
                 setTab9SubTtab10(child);
-                setTab9SubTab10Fields(fields)
-                setTab9SubTab10Type(type)
+                setTab9SubTab10Fields(fields);
+                setTab9SubTab10Type(type);
               } else if (ci == "11-0") {
                 setTab10SubTab1(child);
                 setTab10SubTtab1(child);
-                setTab10SubTab1Fields(fields)
-                setTab10SubTab1Type(type)
+                setTab10SubTab1Fields(fields);
+                setTab10SubTab1Type(type);
               } else if (ci == "11-1") {
                 setTab10SubTab2(child);
                 setTab10SubTtab2(child);
-                setTab10SubTab2Fields(fields)
-                setTab10SubTab2Type(type)
+                setTab10SubTab2Fields(fields);
+                setTab10SubTab2Type(type);
               } else if (ci == "11-2") {
                 setTab10SubTab3(child);
                 setTab10SubTtab3(child);
-                setTab10SubTab3Fields(fields)
-                setTab10SubTab3Type(type)
+                setTab10SubTab3Fields(fields);
+                setTab10SubTab3Type(type);
               } else if (ci == "11-3") {
                 setTab10SubTab4(child);
                 setTab10SubTtab4(child);
-                setTab10SubTab4Fields(fields)
-                setTab10SubTab4Type(type)
+                setTab10SubTab4Fields(fields);
+                setTab10SubTab4Type(type);
               } else if (ci == "11-4") {
                 setTab10SubTab5(child);
                 setTab10SubTtab5(child);
-                setTab10SubTab5Fields(fields)
-                setTab10SubTab5Type(type)
+                setTab10SubTab5Fields(fields);
+                setTab10SubTab5Type(type);
               } else if (ci == "11-5") {
                 setTab10SubTab6(child);
                 setTab10SubTtab6(child);
-                setTab10SubTab6Fields(fields)
-                setTab10SubTab6Type(type)
+                setTab10SubTab6Fields(fields);
+                setTab10SubTab6Type(type);
               } else if (ci == "11-6") {
                 setTab10SubTab7(child);
                 setTab10SubTtab7(child);
-                setTab10SubTab7Fields(fields)
-                setTab10SubTab7Type(type)
+                setTab10SubTab7Fields(fields);
+                setTab10SubTab7Type(type);
               } else if (ci == "11-7") {
                 setTab10SubTab8(child);
                 setTab10SubTtab8(child);
-                setTab10SubTab8Fields(fields)
-                setTab10SubTab8Type(type)
+                setTab10SubTab8Fields(fields);
+                setTab10SubTab8Type(type);
               } else if (ci == "11-8") {
                 setTab10SubTab9(child);
                 setTab10SubTtab9(child);
-                setTab10SubTab9Fields(fields)
-                setTab10SubTab9Type(type)
+                setTab10SubTab9Fields(fields);
+                setTab10SubTab9Type(type);
               } else if (ci == "11-9") {
                 setTab10SubTab10(child);
                 setTab10SubTtab10(child);
-                setTab10SubTab10Fields(fields)
-                setTab10SubTab10Type(type)
+                setTab10SubTab10Fields(fields);
+                setTab10SubTab10Type(type);
               }
             });
           }

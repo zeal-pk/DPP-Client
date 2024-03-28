@@ -40,6 +40,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.50.1",
     "react-swipeable-views": "^0.14.0",
+    "react-window": "^1.8.10",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
