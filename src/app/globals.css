@@ -82,11 +82,13 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 100px;
 }
 
 .addCustomer-form-section {
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }
 
 .addCustomer-form-div-input {

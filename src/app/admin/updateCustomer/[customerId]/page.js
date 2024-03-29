@@ -32,6 +32,7 @@ import { countries } from "../../../../db/countries.js";
 //   let [state, setState] = useState("-");
 //   let [country, setCountry] = useState("-");
 //   let [prodObjArr, setProdObjArr] = useState([]);
+//   let [allProducts, setAllProducts] = useState([]);
 //   let [products, setProducts] = useState([]);
 
 //   const [countryId, setCountryId] = useState(0);
@@ -64,8 +65,6 @@ import { countries } from "../../../../db/countries.js";
 //           },
 //         })
 //         .then((response) => {
-//           // setCustomerDetails(response.data.name);
-//           console.log(response.data);
 //           return response.data;
 //         });
 //       setCustomerName(response.name);
@@ -81,6 +80,7 @@ import { countries } from "../../../../db/countries.js";
 //       for (let i = 0; i < response.products.length; i++) {
 //         prods.push(response.products[i].id);
 //         prodObjArr.push(response.products[i]);
+//         console.log(prodObjArr);
 //       }
 //       setProducts(prods);
 //       setProdObjArr(prodObjArr);
@@ -121,6 +121,34 @@ import { countries } from "../../../../db/countries.js";
 //         severity: "error",
 //       };
 //       errAlert(errData);
+//     }
+
+//     try {
+//       await axios
+//         .get(`${serverUrl}/getAllProducts`, {
+//           headers: {
+//             Authorization: "Bearer " + token,
+//           },
+//         })
+//         .then((response) => {
+//           console.log(response);
+//           let data = response.data;
+//           for (let i = 0; i < data.length; i++) {
+//             let prod = { id: data[i].id, name: data[i].name };
+//             setAllProducts((existingProds) => [...existingProds, prod]);
+//             // setAllProducts(prod);
+//           }
+//         });
+//     } catch (error) {
+//       if (error.status == 403) {
+//         router.push("/error");
+//       } else {
+//         let errData = {
+//           message: error.message,
+//           severity: "error",
+//         };
+//         errAlert(errData);
+//       }
 //     }
 //   }
 
@@ -204,7 +232,7 @@ import { countries } from "../../../../db/countries.js";
 //               setAddressL2(e.target.value);
 //             }}
 //           />
-//           {/* <TextField
+//           <TextField
 //             className="addCustomer-form-div-input"
 //             id="standard-basic"
 //             label="City"
@@ -233,36 +261,9 @@ import { countries } from "../../../../db/countries.js";
 //             onChange={(e) => {
 //               setCountry(e.target.value);
 //             }}
-//           /> */}
+//           />
 
-//           {/* <Autocomplete
-//             id="free-solo-demo"
-//             freeSolo
-//             value={country}
-//             options={countries.map((country) => country.name)}
-//             renderInput={(params) => (
-//               <TextField
-//                 {...params}
-//                 variant="standard"
-//                 label="Country"
-//                 onChange={(e) => {
-//                   setCountry(e.target.value);
-//                 }}
-//               />
-//             )}
-//           /> */}
-
-//           {/* <Autocomplete
-//             id="free-solo-demo"
-//             freeSolo
-//             value={state}
-//             options={countryData.map((state) => state.name)}
-//             renderInput={(params) => (
-//               <TextField {...params} variant="standard" label="State" />
-//             )}
-//           /> */}
-
-//           <TextField
+//           {/* <TextField
 //             className="addCustomer-form-div-input"
 //             id="standard-basic"
 //             label="Products"
@@ -273,7 +274,24 @@ import { countries } from "../../../../db/countries.js";
 //               let prod = value.split(",");
 //               setProducts(prod);
 //             }}
-//           />
+//           /> */}
+//           <div>
+//             <Autocomplete
+//               multiple
+//               id="tags-standard"
+//               options={prodObjArr}
+//               getOptionLabel={(option) => option}
+//               defaultValue={[prodObjArr[1]]}
+//               renderInput={(params) => (
+//                 <TextField
+//                   {...params}
+//                   variant="standard"
+//                   label="Multiple values"
+//                   placeholder="Favorites"
+//                 />
+//               )}
+//             />
+//           </div>
 //         </section>
 //         <section className="addCustomer-button-section">
 //           <Button

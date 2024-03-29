@@ -1673,9 +1673,8 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                <div style={{display: "flex"}}>
+                <div  key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
                   id={index}
                   size="small"
                   placeholder={item}
@@ -1740,9 +1739,8 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                <div style={{display: "flex"}}>
+                <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
                   id={index}
                   size="small"
                   placeholder={item}
@@ -1807,9 +1805,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                <div style={{display: "flex"}}>
+                <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -1875,9 +1873,8 @@ export default function AddProductsSection({ params }) {
             <List>
 
               {fields.map((item, index) => (
-                <div style={{display: "flex"}}>
+                <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
                   id={index}
                   size="small"
                   placeholder={item}
@@ -1940,9 +1937,8 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                <div style={{display: "flex"}}>
+                <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
                   id={index}
                   size="small"
                   placeholder={item}
@@ -2006,9 +2002,9 @@ export default function AddProductsSection({ params }) {
         >
           <List>
             {fields.map((item, index) => (
-               <div style={{display: "flex"}}>
+               <div key={index} style={{display: "flex"}}>
               <TextField
-                key={index}
+                
                 id={index}
                 size="small"
                 placeholder={item}
@@ -2071,9 +2067,9 @@ export default function AddProductsSection({ params }) {
         >
           <List>
             {fields.map((item, index) => (
-               <div style={{display: "flex"}}>
+               <div key={index} style={{display: "flex"}}>
               <TextField
-                key={index}
+                
                 id={index}
                 size="small"
                 placeholder={item}
@@ -2134,9 +2130,9 @@ export default function AddProductsSection({ params }) {
         >
           <List>
             {fields.map((item, index) => (
-               <div style={{display: "flex"}}>
+               <div  key={index} style={{display: "flex"}}>
               <TextField
-                key={index}
+               
                 id={index}
                 size="small"
                 placeholder={item}
@@ -2197,9 +2193,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -2260,9 +2256,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div  key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                 
                   id={index}
                   size="small"
                   placeholder={item}
@@ -2323,9 +2319,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -2388,9 +2384,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -2449,9 +2445,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -2510,9 +2506,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div  key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                 
                   id={index}
                   size="small"
                   placeholder={item}
@@ -2571,9 +2567,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -2632,9 +2628,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div  key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                 
                   id={index}
                   size="small"
                   placeholder={item}
@@ -2693,9 +2689,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -2754,9 +2750,9 @@ export default function AddProductsSection({ params }) {
         >
           <List>
             {fields.map((item, index) => (
-               <div style={{display: "flex"}}>
+               <div key={index} style={{display: "flex"}}>
               <TextField
-                key={index}
+                
                 id={index}
                 size="small"
                 placeholder={item}
@@ -2815,9 +2811,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -2876,9 +2872,9 @@ export default function AddProductsSection({ params }) {
         >
           <List>
             {fields.map((item, index) => (
-               <div style={{display: "flex"}}>
+               <div key={index} style={{display: "flex"}}>
               <TextField
-                key={index}
+                
                 id={index}
                 size="small"
                 placeholder={item}
@@ -2935,9 +2931,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -2999,9 +2995,9 @@ export default function AddProductsSection({ params }) {
         >
           <List>
             {fields.map((item, index) => (
-               <div style={{display: "flex"}}>
+               <div key={index} style={{display: "flex"}}>
               <TextField
-                key={index}
+                
                 id={index}
                 size="small"
                 placeholder={item}
@@ -3064,9 +3060,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div  key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                 
                   id={index}
                   size="small"
                   placeholder={item}
@@ -3129,9 +3125,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -3194,9 +3190,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -3259,9 +3255,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -3320,9 +3316,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -3381,9 +3377,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                 
                   id={index}
                   size="small"
                   placeholder={item}
@@ -3442,9 +3438,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -3503,9 +3499,9 @@ export default function AddProductsSection({ params }) {
         >
           <List>
             {fields.map((item, index) => (
-               <div style={{display: "flex"}}>
+               <div key={index} style={{display: "flex"}}>
               <TextField
-                key={index}
+               
                 id={index}
                 size="small"
                 placeholder={item}
@@ -3564,9 +3560,9 @@ export default function AddProductsSection({ params }) {
         >
           <List>
             {fields.map((item, index) => (
-               <div style={{display: "flex"}}>
+               <div key={index} style={{display: "flex"}}>
               <TextField
-                key={index}
+                
                 id={index}
                 size="small"
                 placeholder={item}
@@ -3629,9 +3625,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -3694,9 +3690,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -3759,9 +3755,9 @@ export default function AddProductsSection({ params }) {
         >
           <List>
             {fields.map((item, index) => (
-               <div style={{display: "flex"}}>
+               <div key={index} style={{display: "flex"}}>
               <TextField
-                key={index}
+                
                 id={index}
                 size="small"
                 placeholder={item}
@@ -3824,9 +3820,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -3889,9 +3885,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -3950,9 +3946,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div   key={index}style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                 
                   id={index}
                   size="small"
                   placeholder={item}
@@ -4011,9 +4007,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div  key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                 
                   id={index}
                   size="small"
                   placeholder={item}
@@ -4072,9 +4068,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -4133,9 +4129,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -4194,9 +4190,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -4259,9 +4255,9 @@ export default function AddProductsSection({ params }) {
         >
           <List>
             {fields.map((item, index) => (
-               <div style={{display: "flex"}}>
+               <div key={index} style={{display: "flex"}}>
               <TextField
-                key={index}
+                
                 id={index}
                 size="small"
                 placeholder={item}
@@ -4324,9 +4320,9 @@ export default function AddProductsSection({ params }) {
         >
           <List>
             {fields.map((item, index) => (
-               <div style={{display: "flex"}}>
+               <div key={index} style={{display: "flex"}}>
               <TextField
-                key={index}
+                
                 id={index}
                 size="small"
                 placeholder={item}
@@ -4389,9 +4385,9 @@ export default function AddProductsSection({ params }) {
         >
           <List>
             {fields.map((item, index) => (
-               <div style={{display: "flex"}}>
+               <div key={index} style={{display: "flex"}}>
               <TextField
-                key={index}
+                
                 id={index}
                 size="small"
                 placeholder={item}
@@ -4454,9 +4450,9 @@ export default function AddProductsSection({ params }) {
         >
           <List>
             {fields.map((item, index) => (
-               <div style={{display: "flex"}}>
+               <div key={index} style={{display: "flex"}}>
               <TextField
-                key={index}
+                
                 id={index}
                 size="small"
                 placeholder={item}
@@ -4519,9 +4515,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -4580,9 +4576,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -4641,9 +4637,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -4703,9 +4699,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -4764,9 +4760,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div  key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                 
                   id={index}
                   size="small"
                   placeholder={item}
@@ -4825,9 +4821,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -4890,9 +4886,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -4955,9 +4951,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -5020,9 +5016,9 @@ export default function AddProductsSection({ params }) {
         >
           <List>
             {fields.map((item, index) => (
-               <div style={{display: "flex"}}>
+               <div key={index} style={{display: "flex"}}>
               <TextField
-                key={index}
+                
                 id={index}
                 size="small"
                 placeholder={item}
@@ -5085,9 +5081,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div  key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                 
                   id={index}
                   size="small"
                   placeholder={item}
@@ -5150,9 +5146,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div  style={{display: "flex"}}>
+                 <div key={index}  style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -5215,9 +5211,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -5280,9 +5276,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -5341,9 +5337,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -5402,9 +5398,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -5463,9 +5459,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -5528,9 +5524,9 @@ export default function AddProductsSection({ params }) {
         >
           <List>
             {fields.map((item, index) => (
-               <div style={{display: "flex"}}>
+               <div key={index} style={{display: "flex"}}>
               <TextField
-                key={index}
+                
                 id={index}
                 size="small"
                 placeholder={item}
@@ -5593,9 +5589,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -5658,9 +5654,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -5724,9 +5720,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -5789,9 +5785,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -5854,9 +5850,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -5919,9 +5915,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -5980,9 +5976,9 @@ export default function AddProductsSection({ params }) {
         >
           <List>
             {fields.map((item, index) => (
-               <div style={{display: "flex"}}>
+               <div key={index} style={{display: "flex"}}>
               <TextField
-                key={index}
+                
                 id={index}
                 size="small"
                 placeholder={item}
@@ -6041,9 +6037,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div  key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                 
                   id={index}
                   size="small"
                   placeholder={item}
@@ -6102,9 +6098,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -6163,9 +6159,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -6228,9 +6224,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -6293,9 +6289,9 @@ export default function AddProductsSection({ params }) {
         >
           <List>
             {fields.map((item, index) => (
-               <div style={{display: "flex"}}>
+               <div  key={index} style={{display: "flex"}}>
               <TextField
-                key={index}
+               
                 id={index}
                 size="small"
                 placeholder={item}
@@ -6358,9 +6354,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div  key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                 
                   id={index}
                   size="small"
                   placeholder={item}
@@ -6423,9 +6419,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -6488,9 +6484,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -6553,9 +6549,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div  key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                 
                   id={index}
                   size="small"
                   placeholder={item}
@@ -6614,9 +6610,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -6675,9 +6671,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -6736,9 +6732,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -6801,9 +6797,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -6866,9 +6862,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -6931,9 +6927,8 @@ export default function AddProductsSection({ params }) {
         >
           <List>
             {fields.map((item, index) => (
-               <div style={{display: "flex"}}>
+               <div key={index} style={{display: "flex"}}>
               <TextField
-                key={index}
                 id={index}
                 size="small"
                 placeholder={item}
@@ -6996,9 +6991,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -7061,9 +7056,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div  key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                 
                   id={index}
                   size="small"
                   placeholder={item}
@@ -7126,9 +7121,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -7191,9 +7186,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -7252,9 +7247,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div  key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                 
                   id={index}
                   size="small"
                   placeholder={item}
@@ -7313,9 +7308,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div  key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                 
                   id={index}
                   size="small"
                   placeholder={item}
@@ -7374,9 +7369,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -7439,9 +7434,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -7504,9 +7499,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -7569,9 +7564,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -7634,9 +7629,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -7699,9 +7694,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -7764,9 +7759,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div  key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                 
                   id={index}
                   size="small"
                   placeholder={item}
@@ -7829,9 +7824,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -7890,9 +7885,9 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                 <div style={{display: "flex"}}>
+                 <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
@@ -7952,9 +7947,9 @@ export default function AddProductsSection({ params }) {
             <List>
               <div>
               {fields.map((item, index) => (
- <div style={{display: "flex"}}>
+ <div key={index} style={{display: "flex"}}>
                 <TextField
-                  key={index}
+                  
                   id={index}
                   size="small"
                   placeholder={item}
