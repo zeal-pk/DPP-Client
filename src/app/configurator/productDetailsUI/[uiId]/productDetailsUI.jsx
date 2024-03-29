@@ -593,7 +593,6 @@ export default function AddProductsSection({ params }) {
       ttab9,
       ttab10,
     ];
-    const uniqueTabs = new Set();
     const duplicatesTabs = tabArray.filter(
       (item, index) => tabArray.indexOf(item) !== index
     );
@@ -619,154 +618,7 @@ export default function AddProductsSection({ params }) {
     }
   }
 
-  function handleDeleteClick(fieldName) {
-    let deleted = tab1SubTab1Fields.filter((field) => field == fieldName);
-    console.log(deleted);
-  }
 
-  const columns = [
-    {
-      field: "index",
-      headerName: "Index",
-      width: 130,
-      type: "number",
-      editable: true,
-      align: "left",
-      headerAlign: "left",
-    },
-    {
-      field: "fieldName",
-      headerName: "Field Name",
-      width: 380,
-      editable: true,
-    },
-    // {
-    //   field: 'actions',
-    //   type: 'actions',
-    //   headerName: 'Actions',
-    //   width: 100,
-    //   cellClassName: 'actions',
-    //   getActions: (fieldName) => {
-    //     return [
-    //       <GridActionsCellItem
-    //         icon={<DeleteIcon />}
-    //         label="Delete"
-    //         onClick={handleDeleteClick(id)}
-    //         color="inherit"
-    //       />,
-    //     ];
-    //   },
-    // }
-  ];
-
-  //   const handleFieldInputChange = (e, index) => {
-  //     const newFieldValues = [...tab1SubTab1Fields];
-  //     newFieldValues[index] = e.target.value;
-  //     setTab1SubTab1Fields(newFieldValues);
-  //  };
-
-  function resetSubTabTitle() {
-    setTab1SubTtab1("Sub Tab 1-1");
-    setTab1SubTtab2("Sub Tab 1-2");
-    setTab1SubTtab3("Sub Tab 1-3");
-    setTab1SubTtab4("Sub Tab 1-4");
-    setTab1SubTtab5("Sub Tab 1-5");
-    setTab1SubTtab6("Sub Tab 1-6");
-    setTab1SubTtab7("Sub Tab 1-7");
-    setTab1SubTtab8("Sub Tab 1-8");
-    setTab1SubTtab9("Sub Tab 1-9");
-    setTab1SubTtab10("Sub Tab 1-10");
-    setTab2SubTtab1("Sub Tab 2-1");
-    setTab2SubTtab2("Sub Tab 2-2");
-    setTab2SubTtab3("Sub Tab 2-3");
-    setTab2SubTtab4("Sub Tab 2-4");
-    setTab2SubTtab5("Sub Tab 2-5");
-    setTab2SubTtab6("Sub Tab 2-6");
-    setTab2SubTtab7("Sub Tab 2-7");
-    setTab2SubTtab8("Sub Tab 2-8");
-    setTab2SubTtab9("Sub Tab 2-9");
-    setTab2SubTtab10("Sub Tab 2-10");
-    setTab3SubTtab1("Sub Tab 3-1");
-    setTab3SubTtab2("Sub Tab 3-2");
-    setTab3SubTtab3("Sub Tab 3-3");
-    setTab3SubTtab4("Sub Tab 3-4");
-    setTab3SubTtab5("Sub Tab 3-5");
-    setTab3SubTtab6("Sub Tab 3-6");
-    setTab3SubTtab7("Sub Tab 3-7");
-    setTab3SubTtab8("Sub Tab 3-8");
-    setTab3SubTtab9("Sub Tab 3-9");
-    setTab3SubTtab10("Sub Tab 3-10");
-    setTab4SubTtab1("Sub Tab 4-1");
-    setTab4SubTtab2("Sub Tab 4-2");
-    setTab4SubTtab3("Sub Tab 4-3");
-    setTab4SubTtab4("Sub Tab 4-4");
-    setTab4SubTtab5("Sub Tab 4-5");
-    setTab4SubTtab6("Sub Tab 4-6");
-    setTab4SubTtab7("Sub Tab 4-7");
-    setTab4SubTtab8("Sub Tab 4-8");
-    setTab4SubTtab9("Sub Tab 4-9");
-    setTab4SubTtab10("Sub Tab 4-10");
-    setTab5SubTtab1("Sub Tab 5-1");
-    setTab5SubTtab2("Sub Tab 5-2");
-    setTab5SubTtab3("Sub Tab 5-3");
-    setTab5SubTtab4("Sub Tab 5-4");
-    setTab5SubTtab5("Sub Tab 5-5");
-    setTab5SubTtab6("Sub Tab 5-6");
-    setTab5SubTtab7("Sub Tab 5-7");
-    setTab5SubTtab8("Sub Tab 5-8");
-    setTab5SubTtab9("Sub Tab 5-9");
-    setTab5SubTtab10("Sub Tab 5-10");
-    setTab6SubTtab1("Sub Tab 6-1");
-    setTab6SubTtab2("Sub Tab 6-2");
-    setTab6SubTtab3("Sub Tab 6-3");
-    setTab6SubTtab4("Sub Tab 6-4");
-    setTab6SubTtab5("Sub Tab 6-5");
-    setTab6SubTtab6("Sub Tab 6-6");
-    setTab6SubTtab7("Sub Tab 6-7");
-    setTab6SubTtab8("Sub Tab 6-8");
-    setTab6SubTtab9("Sub Tab 6-9");
-    setTab6SubTtab10("Sub Tab 6-10");
-    setTab7SubTtab1("Sub Tab 7-1");
-    setTab7SubTtab2("Sub Tab 7-2");
-    setTab7SubTtab3("Sub Tab 7-3");
-    setTab7SubTtab4("Sub Tab 7-4");
-    setTab7SubTtab5("Sub Tab 7-5");
-    setTab7SubTtab6("Sub Tab 7-6");
-    setTab7SubTtab7("Sub Tab 7-7");
-    setTab7SubTtab8("Sub Tab 7-8");
-    setTab7SubTtab9("Sub Tab 7-9");
-    setTab7SubTtab10("Sub Tab 7-10");
-    setTab8SubTtab1("Sub Tab 8-1");
-    setTab8SubTtab2("Sub Tab 8-2");
-    setTab8SubTtab3("Sub Tab 8-3");
-    setTab8SubTtab4("Sub Tab 8-4");
-    setTab8SubTtab5("Sub Tab 8-5");
-    setTab8SubTtab6("Sub Tab 8-6");
-    setTab8SubTtab7("Sub Tab 8-7");
-    setTab8SubTtab8("Sub Tab 8-8");
-    setTab8SubTtab9("Sub Tab 8-9");
-    setTab8SubTtab10("Sub Tab 8-10");
-    setTab9SubTtab1("Sub Tab 9-1");
-    setTab9SubTtab2("Sub Tab 9-2");
-    setTab9SubTtab3("Sub Tab 9-3");
-    setTab9SubTtab4("Sub Tab 9-4");
-    setTab9SubTtab5("Sub Tab 9-5");
-    setTab9SubTtab6("Sub Tab 9-6");
-    setTab9SubTtab7("Sub Tab 9-7");
-    setTab9SubTtab8("Sub Tab 9-8");
-    setTab9SubTtab9("Sub Tab 9-9");
-    setTab9SubTtab10("Sub Tab 9-10");
-    setTab10SubTtab1("Sub Tab 10-1");
-    setTab10SubTtab2("Sub Tab 10-2");
-    setTab10SubTtab3("Sub Tab 10-3");
-    setTab10SubTtab4("Sub Tab 10-4");
-    setTab10SubTtab5("Sub Tab 10-5");
-    setTab10SubTtab6("Sub Tab 10-6");
-    setTab10SubTtab7("Sub Tab 10-7");
-    setTab10SubTtab8("Sub Tab 10-8");
-    setTab10SubTtab9("Sub Tab 10-9");
-    setTab10SubTtab10("Sub Tab 10-10");
-  }
 
   let dataStruct = {
     templateId: "",
@@ -1485,11 +1337,13 @@ export default function AddProductsSection({ params }) {
       id == `${tab5.replace(/\s/g, "")}-${tab5SubTab10.replace(/\s/g, "")}`
     ) {
       setTab5SubTab10Type(event.target.value);
+      console.log(event.target.value);
       setValue(event.target.value);
     } else if (
       id == `${tab6.replace(/\s/g, "")}-${tab6SubTab1.replace(/\s/g, "")}`
     ) {
       setTab6SubTab1Type(event.target.value);
+      console.log(event.target.value);
       setValue(event.target.value);
     } else if (
       id == `${tab6.replace(/\s/g, "")}-${tab6SubTab2.replace(/\s/g, "")}`
@@ -1784,23 +1638,20 @@ export default function AddProductsSection({ params }) {
     }
   }
 
-function handleFieldDown() {
-  
-}
-
   function RenderChartFields(field) {
     return (
       <div key={field.xAxis}>
-        <p>Chart Type: {field.chartType}</p>
-        <p>X-Axis: {field.xAxis}</p>
-        <p>Y-Axis: {field.yAxis}</p>
+        <p>Sub Tab Type: <b>Chart View</b></p>
+        <p>Chart Type: <b>{field.chartType}</b></p>
+        <p>X-Axis: <b>{field.xAxis}</b></p>
+        <p>Y-Axis: <b>{field.yAxis}</b></p>
       </div>
     );
   }
   function RenderOtherFields(field) {
     return (
       <div key={field}>
-        <p>Sub Tab Type: {field}</p>
+        <p>Sub Tab Type: <b>{field}</b></p>
       </div>
     );
   }
@@ -1809,6 +1660,8 @@ function handleFieldDown() {
     if (id == `${tab1.replace(/\s/g, "")}-${tab1SubTab1.replace(/\s/g, "")}`) {
       if (tab1SubTab1Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -1858,6 +1711,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab1SubTab1Type == "chart") {
         return tab1SubTab1Fields.map((field) => RenderChartFields(field));
@@ -1873,6 +1727,8 @@ function handleFieldDown() {
     ) {
       if (tab1SubTab2Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -1922,6 +1778,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab1SubTab2Type == "chart") {
         return tab1SubTab2Fields.map((field) => RenderChartFields(field));
@@ -1937,6 +1794,8 @@ function handleFieldDown() {
     ) {
       if (tab1SubTab3Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -1986,6 +1845,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab1SubTab3Type == "chart") {
         return tab1SubTab3Fields.map((field) => RenderChartFields(field));
@@ -2001,6 +1861,8 @@ function handleFieldDown() {
     ) {
       if (tab1SubTab4Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
             <Sheet
             variant="outlined"
             sx={{
@@ -2049,6 +1911,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab1SubTab4Type == "chart") {
         return tab1SubTab4Fields.map((field) => RenderChartFields(field));
@@ -2064,6 +1927,8 @@ function handleFieldDown() {
     ) {
       if (tab1SubTab5Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -2112,6 +1977,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab1SubTab3Type == "chart") {
         return tab1SubTab5Fields.map((field) => RenderChartFields(field));
@@ -2127,6 +1993,8 @@ function handleFieldDown() {
     ) {
       if (tab1SubTab6Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
           variant="outlined"
           sx={{
@@ -2174,6 +2042,7 @@ function handleFieldDown() {
               Save
             </Button> */}
         </Sheet>
+        </>
         );
       } else if (tab1SubTab6Type == "chart") {
         return tab1SubTab6Fields.map((field) => RenderChartFields(field));
@@ -2189,6 +2058,8 @@ function handleFieldDown() {
     ) {
       if (tab1SubTab7Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
           variant="outlined"
           sx={{
@@ -2238,6 +2109,7 @@ function handleFieldDown() {
               Save
             </Button> */}
         </Sheet>
+        </>
         );
       } else if (tab1SubTab7Type == "chart") {
         return tab1SubTab7Fields.map((field) => RenderChartFields(field));
@@ -2249,6 +2121,8 @@ function handleFieldDown() {
     ) {
       if (tab1SubTab8Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
           variant="outlined"
           sx={{
@@ -2298,6 +2172,7 @@ function handleFieldDown() {
               Save
             </Button> */}
         </Sheet>
+        </>
         );
       } else if (tab1SubTab8Type == "chart") {
         return tab1SubTab8Fields.map((field) => RenderChartFields(field));
@@ -2309,6 +2184,8 @@ function handleFieldDown() {
     ) {
       if (tab1SubTab9Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -2358,6 +2235,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab1SubTab9Type == "chart") {
         return tab1SubTab9Fields.map((field) => RenderChartFields(field));
@@ -2369,6 +2247,8 @@ function handleFieldDown() {
     ) {
       if (tab1SubTab10Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -2418,6 +2298,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab1SubTab10Type == "chart") {
         return tab1SubTab10Fields.map((field) => RenderChartFields(field));
@@ -2429,6 +2310,8 @@ function handleFieldDown() {
     ) {
       if (tab2SubTab1Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -2476,6 +2359,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab2SubTab1Type == "chart") {
         return tab1SubTab1Fields.map((field) => RenderChartFields(field));
@@ -2491,6 +2375,8 @@ function handleFieldDown() {
     ) {
       if (tab2SubTab2Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -2538,6 +2424,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab2SubTab2Type == "chart") {
         return tab2SubTab2Fields.map((field) => RenderChartFields(field));
@@ -2549,6 +2436,8 @@ function handleFieldDown() {
     ) {
       if (tab2SubTab3Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -2596,6 +2485,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab2SubTab3Type == "chart") {
         return tab2SubTab3Fields.map((field) => RenderChartFields(field));
@@ -2607,6 +2497,8 @@ function handleFieldDown() {
     ) {
       if (tab2SubTab4Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -2654,6 +2546,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab2SubTab4Type == "chart") {
         return tab2SubTab4Fields.map((field) => RenderChartFields(field));
@@ -2665,6 +2558,8 @@ function handleFieldDown() {
     ) {
       if (tab2SubTab5Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -2712,6 +2607,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab1SubTab3Type == "chart") {
         return tab2SubTab5Fields.map((field) => RenderChartFields(field));
@@ -2723,6 +2619,8 @@ function handleFieldDown() {
     ) {
       if (tab2SubTab6Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -2770,6 +2668,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab2SubTab6Type == "chart") {
         return tab2SubTab6Fields.map((field) => RenderChartFields(field));
@@ -2781,6 +2680,8 @@ function handleFieldDown() {
     ) {
       if (tab2SubTab7Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -2828,6 +2729,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab2SubTab7Type == "chart") {
         return tab2SubTab7Fields.map((field) => RenderChartFields(field));
@@ -2839,6 +2741,8 @@ function handleFieldDown() {
     ) {
       if (tab2SubTab8Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
           variant="outlined"
           sx={{
@@ -2886,6 +2790,7 @@ function handleFieldDown() {
               Save
             </Button> */}
         </Sheet>
+        </>
         );
       } else if (tab2SubTab8Type == "chart") {
         return tab2SubTab8Fields.map((field) => RenderChartFields(field));
@@ -2897,6 +2802,8 @@ function handleFieldDown() {
     ) {
       if (tab2SubTab9Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -2944,6 +2851,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab2SubTab9Type == "chart") {
         return tab2SubTab9Fields.map((field) => RenderChartFields(field));
@@ -2955,6 +2863,8 @@ function handleFieldDown() {
     ) {
       if (tab2SubTab10Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
           variant="outlined"
           sx={{
@@ -3002,6 +2912,7 @@ function handleFieldDown() {
               Save
             </Button> */}
         </Sheet>
+        </>
         );
       } else if (tab2SubTab10Type == "chart") {
         return tab2SubTab10Fields.map((field) => RenderChartFields(field));
@@ -3075,6 +2986,8 @@ function handleFieldDown() {
     ) {
       if (tab3SubTab2Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
           variant="outlined"
           sx={{
@@ -3122,6 +3035,7 @@ function handleFieldDown() {
               Save
             </Button> */}
         </Sheet>
+        </>
         );
       } else if (tab3SubTab2Type == "chart") {
         return tab3SubTab2Fields.map((field) => RenderChartFields(field));
@@ -3137,6 +3051,8 @@ function handleFieldDown() {
     ) {
       if (tab3SubTab3Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -3184,6 +3100,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab3SubTab3Type == "chart") {
         return tab3SubTab3Fields.map((field) => RenderChartFields(field));
@@ -3199,6 +3116,8 @@ function handleFieldDown() {
     ) {
       if (tab3SubTab4Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -3246,6 +3165,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab3SubTab4Type == "chart") {
         return tab3SubTab4Fields.map((field) => RenderChartFields(field));
@@ -3261,6 +3181,8 @@ function handleFieldDown() {
     ) {
       if (tab3SubTab5Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -3308,6 +3230,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab3SubTab5Type == "chart") {
         return tab3SubTab5Fields.map((field) => RenderChartFields(field));
@@ -3323,6 +3246,8 @@ function handleFieldDown() {
     ) {
       if (tab3SubTab6Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -3370,6 +3295,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab3SubTab6Type == "chart") {
         return tab3SubTab6Fields.map((field) => RenderChartFields(field));
@@ -3381,6 +3307,8 @@ function handleFieldDown() {
     ) {
       if (tab3SubTab7Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -3428,6 +3356,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab3SubTab7Type == "chart") {
         return tab3SubTab7Fields.map((field) => RenderChartFields(field));
@@ -3439,6 +3368,8 @@ function handleFieldDown() {
     ) {
       if (tab3SubTab8Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -3486,6 +3417,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab3SubTab8Type == "chart") {
         return tab3SubTab8Fields.map((field) => RenderChartFields(field));
@@ -3497,6 +3429,8 @@ function handleFieldDown() {
     ) {
       if (tab3SubTab9Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -3544,6 +3478,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab3SubTab9Type == "chart") {
         return tab3SubTab9Fields.map((field) => RenderChartFields(field));
@@ -3555,6 +3490,8 @@ function handleFieldDown() {
     ) {
       if (tab3SubTab10Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
           variant="outlined"
           sx={{
@@ -3602,6 +3539,7 @@ function handleFieldDown() {
               Save
             </Button> */}
         </Sheet>
+        </>
         );
       } else if (tab3SubTab10Type == "chart") {
         return tab3SubTab10Fields.map((field) => RenderChartFields(field));
@@ -3613,6 +3551,8 @@ function handleFieldDown() {
     ) {
       if (tab4SubTab1Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
           variant="outlined"
           sx={{
@@ -3660,6 +3600,7 @@ function handleFieldDown() {
               Save
             </Button> */}
         </Sheet>
+        </>
         );
       } else if (tab4SubTab1Type == "chart") {
         return tab4SubTab1Fields.map((field) => RenderChartFields(field));
@@ -3675,6 +3616,8 @@ function handleFieldDown() {
     ) {
       if (tab4SubTab2Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -3722,6 +3665,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab4SubTab2Type == "chart") {
         return tab4SubTab2Fields.map((field) => RenderChartFields(field));
@@ -3737,6 +3681,8 @@ function handleFieldDown() {
     ) {
       if (tab4SubTab3Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -3784,6 +3730,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab4SubTab3Type == "chart") {
         return tab4SubTab3Fields.map((field) => RenderChartFields(field));
@@ -3799,6 +3746,8 @@ function handleFieldDown() {
     ) {
       if (tab4SubTab4Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
           variant="outlined"
           sx={{
@@ -3846,6 +3795,7 @@ function handleFieldDown() {
               Save
             </Button> */}
         </Sheet>
+        </>
         );
       } else if (tab4SubTab4Type == "chart") {
         return tab4SubTab4Fields.map((field) => RenderChartFields(field));
@@ -3861,6 +3811,8 @@ function handleFieldDown() {
     ) {
       if (tab4SubTab5Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -3908,6 +3860,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab4SubTab5Type == "chart") {
         return tab4SubTab5Fields.map((field) => RenderChartFields(field));
@@ -3923,6 +3876,8 @@ function handleFieldDown() {
     ) {
       if (tab4SubTab6Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -3970,6 +3925,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab4SubTab6Type == "chart") {
         return tab4SubTab6Fields.map((field) => RenderChartFields(field));
@@ -3981,6 +3937,8 @@ function handleFieldDown() {
     ) {
       if (tab4SubTab7Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -4028,6 +3986,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab4SubTab7Type == "chart") {
         return tab4SubTab7Fields.map((field) => RenderChartFields(field));
@@ -4039,6 +3998,8 @@ function handleFieldDown() {
     ) {
       if (tab4SubTab8Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -4086,6 +4047,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab4SubTab8Type == "chart") {
         return tab4SubTab8Fields.map((field) => RenderChartFields(field));
@@ -4097,6 +4059,8 @@ function handleFieldDown() {
     ) {
       if (tab4SubTab9Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -4144,6 +4108,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab4SubTab9Type == "chart") {
         return tab4SubTab9Fields.map((field) => RenderChartFields(field));
@@ -4155,6 +4120,8 @@ function handleFieldDown() {
     ) {
       if (tab4SubTab10Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -4202,6 +4169,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab4SubTab10Type == "chart") {
         return tab4SubTab10Fields.map((field) => RenderChartFields(field));
@@ -4213,6 +4181,8 @@ function handleFieldDown() {
     ) {
       if (tab5SubTab1Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -4260,6 +4230,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab5SubTab1Type == "chart") {
         return tab5SubTab1Fields.map((field) => RenderChartFields(field));
@@ -4275,6 +4246,8 @@ function handleFieldDown() {
     ) {
       if (tab5SubTab2Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
           variant="outlined"
           sx={{
@@ -4322,6 +4295,7 @@ function handleFieldDown() {
               Save
             </Button> */}
         </Sheet>
+        </>
         );
       } else if (tab5SubTab2Type == "chart") {
         return tab5SubTab2Fields.map((field) => RenderChartFields(field));
@@ -4337,6 +4311,8 @@ function handleFieldDown() {
     ) {
       if (tab5SubTab3Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
           variant="outlined"
           sx={{
@@ -4384,6 +4360,7 @@ function handleFieldDown() {
               Save
             </Button> */}
         </Sheet>
+        </>
         );
       } else if (tab5SubTab3Type == "chart") {
         return tab5SubTab3Fields.map((field) => RenderChartFields(field));
@@ -4399,6 +4376,8 @@ function handleFieldDown() {
     ) {
       if (tab5SubTab4Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
           variant="outlined"
           sx={{
@@ -4446,6 +4425,7 @@ function handleFieldDown() {
               Save
             </Button> */}
         </Sheet>
+        </>
         );
       } else if (tab5SubTab4Type == "chart") {
         return tab5SubTab4Fields.map((field) => RenderChartFields(field));
@@ -4461,6 +4441,8 @@ function handleFieldDown() {
     ) {
       if (tab5SubTab5Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
           variant="outlined"
           sx={{
@@ -4508,6 +4490,7 @@ function handleFieldDown() {
               Save
             </Button> */}
         </Sheet>
+        </>
         );
       } else if (tab5SubTab5Type == "chart") {
         return tab5SubTab5Fields.map((field) => RenderChartFields(field));
@@ -4524,6 +4507,7 @@ function handleFieldDown() {
       if (tab5SubTab6Type == "inputFields") {
         return (
           <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
+          <p>Sub Tab Type: <b>Data Input</b></p>
            <Sheet
             variant="outlined"
             sx={{
@@ -4584,6 +4568,7 @@ function handleFieldDown() {
       if (tab5SubTab7Type == "inputFields") {
         return (
           <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
+          <p>Sub Tab Type: <b>Data Input</b></p>
             <Sheet
             variant="outlined"
             sx={{
@@ -4644,6 +4629,7 @@ function handleFieldDown() {
       if (tab5SubTab8Type == "inputFields") {
         return (
           <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
+          <p>Sub Tab Type: <b>Data Input</b></p>
             <Sheet
             variant="outlined"
             sx={{
@@ -4704,6 +4690,8 @@ function handleFieldDown() {
       if (tab5SubTab9Type == "inputFields") {
         return (
           <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
+
+          <p>Sub Tab Type: <b>Data Input</b></p>
             <Sheet
             variant="outlined"
             sx={{
@@ -4763,6 +4751,8 @@ function handleFieldDown() {
     ) {
       if (tab5SubTab10Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -4810,6 +4800,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab5SubTab10Type == "chart") {
         return tab5SubTab10Fields.map((field) => RenderChartFields(field));
@@ -4821,6 +4812,8 @@ function handleFieldDown() {
     ) {
       if (tab6SubTab1Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -4868,6 +4861,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab6SubTab1Type == "chart") {
         return tab6SubTab1Fields.map((field) => RenderChartFields(field));
@@ -4883,6 +4877,8 @@ function handleFieldDown() {
     ) {
       if (tab6SubTab2Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -4930,6 +4926,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab6SubTab2Type == "chart") {
         return tab6SubTab2Fields.map((field) => RenderChartFields(field));
@@ -4945,6 +4942,8 @@ function handleFieldDown() {
     ) {
       if (tab6SubTab3Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -4992,6 +4991,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab6SubTab3Type == "chart") {
         return tab6SubTab3Fields.map((field) => RenderChartFields(field));
@@ -5007,6 +5007,8 @@ function handleFieldDown() {
     ) {
       if (tab6SubTab4Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
           variant="outlined"
           sx={{
@@ -5054,6 +5056,7 @@ function handleFieldDown() {
               Save
             </Button> */}
         </Sheet>
+        </>
         );
       } else if (tab6SubTab4Type == "chart") {
         return tab6SubTab4Fields.map((field) => RenderChartFields(field));
@@ -5069,6 +5072,8 @@ function handleFieldDown() {
     ) {
       if (tab6SubTab5Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -5116,6 +5121,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab6SubTab5Type == "chart") {
         return tab6SubTab5Fields.map((field) => RenderChartFields(field));
@@ -5131,6 +5137,8 @@ function handleFieldDown() {
     ) {
       if (tab6SubTab6Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -5178,6 +5186,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab6SubTab6Type == "chart") {
         return tab6SubTab6Fields.map((field) => RenderChartFields(field));
@@ -5193,6 +5202,8 @@ function handleFieldDown() {
     ) {
       if (tab6SubTab7Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -5240,6 +5251,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab6SubTab7Type == "chart") {
         return tab6SubTab7Fields.map((field) => RenderChartFields(field));
@@ -5255,6 +5267,8 @@ function handleFieldDown() {
     ) {
       if (tab6SubTab8Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -5302,6 +5316,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab6SubTab8Type == "chart") {
         return tab6SubTab8Fields.map((field) => RenderChartFields(field));
@@ -5313,6 +5328,8 @@ function handleFieldDown() {
     ) {
       if (tab6SubTab9Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -5360,6 +5377,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab6SubTab9Type == "chart") {
         return tab6SubTab9Fields.map((field) => RenderChartFields(field));
@@ -5371,6 +5389,8 @@ function handleFieldDown() {
     ) {
       if (tab6SubTab10Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -5418,6 +5438,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab6SubTab10Type == "chart") {
         return tab6SubTab10Fields.map((field) => RenderChartFields(field));
@@ -5429,6 +5450,8 @@ function handleFieldDown() {
     ) {
       if (tab7SubTab1Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -5476,6 +5499,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab7SubTab1Type == "chart") {
         return tab7SubTab1Fields.map((field) => RenderChartFields(field));
@@ -5491,6 +5515,8 @@ function handleFieldDown() {
     ) {
       if (tab7SubTab2Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
           variant="outlined"
           sx={{
@@ -5538,6 +5564,7 @@ function handleFieldDown() {
               Save
             </Button> */}
         </Sheet>
+        </>
         );
       } else if (tab7SubTab2Type == "chart") {
         return tab7SubTab2Fields.map((field) => RenderChartFields(field));
@@ -5553,6 +5580,8 @@ function handleFieldDown() {
     ) {
       if (tab7SubTab3Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -5600,6 +5629,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab7SubTab3Type == "chart") {
         return tab7SubTab3Fields.map((field) => RenderChartFields(field));
@@ -5615,6 +5645,8 @@ function handleFieldDown() {
     ) {
       if (tab7SubTab4Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -5663,6 +5695,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab7SubTab4Type == "chart") {
         return tab7SubTab4Fields.map((field) => RenderChartFields(field));
@@ -5678,6 +5711,8 @@ function handleFieldDown() {
     ) {
       if (tab7SubTab5Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -5725,6 +5760,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab7SubTab5Type == "chart") {
         return tab7SubTab5Fields.map((field) => RenderChartFields(field));
@@ -5740,6 +5776,8 @@ function handleFieldDown() {
     ) {
       if (tab7SubTab6Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -5787,6 +5825,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab7SubTab6Type == "chart") {
         return tab7SubTab6Fields.map((field) => RenderChartFields(field));
@@ -5802,6 +5841,8 @@ function handleFieldDown() {
     ) {
       if (tab7SubTab7Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -5849,6 +5890,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab7SubTab7Type == "chart") {
         return tab7SubTab7Fields.map((field) => RenderChartFields(field));
@@ -5864,6 +5906,8 @@ function handleFieldDown() {
     ) {
       if (tab7SubTab8Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -5911,6 +5955,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab7SubTab8Type == "chart") {
         return tab7SubTab8Fields.map((field) => RenderChartFields(field));
@@ -5922,6 +5967,8 @@ function handleFieldDown() {
     ) {
       if (tab7SubTab9Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
           variant="outlined"
           sx={{
@@ -5969,6 +6016,7 @@ function handleFieldDown() {
               Save
             </Button> */}
         </Sheet>
+        </>
         );
       } else if (tab7SubTab9Type == "chart") {
         return tab7SubTab9Fields.map((field) => RenderChartFields(field));
@@ -5980,6 +6028,8 @@ function handleFieldDown() {
     ) {
       if (tab7SubTab10Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -6027,6 +6077,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab7SubTab10Type == "chart") {
         return tab7SubTab10Fields.map((field) => RenderChartFields(field));
@@ -6038,6 +6089,8 @@ function handleFieldDown() {
     ) {
       if (tab8SubTab1Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -6085,6 +6138,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab8SubTab1Type == "chart") {
         return tab8SubTab1Fields.map((field) => RenderChartFields(field));
@@ -6096,6 +6150,8 @@ function handleFieldDown() {
     ) {
       if (tab8SubTab2Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -6143,6 +6199,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab8SubTab2Type == "chart") {
         return tab8SubTab2Fields.map((field) => RenderChartFields(field));
@@ -6158,6 +6215,8 @@ function handleFieldDown() {
     ) {
       if (tab8SubTab3Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -6205,6 +6264,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab8SubTab3Type == "chart") {
         return tab8SubTab3Fields.map((field) => RenderChartFields(field));
@@ -6220,6 +6280,8 @@ function handleFieldDown() {
     ) {
       if (tab8SubTab4Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
           variant="outlined"
           sx={{
@@ -6267,6 +6329,7 @@ function handleFieldDown() {
               Save
             </Button> */}
         </Sheet>
+        </>
         );
       } else if (tab8SubTab4Type == "chart") {
         return tab8SubTab4Fields.map((field) => RenderChartFields(field));
@@ -6282,6 +6345,8 @@ function handleFieldDown() {
     ) {
       if (tab8SubTab5Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -6329,6 +6394,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab8SubTab5Type == "chart") {
         return tab8SubTab5Fields.map((field) => RenderChartFields(field));
@@ -6345,6 +6411,7 @@ function handleFieldDown() {
       if (tab8SubTab6Type == "inputFields") {
         return (
           <div style={{ height: 300, width: "100%", marginBottom: "10px" }}>
+          <p>Sub Tab Type: <b>Data Input</b></p>
             <Sheet
             variant="outlined"
             sx={{
@@ -6408,6 +6475,8 @@ function handleFieldDown() {
     ) {
       if (tab8SubTab7Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -6455,6 +6524,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab8SubTab7Type == "chart") {
         return tab8SubTab7Fields.map((field) => RenderChartFields(field));
@@ -6470,6 +6540,8 @@ function handleFieldDown() {
     ) {
       if (tab8SubTab8Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -6517,6 +6589,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab8SubTab8Type == "chart") {
         return tab8SubTab8Fields.map((field) => RenderChartFields(field));
@@ -6528,6 +6601,8 @@ function handleFieldDown() {
     ) {
       if (tab8SubTab9Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -6575,6 +6650,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab8SubTab9Type == "chart") {
         return tab8SubTab9Fields.map((field) => RenderChartFields(field));
@@ -6586,6 +6662,8 @@ function handleFieldDown() {
     ) {
       if (tab8SubTab10Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -6633,6 +6711,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab8SubTab10Type == "chart") {
         return tab8SubTab10Fields.map((field) => RenderChartFields(field));
@@ -6644,6 +6723,8 @@ function handleFieldDown() {
     ) {
       if (tab9SubTab1Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -6691,6 +6772,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab9SubTab1Type == "chart") {
         return tab9SubTab1Fields.map((field) => RenderChartFields(field));
@@ -6706,6 +6788,8 @@ function handleFieldDown() {
     ) {
       if (tab9SubTab2Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -6753,6 +6837,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab9SubTab2Type == "chart") {
         return tab9SubTab2Fields.map((field) => RenderChartFields(field));
@@ -6768,6 +6853,8 @@ function handleFieldDown() {
     ) {
       if (tab9SubTab3Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -6815,6 +6902,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab9SubTab3Type == "chart") {
         return tab9SubTab3Fields.map((field) => RenderChartFields(field));
@@ -6830,6 +6918,8 @@ function handleFieldDown() {
     ) {
       if (tab9SubTab4Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
           variant="outlined"
           sx={{
@@ -6877,6 +6967,7 @@ function handleFieldDown() {
               Save
             </Button> */}
         </Sheet>
+        </>
         );
       } else if (tab9SubTab4Type == "chart") {
         return tab9SubTab4Fields.map((field) => RenderChartFields(field));
@@ -6892,6 +6983,8 @@ function handleFieldDown() {
     ) {
       if (tab9SubTab5Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -6939,6 +7032,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab9SubTab5Type == "chart") {
         return tab9SubTab5Fields.map((field) => RenderChartFields(field));
@@ -6954,6 +7048,8 @@ function handleFieldDown() {
     ) {
       if (tab9SubTab6Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -7001,6 +7097,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab9SubTab6Type == "chart") {
         return tab9SubTab6Fields.map((field) => RenderChartFields(field));
@@ -7016,6 +7113,8 @@ function handleFieldDown() {
     ) {
       if (tab9SubTab7Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -7063,6 +7162,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab9SubTab7Type == "chart") {
         return tab9SubTab7Fields.map((field) => RenderChartFields(field));
@@ -7078,6 +7178,8 @@ function handleFieldDown() {
     ) {
       if (tab9SubTab8Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -7125,6 +7227,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab9SubTab8Type == "chart") {
         return tab9SubTab8Fields.map((field) => RenderChartFields(field));
@@ -7136,6 +7239,8 @@ function handleFieldDown() {
     ) {
       if (tab9SubTab9Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -7183,6 +7288,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab9SubTab9Type == "chart") {
         return tab9SubTab9Fields.map((field) => RenderChartFields(field));
@@ -7194,6 +7300,8 @@ function handleFieldDown() {
     ) {
       if (tab9SubTab10Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
            <Sheet
             variant="outlined"
             sx={{
@@ -7241,6 +7349,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab9SubTab10Type == "chart") {
         return tab9SubTab10Fields.map((field) => RenderChartFields(field));
@@ -7252,6 +7361,8 @@ function handleFieldDown() {
     ) {
       if (tab10SubTab1Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -7299,6 +7410,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab10SubTab1Type == "chart") {
         return tab10SubTab1Fields.map((field) => RenderChartFields(field));
@@ -7314,6 +7426,8 @@ function handleFieldDown() {
     ) {
       if (tab10SubTab2Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -7361,6 +7475,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab10SubTab2Type == "chart") {
         return tab10SubTab2Fields.map((field) => RenderChartFields(field));
@@ -7376,6 +7491,8 @@ function handleFieldDown() {
     ) {
       if (tab10SubTab3Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -7423,6 +7540,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab10SubTab3Type == "chart") {
         return tab10SubTab3Fields.map((field) => RenderChartFields(field));
@@ -7438,6 +7556,8 @@ function handleFieldDown() {
     ) {
       if (tab6SubTab4Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -7485,6 +7605,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab10SubTab4Type == "chart") {
         return tab10SubTab4Fields.map((field) => RenderChartFields(field));
@@ -7500,6 +7621,8 @@ function handleFieldDown() {
     ) {
       if (tab10SubTab5Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -7547,6 +7670,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab10SubTab5Type == "chart") {
         return tab10SubTab5Fields.map((field) => RenderChartFields(field));
@@ -7562,6 +7686,8 @@ function handleFieldDown() {
     ) {
       if (tab10SubTab6Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -7609,6 +7735,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab10SubTab6Type == "chart") {
         return tab10SubTab6Fields.map((field) => RenderChartFields(field));
@@ -7624,6 +7751,8 @@ function handleFieldDown() {
     ) {
       if (tab10SubTab7Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -7671,6 +7800,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab10SubTab7Type == "chart") {
         return tab10SubTab7Fields.map((field) => RenderChartFields(field));
@@ -7686,6 +7816,8 @@ function handleFieldDown() {
     ) {
       if (tab10SubTab8Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -7733,6 +7865,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab10SubTab8Type == "chart") {
         return tab10SubTab8Fields.map((field) => RenderChartFields(field));
@@ -7744,6 +7877,8 @@ function handleFieldDown() {
     ) {
       if (tab10SubTab9Type == "inputFields") {
         return (
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
           <Sheet
             variant="outlined"
             sx={{
@@ -7791,6 +7926,7 @@ function handleFieldDown() {
                 Save
               </Button> */}
           </Sheet>
+          </>
         );
       } else if (tab10SubTab9Type == "chart") {
         return tab10SubTab9Fields.map((field) => RenderChartFields(field));
@@ -7802,15 +7938,17 @@ function handleFieldDown() {
     ) {
       if (tab10SubTab10Type == "inputFields") {
         return (
-          // <Sheet
-          //   variant="outlined"
-          //   sx={{
-          //     width: "auto",
-          //     maxHeight: 300,
-          //     overflow: "auto",
-          //     borderRadius: "sm",
-          //   }}
-          // >
+          <>
+          <p>Sub Tab Type: <b>Data Input</b></p>
+          <Sheet
+             variant="outlined"
+             sx={{
+               width: "auto",
+               maxHeight: 300,
+               overflow: "auto",
+               borderRadius: "sm",
+             }}
+           >
             <List>
               <div>
               {fields.map((item, index) => (
@@ -7849,7 +7987,8 @@ function handleFieldDown() {
               </div>
             </List>
 
-          // </Sheet>
+          </Sheet>
+          </>
         );
       } else if (tab10SubTab10Type == "chart") {
         return tab10SubTab10Fields.map((field) => RenderChartFields(field));
@@ -8850,6 +8989,54 @@ function handleFieldDown() {
                             setTab1SubTab5Type([]);
                           } else if (
                             id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab6.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab6Fields([]);
+                            setTab1SubTab6Type([]);
+                          } 
+                          else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab7.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab7Fields([]);
+                            setTab1SubTab7Type([]);
+                          } 
+                          else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab8.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab8Fields([]);
+                            setTab1SubTab8Type([]);
+                          } 
+                          else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab9.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab9Fields([]);
+                            setTab1SubTab9Type([]);
+                          } else if (
+                            id ==
+                            `${tab1.replace(/\s/g, "")}-${tab1SubTab10.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab1SubTab10Fields([]);
+                            setTab1SubTab10Type([]);
+                          } else if (
+                            id ==
                             `${tab2.replace(/\s/g, "")}-${tab2SubTab1.replace(
                               /\s/g,
                               ""
@@ -8893,6 +9080,52 @@ function handleFieldDown() {
                           ) {
                             setTab2SubTab5Fields([]);
                             setTab2SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab6.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab6Fields([]);
+                            setTab2SubTab6Type([]);
+                          } 
+                          else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab7.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab7Fields([]);
+                            setTab2SubTab7Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab8.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab8Fields([]);
+                            setTab2SubTab8Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab9.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab9Fields([]);
+                            setTab2SubTab9Type([]);
+                          } else if (
+                            id ==
+                            `${tab2.replace(/\s/g, "")}-${tab2SubTab10.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab2SubTab10Fields([]);
+                            setTab2SubTab10Type([]);
                           } else if (
                             id ==
                             `${tab3.replace(/\s/g, "")}-${tab3SubTab1.replace(
@@ -8940,6 +9173,51 @@ function handleFieldDown() {
                             setTab3SubTab5Type([]);
                           } else if (
                             id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab6.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab6Fields([]);
+                            setTab3SubTab6Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab7.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab7Fields([]);
+                            setTab3SubTab7Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab8.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab8Fields([]);
+                            setTab3SubTab8Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab9.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab9Fields([]);
+                            setTab3SubTab9Type([]);
+                          } else if (
+                            id ==
+                            `${tab3.replace(/\s/g, "")}-${tab3SubTab10.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab3SubTab10Fields([]);
+                            setTab3SubTab10Type([]);
+                          } else if (
+                            id ==
                             `${tab4.replace(/\s/g, "")}-${tab4SubTab1.replace(
                               /\s/g,
                               ""
@@ -8985,6 +9263,51 @@ function handleFieldDown() {
                             setTab4SubTab5Type([]);
                           } else if (
                             id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab6.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab6Fields([]);
+                            setTab4SubTab6Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab7.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab7Fields([]);
+                            setTab4SubTab7Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab8.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab8Fields([]);
+                            setTab4SubTab8Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab9.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab9Fields([]);
+                            setTab4SubTab9Type([]);
+                          } else if (
+                            id ==
+                            `${tab4.replace(/\s/g, "")}-${tab4SubTab10.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab4SubTab10Fields([]);
+                            setTab4SubTab10Type([]);
+                          } else if (
+                            id ==
                             `${tab5.replace(/\s/g, "")}-${tab5SubTab1.replace(
                               /\s/g,
                               ""
@@ -9028,7 +9351,513 @@ function handleFieldDown() {
                           ) {
                             setTab5SubTab5Fields([]);
                             setTab5SubTab5Type([]);
-                          }
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab6.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab6Fields([]);
+                            setTab5SubTab6Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab7.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab7Fields([]);
+                            setTab5SubTab7Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab8.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab8Fields([]);
+                            setTab5SubTab8Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab9.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab9Fields([]);
+                            setTab5SubTab9Type([]);
+                          } else if (
+                            id ==
+                            `${tab5.replace(/\s/g, "")}-${tab5SubTab10.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab5SubTab10Fields([]);
+                            setTab5SubTab10Type([]);
+                          } 
+
+                          else if (
+                            id ==
+                            `${tab6.replace(/\s/g, "")}-${tab6SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab6SubTab1Fields([]);
+                            setTab6SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab6.replace(/\s/g, "")}-${tab6SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab6SubTab2Fields([]);
+                            setTab6SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab6.replace(/\s/g, "")}-${tab6SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab6SubTab3Fields([]);
+                            setTab6SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab6.replace(/\s/g, "")}-${tab6SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab6SubTab4Fields([]);
+                            setTab6SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab6.replace(/\s/g, "")}-${tab6SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab6SubTab5Fields([]);
+                            setTab6SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab6.replace(/\s/g, "")}-${tab6SubTab6.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab6SubTab6Fields([]);
+                            setTab6SubTab6Type([]);
+                          } else if (
+                            id ==
+                            `${tab6.replace(/\s/g, "")}-${tab6SubTab7.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab6SubTab7Fields([]);
+                            setTab6SubTab7Type([]);
+                          } else if (
+                            id ==
+                            `${tab6.replace(/\s/g, "")}-${tab6SubTab8.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab6SubTab8Fields([]);
+                            setTab6SubTab8Type([]);
+                          } else if (
+                            id ==
+                            `${tab6.replace(/\s/g, "")}-${tab6SubTab9.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab6SubTab9Fields([]);
+                            setTab6SubTab9Type([]);
+                          } else if (
+                            id ==
+                            `${tab6.replace(/\s/g, "")}-${tab6SubTab10.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab6SubTab10Fields([]);
+                            setTab6SubTab10Type([]);
+                          } 
+
+                          else if (
+                            id ==
+                            `${tab7.replace(/\s/g, "")}-${tab7SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab7SubTab1Fields([]);
+                            setTab7SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab7.replace(/\s/g, "")}-${tab7SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab7SubTab2Fields([]);
+                            setTab7SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab7.replace(/\s/g, "")}-${tab7SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab7SubTab3Fields([]);
+                            setTab7SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab7.replace(/\s/g, "")}-${tab7SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab7SubTab4Fields([]);
+                            setTab7SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab7.replace(/\s/g, "")}-${tab7SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab7SubTab5Fields([]);
+                            setTab7SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab7.replace(/\s/g, "")}-${tab7SubTab6.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab7SubTab6Fields([]);
+                            setTab7SubTab6Type([]);
+                          } else if (
+                            id ==
+                            `${tab7.replace(/\s/g, "")}-${tab7SubTab7.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab7SubTab7Fields([]);
+                            setTab7SubTab7Type([]);
+                          } else if (
+                            id ==
+                            `${tab7.replace(/\s/g, "")}-${tab7SubTab8.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab7SubTab8Fields([]);
+                            setTab7SubTab8Type([]);
+                          } else if (
+                            id ==
+                            `${tab7.replace(/\s/g, "")}-${tab7SubTab9.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab7SubTab9Fields([]);
+                            setTab7SubTab9Type([]);
+                          } else if (
+                            id ==
+                            `${tab7.replace(/\s/g, "")}-${tab7SubTab10.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab7SubTab10Fields([]);
+                            setTab7SubTab10Type([]);
+                          } 
+
+                          else if (
+                            id ==
+                            `${tab8.replace(/\s/g, "")}-${tab8SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab8SubTab1Fields([]);
+                            setTab8SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab8.replace(/\s/g, "")}-${tab8SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab8SubTab2Fields([]);
+                            setTab8SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab8.replace(/\s/g, "")}-${tab8SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab8SubTab3Fields([]);
+                            setTab8SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab8.replace(/\s/g, "")}-${tab8SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab8SubTab4Fields([]);
+                            setTab8SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab8.replace(/\s/g, "")}-${tab8SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab8SubTab5Fields([]);
+                            setTab8SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab8.replace(/\s/g, "")}-${tab8SubTab6.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab8SubTab6Fields([]);
+                            setTab8SubTab6Type([]);
+                          } else if (
+                            id ==
+                            `${tab8.replace(/\s/g, "")}-${tab8SubTab7.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab8SubTab7Fields([]);
+                            setTab8SubTab7Type([]);
+                          } else if (
+                            id ==
+                            `${tab8.replace(/\s/g, "")}-${tab8SubTab8.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab8SubTab8Fields([]);
+                            setTab8SubTab8Type([]);
+                          } else if (
+                            id ==
+                            `${tab8.replace(/\s/g, "")}-${tab8SubTab9.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab8SubTab9Fields([]);
+                            setTab8SubTab9Type([]);
+                          } else if (
+                            id ==
+                            `${tab8.replace(/\s/g, "")}-${tab8SubTab10.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab8SubTab10Fields([]);
+                            setTab8SubTab10Type([]);
+                          } 
+
+                          else if (
+                            id ==
+                            `${tab9.replace(/\s/g, "")}-${tab9SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab9SubTab1Fields([]);
+                            setTab9SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab9.replace(/\s/g, "")}-${tab9SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab9SubTab2Fields([]);
+                            setTab9SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab9.replace(/\s/g, "")}-${tab9SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab9SubTab3Fields([]);
+                            setTab9SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab9.replace(/\s/g, "")}-${tab9SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab9SubTab4Fields([]);
+                            setTab9SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab9.replace(/\s/g, "")}-${tab9SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab9SubTab5Fields([]);
+                            setTab9SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab9.replace(/\s/g, "")}-${tab9SubTab6.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab9SubTab6Fields([]);
+                            setTab9SubTab6Type([]);
+                          } else if (
+                            id ==
+                            `${tab9.replace(/\s/g, "")}-${tab9SubTab7.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab9SubTab7Fields([]);
+                            setTab9SubTab7Type([]);
+                          } else if (
+                            id ==
+                            `${tab9.replace(/\s/g, "")}-${tab9SubTab8.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab9SubTab8Fields([]);
+                            setTab9SubTab8Type([]);
+                          } else if (
+                            id ==
+                            `${tab9.replace(/\s/g, "")}-${tab9SubTab9.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab9SubTab9Fields([]);
+                            setTab9SubTab9Type([]);
+                          } else if (
+                            id ==
+                            `${tab9.replace(/\s/g, "")}-${tab9SubTab10.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab9SubTab10Fields([]);
+                            setTab9SubTab10Type([]);
+                          } 
+
+                          else if (
+                            id ==
+                            `${tab10.replace(/\s/g, "")}-${tab10SubTab1.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab10SubTab1Fields([]);
+                            setTab10SubTab1Type([]);
+                          } else if (
+                            id ==
+                            `${tab10.replace(/\s/g, "")}-${tab10SubTab2.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab10SubTab2Fields([]);
+                            setTab10SubTab2Type([]);
+                          } else if (
+                            id ==
+                            `${tab10.replace(/\s/g, "")}-${tab10SubTab3.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab10SubTab3Fields([]);
+                            setTab10SubTab3Type([]);
+                          } else if (
+                            id ==
+                            `${tab10.replace(/\s/g, "")}-${tab10SubTab4.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab10SubTab4Fields([]);
+                            setTab10SubTab4Type([]);
+                          } else if (
+                            id ==
+                            `${tab10.replace(/\s/g, "")}-${tab10SubTab5.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab10SubTab5Fields([]);
+                            setTab10SubTab5Type([]);
+                          } else if (
+                            id ==
+                            `${tab10.replace(/\s/g, "")}-${tab10SubTab6.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab10SubTab6Fields([]);
+                            setTab10SubTab6Type([]);
+                          } else if (
+                            id ==
+                            `${tab10.replace(/\s/g, "")}-${tab10SubTab7.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab10SubTab7Fields([]);
+                            setTab10SubTab7Type([]);
+                          } else if (
+                            id ==
+                            `${tab10.replace(/\s/g, "")}-${tab10SubTab8.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab10SubTab8Fields([]);
+                            setTab10SubTab8Type([]);
+                          } else if (
+                            id ==
+                            `${tab10.replace(/\s/g, "")}-${tab10SubTab9.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab10SubTab9Fields([]);
+                            setTab10SubTab9Type([]);
+                          } else if (
+                            id ==
+                            `${tab10.replace(/\s/g, "")}-${tab10SubTab10.replace(
+                              /\s/g,
+                              ""
+                            )}`
+                          ) {
+                            setTab10SubTab10Fields([]);
+                            setTab10SubTab10Type([]);
+                          } 
+
                         }}
                       >
                         Reset Tab
@@ -10026,7 +10855,6 @@ function handleFieldDown() {
               onClick={() => {
                 handleCloseSubTab();
                 handleOpenTab();
-                // resetSubTabTitle();
               }}
             >
               back
@@ -10034,7 +10862,6 @@ function handleFieldDown() {
             <Button
               onClick={() => {
                 handleCloseSubTab();
-                // resetSubTabTitle();
               }}
             >
               Close
@@ -10572,592 +11399,7 @@ function handleFieldDown() {
         </Fade>
       </Modal>
 
-      {/* ----------------------- Add Input Field Modal ----------------------- */}
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={openAddField}
-        closeAfterTransition
-        slots={{ backdrop: Backdrop }}
-        slotProps={{
-          backdrop: {
-            timeout: 500,
-          },
-        }}
-      >
-        <Fade in={openAddField}>
-          <Box sx={style}>
-            <>
-              <Typography>Enter Field Name</Typography>
-              <TextField
-                className="modalInputField"
-                size="small"
-                onChange={(e) => setFieldName(e.target.value)}
-              />
-              <div className="modalButtonsDiv">
-                <Button
-                  onClick={() => {
-                    if (combinedIndex == "1-0") {
-                      setTab1SubTab1Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "1-1") {
-                      setTab1SubTab2Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "1-2") {
-                      setTab1SubTab3Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "1-3") {
-                      setTab1SubTab4Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "1-4") {
-                      setTab1SubTab5Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "1-5") {
-                      setTab1SubTab6Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "1-6") {
-                      setTab1SubTab7Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "1-7") {
-                      setTab1SubTab8Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "1-8") {
-                      setTab1SubTab9Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "1-9") {
-                      setTab1SubTab10Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "2-0") {
-                      setTab2SubTab1Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "2-1") {
-                      setTab2SubTab2Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "2-2") {
-                      setTab2SubTab3Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "2-3") {
-                      setTab2SubTab4Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "2-4") {
-                      setTab2SubTab5Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "2-5") {
-                      setTab2SubTab6Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "2-6") {
-                      setTab2SubTab7Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "2-7") {
-                      setTab2SubTab8Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "2-8") {
-                      setTab2SubTab9Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "2-9") {
-                      setTab2SubTab10Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "3-0") {
-                      setTab3SubTab1Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "3-1") {
-                      setTab3SubTab2Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "3-2") {
-                      setTab3SubTab3Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "3-3") {
-                      setTab3SubTab4Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "3-4") {
-                      setTab3SubTab5Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "3-5") {
-                      setTab3SubTab6Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "3-6") {
-                      setTab3SubTab7Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "3-7") {
-                      setTab3SubTab8Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "3-8") {
-                      setTab3SubTab9Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "3-9") {
-                      setTab3SubTab10Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "4-0") {
-                      setTab4SubTab1Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "4-1") {
-                      setTab4SubTab2Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "4-2") {
-                      setTab4SubTab3Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "4-3") {
-                      setTab4SubTab4Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "4-4") {
-                      setTab4SubTab5Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "4-5") {
-                      setTab4SubTab6Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "4-6") {
-                      setTab4SubTab7Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "4-7") {
-                      setTab4SubTab8Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "4-8") {
-                      setTab4SubTab9Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "4-9") {
-                      setTab4SubTab10Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "5-0") {
-                      setTab5SubTab1Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "5-1") {
-                      setTab5SubTab2Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "5-2") {
-                      setTab5SubTab3Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "5-3") {
-                      setTab5SubTab4Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "5-4") {
-                      setTab5SubTab5Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "5-5") {
-                      setTab5SubTab6Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "5-6") {
-                      setTab5SubTab7Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "5-7") {
-                      setTab5SubTab8Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "5-8") {
-                      setTab5SubTab9Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "5-9") {
-                      setTab5SubTab10Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "5-0") {
-                      setTab5SubTab1Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "5-1") {
-                      setTab5SubTab2Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "5-2") {
-                      setTab5SubTab3Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "5-3") {
-                      setTab5SubTab4Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "5-4") {
-                      setTab5SubTab5Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "5-5") {
-                      setTab5SubTab6Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "5-6") {
-                      setTab5SubTab7Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "5-7") {
-                      setTab5SubTab8Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "5-8") {
-                      setTab5SubTab9Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "5-9") {
-                      setTab5SubTab10Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "6-0") {
-                      setTab6SubTab1Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "6-1") {
-                      setTab6SubTab2Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "6-2") {
-                      setTab6SubTab3Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "6-3") {
-                      setTab6SubTab4Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "6-4") {
-                      setTab6SubTab5Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "6-5") {
-                      setTab6SubTab6Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "6-6") {
-                      setTab6SubTab7Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "6-7") {
-                      setTab6SubTab8Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "6-8") {
-                      setTab6SubTab9Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "6-9") {
-                      setTab6SubTab10Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "7-0") {
-                      setTab7SubTab1Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "7-1") {
-                      setTab7SubTab2Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "7-2") {
-                      setTab7SubTab3Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "7-3") {
-                      setTab7SubTab4Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "7-4") {
-                      setTab7SubTab5Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "7-5") {
-                      setTab7SubTab6Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "7-6") {
-                      setTab7SubTab7Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "7-7") {
-                      setTab7SubTab8Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "7-8") {
-                      setTab7SubTab9Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "7-9") {
-                      setTab7SubTab10Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "8-0") {
-                      setTab8SubTab1Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "8-1") {
-                      setTab8SubTab2Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "8-2") {
-                      setTab8SubTab3Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "8-3") {
-                      setTab8SubTab4Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "8-4") {
-                      setTab8SubTab5Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "8-5") {
-                      setTab8SubTab6Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "8-6") {
-                      setTab8SubTab7Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "8-7") {
-                      setTab8SubTab8Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "8-8") {
-                      setTab8SubTab9Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "8-9") {
-                      setTab8SubTab10Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "9-0") {
-                      setTab9SubTab1Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "9-1") {
-                      setTab9SubTab2Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "9-2") {
-                      setTab9SubTab3Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "9-3") {
-                      setTab9SubTab4Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "9-4") {
-                      setTab9SubTab5Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "9-5") {
-                      setTab9SubTab6Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "9-6") {
-                      setTab9SubTab7Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "9-7") {
-                      setTab9SubTab8Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "9-8") {
-                      setTab9SubTab9Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "9-9") {
-                      setTab9SubTab10Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "10-0") {
-                      setTab10SubTab1Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "10-1") {
-                      setTab10SubTab2Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "10-2") {
-                      setTab10SubTab3Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "10-3") {
-                      setTab10SubTab4Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "10-4") {
-                      setTab10SubTab5Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "10-5") {
-                      setTab10SubTab6Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "10-6") {
-                      setTab10SubTab7Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "10-7") {
-                      setTab10SubTab8Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "10-8") {
-                      setTab10SubTab9Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    } else if (combinedIndex == "10-9") {
-                      setTab10SubTab10Fields((existingFields) => [
-                        ...existingFields,
-                        fieldName,
-                      ]);
-                    }
-                  }}
-                >
-                  Add Field
-                </Button>
-                <Button onClick={handleCloseAddField}>Close</Button>
-              </div>
-            </>
-          </Box>
-        </Fade>
-      </Modal>
+ 
 
       {/* ----------------------- Add Chart Field Modal ----------------------- */}
       <Modal
