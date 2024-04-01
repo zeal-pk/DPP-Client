@@ -27,6 +27,9 @@ import Sheet from "@mui/joy/Sheet";
 import List from "@mui/joy/List";
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import CircularProgress from "@mui/material/CircularProgress";
+import DoneIcon from '@mui/icons-material/Done';
+import CloseIcon from '@mui/icons-material/Close';
 import {
   ObjectPage,
   ObjectPageSection,
@@ -317,11 +320,7 @@ export default function AddProductsSection({ params }) {
   let [tab10SubTtab9, setTab10SubTtab9] = useState("Sub Tab 10-9");
   let [tab10SubTtab10, setTab10SubTtab10] = useState("Sub Tab 10-10");
 
-  let [tab1SubTab1Fields, setTab1SubTab1Fields] = useState([
-    "test",
-    "hello",
-    "world",
-  ]);
+  let [tab1SubTab1Fields, setTab1SubTab1Fields] = useState([]);
   let [tab1SubTab2Fields, setTab1SubTab2Fields] = useState([]);
   let [tab1SubTab3Fields, setTab1SubTab3Fields] = useState([]);
   let [tab1SubTab4Fields, setTab1SubTab4Fields] = useState([]);
@@ -541,28 +540,7 @@ export default function AddProductsSection({ params }) {
   let [tab10SubTab9Type, setTab10SubTab9Type] = useState([]);
   let [tab10SubTab10Type, setTab10SubTab10Type] = useState([]);
 
-  let fields = [
-    "Field 1",
-    "Field 2",
-    "Field 3",
-    "Field 4",
-    "Field 5",
-    "Field 6",
-    "Field 7",
-    "Field 8",
-    "Field 9",
-    "Field 10",
-    "Field 11",
-    "Field 12",
-    "Field 13",
-    "Field 14",
-    "Field 15",
-    "Field 16",
-    "Field 17",
-    "Field 18",
-    "Field 19",
-    "Field 20",
-  ];
+
 
   function errAlert(errData) {
     let message = errData.message;
@@ -617,6 +595,29 @@ export default function AddProductsSection({ params }) {
       errAlert(errData);
     }
   }
+
+  let fields = [
+    "Field 1",
+    "Field 2",
+    "Field 3",
+    "Field 4",
+    "Field 5",
+    "Field 6",
+    "Field 7",
+    "Field 8",
+    "Field 9",
+    "Field 10",
+    "Field 11",
+    "Field 12",
+    "Field 13",
+    "Field 14",
+    "Field 15",
+    "Field 16",
+    "Field 17",
+    "Field 18",
+    "Field 19",
+    "Field 20",
+  ];
 
 
 
@@ -1614,20 +1615,32 @@ export default function AddProductsSection({ params }) {
     }));
   };
 
+  let [submitting, setSubmitting] = useState(false)
+  let [submitStatus, setSubmitStatus] = useState({color: "primary", message: "Submit"})
+
+  useEffect(() => {
+    setTimeout(() => {
+      setSubmitStatus({color: "primary", message: "Submit"})
+    }, 5000);
+  }, [submitting])
+
   async function handlePostUIData(data) {
     let path = window.location.pathname;
     let pathArr = path.split("/");
     let id = pathArr[3];
     let token = localStorage.getItem("access_token");
     try {
+      setSubmitting(true)
       let response = await axios.post(
         `${serverUrl}/postProductDetailsUI/${id}`,
         data
       );
 
       if (response.status == 200) {
-        alert("UI Configuration Successful");
-        router.push("/configurator");
+        console.log(response);
+        // router.push("/configurator");
+        setSubmitting(false)
+        setSubmitStatus({color: "success", message: "Successful"})
       }
     } catch (error) {
       let errData = {
@@ -1635,6 +1648,9 @@ export default function AddProductsSection({ params }) {
         severity: "error",
       };
       errAlert(errData);
+      setSubmitting(false)
+        setSubmitStatus({color: "error", message: `${error.message}`})
+        console.log(error);
     }
   }
 
@@ -1673,7 +1689,7 @@ export default function AddProductsSection({ params }) {
           >
             <List>
               {fields.map((item, index) => (
-                <div  key={index} style={{display: "flex"}}>
+                <div key={index} style={{display: "flex"}}>
                 <TextField
                   id={index}
                   size="small"
@@ -10484,14 +10500,28 @@ export default function AddProductsSection({ params }) {
                       >
                         Edit Lables
                       </MUIButton>
-
+                    {submitting == true ? (
+                      <Button variant="text">
+                        <CircularProgress color="primary" />
+                      </Button>
+                    ) : (
+                      <>
                       <MUIButton
                         variant="contained"
+                        startIcon={
+                          submitStatus.color === "success" ? <DoneIcon /> :
+                          submitStatus.color === "error" ? <CloseIcon /> :
+                          null
+                       }
+                        color={submitStatus.color}
                         onClick={() => handlePostUIData(dataStruct)}
                       >
-                        Submit
+                        {submitStatus.message}
                       </MUIButton>
-                    </div>
+                      </>
+                    ) 
+                  }
+                  </div>
                   }
                   startContent={
                     <>

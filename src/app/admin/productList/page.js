@@ -24,6 +24,7 @@ import TextField from "@mui/material/TextField";
 import CircularProgress from "@mui/material/CircularProgress";
 import DoneIcon from "@mui/icons-material/Done";
 import LoadingPage from "../../loading";
+import Autocomplete from "@mui/material/Autocomplete";
 
 const style = {
   display: "flex",
@@ -41,21 +42,26 @@ const style = {
 };
 
 export default function Home() {
-  
   let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   const router = useRouter();
   let [loadPage, setLoadPage] = useState(false);
+  let [alert, setAlert] = useState(false);
+  let [alertMessage, setAlertMessage] = useState();
+  let [alertSeverity, setAlertSeverity] = useState();
 
   let [productDetails, setProductDetails] = useState([]);
-  let [productName, setProductName] = useState();
+  let [newProductName, setNewProductName] = useState();
+  let [newProductCategory, setNewProductCategory] = useState();
+  let [newProductDescreption, setNewProductDescreption] = useState();
   let [productId, setProductId] = useState();
   let [showAlert, setShowAlert] = useState("none");
-  let [alertSeverity, setAlertSeverity] = useState("");
   let [newProductID, setNewProductID] = useState();
   let [toDelete, setToDelete] = useState("");
   let [loading, setLoading] = useState(false);
   let [done, setDone] = useState(false);
   let [loadId, setLoadId] = useState(false);
+
+  let category = [{ label: "Battery" }];
 
   // Modal Helper -START
   const [open, setOpen] = useState(false);
@@ -71,6 +77,19 @@ export default function Home() {
   const handleCloseDeleteModal = () => setOpenDeleteModat(false);
   // Modal Helper - END
 
+  function errAlert(errData) {
+    setLoadPage(false);
+    let message = errData.message;
+    let severity = errData.severity;
+    setAlert(true);
+    setAlertMessage(message);
+    setAlertSeverity(severity);
+
+    setTimeout(() => {
+      setAlert(false);
+    }, 3000);
+  }
+
   async function postProduct(data) {
     try {
       let token = localStorage.getItem("access_token");
@@ -80,15 +99,16 @@ export default function Home() {
         },
       });
     } catch (error) {
-      alert(error);
+      let errData = {
+        message: error.message,
+        severity: "error",
+      };
+      errAlert(errData);
     }
   }
 
   function pageLoading(val) {
     setLoadPage(val);
-    // setTimeout(() => {
-    //   setLoadPage(false);
-    // }, 60000);
   }
 
   async function load() {
@@ -104,7 +124,7 @@ export default function Home() {
     }, 2000);
   }
 
-  async function generateProdID(prodName) {
+  async function generateProdID(productData) {
     let token = localStorage.getItem("access_token");
     let role = localStorage.getItem("current_user_role");
     try {
@@ -113,21 +133,22 @@ export default function Home() {
           Authorization: "Bearer " + token,
         },
       });
-      console.log(response);
       if (response.data.message == "ID Range did not match") {
         alert("ID Range did not match");
       } else {
         console.log(response.data.message);
         let prodId = response.data.message;
-        let prodData = {
-          id: prodId,
-          name: prodName,
-        };
-        postProduct(prodData);
+        let prodData = productData;
+        prodData.id = prodId;
+        await postProduct(prodData);
         Fun();
       }
     } catch (error) {
-      alert(error);
+      let errData = {
+        message: error.message,
+        severity: "error",
+      };
+      errAlert(errData);
     }
   }
 
@@ -142,8 +163,12 @@ export default function Home() {
         },
       });
       Fun();
-    } catch (err) {
-      alert(err);
+    } catch (error) {
+      let errData = {
+        message: error.message,
+        severity: "error",
+      };
+      errAlert(errData);
     }
   }
 
@@ -162,8 +187,14 @@ export default function Home() {
         pageLoading(false);
         setProductDetails(response.data);
       } catch (error) {
-        if (error.response.status == 403) {
+        if (error.status == 403) {
           router.push("/error");
+        } else {
+          let errData = {
+            message: error.message,
+            severity: "error",
+          };
+          errAlert(errData);
         }
       }
     } else {
@@ -188,28 +219,36 @@ export default function Home() {
   const deleteProduct = async (productId) => {
     console.log(productId);
     let token = localStorage.getItem("access_token");
-    axios
-      .delete(`${serverUrl}/deleteProduct/${productId}`, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      })
-      .then((res) => {
-        if (res.status == 200) {
-          setAlertSeverity("success");
-          setShowAlert("block");
-          setTimeout(() => {
-            setShowAlert("none");
+    try {
+      axios
+        .delete(`${serverUrl}/deleteProduct/${productId}`, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
+        .then((res) => {
+          if (res.status == 200) {
+            let errData = {
+              message: "Deleted Successfully",
+              severity: "success",
+            };
+            errAlert(errData);
             Fun();
-          }, "2000");
-        } else {
-          setAlertSeverity("error");
-          setShowAlert("block");
-          setTimeout(() => {
-            setShowAlert("none");
-          }, "2000");
-        }
-      });
+          } else {
+            let errData = {
+              message: "Something went wrong. Please try again later",
+              severity: "error",
+            };
+            errAlert(errData);
+          }
+        });
+    } catch (error) {
+      let errData = {
+        message: error.message,
+        severity: "error",
+      };
+      errAlert(errData);
+    }
   };
 
   return (
@@ -219,20 +258,17 @@ export default function Home() {
         <LoadingPage />
       ) : (
         <>
+          {alert ? (
+            <Alert severity={alertSeverity} style={{ marginTop: "10px" }}>
+              {alertMessage}
+            </Alert>
+          ) : (
+            <></>
+          )}
           <div style={{ display: "flex", alignItems: "baseline" }}>
             <BackButton />
             <h3 className="pageTitle">Product List</h3>
           </div>
-
-          <Alert
-            variant="filled"
-            severity={alertSeverity}
-            sx={{ display: showAlert }}
-          >
-            {alertSeverity == "success"
-              ? "Success! Action Completed"
-              : "Error! Please Try Again Later"}
-          </Alert>
 
           {/* --------------------------------- Product List Section - START */}
           <section className="customerList-scroll">
@@ -329,17 +365,46 @@ export default function Home() {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Product Name
+            <Typography variant="h6">
+              Please Enter Product Header Details
             </Typography>
             <TextField
+              variant="outlined"
+              label="Product Name"
               size="small"
-              onChange={(e) => setProductName(e.target.value)}
+              onChange={(e) => setNewProductName(e.target.value)}
+            />
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              options={category}
+              size="small"
+              onChange={(event, value) =>
+                setNewProductCategory(value ? value.label : "")
+              }
+              renderInput={(params) => (
+                <TextField {...params} label="Product Category" />
+              )}
+            />
+            <TextField
+              id="outlined-multiline-static"
+              label="Descreption"
+              multiline
+              rows={4}
+              inputProps={{ maxLength: 250 }}
+              onChange={(e) => {
+                setNewProductDescreption(e.target.value);
+              }}
             />
             <Button
               variant="contained"
               onClick={() => {
-                generateProdID(productName);
+                let productData = {
+                  name: newProductName,
+                  category: newProductCategory,
+                  description: newProductDescreption,
+                };
+                generateProdID(productData);
                 handleClose();
               }}
             >
