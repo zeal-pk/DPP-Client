@@ -48,13 +48,14 @@ export default function CustomerDetials({ params }) {
     if (token && role == "user") {
       try {
         await axios
-          .get(`${serverUrl}/${customerId}`, {
+          .get(`${serverUrl}/getCustomer/${customerId}`, {
             headers: {
               Authorization: "Bearer " + token,
             },
           })
           .then((res) => {
             setCustomerDetail(res.data);
+            console.log(res);
           });
       } catch (error) {
         if (error.response.status == 403) {
@@ -75,6 +76,7 @@ export default function CustomerDetials({ params }) {
         .then((res) => {
           setProductDetails(res.data);
           setSelectedProduct(res.data[0]);
+          console.log(res.data);
         });
     } catch (error) {
       if (error.response.status == 403) {

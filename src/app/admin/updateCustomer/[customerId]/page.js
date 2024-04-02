@@ -11,14 +11,17 @@ import BackButton from "../../../../components/backButton.js";
 import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import Autocomplete from "@mui/material/Autocomplete";
+import CircularProgress from "@mui/material/CircularProgress";
+import DoneIcon from "@mui/icons-material/Done";
+import CloseIcon from "@mui/icons-material/Close";
 import { countries } from "../../../../db/countries.js";
 import { states } from "../../../../db/states.js";
-import {
-  CitySelect,
-  CountrySelect,
-  StateSelect,
-} from "react-country-state-city";
-import "react-country-state-city/dist/react-country-state-city.css";
+// import {
+//   CitySelect,
+//   CountrySelect,
+//   StateSelect,
+// } from "react-country-state-city";
+// import "react-country-state-city/dist/react-country-state-city.css";
 
 export default function UpdateCustomer({ params }) {
   let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
@@ -42,12 +45,13 @@ export default function UpdateCustomer({ params }) {
   let [prodObjArr, setProdObjArr] = useState([]);
   let [allProducts, setAllProducts] = useState([]);
   let [products, setProducts] = useState([]);
+  let [selectedStates, setSelectedStates] = useState([]);
 
   const [countryid, setCountryid] = useState(0);
   let [countryCode, setCountryCode] = useState("");
   const [stateid, setstateid] = useState(0);
   let [stateCode, setStateCode] = useState("");
-  let [states, setStates] = useState([]);
+  // let [states, setStates] = useState([]);
 
   function errAlert(errData) {
     setLoadPage(false);
@@ -61,6 +65,18 @@ export default function UpdateCustomer({ params }) {
       setAlert(false);
     }, 3000);
   }
+
+  let [submitting, setSubmitting] = useState(false);
+  let [submitStatus, setSubmitStatus] = useState({
+    color: "primary",
+    message: "Update Customer",
+  });
+
+  useEffect(() => {
+    setTimeout(() => {
+      setSubmitStatus({ color: "primary", message: "Update Customer" });
+    }, 5000);
+  }, [submitting]);
 
   async function handleGetCustomerData() {
     let token = localStorage.getItem("access_token");
@@ -135,22 +151,29 @@ export default function UpdateCustomer({ params }) {
   async function handleUpdateCustomer(newCustomerData) {
     let token = localStorage.getItem("access_token");
     try {
-      const response = await axios
-        .post(`${serverUrl}/updateCustomer/${customerId}`, newCustomerData, {
+      setSubmitting(true);
+      const response = await axios.post(
+        `${serverUrl}/updateCustomer/${customerId}`,
+        newCustomerData,
+        {
           headers: {
             Authorization: "Bearer " + token,
           },
-        })
-        .then((response) => {
-          // console.log(response.data);
-        });
-      let alertData = {
-        message: `Customer: ${customerId} Updated Successfully`,
-        severity: "error",
-      };
-      errAlert(errData);
-      router.push("/admin/customerList");
+        }
+      );
+      if (response.status == 200) {
+        setSubmitting(false);
+        setSubmitStatus({ color: "success", message: "Successful" });
+        let alertData = {
+          message: `Customer: ${customerId} Updated Successfully`,
+          severity: "success",
+        };
+        errAlert(alertData);
+        router.push("/admin/customerList");
+      }
     } catch (error) {
+      setSubmitting(false);
+      setSubmitStatus({ color: "error", message: error });
       let errData = {
         message: error.message,
         severity: "error",
@@ -160,20 +183,28 @@ export default function UpdateCustomer({ params }) {
   }
 
   function filterStates() {
+    let ctry = countries.filter((ctr) => ctr.label == country);
+    // let code = ctry[0][0].code;
+    // setCountryCode(ctry.code);
+    // console.log(ctry[0].code);
+
     let result = states.filter((state) => {
-      return state.countryCode == countryCode;
+      // return state.countryCode == countryCode;
+      if (state.countryCode == ctry.code) {
+        console.log({ state: state });
+      }
     });
-    // setState(result);
-    console.log(result);
+    // setSelectedStates(result);
+    // console.log(result);
   }
 
-  useEffect(() => {
-    filterStates();
-  }, [countryCode]);
+  // useEffect(() => {
+  //   filterStates();
+  // }, [state]);
 
-  useEffect(() => {
-    console.log(states);
-  }, [states]);
+  // useEffect(() => {
+  //   console.log(states);
+  // }, [states]);
 
   useEffect(() => {
     handleGetCustomerData();
@@ -276,12 +307,13 @@ export default function UpdateCustomer({ params }) {
             }}
           />
 
-          <div>
+          {/* <div>
             <p className="addCustomerInputLable">
               Country <span style={{ color: "red" }}>*</span>
             </p>
             <CountrySelect
               // defaultValue={country}
+              value={countries.find((v) => console.log(v)) || {}}
               onChange={(e) => {
                 setCountryid(e.id);
                 setCountry(e.name);
@@ -312,9 +344,9 @@ export default function UpdateCustomer({ params }) {
               }}
               placeHolder="Select City"
             />
-          </div>
+          </div> */}
 
-          {/* <Autocomplete
+          <Autocomplete
             id="country-select-demo"
             sx={{ width: 300 }}
             options={countries}
@@ -322,10 +354,9 @@ export default function UpdateCustomer({ params }) {
             getOptionLabel={(option) =>
               typeof option === "object" && option.label ? option.label : ""
             }
-            value={country}
-            onChange={(event, newValue) => {
+            value={countries.find((v) => v.label == country) || {}}
+            onInputChange={(event, newValue) => {
               setCountry(newValue);
-              setCountryCode(newValue.code);
             }}
             renderInput={(params) => (
               <TextField
@@ -333,6 +364,31 @@ export default function UpdateCustomer({ params }) {
                 variant="standard"
                 {...params}
                 label="Country"
+              />
+            )}
+          />
+
+          {/* <Autocomplete
+            id="country-select-demo"
+            sx={{ width: 300 }}
+            options={selectedStates}
+            autoHighlight
+            getOptionLabel={(option) =>
+              typeof option === "object" && option.label ? option.label : ""
+            }
+            defaultValue={
+              selectedStates.find((v) => console.log(v.label == state)) || {}
+            }
+            onInputChange={(event, newValue) => {
+              setState(newValue);
+              // setStateCode(newValue.code);
+            }}
+            renderInput={(params) => (
+              <TextField
+                className="addCustomer-form-div-input"
+                variant="standard"
+                {...params}
+                label="State"
               />
             )}
           /> */}
@@ -362,28 +418,40 @@ export default function UpdateCustomer({ params }) {
         </section>
 
         <section className="addCustomer-button-section">
-          <Button
-            variant="contained"
-            startIcon={<EditIcon />}
-            onClick={() => {
-              let newCustData = {
-                id: custId,
-                name: customerId,
-                logoUrl: logoUrl,
-                descreption: descreption,
-                addressL1: addressL1,
-                addressL2: addressL2,
-                city: city,
-                state: state,
-                country: country,
-                products: products,
-              };
-              // handleUpdateCustomer(newCustData);
-              console.log(newCustData);
-            }}
-          >
-            Update Customer
-          </Button>
+          {submitting == true ? (
+            <Button variant="text">
+              <CircularProgress color="primary" />
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              color={submitStatus.color}
+              startIcon={
+                submitStatus.color === "success" ? (
+                  <DoneIcon />
+                ) : submitStatus.color === "error" ? (
+                  <CloseIcon />
+                ) : null
+              }
+              onClick={() => {
+                let newCustData = {
+                  id: custId,
+                  name: customerName,
+                  logoUrl: logoUrl,
+                  descreption: descreption,
+                  addressL1: addressL1,
+                  addressL2: addressL2,
+                  city: city,
+                  state: state,
+                  country: country,
+                  products: products,
+                };
+                handleUpdateCustomer(newCustData);
+              }}
+            >
+              {submitStatus.message}
+            </Button>
+          )}
         </section>
       </div>
     </div>

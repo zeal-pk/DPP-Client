@@ -162,7 +162,7 @@ export default function Home() {
           Authorization: "Bearer " + token,
         },
       });
-      Fun();
+      setDone(true);
     } catch (error) {
       let errData = {
         message: error.message,

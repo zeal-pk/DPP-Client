@@ -3,7 +3,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import NavBar from "@/components/navBar.js";
 import { useRouter } from "next/navigation";
-import BackButton from "../../../../components/backButton.js";
 import axios from "axios";
 import {
   ThemeProvider,
@@ -14,6 +13,9 @@ import {
   Button,
   Form,
   FormItem,
+  DynamicPageHeader,
+  DynamicPageTitle,
+  FlexBox,
   FileUploader,
 } from "@ui5/webcomponents-react";
 import { TextField } from "@mui/material";
@@ -38,6 +40,9 @@ export default function EditProduct() {
   let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   let router = useRouter();
   let [UiTemplate, setUiTemplate] = useState([]);
+  let [productName, setProductName] = useState();
+  let [productCategory, setProductCategory] = useState();
+  let [productDescreption, setProductDescreption] = useState();
   let [image, setImage] = useState();
 
   async function getProductUI() {
@@ -74,11 +79,39 @@ export default function EditProduct() {
     }
   }
 
+  async function getProductDetails(productId) {
+    let token = localStorage.getItem("access_token");
+    let role = localStorage.getItem("current_user_role");
+
+    try {
+      await axios
+        .get(`${serverUrl}/getProduct/${productId}`, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
+        .then((response) => {
+          setProductName(response.data.name);
+          setProductCategory(response.data.category);
+          setProductDescreption(response.data.description);
+          console.log(response.data);
+        });
+    } catch (error) {
+      // if (error.response.status !== 403) {
+      //   router.push("/error");
+      // } else {
+      //   console.log(error);
+      // }
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     let path = window.location.pathname;
     let pathArr = path.split("/");
     let id = pathArr[3];
     getProductUI(id);
+    getProductDetails(id);
   }, []);
 
   function handleUploadFile(e) {
@@ -95,12 +128,18 @@ export default function EditProduct() {
   }, [image]);
 
   function fieldIteration(subTabType, fields) {
-    if (subTabType == "Data Input") {
-      return fields.map((field) => {
-        return (
-          <TextField key={subTabType} size="small" label={field}></TextField>
-        );
-      });
+    if (subTabType == "inputFields") {
+      return (
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          {fields.map((field, index) => {
+            return (
+              <p key={field}>
+                Field {index + 1}: <b>{field}</b>
+              </p>
+            );
+          })}
+        </div>
+      );
     } else if (subTabType == "document") {
       return (
         <div>
@@ -178,17 +217,23 @@ export default function EditProduct() {
                     titleText={child}
                   >
                     <div>
-                      <p>{subTabType}</p>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "flex-start",
-                          alignItems: "center",
-                          gap: "20px",
-                        }}
-                      >
-                        {fieldIteration(subTabType, fields)}
-                      </div>
+                      {subTabType != "" ? (
+                        <>
+                          <p>
+                            Sub Tab Type: <b>{subTabType}</b>
+                          </p>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "flex-start",
+                              alignItems: "center",
+                              gap: "20px",
+                            }}
+                          >
+                            {fieldIteration(subTabType, fields)}
+                          </div>
+                        </>
+                      ) : null}
                     </div>
                   </ObjectPageSubSection>
                 );
@@ -209,7 +254,6 @@ export default function EditProduct() {
               <Bar
                 endContent={
                   <>
-                    <BackButton />
                     <Button
                       design="Emphasized"
                       onClick={() => downloadExcel(testData)}
@@ -225,9 +269,118 @@ export default function EditProduct() {
                     </Button>
                   </>
                 }
+                startContent={
+                  <>
+                    <Button design="Emphasized" onClick={() => router.back()}>
+                      Back
+                    </Button>
+                  </>
+                }
               />
             }
-            headerContent={<NavBar />}
+            headerContent={
+              <DynamicPageHeader>
+                <FlexBox alignItems="Center" wrap="Wrap">
+                  <FlexBox
+                    direction="column"
+                    justifyContent="SpaceBetween"
+                    alignItems="Center"
+                    style={{ gap: "20px" }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "flex-start",
+                        gap: "10px",
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "flex-start",
+                          justifyContent: "center",
+                          gap: 10,
+                        }}
+                      >
+                        Product Name:
+                        <TextField
+                          id="outlined-basic"
+                          variant="outlined"
+                          size="small"
+                          value={productName}
+                          onChange={(e) => setProductName(e.target.value)}
+                        />
+                      </div>
+
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "flex-start",
+                          justifyContent: "center",
+                          gap: 10,
+                        }}
+                      >
+                        Product Category
+                        <TextField
+                          id="outlined-basic"
+                          variant="outlined"
+                          size="small"
+                          value={productCategory}
+                          onChange={(e) => setProductCategory(e.target.value)}
+                        />
+                      </div>
+                    </div>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "flex-start",
+                        gap: "10px",
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "flex-start",
+                          justifyContent: "center",
+                          gap: 5,
+                        }}
+                      >
+                        Product Descreption
+                        <TextField
+                          id="outlined-multiline-static"
+                          multiline
+                          rows={4}
+                          value={productDescreption}
+                          sx={{ minWidth: "400px" }}
+                          onChange={(e) =>
+                            setProductDescreption(e.target.value)
+                          }
+                        />
+                      </div>
+                    </div>
+                  </FlexBox>
+                </FlexBox>
+              </DynamicPageHeader>
+            }
+            headerContentPinnable
+            headerTitle={
+              <DynamicPageTitle
+                actions={
+                  <>
+                    <Button design="Emphasized">Logout</Button>
+                  </>
+                }
+                header={productName}
+                showSubHeaderRight
+                subHeader={productCategory}
+              ></DynamicPageTitle>
+            }
           >
             {ShowUIElements(UiTemplate)}
           </ObjectPage>
