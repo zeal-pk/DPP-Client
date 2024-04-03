@@ -21,6 +21,18 @@ import {
 import { TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import EditIcon from "@mui/icons-material/Edit";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import SaveIcon from "@mui/icons-material/Save";
+import DoneIcon from "@mui/icons-material/Done";
+import CloseIcon from "@mui/icons-material/Close";
+import { Alert } from "@mui/material";
+import Stepper from "@mui/material/Stepper";
+import Box from "@mui/material/Box";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 
 import * as XLSX from "xlsx";
 
@@ -36,14 +48,49 @@ const VisuallyHiddenInput = styled("input")({
   width: 1,
 });
 
+const steps = [
+  {
+    label: "Party 1",
+  },
+  {
+    label: "Party 2",
+  },
+  {
+    label: "Party 3",
+  },
+];
+
 export default function EditProduct() {
   let serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
   let router = useRouter();
+
+  let [alert, setAlert] = useState(false);
+  let [alertMessage, setAlertMessage] = useState();
+  let [alertSeverity, setAlertSeverity] = useState();
+
   let [UiTemplate, setUiTemplate] = useState([]);
+  let [productId, setProductId] = useState();
   let [productName, setProductName] = useState();
   let [productCategory, setProductCategory] = useState();
   let [productDescreption, setProductDescreption] = useState();
+  let [imgUrl, setImgUrl] = useState();
+  let [otherData, setOther] = useState();
   let [image, setImage] = useState();
+  let [editMode, setEditMode] = useState(false);
+
+  const [activeStep, setActiveStep] = React.useState(2);
+
+  function errAlert(errData) {
+    let message = errData.message;
+    let severity = errData.severity;
+    setAlert(true);
+    setAlertMessage(message);
+    setAlertSeverity(severity);
+
+    setTimeout(() => {
+      setAlert(false);
+    }, 3000);
+  }
 
   async function getProductUI() {
     let token = localStorage.getItem("access_token");
@@ -91,9 +138,11 @@ export default function EditProduct() {
           },
         })
         .then((response) => {
+          setProductId(response.data.id);
           setProductName(response.data.name);
           setProductCategory(response.data.category);
           setProductDescreption(response.data.description);
+          setImgUrl(response.data.imageUrl);
           console.log(response.data);
         });
     } catch (error) {
@@ -127,30 +176,201 @@ export default function EditProduct() {
     console.log(image);
   }, [image]);
 
+  let [submitting, setSubmitting] = useState(false);
+  let [submitStatus, setSubmitStatus] = useState({
+    color: "primary",
+    message: "Submit",
+  });
+
+  useEffect(() => {
+    setTimeout(() => {
+      setSubmitStatus({ color: "primary", message: "Submit" });
+    }, 3000);
+  }, [submitting]);
+
+  async function handleUpdateHeaderData() {
+    let token = localStorage.getItem("access_token");
+    let path = window.location.pathname;
+    let pathArr = path.split("/");
+    let productId = pathArr[3];
+
+    let editedData = {
+      id: productId,
+      name: productName,
+      imageUrl: imgUrl,
+      category: productCategory,
+      description: productDescreption,
+      otherData: otherData,
+    };
+
+    try {
+      setSubmitting(true);
+      let response = await axios.post(
+        `${serverUrl}/updateProductHeader/${productId}`,
+        editedData,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      if (response.status == 200) {
+        setSubmitting(false);
+        setSubmitStatus({ color: "success", message: "Successful" });
+      }
+    } catch (error) {
+      let errData = {
+        message: `${error}, Please try again later`,
+        severity: "error",
+      };
+      errAlert(errData);
+      setSubmitting(false);
+      setSubmitStatus({ color: "error", message: `${error.message}` });
+      console.log(error);
+    }
+  }
+
+  const columns = [{ id: "fieldName", label: "Field Name", minWidth: 170 }];
+
+  const rows = ["India", "China"];
+
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
+  function cells(fields) {
+    for (let i = 0; i < fields.length; i++) {
+      return (
+        <tbody>
+          <tr>
+            {fields.map((field, index) => {
+              if (field != "" && index <= 5) {
+                return <td key={index}>{field}</td>;
+              }
+            })}
+          </tr>
+          <tr>
+            {fields.map((field, index) => {
+              if (field != "" && field != " " && index > 5 && index <= 10) {
+                return <td key={index}>{field}</td>;
+              }
+            })}
+          </tr>
+          <tr>
+            {fields.map((field, index) => {
+              if (field != "" && field != " " && index > 10 && index <= 15) {
+                return <td key={index}>{field}</td>;
+              }
+            })}
+          </tr>
+          <tr>
+            {fields.map((field, index) => {
+              if (field != "" && field != " " && index > 15 && index <= 20) {
+                return <td key={index}>{field}</td>;
+              }
+            })}
+          </tr>
+          <tr>
+            {fields.map((field, index) => {
+              if (field != "" && field != " " && index > 20 && index <= 25) {
+                return <td key={index}>{field}</td>;
+              }
+            })}
+          </tr>
+          <tr>
+            {fields.map((field, index) => {
+              if (field != "" && field != " " && index > 25 && index < 30) {
+                return <td key={index}>{field}</td>;
+              }
+            })}
+          </tr>
+        </tbody>
+      );
+    }
+  }
+
   function fieldIteration(subTabType, fields) {
     if (subTabType == "inputFields") {
       return (
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          {fields.map((field, index) => {
-            return (
-              <p key={field}>
-                Field {index + 1}: <b>{field}</b>
-              </p>
-            );
-          })}
-        </div>
+        <table class="table table-striped-columns">
+          <thead>
+            <tr>
+              <th scope="col">Field Labels</th>
+              <th scope="col">Field Labels</th>
+              <th scope="col">Field Labels</th>
+              <th scope="col">Field Labels</th>
+              <th scope="col">Field Labels</th>
+            </tr>
+          </thead>
+          {cells(fields)}
+        </table>
       );
-    } else if (subTabType == "document") {
+    } else if (subTabType == "chart") {
       return (
         <div>
-          <FileUploader type="file" onChange={handleUploadFile}>
+          <p>
+            X-Axis <b>{fields[0].xAxis}</b>
+          </p>
+          <p>
+            Y-Axis <b>{fields[0].yAxis}</b>
+          </p>
+        </div>
+      );
+    } else if (subTabType == "document" || subTabType == "chainOfCustody") {
+      return (
+        <div>
+          <FileUploader type="file">
             <Button>
               <CloudUploadIcon />
               Upload File
             </Button>
           </FileUploader>
-          <img src={image} style={{ height: "100px" }} />
         </div>
+      );
+    } else if (subTabType == "tracability") {
+      return (
+        <Box
+          sx={{
+            display: "flex",
+            maxWidth: 400,
+            justifyContent: "center",
+            marginLeft: "10%",
+          }}
+        >
+          <Stepper activeStep={activeStep} orientation="vertical">
+            {steps.map((step, index) => (
+              <Step key={step.label}>
+                <StepLabel
+                  optional={
+                    index === 2 ? (
+                      <Typography variant="caption">Latest Custody</Typography>
+                    ) : null
+                  }
+                >
+                  {step.label}
+                </StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+          {activeStep === steps.length && (
+            <Paper square elevation={0} sx={{ p: 3 }}>
+              <Typography>
+                All steps completed - you&apos;re finished
+              </Typography>
+              <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+                Reset
+              </Button>
+            </Paper>
+          )}
+        </Box>
       );
     }
   }
@@ -248,6 +468,13 @@ export default function EditProduct() {
   return (
     <div className="main">
       <div>
+        {alert ? (
+          <Alert severity={alertSeverity} style={{ marginTop: "10px" }}>
+            {alertMessage}
+          </Alert>
+        ) : (
+          <></>
+        )}
         <ThemeProvider>
           <ObjectPage
             footer={
@@ -259,13 +486,6 @@ export default function EditProduct() {
                       onClick={() => downloadExcel(testData)}
                     >
                       Download Excel
-                    </Button>
-
-                    <Button
-                      design="Emphasized"
-                      onClick={() => handlePostUIData(dataStruct)}
-                    >
-                      Submit
                     </Button>
                   </>
                 }
@@ -304,16 +524,64 @@ export default function EditProduct() {
                           gap: 10,
                         }}
                       >
-                        Product Name:
+                        Product ID
+                        <TextField
+                          id="outlined-basic"
+                          variant="outlined"
+                          disabled
+                          size="small"
+                          value={productId}
+                          onChange={(e) => setOther(e.target.value)}
+                        />
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "flex-start",
+                          justifyContent: "center",
+                          gap: 10,
+                        }}
+                      >
+                        Product Name
                         <TextField
                           id="outlined-basic"
                           variant="outlined"
                           size="small"
+                          disabled={!editMode}
                           value={productName}
                           onChange={(e) => setProductName(e.target.value)}
                         />
                       </div>
+                    </div>
 
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "flex-start",
+                        gap: "10px",
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "flex-start",
+                          justifyContent: "center",
+                          gap: 10,
+                        }}
+                      >
+                        Product Image URL
+                        <TextField
+                          id="outlined-basic"
+                          variant="outlined"
+                          disabled={!editMode}
+                          size="small"
+                          value={imgUrl}
+                          onChange={(e) => setImgUrl(e.target.value)}
+                        />
+                      </div>
                       <div
                         style={{
                           display: "flex",
@@ -327,6 +595,7 @@ export default function EditProduct() {
                         <TextField
                           id="outlined-basic"
                           variant="outlined"
+                          disabled={!editMode}
                           size="small"
                           value={productCategory}
                           onChange={(e) => setProductCategory(e.target.value)}
@@ -354,9 +623,11 @@ export default function EditProduct() {
                         Product Descreption
                         <TextField
                           id="outlined-multiline-static"
+                          disabled={!editMode}
                           multiline
                           rows={4}
                           value={productDescreption}
+                          inputProps={{ maxLength: 250 }}
                           sx={{ minWidth: "400px" }}
                           onChange={(e) =>
                             setProductDescreption(e.target.value)
@@ -370,17 +641,38 @@ export default function EditProduct() {
             }
             headerContentPinnable
             headerTitle={
-              <DynamicPageTitle
-                actions={
-                  <>
-                    <Button design="Emphasized">Logout</Button>
-                  </>
-                }
-                header={productName}
-                showSubHeaderRight
-                subHeader={productCategory}
-              ></DynamicPageTitle>
+              <>
+                <DynamicPageTitle
+                  actions={
+                    <>
+                      {editMode ? (
+                        <Button onClick={() => setEditMode(false)}>
+                          <VisibilityIcon />
+                        </Button>
+                      ) : (
+                        <Button onClick={() => setEditMode(true)}>
+                          <EditIcon />
+                        </Button>
+                      )}
+
+                      <Button onClick={handleUpdateHeaderData}>
+                        {submitStatus.color === "success" ? (
+                          <DoneIcon color="success" />
+                        ) : submitStatus.color === "error" ? (
+                          <CloseIcon color="error" />
+                        ) : (
+                          <SaveIcon />
+                        )}
+                      </Button>
+                    </>
+                  }
+                  header={productName}
+                  showSubHeaderRight
+                  subHeader={productCategory}
+                ></DynamicPageTitle>
+              </>
             }
+            image={imgUrl}
           >
             {ShowUIElements(UiTemplate)}
           </ObjectPage>
