@@ -6,10 +6,13 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import NavBar from "@/components/navBar";
 import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import LoadingPage from "../loading";
+import Image from "next/image";
+import custImg from "../../assets/customers.jpg";
 
 export default function Home() {
   let router = useRouter();
@@ -65,6 +68,7 @@ export default function Home() {
             }}
           >
             <Card variant="outlined">
+              <Image src="/customer.jpg" width={500} height={500} />
               <CardContent>
                 <Typography variant="h5" component="div">
                   Customer List
