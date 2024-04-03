@@ -51,6 +51,7 @@ export default function EditProduct() {
   let [alertSeverity, setAlertSeverity] = useState();
 
   let [UiTemplate, setUiTemplate] = useState([]);
+  let [productId, setProductId] = useState();
   let [productName, setProductName] = useState();
   let [productCategory, setProductCategory] = useState();
   let [productDescreption, setProductDescreption] = useState();
@@ -117,6 +118,7 @@ export default function EditProduct() {
           },
         })
         .then((response) => {
+          setProductId(response.data.id);
           setProductName(response.data.name);
           setProductCategory(response.data.category);
           setProductDescreption(response.data.description);
@@ -387,17 +389,16 @@ export default function EditProduct() {
                           gap: 10,
                         }}
                       >
-                        Product Name
+                        Product ID
                         <TextField
                           id="outlined-basic"
                           variant="outlined"
+                          disabled
                           size="small"
-                          disabled={!editMode}
-                          value={productName}
-                          onChange={(e) => setProductName(e.target.value)}
+                          value={productId}
+                          onChange={(e) => setOther(e.target.value)}
                         />
                       </div>
-
                       <div
                         style={{
                           display: "flex",
@@ -407,14 +408,14 @@ export default function EditProduct() {
                           gap: 10,
                         }}
                       >
-                        Product Category
+                        Product Name
                         <TextField
                           id="outlined-basic"
                           variant="outlined"
-                          disabled={!editMode}
                           size="small"
-                          value={productCategory}
-                          onChange={(e) => setProductCategory(e.target.value)}
+                          disabled={!editMode}
+                          value={productName}
+                          onChange={(e) => setProductName(e.target.value)}
                         />
                       </div>
                     </div>
@@ -446,7 +447,6 @@ export default function EditProduct() {
                           onChange={(e) => setImgUrl(e.target.value)}
                         />
                       </div>
-
                       <div
                         style={{
                           display: "flex",
@@ -456,14 +456,14 @@ export default function EditProduct() {
                           gap: 10,
                         }}
                       >
-                        Other
+                        Product Category
                         <TextField
                           id="outlined-basic"
                           variant="outlined"
                           disabled={!editMode}
                           size="small"
-                          value={otherData}
-                          onChange={(e) => setOther(e.target.value)}
+                          value={productCategory}
+                          onChange={(e) => setProductCategory(e.target.value)}
                         />
                       </div>
                     </div>
