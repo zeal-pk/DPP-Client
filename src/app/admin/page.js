@@ -31,7 +31,7 @@ export default function Home() {
           }
         );
       } catch (error) {
-        if (error.response.status !== 403) {
+        if (error.status !== 403) {
           router.push("/error");
         }
       }
